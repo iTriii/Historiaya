@@ -1,17 +1,15 @@
 package com.example.log_in;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class Main2 extends AppCompatActivity {
  TextView Start, BookNow, Store, Map;
- ImageView Share, Settings;
+ ImageView Share, Settings, Profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +33,9 @@ public class Main2 extends AppCompatActivity {
 
         Settings = findViewById(R.id.Settings);
         Settings.setOnClickListener(v -> Settings());
+
+        Profile =findViewById(R.id.Profile);
+        Profile.setOnClickListener(v -> Profile());
     }
 
     public void StartScreen() {
@@ -64,6 +65,10 @@ public class Main2 extends AppCompatActivity {
 
     public void Settings() {
         Intent intent = new Intent(this, Settings.class);
+        startActivity(intent);
+    }
+    public void Profile(){
+        Intent intent= new Intent(this, Profile.class);
         startActivity(intent);
     }
 }

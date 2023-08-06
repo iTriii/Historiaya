@@ -7,6 +7,7 @@
     android:background="#E1FAFF"
     tools:context=".Profile">
 
+
     <ImageView
         android:id="@+id/rizal_Start"
         android:layout_width="667dp"
@@ -68,24 +69,111 @@
         android:longClickable="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/settingsColored" />
+        app:srcCompat="@drawable/settingscolored" />
 
-    <ImageView
-        android:id="@+id/notif"
+    <ImageButton
+        android:id="@+id/back"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="28dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="45dp"
         android:background="@drawable/shadow"
-        android:clickable="true"
+        android:contentDescription="@string/ResetPass"
         android:elevation="10dp"
-        android:longClickable="true"
-        app:layout_constraintEnd_toStartOf="@+id/Settings"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:padding="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/notifications" />
+        app:srcCompat="@drawable/arrow_back" />
 
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/icon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="104dp"
+        android:background="#00A197"
+        android:baselineAlignBottom="false"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/circular"
+        app:srcCompat="@drawable/human_icon" />
+
+    <TextView
+        android:id="@+id/Uploadanimage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/Name"
+        android:textAlignment="center"
+        android:textColor="#00684E"
+        android:textSize="19sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/icon" />
+
+    <TextView
+        android:id="@+id/Mybooking"
+        android:layout_width="100dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="40dp"
+        android:clickable="true"
+        android:contextClickable="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/MyBooking"
+        android:textColor="#00684E"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/achievements"
+        app:layout_constraintTop_toBottomOf="@+id/Uploadanimage" />
+
+    <TextView
+        android:id="@+id/achievements"
+        android:layout_width="122dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="40dp"
+        android:clickable="true"
+        android:contextClickable="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/Achievements"
+        android:textAlignment="center"
+        android:textColor="#00684E"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Uploadanimage" />
+
+    <TextView
+        android:id="@+id/History"
+        android:layout_width="93dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="40dp"
+        android:clickable="true"
+        android:contextClickable="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/History"
+        android:textAlignment="center"
+        android:textColor="#00684E"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/Mybooking"
+        app:layout_constraintTop_toBottomOf="@+id/Uploadanimage" />
+
+    <TextView
+        android:id="@+id/Profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/Profile"
+        android:textAlignment="center"
+        android:textSize="25dp"
+        app:layout_constraintEnd_toStartOf="@+id/Settings"
+        app:layout_constraintStart_toEndOf="@+id/back"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
