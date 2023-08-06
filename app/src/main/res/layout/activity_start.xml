@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/back"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E1FAFF"
+    android:visibility="visible"
+    tools:context=".StartScreen">
+
+    <ImageView
+        android:id="@+id/rizal_Start"
+        android:layout_width="435dp"
+        android:layout_height="500dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.259"
+        app:srcCompat="@drawable/newproject" />
+
+    <ImageView
+        android:id="@+id/grass_start"
+        android:layout_width="474dp"
+        android:layout_height="621dp"
+        android:layout_marginTop="184dp"
+        android:alpha=".95"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/grass_1" />
+
+    <ImageView
+        android:id="@+id/twoppl"
+        android:layout_width="488dp"
+        android:layout_height="797dp"
+        android:layout_marginTop="180dp"
+        android:alpha=".89"
+        app:layout_constraintEnd_toEndOf="@+id/grass_start"
+        app:layout_constraintHorizontal_bias="0.688"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/backdrop" />
+
+    <ImageView
+        android:id="@+id/blurred"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha=".5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/rectangle" />
+
+    <TextView
+        android:id="@+id/AppName"
+        android:layout_width="350dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="135dp"
+        android:fontFamily="@font/montserrat_alternates_extrabold"
+        android:text="@string/AppName"
+        android:textAlignment="center"
+        android:textColor="@color/appname"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/backbutt"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="45dp"
+        android:background="@drawable/shadow"
+        android:clickable="true"
+        android:elevation="10dp"
+        android:longClickable="true"
+        android:padding="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/Profile"
+        app:layout_constraintHorizontal_bias="0.106"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/arrow_back" />
+
+    <ImageButton
+        android:id="@+id/Profile"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="28dp"
+        android:background="@drawable/shadow"
+        android:elevation="10dp"
+        android:clickable="true"
+        android:longClickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/human_icon2" />
+
+    <TextView
+        android:id="@+id/Story"
+        android:layout_width="226dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="108dp"
+        android:background="@drawable/startbuttonbg"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:longClickable="true"
+        android:text="@string/Story"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AppName" />
+
+    <TextView
+        android:id="@+id/ScavengerHunt"
+        android:layout_width="226dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/startbuttonbg"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:longClickable="true"
+        android:text="@string/ScavengerHunt"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Story" />
+
+    <TextView
+        android:id="@+id/Library"
+        android:layout_width="226dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/startbuttonbg"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:longClickable="true"
+        android:text="@string/Library"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ScavengerHunt" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E1FAFF"
+    tools:context=".LogIn">
+
+
+
+    <ImageView
+        android:id="@+id/cloud"
+        android:layout_width="432dp"
+        android:layout_height="424dp"
+        android:contentDescription="@string/clouds"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cloud" />
+
+    <TextView
+        android:id="@+id/AppName"
+        android:layout_width="350dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="60dp"
+        android:contentDescription="@string/AppName"
+        android:fontFamily="@font/montserrat_alternates_extrabold"
+        android:text="@string/AppName"
+        android:textAlignment="center"
+        android:textColor="@color/appname"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="80dp"
+        android:contentDescription="@string/email"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/email"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AppName" />
+
+    <TextView
+        android:id="@+id/password"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="52dp"
+        android:fontFamily="@font/montserrat"
+        android:contentDescription="@string/password"
+        android:text="@string/password"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        tools:ignore="MissingConstraints"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inpass"
+        android:layout_width="222dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/password"
+        app:layout_constraintTop_toBottomOf="@+id/inputemail"
+        app:passwordToggleEnabled="true"
+        app:endIconMode="password_toggle"
+        >
+
+        <EditText
+            android:id="@+id/inputpass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:textSize="16sp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/li"
+        android:layout_width="215dp"
+        android:layout_height="55dp"
+        android:layout_marginBottom="324dp"
+        android:background="@drawable/loginbutton"
+        android:clickable="true"
+        android:contextClickable="true"
+        android:text="@string/LogIn"
+        android:elevation="3dp"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/forgotpass"
+        android:layout_width="198dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="4dp"
+        android:clickable="true"
+        android:contentDescription="@string/forgotpass"
+        android:fontFamily="@font/abeezee"
+        android:text="@string/forgotpass"
+        android:textAlignment="center"
+        android:textSize="17sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inpass"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="-10dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="-10dp"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/or"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/line"
+        app:layout_constraintStart_toEndOf="@+id/line2"
+        app:layout_constraintTop_toBottomOf="@+id/li"
+        app:layout_constraintVertical_bias="0.087" />
+
+    <TextView
+        android:id="@+id/donot"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="50dp"
+        android:contentDescription="@string/donot"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="@string/donot"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/regnow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gacc"
+        app:layout_constraintVertical_bias="0.206" />
+
+    <TextView
+        android:id="@+id/regnow"
+        android:layout_width="145dp"
+        android:layout_height="25dp"
+        android:layout_marginEnd="45dp"
+        android:layout_marginBottom="123dp"
+        android:clickable="true"
+        android:contentDescription="@string/reg"
+        android:contextClickable="false"
+        android:fontFamily="@font/montserrat_bold"
+        android:linksClickable="false"
+        android:longClickable="true"
+        android:text="@string/reg"
+        android:textAlignment="center"
+        android:textColor="#00A197"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/donot"
+        app:layout_constraintTop_toBottomOf="@+id/fb"
+        app:layout_constraintVertical_bias="0.416" />
+
+    <ImageView
+        android:id="@+id/fb"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="160dp"
+        android:layout_marginBottom="220dp"
+        android:clickable="true"
+        android:contentDescription="@string/face"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.037"
+        app:layout_constraintStart_toEndOf="@+id/gacc"
+        app:srcCompat="@drawable/vector" />
+
+    <ImageView
+        android:id="@+id/gacc"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="170dp"
+        android:layout_marginBottom="220dp"
+        android:clickable="true"
+        android:contentDescription="@string/gmail"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/google_logo" />
+
+    <View
+        android:id="@+id/line2"
+        android:layout_width="150dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="40dp"
+        android:background="@android:color/black"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/li">
+
+    </View>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="150dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="28dp"
+        android:background="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/li">
+
+    </View>
+
+    <EditText
+        android:id="@+id/inputemail"
+        android:layout_width="222dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="68dp"
+        android:ems="10"
+        android:fontFamily="@font/montserrat"
+        android:hint="@string/email"
+        android:inputType="textEmailAddress"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/cloud"
+        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AppName" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

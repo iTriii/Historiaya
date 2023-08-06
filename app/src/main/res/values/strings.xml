@@ -1,0 +1,84 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!--Splashscreen-->
+    <string name="AppName">TouristARya</string>
+    <string name="TagLine">A Journey to the Past at Your Fingertips</string>
+    <string name="Augmented_Reality">Augmented Reality</string>
+    <string name="Tag_tag_line">Explore historical landmarks and cultural heritage sites through virtual tours with Augmented Reality technology.</string>
+    <string name="GetStarted">Get Started</string>
+    <string name="twopips">image</string>
+    <string name="rizal">image</string>
+    <string name="grass">image</string>
+    <string name="clouds">image</string>
+    <string name="newproject">image</string>
+    <string name="a210">image</string>
+
+    <!--login activity-->
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="LogIn">Log In</string>
+    <string name="forgotpass">Forgot Password ?</string>
+    <string name="or">or</string>
+    <string name="donot">Do not have an account?</string>
+    <string name="reg">Register Now</string>
+    <string name="face">image</string>
+    <string name="gmail">image</string>
+    <string name="inputpass">Password</string>
+    <string name="inpass">inpass</string>
+
+    <!--Reset Password-->
+    <string name="ResetPass">Reset Password</string>
+    <string name="Resetenteremail">Enter the Email Address associated with your account</string>
+    <string name="YourEmail">Your Email</string>
+    <string name="Reset">Reset</string>
+
+    <!--Create New Password-->
+    <string name="createnew">Create New Password</string>
+    <string name="newpass">Your new password must be different from previous used passwords.</string>
+    <string name="newpassword">New Password</string>
+    <string name="confirmpassword">Confirm Password</string>
+
+    <!--Sign Up-->
+    <string name="FirstName">First Name</string>
+    <string name="LastName">Last Name</string>
+    <string name="Email">Email</string>
+    <string name="ContactNumber">Contact #</string>
+    <string name="Password">Password</string>
+    <string name="Re_enter">Re-enter Password</string>
+    <string name="SignUp">Sign Up</string>
+    <string name="UploadImage">Upload an Image</string>
+    <string name="BySU">By Signing Up, you agree to the TouristARyas <b>Privacy</b> and <b>Terms</b></string>
+
+    <!--OTP-->
+    <string name="otp">OTP Verification</string>
+    <string name="WeSent">We Sent you a one time password on this <b>Email Address</b></string>
+    <string name="ResendOTP"><b><u>Resend</u></b> OTP in</string>
+    <string name="ConfirmButton">Confirm</string>
+    <string name="Incorrect">Incorrect Email Address?</string>
+    <string name="EditNow">Edit Now</string>
+    <string name="Resend">Resend</string>
+
+    <!--Start-->
+    <string name="Story">Story</string>
+    <string name="ScavengerHunt">Scavenger Hunt</string>
+    <string name="Library">Library</string>
+
+    <!--Story  Selection-->
+    <string name="StorySelection">Story</string>
+    <string name="MainStory">Main Story</string>
+
+    <!--Main2-->
+    <string name="Start">Start</string>
+    <string name="BookNow">Book Now</string>
+    <string name="Store">Store</string>
+    <string name="Map">Map</string>
+
+    <!--Profile-->
+    <string name="Profile">Profile</string>
+    <string name="Achievements">Achievements</string>
+    <string name="MyBooking">My Booking</string>
+    <string name="History">History</string>
+    <string name="MyProfile">MyProfile</string>
+    <string name="First_Name">First Name</string>
+    <string name="Last_Name">Last Name</string>
+    <string name="Save">Save</string>
+</resources>

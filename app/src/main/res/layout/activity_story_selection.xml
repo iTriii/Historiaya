@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E1FAFF"
+    tools:context=".StorySelection">
+
+    <ImageView
+        android:id="@+id/rizal_Start"
+        android:layout_width="435dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="171dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/StorySelection"
+        app:layout_constraintVertical_bias="0.259"
+        app:srcCompat="@drawable/newproject" />
+
+    <ImageView
+        android:id="@+id/grass_start"
+        android:layout_width="474dp"
+        android:layout_height="621dp"
+        android:layout_marginTop="184dp"
+        android:alpha=".95"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/grass_1" />
+
+    <ImageView
+        android:id="@+id/twoppl"
+        android:layout_width="488dp"
+        android:layout_height="797dp"
+        android:layout_marginTop="180dp"
+        android:alpha=".89"
+        app:layout_constraintEnd_toEndOf="@+id/grass_start"
+        app:layout_constraintHorizontal_bias="0.688"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/backdrop" />
+
+    <ImageView
+        android:id="@+id/blurred"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:alpha=".5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/rectangle" />
+
+    <ImageButton
+        android:id="@+id/backbutt"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="45dp"
+        android:background="@drawable/shadow"
+        android:clickable="true"
+        android:elevation="10dp"
+        android:longClickable="true"
+        android:padding="10dp"
+        app:layout_constraintEnd_toStartOf="@+id/Profile"
+        app:layout_constraintHorizontal_bias="0.106"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/arrow_back" />
+
+    <ImageButton
+        android:id="@+id/Profile"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="28dp"
+        android:background="@drawable/shadow"
+        android:clickable="true"
+        android:elevation="10dp"
+        android:longClickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/human_icon2" />
+
+    <TextView
+        android:id="@+id/StorySelection"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:layout_marginBottom="15dp"
+        android:textAlignment="center"
+        android:textSize="32sp"
+        android:fontFamily="@font/montserrat_alternates_extrabold"
+        android:textColor="#FEC242"
+        android:text="@string/StorySelection"
+        app:layout_constraintBottom_toTopOf="@+id/rizal_Start"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
