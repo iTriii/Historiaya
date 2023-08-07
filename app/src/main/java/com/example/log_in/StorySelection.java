@@ -1,10 +1,10 @@
 package com.example.log_in;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageButton;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class StorySelection extends AppCompatActivity {
     ImageButton backbutt, Profile;
@@ -29,7 +29,7 @@ public class StorySelection extends AppCompatActivity {
     }   
 
     public void Profile() {
-        Intent intent = new Intent(this, SignUp.class);
+        Intent intent = new Intent(this, Profile.class);
         startActivity(intent);
         overridePendingTransition(com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_in_left, com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_out_right);
     }

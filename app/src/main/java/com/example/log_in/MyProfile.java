@@ -39,6 +39,7 @@ public class MyProfile extends AppCompatActivity {
     public void Profile() {
         Intent intent = new Intent(this, Profile.class);
         startActivity(intent);
+        overridePendingTransition(com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_in_left, com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_out_right);
     }
 
     void icon() {

@@ -24,6 +24,7 @@ public class Profile extends AppCompatActivity {
     public void main2() {
         Intent intent = new Intent(this, Main2.class);
         startActivity(intent);
+        overridePendingTransition(com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_in_left, com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_out_right);
 
     }
 
