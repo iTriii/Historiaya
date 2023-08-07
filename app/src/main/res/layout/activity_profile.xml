@@ -85,11 +85,26 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/arrow_back" />
 
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="350dp"
+            android:layout_height="1dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="100dp"
+            android:background="#80000000" />
+
+    </LinearLayout>
+
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/icon"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="110dp"
         android:background="#00A197"
         android:baselineAlignBottom="false"
         android:textAlignment="center"
@@ -119,13 +134,14 @@
         android:id="@+id/Mybooking"
         android:layout_width="100dp"
         android:layout_height="42dp"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
         android:clickable="true"
         android:contextClickable="true"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/MyBooking"
-        android:textColor="#00684E"
+        android:textAlignment="center"
+        android:textColor="#8000684E"
         android:textSize="15sp"
         app:layout_constraintStart_toEndOf="@+id/achievements"
         app:layout_constraintTop_toBottomOf="@+id/Uploadanimage" />
@@ -134,7 +150,7 @@
         android:id="@+id/achievements"
         android:layout_width="122dp"
         android:layout_height="42dp"
-        android:layout_marginStart="28dp"
+        android:layout_marginStart="35dp"
         android:layout_marginTop="40dp"
         android:clickable="true"
         android:contextClickable="true"
@@ -148,16 +164,16 @@
 
     <TextView
         android:id="@+id/History"
-        android:layout_width="93dp"
+        android:layout_width="70dp"
         android:layout_height="42dp"
-        android:layout_marginStart="25dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="40dp"
         android:clickable="true"
         android:contextClickable="true"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/History"
         android:textAlignment="center"
-        android:textColor="#00684E"
+        android:textColor="#8000684E"
         android:textSize="15sp"
         app:layout_constraintStart_toEndOf="@+id/Mybooking"
         app:layout_constraintTop_toBottomOf="@+id/Uploadanimage" />
@@ -174,6 +190,7 @@
         app:layout_constraintEnd_toStartOf="@+id/EditProfile"
         app:layout_constraintStart_toEndOf="@+id/back"
         app:layout_constraintTop_toTopOf="parent" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

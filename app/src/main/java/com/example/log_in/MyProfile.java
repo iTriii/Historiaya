@@ -13,7 +13,7 @@ import com.google.android.material.imageview.ShapeableImageView;
 public class MyProfile extends AppCompatActivity {
     ImageButton back;
     ShapeableImageView icon;
-    TextView Uploadanimage,firstname,lastname,E_mail,contact;
+    TextView Uploadanimage,firstname,lastname,E_mail,contact, Save;
     int SELECT_PICTURE;
 
     @Override
@@ -27,6 +27,9 @@ public class MyProfile extends AppCompatActivity {
 
         back = findViewById(R.id.back);
         back.setOnClickListener(v -> Profile());
+
+        Save = findViewById(R.id.Save);
+        Save.setOnClickListener(v -> Profile());
 
         firstname = findViewById(R.id.firstname);
         lastname = findViewById(R.id.lastname);

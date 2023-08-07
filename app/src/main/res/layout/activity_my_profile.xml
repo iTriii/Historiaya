@@ -169,7 +169,7 @@
         android:id="@+id/fname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="275dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/FirstName"
@@ -183,13 +183,13 @@
         android:id="@+id/Email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="33dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/Email"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/E_mail"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.265"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lname" />
 
@@ -197,13 +197,13 @@
         android:id="@+id/ContactNo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="36dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/ContactNumber"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/contact"
-        app:layout_constraintHorizontal_bias="0.356"
+        app:layout_constraintHorizontal_bias="0.326"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Email" />
 
@@ -211,7 +211,7 @@
         android:id="@+id/lname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="30dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/LastName"
@@ -238,6 +238,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
