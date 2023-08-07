@@ -58,7 +58,7 @@
         app:srcCompat="@drawable/rectangle" />
 
     <ImageButton
-        android:id="@+id/Settings"
+        android:id="@+id/EditProfile"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="45dp"
@@ -171,7 +171,7 @@
         android:text="@string/Profile"
         android:textAlignment="center"
         android:textSize="25dp"
-        app:layout_constraintEnd_toStartOf="@+id/Settings"
+        app:layout_constraintEnd_toStartOf="@+id/EditProfile"
         app:layout_constraintStart_toEndOf="@+id/back"
         app:layout_constraintTop_toTopOf="parent" />
 

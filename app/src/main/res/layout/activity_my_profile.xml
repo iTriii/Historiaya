@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="#E1FAFF"
     tools:context=".MyProfile">
+
     <ImageView
         android:id="@+id/rizal_Start"
         android:layout_width="667dp"
@@ -29,9 +30,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/grass_1" />
-
-
-
 
 
     <ImageView
@@ -80,6 +78,7 @@
         android:layout_marginTop="104dp"
         android:background="#00A197"
         android:baselineAlignBottom="false"
+        android:clickable="false"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -108,7 +107,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+        android:clickable="true"
+        android:contextClickable="true"
         android:fontFamily="@font/montserrat_medium"
+        android:linksClickable="true"
+        android:longClickable="true"
         android:text="@string/Uploadanimage"
         android:textAlignment="center"
         android:textColor="#00684E"
@@ -167,7 +170,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="260dp"
+        android:layout_marginTop="275dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/FirstName"
         android:textSize="16sp"
@@ -181,7 +184,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="48dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/Email"
         android:textSize="16sp"
@@ -195,7 +198,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/ContactNumber"
         android:textSize="16sp"
@@ -209,7 +212,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="30dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/LastName"
         android:textSize="16sp"
@@ -222,6 +225,7 @@
         android:id="@+id/Save"
         android:layout_width="226dp"
         android:layout_height="55dp"
+        android:layout_marginBottom="45dp"
         android:background="@drawable/startbuttonbg"
         android:clickable="true"
         android:fontFamily="@font/montserrat_bold"
@@ -230,8 +234,10 @@
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
-        tools:layout_editor_absoluteX="92dp"
-        tools:layout_editor_absoluteY="626dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

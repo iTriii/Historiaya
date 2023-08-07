@@ -31,7 +31,7 @@ public class Main2 extends AppCompatActivity {
         Share = findViewById(R.id.Share);
         Share.setOnClickListener(v -> Share());
 
-        Settings = findViewById(R.id.Settings);
+        Settings = findViewById(R.id.EditProfile);
         Settings.setOnClickListener(v -> Settings());
 
         Profile =findViewById(R.id.Profile);
