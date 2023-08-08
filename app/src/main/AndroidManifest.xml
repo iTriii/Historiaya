@@ -16,6 +16,21 @@
         android:theme="@style/Theme.Log_In"
         tools:targetApi="31">
         <activity
+            android:name=".Tutorial"
+            android:exported="false" />
+        <activity
+            android:name=".LogOut"
+            android:exported="false" />
+        <activity
+            android:name=".PrivacyandTerms"
+            android:exported="false" />
+        <activity
+            android:name=".Feedback"
+            android:exported="false" />
+        <activity
+            android:name=".Credits"
+            android:exported="false" />
+        <activity
             android:name=".PopUpSettings"
             android:exported="false" />
         <activity
@@ -35,9 +50,6 @@
             android:exported="true" />
         <activity
             android:name=".BookNow"
-            android:exported="true" />
-        <activity
-            android:name=".Settings"
             android:exported="true" />
         <activity
             android:name=".Main2"
