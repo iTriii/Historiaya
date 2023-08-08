@@ -1,6 +1,7 @@
 package com.example.log_in;
 
 import android.annotation.SuppressLint;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -10,15 +11,18 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class PopUpSettings extends AppCompatActivity {
-    Button Credits, Feedback, PrivacyandTerms,LogOut;
-    ImageButton Tutorial1, closeBut;
+    Button Credits, Feedback, PrivacyandTerms, LogOut;
+    ImageButton closeBut, Tutorial1;
     TextView Tutorial;
+    Dialog dialog;
 
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pop_up_settings);
+
+        dialog = new Dialog(this);
 
         Credits = findViewById(R.id.Credits);
         Credits.setOnClickListener(v -> Credits());
@@ -27,7 +31,7 @@ public class PopUpSettings extends AppCompatActivity {
         Feedback.setOnClickListener(v -> Feedback());
 
         PrivacyandTerms = findViewById(R.id.PrivacyandTerms);
-       PrivacyandTerms.setOnClickListener(v -> PrivacyandTerms());
+        PrivacyandTerms.setOnClickListener(v -> PrivacyandTerms());
 
         LogOut = findViewById(R.id.Logout);
         LogOut.setOnClickListener(v -> LogOut());
@@ -35,13 +39,14 @@ public class PopUpSettings extends AppCompatActivity {
         Tutorial = findViewById(R.id.Tutorial);
         Tutorial.setOnClickListener(v -> Tutorial());
 
-       Tutorial1 = findViewById(R.id.Tutorial1);
+        Tutorial1 = findViewById(R.id.Tutorial1);
         Tutorial1.setOnClickListener(v -> Tutorial1());
 
-        closeBut= findViewById(R.id.closeBut);
+        dialog.setContentView(R.layout.activity_pop_up_settings);
+        dialog.getWindow().setBackgroundDrawableResource(R.drawable.popup_background);
+        closeBut = findViewById(R.id.closeBut);
         closeBut.setOnClickListener(v -> closeBut());
-    }
-
+}
     public void Credits() {
         Intent intent =new Intent(this, Credits.class);
         startActivity(intent);
@@ -67,7 +72,6 @@ public class PopUpSettings extends AppCompatActivity {
         startActivity(intent);
     }
     public void closeBut() {
-            Intent intent =new Intent(this, Main2.class);
-            startActivity(intent);
+            dialog.dismiss();
         }
     }
