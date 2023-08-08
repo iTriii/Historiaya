@@ -86,10 +86,10 @@
     
     <!--PopUp Settings-->
     <string name="Settings">Settings</string>
-    <string name="Audio">Audio</string>
     <string name="Tutorial">Tutorial</string>
     <string name="Credits">Credits</string>
     <string name="Feedback">Feedback</string>
     <string name="PrivacyandTerms">Privacy and Terms</string>
     <string name="LogOut">Log Out</string>
+    <string name="audio">Audio</string>
 </resources>

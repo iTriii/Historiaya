@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="338dp"
     android:layout_height="326dp"
     tools:context=".PopUpSettings"
     android:background="@color/white"
-    android:layout_gravity="center">
+    android:layout_gravity="center"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/settings"
@@ -18,17 +19,74 @@
         android:text="@string/Settings"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:forceHasOverlappingRendering="true"/>
 
     <ImageButton
-
         android:id="@+id/closeBut"
-        android:layout_width="21.54dp"
-        android:layout_height="21.54dp"
-        android:layout_marginEnd="50dp"
+        android:layout_width="23dp"
+        android:layout_height="23dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="300dp"
+        android:layout_x="290dp"
+        android:layout_y="11dp"
         android:background="@drawable/circle_white"
-        app:srcCompat="@drawable/close"
-        />
+        app:srcCompat="@drawable/close" />
+
+    <View
+        android:layout_width="338dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="30dp"
+        android:background="#80000000" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_x="210dp"
+        android:layout_y="61dp"
+        app:srcCompat="@drawable/tutorial" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="84dp"
+        android:layout_y="60dp"
+        app:srcCompat="@drawable/audio" />
+
+    <Switch
+        android:id="@+id/audio"
+        android:layout_width="50dp"
+        android:layout_height="30dp"
+        android:layout_x="121dp"
+        android:layout_y="63dp"
+        android:textAlignment="center"
+        android:thumbTint="#00684E"
+        android:trackTint="#4E3535"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <TextView
+        android:id="@+id/Audio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="93dp"
+        android:layout_y="91dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/audio"
+        android:textColor="@color/green"
+        android:textSize="17sp" />
+
+    <TextView
+        android:id="@+id/Tutorial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="194dp"
+        android:layout_y="91dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/Tutorial"
+        android:textColor="@color/green"
+        android:textSize="17sp" />
 
 
-</LinearLayout>
+</AbsoluteLayout>
