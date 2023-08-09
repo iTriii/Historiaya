@@ -58,12 +58,12 @@
     <string name="Resend">Resend</string>
 
     <!--Start-->
-    <string name="Story">Story</string>
+    <string name="Story">Main Story</string>
     <string name="ScavengerHunt">Scavenger Hunt</string>
     <string name="Library">Library</string>
 
     <!--Story  Selection-->
-    <string name="StorySelection">Story</string>
+    <string name="StorySelection">Main Story</string>
     <string name="MainStory">Main Story</string>
 
     <!--Main2-->
