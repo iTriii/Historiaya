@@ -22,7 +22,6 @@ public class PopUpSettings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pop_up_settings);
 
-        dialog = new Dialog(this);
 
         Credits = findViewById(R.id.Credits);
         Credits.setOnClickListener(v -> Credits());
@@ -42,7 +41,9 @@ public class PopUpSettings extends AppCompatActivity {
         Tutorial1 = findViewById(R.id.Tutorial1);
         Tutorial1.setOnClickListener(v -> Tutorial1());
 
+        dialog = new Dialog(this);
         dialog.setContentView(R.layout.activity_pop_up_settings);
+        dialog.setContentView(R.layout.activity_notifications);
         dialog.getWindow().setBackgroundDrawableResource(R.drawable.popup_background);
         closeBut = findViewById(R.id.closeBut);
         closeBut.setOnClickListener(v -> closeBut());
@@ -72,6 +73,8 @@ public class PopUpSettings extends AppCompatActivity {
         startActivity(intent);
     }
     public void closeBut() {
-            dialog.dismiss();
+            Intent intent =new Intent(this, Main2.class);
+            startActivity(intent);
         }
+
     }

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="338dp"
+    android:layout_height="289dp"
+    android:background="@drawable/notif_bg"
+    android:layout_gravity="center"
+    tools:context=".Notifications">
+
+    <TextView
+        android:id="@+id/Notifications"
+        android:layout_width="338dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="1dp"
+        android:text="@string/Notifications"
+        android:textColor="@color/white"
+        android:fontFamily="@font/montserrat_bold"
+        android:textSize="15sp"
+        android:paddingTop="7dp"
+        android:paddingStart="15dp"
+        android:background="@drawable/notif"/>
+
+    <TextView
+        android:id="@+id/MarkAllAsRead"
+        android:layout_width="125dp"
+        android:layout_height="30dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:layout_marginLeft="200dp"
+        android:paddingTop="7dp"
+        android:text="@string/Mark"
+        android:textColor="@color/white"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/ViewNotif"
+        android:layout_width="150dp"
+        android:layout_height="30dp"
+        android:fontFamily="@font/montserrat"
+        android:textSize="12sp"
+        android:text="@string/View"
+        android:layout_marginTop="250dp"
+        android:layout_marginStart="75dp"
+        android:textAlignment="center"/>
+
+</RelativeLayout>

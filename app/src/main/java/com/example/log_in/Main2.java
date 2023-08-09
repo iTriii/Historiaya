@@ -11,13 +11,15 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Main2 extends AppCompatActivity {
 
  TextView Start, BookNow, Store, Map;
- ImageView Share, Settings, Profile;
+ ImageView Share, Settings, Profile, notif;
  Dialog dialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+
+        dialog = new Dialog(this);
 
         Start = findViewById(R.id.Start);
         Start.setOnClickListener(v -> StartScreen());
@@ -34,13 +36,19 @@ public class Main2 extends AppCompatActivity {
         Share = findViewById(R.id.Share);
         Share.setOnClickListener(v -> Share());
 
+        notif = findViewById(R.id.notif);
+        notif.setOnClickListener(v -> {
+            dialog.setContentView(R.layout.activity_notifications);
+            dialog.getWindow().setBackgroundDrawableResource(R.drawable.popup_background);
+            dialog.show();
+        });
+
         Settings = findViewById(R.id.EditProfile);
         Settings.setOnClickListener(v -> {
             dialog.setContentView(R.layout.activity_pop_up_settings);
             dialog.getWindow().setBackgroundDrawableResource(R.drawable.popup_background);
             dialog.show();
         });
-        dialog= new Dialog(this);
         Profile =findViewById(R.id.Profile);
         Profile.setOnClickListener(v -> Profile());
     }
