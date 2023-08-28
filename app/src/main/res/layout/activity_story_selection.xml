@@ -1,31 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E1FAFF"
+    android:foregroundTint="#00A197"
+    android:visibility="visible"
     tools:context=".StorySelection">
+
+
+
 
     <ImageView
         android:id="@+id/rizal_Start"
         android:layout_width="435dp"
         android:layout_height="0dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="171dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/StorySelection"
-        app:layout_constraintVertical_bias="0.259"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/newproject" />
+
 
     <ImageView
         android:id="@+id/grass_start"
         android:layout_width="474dp"
         android:layout_height="621dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginTop="180dp"
         android:alpha=".95"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
@@ -33,22 +36,23 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/grass_1" />
 
+
     <ImageView
         android:id="@+id/twoppl"
-        android:layout_width="488dp"
-        android:layout_height="797dp"
-        android:layout_marginTop="180dp"
+        android:layout_width="407dp"
+        android:layout_height="512dp"
+        android:layout_marginTop="300dp"
         android:alpha=".89"
         app:layout_constraintEnd_toEndOf="@+id/grass_start"
-        app:layout_constraintHorizontal_bias="0.688"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/backdrop" />
+        app:srcCompat="@drawable/twopips" />
 
     <ImageView
         android:id="@+id/blurred"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="436dp"
+        android:layout_height="850dp"
         android:alpha=".5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -58,11 +62,31 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/rectangle" />
 
+    <TextView
+        android:id="@+id/StorySelection"
+        android:layout_width="206dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="15dp"
+        android:layout_toStartOf="@+id/Profile"
+        android:fontFamily="@font/montserrat_alternates_extrabold"
+        android:text="@string/StorySelection"
+        android:textAlignment="center"
+        android:textColor="#FEC242"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageButton
         android:id="@+id/backbutt"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="45dp"
+        android:layout_toStartOf="@+id/StorySelection"
         android:background="@drawable/shadow"
         android:clickable="true"
         android:elevation="10dp"
@@ -78,8 +102,9 @@
         android:id="@+id/Profile"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_alignParentEnd="true"
         android:layout_marginTop="45dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginEnd="40dp"
         android:background="@drawable/shadow"
         android:clickable="true"
         android:elevation="10dp"
@@ -88,20 +113,198 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/human_icon2" />
 
-    <TextView
-        android:id="@+id/StorySelection"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="26dp"
-        android:layout_marginBottom="15dp"
-        android:textAlignment="center"
-        android:textSize="32sp"
-        android:fontFamily="@font/montserrat_alternates_extrabold"
-        android:textColor="#FEC242"
-        android:text="@string/StorySelection"
-        app:layout_constraintBottom_toTopOf="@+id/rizal_Start"
+    <ScrollView
+        android:layout_width="342dp"
+        android:layout_height="737dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="2dp"
+        android:padding="5dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/StorySelection">
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="737dp"
+            android:orientation="vertical">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="330dp"
+                android:layout_height="130dp"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp">
+
+                <ImageView
+                    android:layout_width="330dp"
+                    android:layout_height="130dp"
+                    android:background="@drawable/chap1"
+                    android:clickable="true"
+                    android:contextClickable="true" />
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/Chap1"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/rizalstart"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="200dp"
+                    android:layout_marginTop="45dp"
+                    android:clickable="true"
+                    android:contextClickable="true"
+                    android:elevation="5dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:foregroundGravity="center"
+                    android:shadowColor="#FEC242"
+                    android:shadowRadius="8"
+                    android:text="@string/Start"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="330dp"
+                android:layout_height="130dp"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp">
+
+                <ImageView
+                    android:layout_width="330dp"
+                    android:layout_height="130dp"
+                    android:background="@drawable/chap2" />
+
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/Chap2"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/doncatStart"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="200dp"
+                    android:layout_marginTop="45dp"
+                    android:clickable="true"
+                    android:contextClickable="true"
+                    android:elevation="5dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:foregroundGravity="center"
+                    android:shadowColor="#FEC242"
+                    android:shadowRadius="8"
+                    android:text="@string/Start"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="330dp"
+                android:layout_height="130dp"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp">
+
+                <ImageView
+                    android:layout_width="330dp"
+                    android:layout_height="130dp"
+                    android:background="@drawable/chap3" />
+
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/Chap3"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/galaStart"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="200dp"
+                    android:layout_marginTop="45dp"
+                    android:clickable="true"
+                    android:contextClickable="true"
+                    android:elevation="5dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:foregroundGravity="center"
+                    android:shadowColor="#FEC242"
+                    android:shadowRadius="8"
+                    android:text="@string/Start"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="330dp"
+                android:layout_height="130dp"
+                android:layout_marginTop="20dp"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="4dp">
+
+                <ImageView
+                    android:layout_width="330dp"
+                    android:layout_height="130dp"
+                    android:background="@drawable/chap4" />
+
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="40dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/Chap4"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/natalioStart"
+                    android:layout_width="100dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="200dp"
+                    android:layout_marginTop="45dp"
+                    android:clickable="true"
+                    android:contextClickable="true"
+                    android:elevation="5dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:foregroundGravity="center"
+                    android:shadowColor="#FEC242"
+                    android:shadowRadius="8"
+                    android:text="@string/Start"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="28sp" />
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

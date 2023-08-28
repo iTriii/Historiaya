@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:drawable="@drawable/rizalmon"/>
+    <item>
+        <clip android:drawable="@drawable/rizalmon"
+            android:gravity="right"
+            android:clipOrientation="horizontal"/>
+
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <size android:height="130dp" android:width="338dp"/>
+            <gradient
+                android:startColor="#00A197"
+                android:angle="360"
+                android:type="linear" />
+            <corners android:radius="10dp"/>
+
+        </shape>
+    </item>
+</layer-list>

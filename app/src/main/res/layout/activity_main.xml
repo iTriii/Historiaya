@@ -32,6 +32,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/newproject" />
 
+
     <ImageView
         android:id="@+id/grass"
         android:layout_width="495dp"
@@ -43,18 +44,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/grass_1" />
 
-
     <ImageView
         android:id="@+id/twopips"
-        android:layout_width="471dp"
-        android:layout_height="472dp"
-        android:layout_marginTop="350dp"
+        android:layout_width="425dp"
+        android:layout_height="550dp"
+        android:layout_marginTop="300dp"
         android:contentDescription="@string/twopips"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/backdrop" />
+        app:srcCompat="@drawable/twopips" />
 
     <TextView
         android:id="@+id/AppName"

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -108,14 +107,7 @@ public class LogIn extends AppCompatActivity {
 
     private void saveEmailAndPasswordToFirestore(String email, String password) {
         firestore.collection("LogIn").document("Email")
-                .set(getUserData(email, password))
-                .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(getApplicationContext(), "Data added successfully", Toast.LENGTH_LONG).show();
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(getApplicationContext(), "Failed to add data", Toast.LENGTH_LONG).show();
-
-                });
+                .set(getUserData(email, password));
     }
 
 

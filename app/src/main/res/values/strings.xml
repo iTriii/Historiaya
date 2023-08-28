@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!--Splashscreen-->
-    <string name="AppName">TouristARya</string>
+    <string name="AppName">Historiaya</string>
     <string name="TagLine">A Journey to the Past at Your Fingertips</string>
     <string name="Augmented_Reality">Augmented Reality</string>
     <string name="Tag_tag_line">Explore historical landmarks and cultural heritage sites through virtual tours with Augmented Reality technology.</string>
@@ -97,6 +97,14 @@
     <string name="Notifications">Notifications</string>
     <string name="Mark">Mark all as Read</string>
     <string name="View"><u>View all notifications</u></string>
+
+    <!--Main Story-->
+    <string name="Chap1">Rizal\nMonument</string>
+    <string name="Chap2">Don \nCatalino</string>
+    <string name="Chap3">Gala \nRodriguez</string>
+    <string name="Chap4">Natalio \nEnriquez</string>
+    <string name="Chap5">Chapter 5</string>
+    <string name="start">Start</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
