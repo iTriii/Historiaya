@@ -10,13 +10,11 @@
     android:visibility="visible"
     tools:context=".StorySelection">
 
-
-
-
     <ImageView
         android:id="@+id/rizal_Start"
-        android:layout_width="435dp"
-        android:layout_height="0dp"
+        android:layout_width="420dp"
+        android:layout_height="452dp"
+        android:layout_marginTop="136dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,9 +24,9 @@
 
     <ImageView
         android:id="@+id/grass_start"
-        android:layout_width="474dp"
-        android:layout_height="621dp"
-        android:layout_marginTop="180dp"
+        android:layout_width="495dp"
+        android:layout_height="631dp"
+        android:layout_marginTop="300dp"
         android:alpha=".95"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
@@ -39,8 +37,8 @@
 
     <ImageView
         android:id="@+id/twoppl"
-        android:layout_width="407dp"
-        android:layout_height="512dp"
+        android:layout_width="425dp"
+        android:layout_height="550dp"
         android:layout_marginTop="300dp"
         android:alpha=".89"
         app:layout_constraintEnd_toEndOf="@+id/grass_start"
@@ -51,8 +49,8 @@
 
     <ImageView
         android:id="@+id/blurred"
-        android:layout_width="436dp"
-        android:layout_height="850dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:alpha=".5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +65,7 @@
         android:layout_width="206dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="18dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="55dp"
         android:layout_marginEnd="15dp"
         android:layout_toStartOf="@+id/Profile"
         android:fontFamily="@font/montserrat_alternates_extrabold"
@@ -76,7 +74,6 @@
         android:textColor="#FEC242"
         android:textSize="32sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.481"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -114,26 +111,28 @@
         app:srcCompat="@drawable/human_icon2" />
 
     <ScrollView
-        android:layout_width="342dp"
-        android:layout_height="737dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="2dp"
-        android:padding="5dp"
+        android:paddingBottom="150dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/StorySelection">
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="737dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/RizalMonumentCardV"
                 android:layout_width="330dp"
                 android:layout_height="130dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="4dp">
@@ -173,11 +172,81 @@
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="28sp" />
+
+
             </androidx.cardview.widget.CardView>
 
+            <LinearLayout
+                android:id="@+id/RizalSubchapters"
+                android:layout_width="330dp"
+                android:layout_height="125dp"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop=".01dp"
+                    android:background="@drawable/subchapters1"
+                    android:clickable="true"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:text="@string/Rizal_c1"
+                    android:textAlignment="center"
+                    android:enabled="true"
+                    android:textAllCaps="false"
+                    android:textColor="#00684E"
+                    android:textSize="15sp"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop=".01dp"
+                    android:background="@drawable/subchapters2"
+                    android:clickable="true"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:text="@string/Rizal_c2"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="#00684E"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop=".01dp"
+                    android:background="@drawable/subchapters2"
+                    android:clickable="true"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:text="@string/Rizal_c3"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="#00684E"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop=".01dp"
+                    android:background="@drawable/subchapters3"
+                    android:clickable="true"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:text="@string/Rizal_Quiz"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="#00684E"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
             <androidx.cardview.widget.CardView
+                android:id="@+id/DonCatalinoCardV"
                 android:layout_width="330dp"
                 android:layout_height="130dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="4dp">
@@ -202,7 +271,7 @@
                 <TextView
                     android:id="@+id/doncatStart"
                     android:layout_width="100dp"
-                    android:layout_height="50dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="200dp"
                     android:layout_marginTop="45dp"
                     android:clickable="true"
@@ -218,9 +287,76 @@
                     android:textSize="28sp" />
             </androidx.cardview.widget.CardView>
 
+            <LinearLayout
+                android:id="@+id/DonSubchapters"
+                android:layout_width="330dp"
+                android:layout_height="125dp"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop=".3dp"
+                    android:background="@drawable/subchapters1"
+                    android:clickable="true"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:text="@string/Don_c1"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="#00684E"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop=".01dp"
+                    android:background="@drawable/subchapters2"
+                    android:clickable="true"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:text="@string/Don_c2"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="#00684E"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop=".01dp"
+                    android:background="@drawable/subchapters2"
+                    android:clickable="true"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:text="@string/Don_c3"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="#00684E"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop=".01dp"
+                    android:background="@drawable/subchapters3"
+                    android:clickable="true"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:text="@string/Don_Quiz"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="#00684E"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
             <androidx.cardview.widget.CardView
+                android:id="@+id/GalaCardV"
                 android:layout_width="330dp"
                 android:layout_height="130dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="4dp">
@@ -261,9 +397,76 @@
                     android:textSize="28sp" />
             </androidx.cardview.widget.CardView>
 
+            <LinearLayout
+                android:id="@+id/GalaSubchapters"
+                android:layout_width="330dp"
+                android:layout_height="125dp"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop=".3dp"
+                    android:background="@drawable/subchapters1"
+                    android:clickable="true"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:text="@string/Gala_c1"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="#00684E"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop=".01dp"
+                    android:background="@drawable/subchapters2"
+                    android:clickable="true"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:text="@string/Gala_c2"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="#00684E"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop=".01dp"
+                    android:background="@drawable/subchapters2"
+                    android:clickable="true"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:text="@string/Gala_c3"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="#00684E"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop=".01dp"
+                    android:background="@drawable/subchapters3"
+                    android:clickable="true"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:text="@string/Gala_Quiz"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="#00684E"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
             <androidx.cardview.widget.CardView
+                android:id="@+id/NatalioCardV"
                 android:layout_width="330dp"
                 android:layout_height="130dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="20dp"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="4dp">
@@ -304,6 +507,70 @@
                     android:textSize="28sp" />
             </androidx.cardview.widget.CardView>
 
+            <LinearLayout
+                android:id="@+id/NatalioSubchapters"
+                android:layout_width="330dp"
+                android:layout_height="125dp"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop=".3dp"
+                    android:background="@drawable/subchapters1"
+                    android:clickable="true"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:text="@string/Natalio_c1"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="#00684E"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop=".01dp"
+                    android:background="@drawable/subchapters2"
+                    android:clickable="true"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:text="@string/Natalio_c2"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="#00684E"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop=".01dp"
+                    android:background="@drawable/subchapters2"
+                    android:clickable="true"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:text="@string/Natalio_c3"
+                    android:textAlignment="center"
+                    android:textAllCaps="false"
+                    android:textColor="#00684E"
+                    android:textSize="15sp" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop=".01dp"
+                    android:background="@drawable/subchapters3"
+                    android:clickable="true"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:text="@string/Natalio_Quiz"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="#00684E"
+                    android:textSize="15sp" />
+            </LinearLayout>
         </LinearLayout>
 
     </ScrollView>

@@ -98,13 +98,29 @@
     <string name="Mark">Mark all as Read</string>
     <string name="View"><u>View all notifications</u></string>
 
-    <!--Main Story-->
+    <!--Story Selection-->
     <string name="Chap1">Rizal\nMonument</string>
     <string name="Chap2">Don \nCatalino</string>
     <string name="Chap3">Gala \nRodriguez</string>
     <string name="Chap4">Natalio \nEnriquez</string>
     <string name="Chap5">Chapter 5</string>
     <string name="start">Start</string>
+    <string name="Rizal_c1">Chapter 1 : Footsteps of Rizal</string>
+    <string name="Rizal_c2">Chapter 2 : Locked</string>
+    <string name="Rizal_c3">Chapter 3 : Locked</string>
+    <string name="Rizal_Quiz">Quiz</string>
+    <string name="Don_c1">Chapter 1</string>
+    <string name="Don_c2">Chapter 2 : Locked</string>
+    <string name="Don_c3">Chapter 3 : Locked</string>
+    <string name="Don_Quiz">Quiz</string>
+    <string name="Gala_c1">Chapter 1</string>
+    <string name="Gala_c2">Chapter 2 : Locked</string>
+    <string name="Gala_c3">Chapter 3 : Locked</string>
+    <string name="Gala_Quiz">Quiz</string>
+    <string name="Natalio_c1">Chapter 1</string>
+    <string name="Natalio_c2">Chapter 2 : Locked</string>
+    <string name="Natalio_c3">Chapter 3 : Locked</string>
+    <string name="Natalio_Quiz">Quiz</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris

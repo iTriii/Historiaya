@@ -1,12 +1,11 @@
 package com.example.log_in;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class StartScreen extends AppCompatActivity {
     ImageButton backbutt, Profile;
@@ -32,7 +31,7 @@ public class StartScreen extends AppCompatActivity {
         startActivity(intent);
     }
     public void Main2() {
-        Intent intent = new Intent(this, LogIn.class);
+        Intent intent = new Intent(this, Main2.class);
         startActivity(intent);
         overridePendingTransition(com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_in_left, com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_out_right);
     }
