@@ -140,7 +140,7 @@
                 <ImageView
                     android:layout_width="330dp"
                     android:layout_height="130dp"
-                    android:background="@drawable/chap1"
+                    android:background="@drawable/rizal_button"
                     android:clickable="true"
                     android:contextClickable="true" />
 
@@ -254,7 +254,7 @@
                 <ImageView
                     android:layout_width="330dp"
                     android:layout_height="130dp"
-                    android:background="@drawable/chap2" />
+                    android:background="@drawable/don_button" />
 
 
                 <TextView
@@ -364,7 +364,7 @@
                 <ImageView
                     android:layout_width="330dp"
                     android:layout_height="130dp"
-                    android:background="@drawable/chap3" />
+                    android:background="@drawable/gala_button" />
 
 
                 <TextView
@@ -474,7 +474,7 @@
                 <ImageView
                     android:layout_width="330dp"
                     android:layout_height="130dp"
-                    android:background="@drawable/chap4" />
+                    android:background="@drawable/natalio_button" />
 
 
                 <TextView

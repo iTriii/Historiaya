@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Rounded corners -->
+    <item>
+        <shape
+            android:shape="rectangle">
+            <solid android:color="@android:color/transparent" />
+            <corners
+                android:topRightRadius="50dp"
+                android:bottomRightRadius="50dp" />
+            <size android:width="119dp" android:height="238dp"/>
+        </shape>
+    </item>
+    <!-- Background -->
+    <item android:drawable="@drawable/don_catalino1" />
+</layer-list>

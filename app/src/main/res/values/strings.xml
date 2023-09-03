@@ -122,6 +122,22 @@
     <string name="Natalio_c3">Chapter 3 : Locked</string>
     <string name="Natalio_Quiz">Quiz</string>
 
+
+    <!--Map-->
+    <string name="hh1">Don Catalino Rodriguez House</string>
+    <string name="hh2">Gala Rogriguez House</string>
+    <string name="des1">A historic \nresidence \nshowcasing \narchitectural \nelegance and \ncultural \nheritage.</string>
+    <string name="des2">A historic \nresidence \nshowcasing \narchitectural \nelegance and \ncultural \nheritage.</string>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
