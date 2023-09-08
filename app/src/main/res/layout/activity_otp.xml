@@ -10,7 +10,7 @@
 
     <ImageView
         android:id="@+id/cloud"
-        android:layout_width="432dp"
+        android:layout_width="match_parent"
         android:layout_height="424dp"
         android:contentDescription="@string/clouds"
         app:layout_constraintEnd_toEndOf="parent"

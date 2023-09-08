@@ -4,6 +4,7 @@
     package="com.example.log_in">
 
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -13,7 +14,7 @@
         android:label="@string/AppName"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Log_In"
+        android:theme="@style/Theme.Design.Light.NoActionBar"
         tools:targetApi="31">
         <activity
             android:name=".Chap1_dropdown"

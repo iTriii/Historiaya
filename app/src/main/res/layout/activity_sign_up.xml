@@ -9,6 +9,21 @@
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="122dp">
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="424dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="245dp"
+        android:baselineAlignBottom="true"
+        android:padding="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/SiUp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.559"
+        app:srcCompat="@drawable/cloud" />
 
     <EditText
         android:id="@+id/pass"
@@ -66,21 +81,6 @@
         app:layout_constraintTop_toBottomOf="@+id/signUpButton"
         app:layout_constraintVertical_bias="0.207" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="432dp"
-        android:layout_height="424dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="245dp"
-        android:baselineAlignBottom="true"
-        android:padding="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/SiUp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.523"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.559"
-        app:srcCompat="@drawable/cloud" />
 
     <TextView
         android:id="@+id/fname"
@@ -162,7 +162,7 @@
         android:text="@string/Re_enter"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/reenter"
-        app:layout_constraintHorizontal_bias="0.478"
+        app:layout_constraintHorizontal_bias="0.42"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Pass" />
 
@@ -236,7 +236,6 @@
         android:background="#00A197"
         android:baselineAlignBottom="false"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/circular"

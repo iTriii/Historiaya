@@ -7,7 +7,6 @@ import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -36,10 +35,7 @@ public class SignUp extends AppCompatActivity {
 
         icon = findViewById(R.id.icon);
         uploadimage = findViewById(R.id.uploadimage);
-
-
         uploadimage.setOnClickListener(v -> icon());
-
 
         signUpButton = findViewById(R.id.signUpButton);
         signUpButton.setOnClickListener(v -> OTP());
@@ -181,6 +177,7 @@ public class SignUp extends AppCompatActivity {
                             pass.getText().toString().trim(),
                             reenter.getText().toString().trim());
 
+
                 }
             }
         }
@@ -189,11 +186,7 @@ public class SignUp extends AppCompatActivity {
         // ... (rest of your code)
 
         firestore.collection("Sign Up").document("Details")
-                .set(getUserData(firstname, lastname, E_mail,contact, pass,reenter))
-                .addOnSuccessListener(aVoid -> Toast.makeText(getApplicationContext(), "Data added successfully", Toast.LENGTH_LONG).show())
-                .addOnFailureListener(e -> {
-                    Toast.makeText(getApplicationContext(), "Failed to add data", Toast.LENGTH_LONG).show();
-                });
+                .set(getUserData(firstname, lastname, E_mail,contact, pass,reenter));
     }
 
     private java.util.Map<String, Object> getUserData(String firstname, String lastname, String E_mail, String contact, String pass, String reenter) {

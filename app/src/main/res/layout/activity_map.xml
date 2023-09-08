@@ -12,7 +12,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="40dp"
-            android:layout_marginTop="45dp"
+            android:layout_marginTop="50dp"
             android:background="@drawable/shadow"
             android:clickable="true"
             android:elevation="10dp"
@@ -172,7 +172,7 @@
         app:layout_constraintHorizontal_bias="0.82"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.59000003">
+        app:layout_constraintVertical_bias="0.6">
 
         <ImageView
 

@@ -1,12 +1,12 @@
 package com.example.log_in;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class OTP extends AppCompatActivity {
     ImageButton back;
@@ -27,7 +27,7 @@ public class OTP extends AppCompatActivity {
         EditNow.setOnClickListener(v -> SignUp());
 
         Confirm = findViewById(R.id.Confirm);
-        Confirm.setOnClickListener(v -> Main2());
+        Confirm.setOnClickListener(v -> LogIn());
 
         countingNum = findViewById(R.id.countingNum);
         startCountdownTimer();
@@ -54,8 +54,8 @@ public class OTP extends AppCompatActivity {
         overridePendingTransition(com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_in_left, com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_out_right);
 
     }
-    public void Main2(){
-        Intent intent = new Intent(this, Main2.class);
+    public void LogIn(){
+        Intent intent = new Intent(this, LogIn.class);
         startActivity(intent);
     }
 
