@@ -22,8 +22,8 @@
 
     <ImageView
         android:id="@+id/rizal"
-        android:layout_width="420dp"
-        android:layout_height="452dp"
+        android:layout_width="432dp"
+        android:layout_height="456dp"
         android:layout_marginTop="136dp"
         android:contentDescription="@string/rizal"
         app:layout_constraintEnd_toEndOf="parent"
