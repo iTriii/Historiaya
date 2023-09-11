@@ -10,19 +10,19 @@
     tools:layout_editor_absoluteY="122dp">
 
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="match_parent"
-        android:layout_height="424dp"
+        android:id="@+id/clouds"
+        android:layout_width="500dp"
+        android:layout_height="518dp"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="245dp"
         android:baselineAlignBottom="true"
         android:padding="5dp"
         app:layout_constraintBottom_toTopOf="@+id/SiUp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintHorizontal_bias="0.702"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.559"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/cloud" />
 
     <EditText
@@ -63,7 +63,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.758" />
+        app:layout_constraintVertical_bias="0.754" />
+
+    <ProgressBar
+        android:id="@+id/progressbar"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.465" />
 
     <TextView
         android:id="@+id/SiUp"
@@ -106,7 +118,7 @@
         android:text="@string/LastName"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/lastname"
-        app:layout_constraintHorizontal_bias="0.347"
+        app:layout_constraintHorizontal_bias="0.323"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fname" />
 
@@ -114,13 +126,13 @@
         android:id="@+id/Email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/Email"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/E_mail"
-        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintHorizontal_bias="0.027"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lname" />
 
@@ -129,12 +141,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/ContactNumber"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/contact"
-        app:layout_constraintHorizontal_bias="0.359"
+        app:layout_constraintHorizontal_bias="0.313"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Email" />
 
@@ -148,7 +160,7 @@
         android:text="@string/Password"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/pass"
-        app:layout_constraintHorizontal_bias="0.325"
+        app:layout_constraintHorizontal_bias="0.274"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ContactNo" />
 
