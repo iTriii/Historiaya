@@ -1,5 +1,6 @@
 package com.example.log_in;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -36,13 +37,14 @@ public class OTP extends AppCompatActivity {
     private void startCountdownTimer() {
         new CountDownTimer(90000, 1000) {
             public void onTick(long millisUntilFinished) {
-                // Duration
                 long minutes = (millisUntilFinished / 1000) / 60;
                 long seconds = (millisUntilFinished / 1000) % 60;
-                String timeRemaining = String.format("%02d:%02d", minutes, seconds);
+                @SuppressLint("DefaultLocale") String timeRemaining = String.format("%02d:%02d", minutes, seconds);
                 countingNum.setText(timeRemaining);
-            }
 
+        }
+
+            @SuppressLint("SetTextI18n")
             public void onFinish() {
                 countingNum.setText("00:00");
             }
