@@ -11,7 +11,7 @@
 
     <ImageView
         android:id="@+id/clouds"
-        android:layout_width="536dp"
+        android:layout_width="match_parent"
         android:layout_height="430dp"
         android:layout_marginBottom="220dp"
         android:contentDescription="@string/clouds"
@@ -22,7 +22,7 @@
 
     <ImageView
         android:id="@+id/rizal"
-        android:layout_width="432dp"
+        android:layout_width="match_parent"
         android:layout_height="456dp"
         android:layout_marginTop="136dp"
         android:contentDescription="@string/rizal"
@@ -68,7 +68,7 @@
         android:textSize="50sp"
         app:layout_constraintBottom_toTopOf="@+id/TagLine"
         app:layout_constraintEnd_toEndOf="@id/clouds"
-        app:layout_constraintHorizontal_bias="0.241"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.428" />
@@ -110,7 +110,7 @@
         android:id="@+id/Augmented_Reality"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/montserrat_bold"
         android:text="@string/Augmented_Reality"
         android:textAlignment="center"
