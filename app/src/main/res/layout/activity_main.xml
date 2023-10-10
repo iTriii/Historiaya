@@ -6,13 +6,14 @@
     android:layout_height="match_parent"
     android:background="#E1FAFF"
     android:textAlignment="center"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
 
     <ImageView
         android:id="@+id/clouds"
-        android:layout_width="match_parent"
-        android:layout_height="430dp"
+        android:layout_width="442dp"
+        android:layout_height="442dp"
         android:layout_marginBottom="220dp"
         android:contentDescription="@string/clouds"
         app:layout_constraintBottom_toBottomOf="@+id/rizal"
@@ -22,8 +23,8 @@
 
     <ImageView
         android:id="@+id/rizal"
-        android:layout_width="match_parent"
-        android:layout_height="456dp"
+        android:layout_width="435dp"
+        android:layout_height="458dp"
         android:layout_marginTop="136dp"
         android:contentDescription="@string/rizal"
         app:layout_constraintEnd_toEndOf="parent"

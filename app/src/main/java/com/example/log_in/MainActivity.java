@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
 
         GetStarted = findViewById(R.id.GetStarted);
         GetStarted.setOnClickListener(v -> {
-            Intent intent = new Intent(this, SignUp.class);
+            Intent intent = new Intent(this, LogIn.class);
             startActivity(intent);
         });
     }

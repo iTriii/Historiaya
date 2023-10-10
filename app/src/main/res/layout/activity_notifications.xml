@@ -5,6 +5,7 @@
     android:layout_height="289dp"
     android:background="@drawable/notif_bg"
     android:layout_gravity="center"
+    android:orientation="vertical"
     tools:context=".Notifications">
 
     <TextView

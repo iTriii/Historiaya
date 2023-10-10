@@ -4,6 +4,8 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -14,15 +16,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import java.util.Random;
+import java.util.Objects;
 
 public class OTP extends AppCompatActivity {
     ImageButton back;
-    TextView EditNow, Confirm, countingNum, replaceable_email;
+    TextView EditNow, Confirm, countingNum, replaceable_email, ResendOTP;
     FirebaseUser user;
     FirebaseAuth auth;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,32 +38,125 @@ public class OTP extends AppCompatActivity {
         EditNow.setOnClickListener(v -> SignUp());
 
         Confirm = findViewById(R.id.Confirm);
-        Confirm.setOnClickListener(v -> LogIn());
+        Confirm.setOnClickListener(v -> verifyEmailWithOTP());
+
 
         countingNum = findViewById(R.id.countingNum);
         startCountdownTimer();
 
+        EditText otp1 = findViewById(R.id.otp1);
+        EditText otp2 = findViewById(R.id.otp2);
+        EditText otp3 = findViewById(R.id.otp3);
+        EditText otp4 = findViewById(R.id.otp4);
+        EditText otp5 = findViewById(R.id.otp5);
+        EditText otp6 = findViewById(R.id.otp6);
+
+        moveToNextEditText(otp1, otp2);
+        moveToNextEditText(otp2, otp3);
+        moveToNextEditText(otp3, otp4);
+        moveToNextEditText(otp4, otp5);
+        moveToNextEditText(otp5, otp6);
+
+
         replaceable_email = findViewById(R.id.replaceable_email);
         user = auth.getCurrentUser();
-        if(user == null){
-            Intent intent = new Intent(getApplicationContext(), LogIn.class);
+        if (user == null) {
+            Intent intent = new Intent(getApplicationContext(), OTP.class);
             startActivity(intent);
             finish();
-
-        }
-        else {
-
+        } else {
             replaceable_email.setText(user.getEmail());
         }
-    }
-    // Generate a random OTP (6 digits)
-    String generatedOTP = generateOTP();
 
-    // Function to generate a random 6-digit OTP
-    private String generateOTP() {
-        Random random = new Random();
-        int otp = 100000 + random.nextInt(900000); // Generates a random number between 100000 and 999999
-        return String.valueOf(otp);
+        // Get the OTP string from the Intent extras
+        String otp = getIntent().getStringExtra("OTP");
+
+        // Check if the OTP is not null and has exactly 6 characters
+        if (otp != null && otp.length() == 6) {
+            // Distribute each digit to the EditText fields
+            setOtpDigit(R.id.otp1, otp.charAt(0));
+            setOtpDigit(R.id.otp2, otp.charAt(1));
+            setOtpDigit(R.id.otp3, otp.charAt(2));
+            setOtpDigit(R.id.otp4, otp.charAt(3));
+            setOtpDigit(R.id.otp5, otp.charAt(4));
+            setOtpDigit(R.id.otp6, otp.charAt(5));
+        }
+    }
+
+    private void moveToNextEditText(final EditText currentEditText, final EditText nextEditText) {
+        currentEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() == 1) {
+                    nextEditText.requestFocus();
+                }
+            }
+        });
+    }
+
+
+    // Helper method to set the digit in the corresponding EditText field
+    private void setOtpDigit(int editTextId, char digit) {
+        EditText editText = findViewById(editTextId);
+
+        if (editText != null) {
+            editText.setText(String.valueOf(digit));
+        }
+    }
+
+    private void verifyEmailWithOTP() {
+        if (user != null) {
+            // Get the entered OTP from the user
+            StringBuilder enteredOTP = new StringBuilder();
+            enteredOTP.append(getOtpDigit(R.id.otp1));
+            enteredOTP.append(getOtpDigit(R.id.otp2));
+            enteredOTP.append(getOtpDigit(R.id.otp3));
+            enteredOTP.append(getOtpDigit(R.id.otp4));
+            enteredOTP.append(getOtpDigit(R.id.otp5));
+            enteredOTP.append(getOtpDigit(R.id.otp6));
+
+            // Get the stored OTP from the previous activity
+            String storedOTP = getIntent().getStringExtra("OTP");
+
+            if (enteredOTP.toString().equals(storedOTP)) {
+                // OTP is correct, mark the email as verified and proceed to the login screen
+                user.reload().addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        if (!user.isEmailVerified()) {
+                            user.sendEmailVerification();
+                        }
+                        LogIn(); // Navigate to the login screen
+                        finish(); // Close the OTP activity
+                    } else {
+                        // Error occurred while reloading user data
+                        Toast.makeText(this, "Failed to reload user data: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } else {
+                // OTP is incorrect, display an error message
+                Toast.makeText(this, "Incorrect OTP. Please try again.", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+
+    // Helper method to get the digit from the corresponding EditText field
+    private String getOtpDigit(int editTextId) {
+        EditText editText = findViewById(editTextId);
+
+        if (editText != null) {
+            return editText.getText().toString().trim();
+        }
+
+        return "";
     }
 
 
@@ -74,7 +167,6 @@ public class OTP extends AppCompatActivity {
                 long seconds = (millisUntilFinished / 1000) % 60;
                 @SuppressLint("DefaultLocale") String timeRemaining = String.format("%02d:%02d", minutes, seconds);
                 countingNum.setText(timeRemaining);
-
             }
 
             @SuppressLint("SetTextI18n")
@@ -88,40 +180,9 @@ public class OTP extends AppCompatActivity {
         Intent intent = new Intent(this, SignUp.class);
         startActivity(intent);
         overridePendingTransition(com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_in_left, com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_out_right);
-
-
     }
-
-    private void LogIn() {
-        EditText otp1EditText = findViewById(R.id.otp1);
-        EditText otp2EditText = findViewById(R.id.otp2);
-        EditText otp3EditText = findViewById(R.id.otp3);
-        EditText otp4EditText = findViewById(R.id.otp4);
-        EditText otp5EditText = findViewById(R.id.otp5);
-        EditText otp6EditText = findViewById(R.id.otp6);
-
-        String enteredOTP1 = otp1EditText.getText().toString().trim();
-        String enteredOTP2 = otp2EditText.getText().toString().trim();
-        String enteredOTP3 = otp3EditText.getText().toString().trim();
-        String enteredOTP4 = otp4EditText.getText().toString().trim();
-        String enteredOTP5 = otp5EditText.getText().toString().trim();
-        String enteredOTP6 = otp6EditText.getText().toString().trim();
-
-        // Combine the individual OTP digits into one OTP string
-        String enteredOTP = enteredOTP1 + enteredOTP2 + enteredOTP3 + enteredOTP4 + enteredOTP5 + enteredOTP6;
-
-        String email = getIntent().getStringExtra("email"); // Get email passed from sign-up activity
-
-        // Compare entered OTP with the one sent to the user's email
-        if (enteredOTP.equals(generatedOTP)) {
-            Intent intent = new Intent(OTP.this, LogIn.class);
-            intent.putExtra("email", email); // Pass email to OTP verification activity
-            startActivity(intent);
-            finish();
-        } else {
-            // OTP is incorrect, display an error message
-            Toast.makeText(this, "Invalid OTP", Toast.LENGTH_SHORT).show();
-        }
+    public void LogIn() {
+        Intent intent = new Intent(this, LogIn.class);
+        startActivity(intent);
     }
 }
-

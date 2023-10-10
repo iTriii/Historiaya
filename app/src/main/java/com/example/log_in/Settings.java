@@ -10,9 +10,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class PopUpSettings extends AppCompatActivity {
+public class Settings extends AppCompatActivity {
     Button Credits, Feedback, PrivacyandTerms, LogOut;
-    ImageButton closeBut, Tutorial1;
+    ImageButton Tutorial1;
     TextView Tutorial;
     Dialog dialog;
 
@@ -20,7 +20,7 @@ public class PopUpSettings extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pop_up_settings);
+        setContentView(R.layout.activity_settings);
 
 
         Credits = findViewById(R.id.Credits);
@@ -42,12 +42,11 @@ public class PopUpSettings extends AppCompatActivity {
         Tutorial1.setOnClickListener(v -> Tutorial1());
 
         dialog = new Dialog(this);
-        dialog.setContentView(R.layout.activity_pop_up_settings);
+        dialog.setContentView(R.layout.activity_settings);
         dialog.setContentView(R.layout.activity_notifications);
         dialog.getWindow().setBackgroundDrawableResource(R.drawable.popup_background);
-        closeBut = findViewById(R.id.closeBut);
-        closeBut.setOnClickListener(v -> closeBut());
-}
+
+    }
     public void Credits() {
         Intent intent =new Intent(this, Credits.class);
         startActivity(intent);
@@ -72,9 +71,4 @@ public class PopUpSettings extends AppCompatActivity {
         Intent intent = new Intent(this, Tutorial.class);
         startActivity(intent);
     }
-    public void closeBut() {
-            Intent intent =new Intent(this, Main2.class);
-            startActivity(intent);
-        }
-
     }

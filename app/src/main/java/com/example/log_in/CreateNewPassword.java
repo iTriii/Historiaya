@@ -1,78 +1,77 @@
 package com.example.log_in;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class CreateNewPassword extends AppCompatActivity {
 
-   Button Reset;
-   ImageButton back;
-   EditText newpassword, confirmpassword;
+    Button resetButton;
+    EditText newPasswordEditText, confirmPasswordEditText;
+    FirebaseAuth mAuth;
+    ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_password);
 
-        Reset = findViewById(R.id.Reset);
-        Reset.setOnClickListener(v -> LogIn());
-        back=findViewById(R.id.back);
-        back.setOnClickListener(v -> Reset_Password());
+        mAuth = FirebaseAuth.getInstance();
 
-        newpassword=findViewById(R.id.newpassword);
-        confirmpassword=findViewById(R.id.confirmpassword);
+        progressBar = findViewById(R.id.progressbar);
+        newPasswordEditText = findViewById(R.id.newpassword);
+        confirmPasswordEditText = findViewById(R.id.confirmpassword);
+        resetButton = findViewById(R.id.Reset);
+
+        resetButton.setOnClickListener(v -> updatePassword());
     }
 
-    public void LogIn() {
-        String newpass = newpassword.getText().toString().trim();
-        String confirmpass = confirmpassword.getText().toString().trim();
+    private void updatePassword() {
+        String newPassword = newPasswordEditText.getText().toString().trim();
+        String confirmPassword = confirmPasswordEditText.getText().toString().trim();
 
-        if (!containsDigits(newpass) || !containsLetters(newpass)) {
-            newpassword.setError("Password should contain at least one digit and one letter");
-            newpassword.requestFocus();
+        if (newPassword.isEmpty() || confirmPassword.isEmpty()) {
+            Toast.makeText(this, "Passwords cannot be empty", Toast.LENGTH_SHORT).show();
             return;
-        } else {
-            newpassword.setError(null);
         }
 
-
-        if (!confirmpass.equals(newpass)) {
-            confirmpassword.setError("Password do not match");
-            confirmpassword.requestFocus();
+        if (!newPassword.equals(confirmPassword)) {
+            Toast.makeText(this, "Passwords do not match", Toast.LENGTH_SHORT).show();
             return;
-        } else {
-            confirmpassword.setError(null);
         }
 
-        Intent intent = new Intent(this, LogIn.class);
-        startActivity(intent);
-        overridePendingTransition(com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_in_left, com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_out_right);
-    }
-    public void Reset_Password(){
+        // Show the progress bar while updating the password
+        progressBar.setVisibility(View.VISIBLE);
 
-        Intent intent = new Intent(this,Reset_Password.class);
-        startActivity(intent);
-        overridePendingTransition(com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_in_left, com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_out_right);
-    }
-    private boolean containsLetters(String text) {
-        for (int i = 0; i < text.length(); i++) {
-            if (Character.isLetter(text.charAt(i))) {
-                return true;
-            }
-        }
-        return false;
+        // Update the password in Firebase
+        mAuth.getCurrentUser().updatePassword(newPassword)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        // Hide the progress bar after the task completes
+                        progressBar.setVisibility(View.GONE);
+
+                        if (task.isSuccessful()) {
+                            Toast.makeText(CreateNewPassword.this, "Password updated successfully", Toast.LENGTH_SHORT).show();
+                            // Redirect to the login page or your desired destination
+                            startActivity(new Intent(CreateNewPassword.this, LogIn.class));
+                            finish();
+                        } else {
+                            Toast.makeText(CreateNewPassword.this, "Password update failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
-    private boolean containsDigits(String text) {
-        for (int i = 0; i < text.length(); i++) {
-            if (Character.isDigit(text.charAt(i))) {
-                return true;
-            }
-        }
-        return false;
-    }
 }

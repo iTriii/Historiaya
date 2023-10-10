@@ -34,7 +34,6 @@ public class Main2 extends AppCompatActivity {
         Map.setOnClickListener(v -> Map());
 
         Share = findViewById(R.id.Share);
-        Share.setOnClickListener(v -> Share());
 
         notif = findViewById(R.id.notif);
         notif.setOnClickListener(v -> {
@@ -45,7 +44,7 @@ public class Main2 extends AppCompatActivity {
 
         Settings = findViewById(R.id.EditProfile);
         Settings.setOnClickListener(v -> {
-            dialog.setContentView(R.layout.activity_pop_up_settings);
+            dialog.setContentView(R.layout.activity_settings);
             dialog.getWindow().setBackgroundDrawableResource(R.drawable.popup_background);
             dialog.show();
         });
@@ -72,10 +71,6 @@ public class Main2 extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void Share() {
-        Intent intent = new Intent(this, Share.class);
-        startActivity(intent);
-    }
     public void Profile(){
         Intent intent= new Intent(this, Profile.class);
         startActivity(intent);

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="338dp"
     android:layout_height="326dp"
-    tools:context=".PopUpSettings"
+    tools:context=".Settings"
     android:background="@drawable/popup_background"
     android:layout_gravity="center"
     android:orientation="vertical"
@@ -15,7 +15,7 @@
         android:layout_width="335dp"
         android:layout_height="44dp"
         android:layout_marginTop="2dp"
-        android:layout_marginLeft="2dp"
+        android:layout_marginStart="2dp"
         android:background="@drawable/settings_bg"
         android:fontFamily="@font/montserrat_bold"
         android:forceHasOverlappingRendering="true"
@@ -24,17 +24,6 @@
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20sp" />
-
-    <ImageButton
-        android:id="@+id/closeBut"
-        android:layout_width="23dp"
-        android:layout_height="23dp"
-        android:layout_marginStart="300dp"
-        android:layout_marginTop="13dp"
-        android:background="@drawable/circle_white"
-        android:clickable="true"
-        android:contextClickable="true"
-        app:srcCompat="@drawable/close" />
 
     <View
         android:layout_width="338dp"

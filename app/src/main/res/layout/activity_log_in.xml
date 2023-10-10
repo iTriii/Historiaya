@@ -5,15 +5,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:background="#E1FAFF"
     tools:context=".LogIn">
 
 
-
     <ImageView
         android:id="@+id/cloud"
-        android:layout_width="432dp"
-        android:layout_height="424dp"
+        android:layout_width="522dp"
+        android:layout_height="456dp"
         android:contentDescription="@string/clouds"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.523"
@@ -25,7 +25,7 @@
         android:id="@+id/AppName"
         android:layout_width="350dp"
         android:layout_height="70dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="65dp"
         android:contentDescription="@string/AppName"
         android:fontFamily="@font/montserrat_alternates_extrabold"
         android:text="@string/AppName"
@@ -41,7 +41,7 @@
         android:id="@+id/email"
         android:layout_width="100dp"
         android:layout_height="30dp"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="28dp"
         android:layout_marginTop="80dp"
         android:contentDescription="@string/email"
         android:fontFamily="@font/montserrat"
@@ -94,10 +94,8 @@
         android:id="@+id/progressbar"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginEnd="411dp"
-        android:layout_marginBottom="731dp"
+        android:layout_marginTop="300dp"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -121,11 +119,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.544" />
 
+
     <TextView
         android:id="@+id/forgotpass"
         android:layout_width="198dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="4dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
         android:clickable="true"
         android:contentDescription="@string/forgotpass"
         android:fontFamily="@font/abeezee"
@@ -138,7 +137,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inpass"
         tools:ignore="MissingConstraints" />
-
 
     <TextView
         android:id="@+id/textView9"
@@ -159,7 +157,7 @@
         android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:layout_marginStart="50dp"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="164dp"
         android:contentDescription="@string/donot"
         android:fontFamily="@font/montserrat_medium"
         android:text="@string/donot"
@@ -191,31 +189,35 @@
         app:layout_constraintStart_toEndOf="@+id/donot" />
 
     <ImageView
-        android:id="@+id/fb"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="15dp"
+        android:id="@+id/facebookBtn"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="30dp"
         android:layout_marginEnd="160dp"
         android:layout_marginBottom="220dp"
         android:clickable="true"
         android:contentDescription="@string/face"
+        android:contextClickable="true"
+        android:longClickable="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.037"
-        app:layout_constraintStart_toEndOf="@+id/gacc"
-        app:srcCompat="@drawable/vector" />
+        app:layout_constraintHorizontal_bias="0.687"
+        app:layout_constraintStart_toEndOf="@+id/googleBtn"
+        app:srcCompat="@drawable/facebook" />
 
     <ImageView
-        android:id="@+id/gacc"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_marginStart="170dp"
+        android:id="@+id/googleBtn"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="160dp"
         android:layout_marginBottom="220dp"
         android:clickable="true"
         android:contentDescription="@string/gmail"
+        android:contextClickable="true"
+        android:longClickable="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/google_logo" />
+        app:srcCompat="@drawable/google" />
 
     <View
         android:id="@+id/line2"
@@ -252,10 +254,9 @@
         android:inputType="textEmailAddress"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="@+id/cloud"
-        app:layout_constraintHorizontal_bias="0.8"
+        app:layout_constraintHorizontal_bias="0.662"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AppName" />
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

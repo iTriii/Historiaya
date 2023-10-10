@@ -5,18 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E1FAFF"
+    android:orientation="vertical"
     tools:context=".Main2">
 
     <ImageView
         android:id="@+id/rizal_Start"
-        android:layout_width="420dp"
+        android:layout_width="match_parent"
         android:layout_height="452dp"
-        android:layout_marginTop="136dp"
         android:layout_marginStart="4dp"
-        android:layout_marginBottom="192dp"
+        android:layout_marginBottom="148dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.584"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/newproject" />
 
@@ -54,7 +54,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.504"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/rectangle" />
 
     <ImageButton
@@ -183,7 +183,7 @@
         android:clickable="true"
         android:longClickable="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.163"
+        app:layout_constraintHorizontal_bias="0.169"
         app:layout_constraintStart_toEndOf="@+id/Share"
         app:layout_constraintTop_toBottomOf="@+id/Map"
         app:srcCompat="@drawable/settings_24" />
