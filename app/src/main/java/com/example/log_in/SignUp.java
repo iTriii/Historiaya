@@ -96,7 +96,7 @@ public class SignUp extends AppCompatActivity {
             }
         }
     }
-    private void uploadImageToFirebaseStorage(Uri imageUri, FirebaseUser user, String firstName, String lastName, String userEmail, String userContact) {
+    private void uploadImageToFirebaseStorage(Uri imageUri, FirebaseUser user, String firstName, String lastName, String userEmail, String userContact, int points) {
         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("images"); // Set your desired storage path
 
         // Generate a unique file name for the image
@@ -111,7 +111,7 @@ public class SignUp extends AppCompatActivity {
                         // Save the download URL in Firestore or perform any other necessary operations
                         String imageUrl = uri.toString();
                         // You can now save the imageUrl in Firestore along with other user data
-                        saveUserDataToFirestore(user.getUid(), firstName, lastName, userEmail, userContact, imageUrl);
+                        saveUserDataToFirestore(user.getUid(), firstName, lastName, userEmail, userContact, imageUrl, points);
                     });
                 })
                 .addOnFailureListener(e -> {
@@ -156,7 +156,7 @@ public class SignUp extends AppCompatActivity {
 
                         if (user != null) {
                             // Send email verification and save user data
-                            sendEmailVerificationAndSaveData(user, fName, lName, email, contactNo);
+                            sendEmailVerificationAndSaveData(user, fName, lName, email, contactNo, 20);
                         }
                     } else {
                         Toast.makeText(SignUp.this, "Authentication failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
@@ -164,11 +164,11 @@ public class SignUp extends AppCompatActivity {
                 });
     }
 
-    private void sendEmailVerificationAndSaveData(FirebaseUser user, String firstName, String lastName, String userEmail, String userContact) {
+    private void sendEmailVerificationAndSaveData(FirebaseUser user, String firstName, String lastName, String userEmail, String userContact, int points) {
         user.sendEmailVerification().addOnCompleteListener(this, emailVerificationTask -> {
             if (emailVerificationTask.isSuccessful()) {
                 // Save user data to Firestore and upload image
-                uploadImageToFirebaseStorage(selectedImageUri, user, firstName, lastName, userEmail, userContact);
+                uploadImageToFirebaseStorage(selectedImageUri, user, firstName, lastName, userEmail, userContact, points);
                 // Show a Toast message
                 Toast.makeText(SignUp.this, "Please check your email for verification link", Toast.LENGTH_LONG).show();
 
@@ -183,7 +183,7 @@ public class SignUp extends AppCompatActivity {
 
 
     // Save user data to Firestore, including the image URL
-    private void saveUserDataToFirestore(String userId, String firstName, String lastName, String userEmail, String userContact, String imageUrl) {
+    private void saveUserDataToFirestore(String userId, String firstName, String lastName, String userEmail, String userContact, String imageUrl, int points) {
         DocumentReference userDocRef = db.collection("users").document(userId);
 
         Map<String, Object> user = new HashMap<>();
@@ -192,6 +192,7 @@ public class SignUp extends AppCompatActivity {
         user.put("Email", userEmail);
         user.put("ContactNo", userContact);
         user.put("ImageUrl", imageUrl);
+        user.put("HistoriaPoints", points);
 
         // Add a Log statement to check the imageUrl
         Log.d(TAG, "Image URL: " + imageUrl);

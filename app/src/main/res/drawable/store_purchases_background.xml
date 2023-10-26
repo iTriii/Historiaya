@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background for the radio button (your desired background color) -->
+    <item android:drawable="@color/transparent" />
+    <!-- Text color for the radio button (your desired text color) -->
+    <item
+        android:drawable="@color/green"
+        android:width="32dp"
+        android:height=".5dp"
+        android:gravity="bottom">
+        <bitmap
+            android:color="@color/green" />
+    </item>
+</layer-list>

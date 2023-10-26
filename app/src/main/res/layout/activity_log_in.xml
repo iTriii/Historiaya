@@ -165,7 +165,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/regnow"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gacc"
         app:layout_constraintVertical_bias="0.206" />
 
     <TextView
@@ -189,33 +188,16 @@
         app:layout_constraintStart_toEndOf="@+id/donot" />
 
     <ImageView
-        android:id="@+id/facebookBtn"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="160dp"
-        android:layout_marginBottom="220dp"
-        android:clickable="true"
-        android:contentDescription="@string/face"
-        android:contextClickable="true"
-        android:longClickable="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.687"
-        app:layout_constraintStart_toEndOf="@+id/googleBtn"
-        app:srcCompat="@drawable/facebook" />
-
-    <ImageView
         android:id="@+id/googleBtn"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginStart="160dp"
-        android:layout_marginBottom="220dp"
+        android:layout_marginBottom="208dp"
         android:clickable="true"
         android:contentDescription="@string/gmail"
         android:contextClickable="true"
         android:longClickable="false"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/google" />
 

@@ -7,4 +7,9 @@
     <color name="background">#E1FAFF</color>
     <color name="loginbutton">#00A197</color>
     <color name="hover_color">#000000</color>
+    <color name="gray">#8A8A8A</color>
+    <color name="transparent">#00000000</color>
+    <color name="GREEN">#00684E</color>
+    <color name="GRAY">#8A8A8A</color>
+
 </resources>

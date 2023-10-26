@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_checked="true">
+        <layer-list>
+            <item android:drawable="@drawable/store_purchases_background" />
+            <item android:top="1dp">
+                <bitmap android:color="@android:color/transparent" android:tint="@color/green" />
+            </item>
+        </layer-list>
+        <color android:color="@color/green" />
+    </item>
+    <item android:state_checked="false">
+        <layer-list>
+            <item android:drawable="@drawable/store_purchases_background" />
+            <item android:drawable="@null" />
+        </layer-list>
+        <color android:color="@color/gray" />
+    </item>
+</selector>

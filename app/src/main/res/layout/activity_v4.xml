@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="247dp"
+    android:layout_height="645dp"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:background="@drawable/voucher_bg"
+    tools:context=".v4"
+    android:id="@+id/v4">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/voucher_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:background="#E99908" />
+        <TextView
+            android:id="@+id/v4_body"
+            android:layout_width="match_parent"
+            android:layout_height="422.65dp"
+            android:background="@drawable/popup_voucher1"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
+            android:rotation="90"
+            android:text="@string/discount4"
+            android:textColor="#E94B08"
+            android:textSize="44sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <TextView
+            android:id="@+id/popup_qrcode1_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="214dp"
+            android:background="@drawable/popup_voucher2"
+            android:backgroundTint="#E99908"/>
+
+        <TextView
+            android:id="@+id/qrplaceholder"
+            android:layout_width="151dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="-130dp"
+            android:layout_marginBottom="50dp"
+            android:layout_marginStart="-25dp"
+            android:background="@drawable/scan_me"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
+            android:rotation="90"
+            android:text="@string/scan_me"
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageView
+            android:id="@+id/popup_qrcode1"
+            android:layout_width="151dp"
+            android:layout_height="151dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="-150dp"
+            app:srcCompat="@drawable/qrcode" />
+
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

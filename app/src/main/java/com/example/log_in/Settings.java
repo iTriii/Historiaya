@@ -3,24 +3,58 @@ package com.example.log_in;
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
 
 public class Settings extends AppCompatActivity {
     Button Credits, Feedback, PrivacyandTerms, LogOut;
     ImageButton Tutorial1;
     TextView Tutorial;
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
+    Switch audio;
     Dialog dialog;
+    FirebaseAuth mAuth;
+
+
 
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        mAuth = FirebaseAuth.getInstance();
+
+        audio = findViewById(R.id.audio);
+        ImageView speaker = findViewById(R.id.Speaker);
+        audio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if (isChecked) {
+                    // Enable audio (music)
+                    audio.setEnabled(true);
+                    // Set the "speaker" image without the slash overlay
+                    speaker.setImageResource(R.drawable.audio);
+                } else {
+                    // Disable audio (music)
+                    audio.setEnabled(false);
+                    // Set the "speaker" image with the slash overlay
+                    speaker.setImageResource(R.drawable.audio);
+                }
+            }
+        });
 
 
         Credits = findViewById(R.id.Credits);
@@ -33,7 +67,36 @@ public class Settings extends AppCompatActivity {
         PrivacyandTerms.setOnClickListener(v -> PrivacyandTerms());
 
         LogOut = findViewById(R.id.Logout);
-        LogOut.setOnClickListener(v -> LogOut());
+        LogOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                try {
+                    // Clear user data or preferences
+                    clearUserData();
+
+                    mAuth.signOut();
+
+                    // Show a success message with a Toast
+                    Toast.makeText(Settings.this, "Logged out successfully", Toast.LENGTH_SHORT).show();
+
+                    Intent StartScreen = new Intent(Settings.this, StartScreen.class);
+                    StartScreen.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(StartScreen);
+                    finish();
+                } catch (Exception e) {
+                    // An error occurred, show an error message with a Toast
+                    Toast.makeText(Settings.this, "Error logging out: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            private void clearUserData() {
+                SharedPreferences sharedPreferences = getSharedPreferences("user_data", MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.apply();
+            }
+        });
+
 
         Tutorial = findViewById(R.id.Tutorial);
         Tutorial.setOnClickListener(v -> Tutorial());
@@ -59,10 +122,7 @@ public class Settings extends AppCompatActivity {
         Intent intent =new Intent(this, PrivacyandTerms.class);
         startActivity(intent);
     }
-    public void LogOut() {
-        Intent intent =new Intent(this, LogOut.class);
-        startActivity(intent);
-    }
+
     public void Tutorial() {
         Intent intent =new Intent(this, Tutorial.class);
         startActivity(intent);

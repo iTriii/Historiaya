@@ -18,6 +18,24 @@
         android:theme="@style/Theme.Design.Light.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".v5"
+            android:exported="false" />
+        <activity
+            android:name=".v4"
+            android:exported="false" />
+        <activity
+            android:name=".v3"
+            android:exported="false" />
+        <activity
+            android:name=".v2"
+            android:exported="false" />
+        <activity
+            android:name=".v1"
+            android:exported="false" />
+        <activity
+            android:name=".Store"
+            android:exported="false" />
+        <activity
             android:name=".facebookAuth"
             android:exported="false" />
         <activity
@@ -55,9 +73,6 @@
             android:exported="false" />
         <activity
             android:name=".Profile"
-            android:exported="true" />
-        <activity
-            android:name=".Store"
             android:exported="true" />
         <activity
             android:name=".BookNow"

@@ -51,6 +51,7 @@ public class Main2 extends AppCompatActivity {
         Profile =findViewById(R.id.Profile);
         Profile.setOnClickListener(v -> Profile());
     }
+
     public void StartScreen() {
         Intent intent = new Intent(this, StartScreen.class);
         startActivity(intent);

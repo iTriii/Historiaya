@@ -125,6 +125,7 @@ public class Profile_Edit extends AppCompatActivity {
     public void Profile() {
         // Return to the previous activity
         finish();
+        overridePendingTransition(com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_in_left, com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_out_right);
     }
 
     void Profile_icon() {
