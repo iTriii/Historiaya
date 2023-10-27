@@ -104,7 +104,7 @@
         android:id="@+id/li"
         android:layout_width="215dp"
         android:layout_height="55dp"
-        android:background="@drawable/loginbutton"
+        android:background="@drawable/startbuttonbg_ok"
         android:clickable="true"
         android:contextClickable="true"
         android:elevation="3dp"

@@ -2,6 +2,7 @@ package com.example.log_in;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -25,12 +26,15 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.HashMap;
 import java.util.Map;
 
+
+
 public class Store extends AppCompatActivity {
 
     AppCompatRadioButton store_tab, purchases_tab;
     TextView Store, points, Purchases;
     ImageButton back;
     Dialog mdialog;
+    Button plus;
     Button B1P1, B2P2, B3P3, B4P4, B5P5, B6P6, B7P7;
     LinearLayout V1, V2, V3, V4, V5;
     View storeTabIndicator, purchasesTabIndicator;
@@ -43,6 +47,7 @@ public class Store extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
     private FirebaseFirestore db;
+    private SharedPreferences sharedPreferences;
 
 
     @Override
@@ -58,7 +63,7 @@ public class Store extends AppCompatActivity {
         initializeProductPrices();
         initBuyButtonListeners();
         initializePurchaseCounts();
-        initBuyButtonListeners();
+
 
         back = findViewById(R.id.back);
         back.setOnClickListener(v -> main2());
@@ -193,7 +198,6 @@ public class Store extends AppCompatActivity {
                 });
     }
 
-
     private void StoreScrollView() {
         store_tab.setChecked(true);
         purchases_tab.setChecked(false);
@@ -220,20 +224,7 @@ public class Store extends AppCompatActivity {
         overridePendingTransition(com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_in_left, com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_out_right);
     }
 
-    public void onRadioButtonClicked(View view) {
-        if (view.getId() == R.id.store_tab) {
-            store_tab.setTextColor(Color.GREEN);
-            purchases_tab.setTextColor(Color.GRAY);
-            Store.setTextColor(Color.GREEN);
-            Purchases.setTextColor(Color.GRAY);
-        } else if (view.getId() == R.id.purchases_tab) {
-            store_tab.setTextColor(Color.GRAY);
-            purchases_tab.setTextColor(Color.GREEN);
-            Store.setTextColor(Color.GRAY);
-            Purchases.setTextColor(Color.GREEN);
-        }
-    }
-
+    // Inside your `initBuyButtonListeners` method
     private void initBuyButtonListeners() {
         B1P1 = findViewById(R.id.B1P1);
         B2P2 = findViewById(R.id.B2P2);
@@ -243,67 +234,16 @@ public class Store extends AppCompatActivity {
         B6P6 = findViewById(R.id.B6P6);
         B7P7 = findViewById(R.id.B7P7);
 
-        B1P1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("StoreActivity", "B1P1 button clicked");
-                // Handle the purchase for product associated with B1P1 button
-                handlePurchase("store_ph1");
-            }
-        });
 
-
-        B2P2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("StoreActivity", "B2P2 button clicked");
-                // Handle the purchase for product associated with B1P1 button
-                handlePurchase("store_ph2");
-            }
-        });
-        B3P3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("StoreActivity", "B3P3 button clicked");
-                // Handle the purchase for product associated with B1P1 button
-                handlePurchase("store_ph3");
-            }
-        });
-
-        B4P4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("StoreActivity", "B4P4 button clicked");
-                // Handle the purchase for product associated with B1P1 button
-                handlePurchase("store_ph4");
-            }
-        });
-        B5P5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("StoreActivity", "B5P5 button clicked");
-                // Handle the purchase for product associated with B1P1 button
-                handlePurchase("store_ph1");
-            }
-        });
-
-        B6P6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("StoreActivity", "B6P6 button clicked");
-                // Handle the purchase for product associated with B1P1 button
-                handlePurchase("store_ph6");
-            }
-        });
-        B7P7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d("StoreActivity", "B7P7 button clicked");
-                // Handle the purchase for product associated with B1P1 button
-                handlePurchase("store_ph7");
-            }
-        });
+        B1P1.setOnClickListener(v -> handlePurchase("store_ph1"));
+        B2P2.setOnClickListener(v -> handlePurchase("store_ph2"));
+        B3P3.setOnClickListener(v -> handlePurchase("store_ph3"));
+        B4P4.setOnClickListener(v -> handlePurchase("store_ph4"));
+        B5P5.setOnClickListener(v -> handlePurchase("store_ph5"));
+        B6P6.setOnClickListener(v -> handlePurchase("store_ph6"));
+        B7P7.setOnClickListener(v -> handlePurchase("store_ph7"));
     }
+
 
     private void handlePurchase(String productId) {
         int productPrice = getProductPriceForId(productId);
@@ -313,6 +253,7 @@ public class Store extends AppCompatActivity {
 
         if (currentPoints >= productPrice) {
             int purchaseCount = purchaseCounts.get(productId);
+
             if (purchaseCount < PURCHASE_LIMIT) {
                 // Deduct points
                 currentPoints -= productPrice;
@@ -326,8 +267,8 @@ public class Store extends AppCompatActivity {
 
                 // Check if the purchase limit is reached
                 if (purchaseCount >= PURCHASE_LIMIT) {
-                    // Change the appearance of the product container to make it gray
-                    makeProductGray(productId);
+                    // Disable the button and change its appearance
+                    disableProductButton(productId);
                 }
             } else {
                 // User has reached the purchase limit for this product
@@ -338,19 +279,29 @@ public class Store extends AppCompatActivity {
             Log.d("StoreActivity", "Insufficient points to purchase " + productId);
         }
     }
-    // Retrieve the product price based on the product ID
+
+    private void disableProductButton(String productId) {
+        Button productButton = findProductButtonById(productId);
+
+        if (productButton != null) {
+            productButton.setEnabled(false);
+            productButton.setBackgroundResource(R.drawable.price_button_with_outline); // Set the appearance for disabled state
+            // You can make further changes to text or other visual properties within the button if needed
+        } else {
+            Log.e("StoreActivity", "Invalid product ID: " + productId);
+        }
+    }
+
     private int getProductPriceForId(String productId) {
         if (productPrices.containsKey(productId)) {
             return productPrices.get(productId);
         } else {
-            // Handle the case where the product ID is not found
             Log.e("StoreActivity", "Price not found for " + productId);
-            return 0; // You can return 0 or another default value
+            return 0;
         }
     }
 
     private void initializeProductPrices() {
-
         productPrices = new HashMap<>();
         productPrices.put("store_ph1", 90);
         productPrices.put("store_ph2", 100);
@@ -361,6 +312,7 @@ public class Store extends AppCompatActivity {
         productPrices.put("store_ph7", 80);
         // Add more product prices as needed
     }
+
     private void initializePurchaseCounts() {
         purchaseCounts = new HashMap<>();
         purchaseCounts.put("store_ph1", 0);
@@ -373,35 +325,28 @@ public class Store extends AppCompatActivity {
         // Add more products and initialize their purchase counts
     }
 
-    private void makeProductGray(String productId) {
-        int productContainerId = getProductContainerId(productId);
-        if (productContainerId != 0) {
-            View productContainer = findViewById(productContainerId);
-            // Change the background color or other visual properties to make it gray
-            productContainer.setBackgroundResource(R.drawable.product_limitbg);
-            // Additionally, you can disable buttons or make text gray as well
-        }
-    }
-    // Retrieve the product price based on the product ID
-    private int getProductContainerId(String productId) {
+
+
+
+    private Button findProductButtonById(String productId) {
         switch (productId) {
             case "store_ph1":
-                return R.id.store_ph1;
+                return B1P1;
             case "store_ph2":
-                return R.id.store_ph2;
+                return B2P2;
             case "store_ph3":
-                return R.id.store_ph3;
+                return B3P3;
             case "store_ph4":
-                return R.id.store_ph4;
+                return B4P4;
             case "store_ph5":
-                return R.id.store_ph5;
+                return B5P5;
             case "store_ph6":
-                return R.id.store_ph6;
+                return B6P6;
             case "store_ph7":
-                return R.id.store_ph7;
-            // Add cases for more products as needed
+                return B7P7;
+            // Add more cases as needed for additional products
             default:
-                return 0; // Invalid product ID
+                return null; // Invalid product ID
         }
     }
 }

@@ -228,7 +228,7 @@
         android:layout_width="226dp"
         android:layout_height="55dp"
         android:layout_marginBottom="150dp"
-        android:background="@drawable/startbuttonbg"
+        android:background="@drawable/startbuttonbg_ok"
         android:clickable="true"
         android:fontFamily="@font/montserrat_bold"
         android:longClickable="true"
