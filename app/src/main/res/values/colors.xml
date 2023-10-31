@@ -11,5 +11,6 @@
     <color name="transparent">#00000000</color>
     <color name="GREEN">#00684E</color>
     <color name="GRAY">#8A8A8A</color>
+    <color name="fadedgreen">#66a494</color>
 
 </resources>

@@ -3,12 +3,17 @@ package com.example.log_in;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
@@ -20,12 +25,20 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class Profile extends AppCompatActivity {
     ImageButton back, EditProfile;
     ShapeableImageView icon;
     TextView ProfileName;
     FirebaseUser user;
     FirebaseAuth auth;
+    RadioButton Achievements_Tab,MyBooking_Tab,History_Tab;
+    ScrollView AchievementsTab,MyBookingTab,HistoryTab;
+    View uno, dos, tres;
+    ProgressBar quest_progressbar,scavenger_progressbar,quiz_progressbar;
+    int counter=0;
     private FirebaseFirestore db;
     private ListenerRegistration userDataListener;
     private static final int EDIT_PROFILE_REQUEST_CODE = 1;
@@ -35,12 +48,27 @@ public class Profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-
+        
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
         back = findViewById(R.id.back);
         back.setOnClickListener(v -> main2());
+        
+        prog();
+
+        AchievementsTab  = findViewById(R.id.AchievementsTab);
+        Achievements_Tab = findViewById(R.id.Achievements_Tab);
+        Achievements_Tab.setOnClickListener(v -> Achievements_Tab());
+        MyBookingTab = findViewById(R.id.MyBookingTab);
+        MyBooking_Tab = findViewById(R.id.MyBooking_Tab);
+        MyBooking_Tab.setOnClickListener(v -> MyBooking_Tab());
+        HistoryTab = findViewById(R.id.HistoryTab);
+        History_Tab = findViewById(R.id.History_Tab);
+        History_Tab.setOnClickListener(v -> History_Tab());
+        uno = findViewById(R.id.uno);
+        dos = findViewById(R.id.dos);
+        tres = findViewById(R.id.tres);
 
         EditProfile = findViewById(R.id.EditProfile);
         EditProfile.setOnClickListener(v -> Profile_Edit());
@@ -64,6 +92,26 @@ public class Profile extends AppCompatActivity {
             startActivity(new Intent(Profile.this, LogIn.class));
             finish();
         }
+    }
+
+    private void prog() {
+        quest_progressbar = (ProgressBar) findViewById(R.id.quest_progressbar);
+        scavenger_progressbar = (ProgressBar) findViewById(R.id.scavenger_progressbar);
+        quiz_progressbar = (ProgressBar) findViewById(R.id.quiz_progressbar);
+
+        final Timer timer = new Timer();
+        TimerTask timertask = new TimerTask(){
+            public void run(){
+                counter++;
+                quest_progressbar.setProgress(counter);
+                scavenger_progressbar.setProgress(counter);
+                quiz_progressbar.setProgress(counter);
+
+                if (counter == 10)
+                    timer.cancel();
+            }
+        };
+        timer.schedule(timertask, 0, 50);
     }
 
     private void fetchAndDisplayUserData() {
@@ -155,5 +203,50 @@ public class Profile extends AppCompatActivity {
                 }
             }
     );
+    private void Achievements_Tab(){
+        Achievements_Tab.setChecked(true);
+        Achievements_Tab.setTextColor(ContextCompat.getColor(this, R.color.green));
+        AchievementsTab.setVisibility(View.VISIBLE);
+        MyBooking_Tab.setChecked(false);
+        MyBooking_Tab.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
+        MyBookingTab.setVisibility(View.GONE);
+        History_Tab.setChecked(false);
+        History_Tab.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
+        HistoryTab.setVisibility(View.GONE);
+        uno.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
+        dos.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
+        tres.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
+    }
+    private void MyBooking_Tab(){
+        Achievements_Tab.setChecked(false);
+        Achievements_Tab.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
+        AchievementsTab.setVisibility(View.GONE);
+        MyBooking_Tab.setChecked(true);
+        MyBooking_Tab.setTextColor(ContextCompat.getColor(this, R.color.green));
+        MyBookingTab.setVisibility(View.VISIBLE);
+        History_Tab.setChecked(false);
+        History_Tab.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
+        HistoryTab.setVisibility(View.GONE);
+        History_Tab.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
+        uno.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
+        dos.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
+        tres.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
+
+    }
+    private void History_Tab(){
+        Achievements_Tab.setChecked(false);
+        Achievements_Tab.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
+        AchievementsTab.setVisibility(View.GONE);
+        MyBooking_Tab.setChecked(false);
+        MyBooking_Tab.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
+        MyBookingTab.setVisibility(View.GONE);
+        History_Tab.setChecked(true);
+        History_Tab.setTextColor(ContextCompat.getColor(this, R.color.green));
+        HistoryTab.setVisibility(View.VISIBLE);
+        History_Tab.setTextColor(ContextCompat.getColor(this, R.color.green));
+        uno.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
+        dos.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
+        tres.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
+    }
 
 }

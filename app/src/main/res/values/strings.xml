@@ -160,6 +160,10 @@
     <string name="discount4">5% off for 5pcs\nPaborita</string>
     <string name="discount5">5% off for 5pcs\nBroas</string>
 
+    <string name="questclear">Quest Clear</string>
+    <string name="scavenger">Scavenger</string>
+    <string name="quiz">Quiz</string>
+
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
