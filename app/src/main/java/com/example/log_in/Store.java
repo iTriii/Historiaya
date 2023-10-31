@@ -13,6 +13,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRadioButton;
@@ -269,6 +270,7 @@ public class Store extends AppCompatActivity {
                 if (purchaseCount >= PURCHASE_LIMIT) {
                     // Disable the button and change its appearance
                     disableProductButton(productId);
+                    Toast.makeText(this, "Product is currently unavailable", Toast.LENGTH_SHORT).show();
                 }
             } else {
                 // User has reached the purchase limit for this product

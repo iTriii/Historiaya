@@ -233,7 +233,7 @@
         android:id="@+id/AchievementsTab"
         android:layout_width="350dp"
         android:layout_height="430dp"
-        android:layout_marginTop="-15dp"
+        android:layout_marginTop="-20dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -255,13 +255,14 @@
                     android:layout_width="94dp"
                     android:layout_height="94dp"
                     android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
                     android:src="@drawable/quest" />
 
                 <TextView
                     android:layout_width="180dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="170dp"
-                    android:layout_marginTop="-90dp"
+                    android:layout_marginTop="-100dp"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="@string/questclear"
                     android:textColor="@color/black"
@@ -302,13 +303,14 @@
                     android:layout_width="94dp"
                     android:layout_height="94dp"
                     android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
                     android:src="@drawable/scavenger" />
 
                 <TextView
                     android:layout_width="150dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="170dp"
-                    android:layout_marginTop="-90dp"
+                    android:layout_marginTop="-100dp"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="@string/scavenger"
                     android:textColor="@color/black"
@@ -349,13 +351,14 @@
                     android:layout_width="94dp"
                     android:layout_height="94dp"
                     android:layout_marginStart="15dp"
+                    android:layout_marginTop="10dp"
                     android:src="@drawable/quiz" />
 
                 <TextView
                     android:layout_width="150dp"
                     android:layout_height="30dp"
                     android:layout_marginStart="170dp"
-                    android:layout_marginTop="-90dp"
+                    android:layout_marginTop="-100dp"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="@string/quiz"
                     android:textColor="@color/black"
