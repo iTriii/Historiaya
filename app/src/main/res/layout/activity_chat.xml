@@ -66,10 +66,13 @@
         android:layout_height="536dp"
         android:layout_marginBottom="20dp"
         android:background="@drawable/background_content_top"
+        app:layout_constraintVertical_bias="0.707"
+        tools:layout_editor_absoluteX="2dp"
         app:layout_constraintBottom_toTopOf="@id/layoutSend"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.707"
-        tools:layout_editor_absoluteX="2dp" />
+        app:layout_constraintHorizontal_bias="0.902"
+        tools:ignore="MissingConstraints" />
+
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageinfo"
@@ -80,11 +83,9 @@
         android:padding="4dp"
         android:src="@drawable/baseline_info_24"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.902"
+        app:layout_constraintHorizontal_bias="0.913"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -110,29 +111,33 @@
         app:layout_constraintBottom_toBottomOf="@id/viewBackground"
         app:layout_constraintTop_toBottomOf="@id/imgback" />
 
-
-    <EditText
-        android:id="@+id/inputMessage"
+    <FrameLayout
         android:layout_width="266dp"
         android:layout_height="41dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="15dp"
+        android:layout_marginEnd="75dp"
+        android:layout_marginBottom="44dp"
         android:background="@drawable/bd_chat_input"
-        android:hint="@string/type_a_message"
-        android:imeOptions="actionDone"
-        android:importantForAutofill="no"
-        android:inputType="text"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        android:textColor="@color/black"
-        android:textColorHint="@color/green"
+        android:clickable="true"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/twoppl"
-        app:layout_constraintHorizontal_bias="0.356"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.955" />
+        app:layout_constraintEnd_toEndOf="parent">
+
+
+        <EditText
+            android:id="@+id/inputMessage"
+            android:layout_width="250dp"
+            android:layout_height="41dp"
+            android:layout_marginStart="11dp"
+            android:layout_marginBottom="11dp"
+            android:background="@drawable/bd_chat_input"
+            android:hint="@string/type_a_message"
+            android:imeOptions="actionDone"
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:paddingStart="9dp"
+            android:paddingEnd="9dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/green" />
+    </FrameLayout>
 
     <FrameLayout
         android:id="@+id/layoutupload"
@@ -147,8 +152,14 @@
         app:layout_constraintHorizontal_bias="0.002"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/blurred"
-        app:layout_constraintVertical_bias="0.758">
+        app:layout_constraintVertical_bias="0.763">
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="43dp"
+            android:layout_height="41dp"
+            android:padding="10dp"
+            app:srcCompat="@drawable/baseline_upload_24"
+            app:tint="#00684E" />
     </FrameLayout>
 
     <FrameLayout
@@ -163,7 +174,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintStart_toEndOf="@+id/inputMessage"
         app:layout_constraintTop_toTopOf="@+id/blurred"
         app:layout_constraintVertical_bias="0.807">
 
@@ -174,6 +184,9 @@
             app:srcCompat="@drawable/send_icon"
             app:tint="#00684E" />
     </FrameLayout>
+
+
+
 
     <TextView
         android:id="@+id/textName"
@@ -203,14 +216,5 @@
         android:src="@drawable/arrow_back"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:layout_width="43dp"
-        android:layout_height="41dp"
-        android:padding="10dp"
-        app:srcCompat="@drawable/baseline_upload_24"
-        app:tint="#00684E"
-        tools:layout_editor_absoluteX="15dp"
-        tools:layout_editor_absoluteY="645dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

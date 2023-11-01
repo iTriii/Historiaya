@@ -18,7 +18,7 @@ public class chat extends AppCompatActivity {
 
     private FirebaseFirestore db;
     private ImageButton  backbtn;
-    
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,8 +30,7 @@ public class chat extends AppCompatActivity {
 
     // Back button
         backbtn.setOnClickListener(view -> {
-        Intent intent = new Intent(chat.this, BookNow.class);
-        startActivity(intent);
+        onBackPressed();
     });
     }
     }

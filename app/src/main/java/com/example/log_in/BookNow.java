@@ -68,8 +68,7 @@ public class BookNow extends AppCompatActivity {
 
         // Back button
         backbtn.setOnClickListener(view -> {
-            Intent intent = new Intent(BookNow.this, Main2.class);
-            startActivity(intent);
+            onBackPressed();
         });
 
         // Save button
