@@ -74,16 +74,15 @@
 
     <!--Profile-->
     <string name="Profile">Profile</string>
+    <string name="Achievements">Achievements</string>
+    <string name="MyBooking">My Booking</string>
+    <string name="History">History</string>
     <string name="MyProfile">My Profile</string>
     <string name="First_Name">First Name</string>
     <string name="Last_Name">Last Name</string>
     <string name="Save">Save</string>
     <string name="Name" />
     <string name="Uploadanimage">Upload an Image</string>
-    <string name="achievements">Achievements</string>
-    <string name="mybooking">My Booking</string>
-    <string name="history">History</string>
-
 
     <!--PopUp Settings-->
     <string name="Settings">Settings</string>
@@ -135,35 +134,6 @@
     <string name="fb_login_protocol_scheme">fb1234</string>
     <string name="facebook_client_token">56789</string>
 
-    <!--Store-->
-    <string name="Purchases">Purchases</string>
-    <string name="store">Store</string>
-    <string name="prodes">Description</string>
-    <string name="product">Product</string>
-    <string name="price1">90</string>
-    <string name="price2">80</string>
-    <string name="price3">100</string>
-    <string name="pinagong">Pinagong</string>
-    <string name="uraro">Uraro</string>
-    <string name="tikoy">Tikoy</string>
-    <string name="bignay">Bignay Lipote</string>
-    <string name="paborita">Paborita</string>
-    <string name="broas">Broas</string>
-    <string name="apas">Apas</string>
-    <string name="yema">Yema de Leche</string>
-    <string name="scan_me">Scan Me</string>
-    <string name="discount">5% off for 5pcs</string>
-    <string name="discount1">5% off for 5pcs\nPinagong</string>
-    <string name="discount11">5% off for 5pcs Pinagong</string>
-    <string name="discount2">5% off for 5pcs\nUraro</string>
-    <string name="discount3">5% off for 5pcs\nTikoy</string>
-    <string name="discount4">5% off for 5pcs\nPaborita</string>
-    <string name="discount5">5% off for 5pcs\nBroas</string>
-
-    <string name="questclear">Quest Clear</string>
-    <string name="scavenger">Scavenger</string>
-    <string name="quiz">Quiz</string>
-
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
@@ -201,6 +171,123 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+
+
+
+    <!--Store-->
+    <string name="Purchases">Purchases</string>
+    <string name="store">Store</string>
+    <string name="prodes">Description</string>
+    <string name="product">Product</string>
+    <string name="price1">90</string>
+    <string name="price2">80</string>
+    <string name="price3">100</string>
+    <string name="pinagong">Pinagong</string>
+    <string name="uraro">Uraro</string>
+    <string name="tikoy">Tikoy</string>
+    <string name="bignay">Bignay Lipote</string>
+    <string name="paborita">Paborita</string>
+    <string name="broas">Broas</string>
+    <string name="apas">Apas</string>
+    <string name="yema">Yema de Leche</string>
+    <string name="scan_me">Scan Me</string>
+    <string name="discount">5% off for 5pcs</string>
+    <string name="discount1">5% off for 5pcs\nPinagong</string>
+    <string name="discount11">5% off for 5pcs Pinagong</string>
+    <string name="discount2">5% off for 5pcs\nUraro</string>
+    <string name="discount3">5% off for 5pcs\nTikoy</string>
+    <string name="discount4">5% off for 5pcs\nPaborita</string>
+    <string name="discount5">5% off for 5pcs\nBroas</string>
+
+    <string name="questclear">Quest Clear</string>
+    <string name="scavenger">Scavenger</string>
+    <string name="quiz">Quiz</string>
+
+
+    <!--submit button-->
+    <string name="submit">SUBMIT</string>
+    <string name="booknow">BookNow</string>
+    <string name="select_date">Select Date</string>
+    <string name="txtview_for_select_date">txtview for select date</string>
+    <string name="book_now">Book Now</string>
+    <string name="of_tourist"># of Tourist</string>
+    <string name="total_number_of_tourist">Total Number of Tourist</string>
+    <string name="select_tour">Select Tour</string>
+
+
+    <!--house-->
+    <string-array name="HeritageHouses">
+        <item> Select Tour </item>
+        <item> Don Catalino Rodriguez House</item>
+        <item> Gala Rogriguez House </item>
+        <item> Both </item>
+    </string-array>
+
+    <!-- Number of Tourists-->
+    <string-array name="TouristNumbers">
+        <item> Select Tourists </item>
+        <item> 1 </item>
+        <item> 2</item>
+        <item> 3 </item>
+        <item> 4 </item>
+        <item> 5 </item>
+        <item> 6 </item>
+        <item> 7 </item>
+        <item> 8 </item>
+        <item> 9 </item>
+        <item> 10 </item>
+        <item> 11 </item>
+        <item> 12</item>
+        <item> 13 </item>
+        <item> 14 </item>
+        <item> 15 </item>
+        <item> 16 </item>
+        <item> 17 </item>
+        <item> 18 </item>
+        <item> 19 </item>
+        <item> 20 </item>
+        <item> 21 </item>
+        <item> 22</item>
+        <item> 23 </item>
+        <item> 24 </item>
+        <item> 25 </item>
+        <item> 26 </item>
+        <item> 27 </item>
+        <item> 28 </item>
+        <item> 29 </item>
+        <item> 30 </item>
+    </string-array>
+
+    <!-- Checkout activity -->
+    <string name="title_activity_checkout">CheckoutActivity</string>
+    <string name="checkout_item_description">Description</string>
+    <string name="googlepay_status_unavailable" translatable="false">Unfortunately, Google Pay is
+        not available on this phone.
+    </string>
+    <string name="payments_show_name" translatable="false">Successfully received payment data for
+    </string>
+
+
+    <string name="payment_summary">Payment Summary</string>
+    <string name="backbutton">backbutton</string>
+    <string name="image">image</string>
+    <string name="done">Done</string>
+    <string name="title_activity_user">userActivity</string>
+    <string name="title_activity_booking">Booking</string>
+    <string name="gala_rogriguez">Gala Rogriguez</string>
+    <string name="don_catalino_rodriguez">Don Catalino Rodriguez</string>
+    <string name="_0936_857_7949">0936–857-7949</string>
+    <string name="achievements">Achievements</string>
+    <string name="history">History</string>
+
+    <string name="reservation_fee_heritage_house">Reservation Fee (Heritage House</string>
+    <string name="reservation_fee_tour_guide">Reservation Fee (Tour Guide)</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="heritage_house">HERITAGE HOUSE</string>
+    <string name="heritagehouse">HeritageHouse</string>
+    <string name="select_user"> Select User</string>
+    <string name="sign_in">Sign In</string>
+    <string name="type_a_message">Type a message…</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="large_text">
@@ -292,5 +379,5 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
-
+    <string name="mybooking">mybooking</string>
 </resources>

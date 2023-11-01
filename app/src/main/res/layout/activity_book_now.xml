@@ -4,6 +4,392 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:textAlignment="center"
     tools:context=".BookNow">
+
+
+    <ImageView
+        android:id="@+id/clouds"
+        android:layout_width="536dp"
+        android:layout_height="430dp"
+        android:layout_marginBottom="232dp"
+        android:contentDescription="@string/clouds"
+        app:layout_constraintBottom_toBottomOf="@+id/rizal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/cloud" />
+
+    <ImageView
+        android:id="@+id/rizal"
+        android:layout_width="420dp"
+        android:layout_height="452dp"
+        android:layout_marginTop="212dp"
+        android:contentDescription="@string/rizal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/newproject" />
+
+    <ImageView
+        android:id="@+id/grass"
+        android:layout_width="495dp"
+        android:layout_height="631dp"
+        android:layout_marginTop="300dp"
+        android:contentDescription="@string/grass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/grass_1" />
+
+
+    <ImageView
+        android:id="@+id/twopips"
+        android:layout_width="425dp"
+        android:layout_height="550dp"
+        android:layout_marginTop="316dp"
+        android:contentDescription="@string/twopips"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/twopips" />
+
+    <ImageView
+        android:id="@+id/blurred"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha=".5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/rectangle"
+        android:contentDescription="TODO" />
+
+    <ImageView
+        android:id="@+id/bgbooknow"
+        android:layout_width="421dp"
+        android:layout_height="226dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/map_booknow"
+        tools:ignore="MissingConstraints"
+        android:contentDescription="TODO" />
+
+    <TextView
+        android:id="@+id/pay"
+        android:layout_width="345dp"
+        android:layout_height="63dp"
+        android:fontFamily="@font/montserrat_alternates_extrabold"
+        android:shadowColor="#FFFDFD"
+        android:shadowDx="7"
+        android:shadowDy="-9"
+        android:shadowRadius="2"
+        android:text="@string/booknow"
+        android:textAlignment="center"
+        android:textColor="#FEC242"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.161"
+        tools:ignore="TextSizeCheck" />
+
+    <ImageButton
+        android:id="@+id/backbtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/shadow"
+        android:clickable="true"
+        android:contentDescription="@string/BookNow"
+        android:contextClickable="true"
+        android:elevation="10dp"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/arrow_back" />
+
+    <ImageButton
+        android:id="@+id/chatbtn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="28dp"
+        android:background="@drawable/shadow"
+        android:clickable="true"
+        android:contentDescription="@string/BookNow"
+        android:contextClickable="true"
+        android:elevation="10dp"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.883"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/chat" />
+
+    <TextView
+        android:id="@+id/selecttour"
+        android:layout_width="175dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="229dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/montserrat"
+        android:maxLines="2"
+        android:text="@string/select_tour"
+        android:textAlignment="center"
+        android:textColor="@color/green"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="@+id/NumTourist"
+        app:layout_constraintTop_toTopOf="@+id/blurred"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="32dp" />
+
+    <TextView
+        android:id="@+id/NumTourist"
+        android:layout_width="175dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="277dp"
+        android:contentDescription="@string/total_number_of_tourist"
+        android:ellipsize="end"
+        android:fontFamily="@font/montserrat"
+        android:maxLines="2"
+        android:text="#_of_tourist"
+        android:textAlignment="center"
+        android:textColor="@color/green"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/blurred"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="32dp" />
+
+
+
+    <Spinner
+        android:id="@+id/spinTour"
+        style="@style/Widget.AppCompat.Light.Spinner.DropDown.ActionBar"
+        android:layout_width="176dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="228dp"
+        android:background="@drawable/borderspinner"
+        android:dropDownWidth="wrap_content"
+        android:fontFamily="@font/montserrat_thin"
+        android:foregroundTint="#009688"
+        android:paddingRight="2dp"
+        android:spinnerMode="dropdown"
+        android:gravity="center"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.931"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bgbooknow"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints" />
+
+    <Spinner
+        android:id="@+id/touristnum"
+        style="@style/Widget.AppCompat.Light.Spinner.DropDown.ActionBar"
+        android:layout_width="176dp"
+        android:layout_height="43dp"
+        android:paddingEnd="2dp"
+        android:gravity="center"
+        android:dropDownWidth="wrap_content"
+        android:fontFamily="@font/montserrat_thin"
+        android:textAlignment="center"
+        android:foregroundTint="#009688"
+        android:spinnerMode="dropdown"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.931"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinTour"
+        app:layout_constraintVertical_bias="0.014"
+        android:background="@drawable/borderspinner"
+        tools:ignore="MissingConstraints" />
+
+
+    <CalendarView
+        android:id="@+id/Calendar"
+        style="@android:style/Widget.DeviceDefault.CalendarView"
+        android:layout_width="367dp"
+        android:layout_height="316dp"
+        android:background="@drawable/bgcalendar"
+        android:clickable="true"
+        android:foregroundGravity="top"
+        android:labelFor="@id/SDate"
+        android:maxDate="01/01/4099"
+        android:minDate="09/01/2023"
+        android:weekDayTextAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintBottom_toBottomOf="@+id/rizal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/twopips"
+        app:layout_constraintVertical_bias="0.343"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/SDate"
+        android:layout_width="175dp"
+        android:layout_height="40dp"
+        android:contentDescription="@string/txtview_for_select_date"
+        android:ellipsize="end"
+        android:fontFamily="@font/inter_bold"
+        android:maxLines="2"
+        android:text="@string/select_date"
+        android:textAlignment="center"
+        android:textColor="@color/green"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.135"
+        app:layout_constraintStart_toStartOf="@+id/blurred"
+        app:layout_constraintTop_toBottomOf="@+id/NumTourist"
+        app:layout_constraintVertical_bias="0.01"
+        tools:ignore="MissingConstraints" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="-13dp"
+        tools:layout_editor_absoluteY="93dp" />
+
+    <TextView
+        android:id="@+id/timeSlotText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Time Slot"
+        android:textSize="18sp"
+        tools:ignore="MissingConstraints" />
+
+
+    <Button
+        android:id="@+id/btntime1"
+        android:layout_width="84dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="220dp"
+        android:background="@drawable/btntime"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:longClickable="true"
+        android:text="11:00 AM"
+        android:textAlignment="center"
+        android:textColor="#00684E"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.349"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clouds"
+        app:layout_constraintVertical_bias="0.018" />
+
+    <Button
+        android:id="@+id/btntime2"
+        android:layout_width="85dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="220dp"
+        android:background="@drawable/btntime"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:longClickable="true"
+        android:text="10:00 AM"
+        android:textAlignment="center"
+        android:textColor="#00684E"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clouds"
+        app:layout_constraintVertical_bias="0.017" />
+
+    <Button
+        android:id="@+id/btntime3"
+        android:layout_width="85dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="220dp"
+        android:background="@drawable/btntime"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:longClickable="true"
+        android:text="1:00 PM"
+        android:textAlignment="center"
+        android:textColor="#00684E"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.655"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clouds"
+        app:layout_constraintVertical_bias="0.017" />
+
+    <Button
+        android:id="@+id/btntime4"
+        android:layout_width="85dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="220dp"
+        android:background="@drawable/btntime"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:longClickable="true"
+        android:text="2:00 PM"
+        android:textAlignment="center"
+        android:textColor="#00684E"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.957"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clouds"
+        app:layout_constraintVertical_bias="0.017" />
+
+
+
+
+
+
+        <Button
+            android:id="@+id/btnsubmit"
+            android:layout_width="221dp"
+            android:layout_height="51dp"
+            android:layout_gravity="center"
+            android:width="226dp"
+            android:height="55dp"
+            android:background="@drawable/startbuttonbg"
+            android:clickable="true"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
+            android:longClickable="true"
+            android:padding="16dp"
+            android:text="Make Payment"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="@+id/blurred"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clouds"
+            app:layout_constraintVertical_bias="0.95" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
