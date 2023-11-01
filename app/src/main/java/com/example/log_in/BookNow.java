@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.content.Intent;
 
-import android.text.TextUtils;
+
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 
@@ -25,7 +25,6 @@ import java.util.Map;
 public class BookNow extends AppCompatActivity {
 
     private FirebaseFirestore db;
-    private DocumentReference documentReference;
     private ImageButton chatbtn, backbtn;
     private Spinner spinTour, spinNum;
     private Button btnsave;
@@ -76,7 +75,7 @@ public class BookNow extends AppCompatActivity {
         // Save button
         btnsave.setOnClickListener(view -> {
             // Replace the following placeholders with actual values
-            String userId = "userId";
+            String userId = " ";
             String selectedTour = spinTour.getSelectedItem().toString();
             String selectedTouristNum = spinNum.getSelectedItem().toString();
 
@@ -88,7 +87,8 @@ public class BookNow extends AppCompatActivity {
     private void addDataToFirestore(String userId, String selectedTour, String selectedTouristNum) {
         // Check if the user is making a booking.
         if (!selectedTour.equals("Select Tour") && !selectedTouristNum.equals("Number of Tourists")) {
-            DocumentReference userDocRef = db.collection("users").document(userId);
+
+            DocumentReference userDocRef = db.collection("users").document("bookingId");
             userDocRef.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
 
@@ -116,7 +116,7 @@ public class BookNow extends AppCompatActivity {
 
                         userDocRef.set(user).addOnSuccessListener(documentReference -> {
                             Toast.makeText(getApplicationContext(), "Booking created", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), Payment.class));
+                            startActivity(new Intent(getApplicationContext(), PaymentDetails.class));
                         }).addOnFailureListener(exception -> {
                             Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
                         });

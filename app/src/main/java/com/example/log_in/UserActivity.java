@@ -110,6 +110,7 @@ public class UserActivity extends AppCompatActivity implements UserListener {
         Intent intent = new Intent(getApplicationContext(), mainChat.class);
         intent.putExtra(Constants.KEY_USER, user);
         startActivity(intent);
+
         }
     }
 
