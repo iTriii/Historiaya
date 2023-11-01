@@ -61,22 +61,21 @@
 
     <ImageButton
         android:id="@+id/backbtn"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="52dp"
         android:background="@drawable/shadow"
         android:clickable="true"
         android:contentDescription="@string/BookNow"
         android:contextClickable="true"
         android:elevation="10dp"
-        android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:longClickable="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.094"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.039"
-        app:srcCompat="@drawable/arrow_back"
-        tools:ignore="MissingConstraints" />
+        app:srcCompat="@drawable/arrow_back" />
 
     
         <TextView

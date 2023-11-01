@@ -92,6 +92,7 @@ public class BookNow extends AppCompatActivity {
             userDocRef.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
 
+
                     Map<String, Object> bookingData = task
                             .getResult()
                             .getData();
@@ -103,7 +104,7 @@ public class BookNow extends AppCompatActivity {
 
                         userDocRef.update(bookingData).addOnSuccessListener(documentReference -> {
                             Toast.makeText(getApplicationContext(), "Booking updated", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), Payment.class));
+                            startActivity(new Intent(getApplicationContext(), PaymentDetails.class));
                         }).addOnFailureListener(exception -> {
                             Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
                         });
@@ -121,7 +122,8 @@ public class BookNow extends AppCompatActivity {
                         });
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), "Select a Tour and total number of tourists", Toast.LENGTH_SHORT).show();
+                    // Handle the failure.
+                    Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
         }

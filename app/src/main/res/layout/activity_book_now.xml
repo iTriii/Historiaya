@@ -107,31 +107,36 @@
 
     <ImageButton
         android:id="@+id/backbtn"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="28dp"
+
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="52dp"
         android:background="@drawable/shadow"
         android:clickable="true"
         android:contentDescription="@string/BookNow"
         android:contextClickable="true"
         android:elevation="10dp"
-        android:padding="10dp"
+        android:longClickable="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/arrow_back" />
 
     <ImageButton
         android:id="@+id/chatbtn"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="55dp"
         android:background="@drawable/shadow"
         android:clickable="true"
+        android:elevation="10dp"
+        android:longClickable="true"
         android:contentDescription="@string/BookNow"
         android:contextClickable="true"
-        android:elevation="10dp"
+
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.883"
@@ -261,20 +266,6 @@
         app:layout_constraintVertical_bias="0.01"
         tools:ignore="MissingConstraints" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="-13dp"
-        tools:layout_editor_absoluteY="93dp" />
-
-    <TextView
-        android:id="@+id/timeSlotText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Time Slot"
-        android:textSize="18sp"
-        tools:ignore="MissingConstraints" />
 
 
     <Button
