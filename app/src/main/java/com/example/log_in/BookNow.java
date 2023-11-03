@@ -16,6 +16,9 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -28,6 +31,7 @@ public class BookNow extends AppCompatActivity {
     private ImageButton chatbtn, backbtn;
     private Spinner spinTour, spinNum;
     private Button btnsave;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,8 @@ public class BookNow extends AppCompatActivity {
         // Initialize Firebase
         FirebaseApp.initializeApp(this);
         db = FirebaseFirestore.getInstance();
+        mAuth = FirebaseAuth.getInstance();
+
 
         // Initialize UI elements and set up spinners
         btnsave = findViewById(R.id.btnsubmit);
@@ -44,6 +50,11 @@ public class BookNow extends AppCompatActivity {
         backbtn = findViewById(R.id.backbtn);
         spinTour = findViewById(R.id.spinTour);
         spinNum = findViewById(R.id.touristnum);
+
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        CollectionReference userDocRef = FirebaseFirestore.getInstance().collection("users");
+        CollectionReference bookingDocRef = userDocRef.document(userId).collection("booking");
+
 
         ArrayAdapter<CharSequence> heritageHouseAdapter = ArrayAdapter.createFromResource(
                 this, R.array.HeritageHouses, android.R.layout.simple_spinner_item);
@@ -57,7 +68,10 @@ public class BookNow extends AppCompatActivity {
 
         // Set listeners
         setListener();
+
     }
+
+
 
     private void setListener() {
         // Chat button
@@ -74,24 +88,21 @@ public class BookNow extends AppCompatActivity {
         // Save button
         btnsave.setOnClickListener(view -> {
             // Replace the following placeholders with actual values
-            String userId = " ";
+            String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
             String selectedTour = spinTour.getSelectedItem().toString();
             String selectedTouristNum = spinNum.getSelectedItem().toString();
-
-
             addDataToFirestore(userId, selectedTour, selectedTouristNum);
         });
     }
 
-    private void addDataToFirestore(String userId, String selectedTour, String selectedTouristNum) {
-        // Check if the user is making a booking.
-        if (!selectedTour.equals("Select Tour") && !selectedTouristNum.equals("Number of Tourists")) {
 
-            DocumentReference userDocRef = db.collection("users").document("bookingId");
+
+    private void addDataToFirestore(String userId, String selectedTour, String selectedTouristNum) {
+        if (!selectedTour.equals("Select Tour") && !selectedTouristNum.equals("Number of Tourists")) {
+            DocumentReference userDocRef = db
+                    .collection("users").document(userId);
             userDocRef.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-
-
                     Map<String, Object> bookingData = task
                             .getResult()
                             .getData();
@@ -125,6 +136,9 @@ public class BookNow extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                 }
             });
+
         }
+
+
     }
 }
