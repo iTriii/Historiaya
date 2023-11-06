@@ -14,7 +14,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.facebook.AccessToken;
-import com.facebook.CallbackManager;
 import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -31,7 +30,6 @@ public class LogIn extends AppCompatActivity {
     FirebaseAuth mAuth;
     ImageView googleBtn;
     ProgressBar progressbar;
-    CallbackManager callbackManager;
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
 
@@ -57,8 +55,6 @@ public class LogIn extends AppCompatActivity {
                 .build();
 
         gsc = GoogleSignIn.getClient(this,gso);
-
-        callbackManager = CallbackManager.Factory.create();
 
         googleBtn.setOnClickListener(new View.OnClickListener() {
             @Override

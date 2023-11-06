@@ -4,6 +4,7 @@
     package="com.example.log_in">
 
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -37,9 +38,6 @@
             android:name=".Store"
             android:exported="false" />
         <activity
-            android:name=".facebookAuth"
-            android:exported="false" />
-        <activity
             android:name=".Chap1_dropdown"
             android:exported="false" />
         <activity
@@ -65,7 +63,7 @@
             android:exported="false" />
         <activity
             android:name=".Settings"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Profile_Edit"
             android:exported="false" />

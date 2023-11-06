@@ -351,4 +351,16 @@ public class Store extends AppCompatActivity {
                 return null; // Invalid product ID
         }
     }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // Ensure that the buttons reflect the current purchase count and availability
+        for (String productId : purchaseCounts.keySet()) {
+            if (purchaseCounts.get(productId) >= PURCHASE_LIMIT) {
+                // Disable the button for this product
+                disableProductButton(productId);
+            }
+        }
+    }
+
 }
