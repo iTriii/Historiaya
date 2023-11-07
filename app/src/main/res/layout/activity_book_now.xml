@@ -62,14 +62,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:alpha=".5"
+        android:contentDescription="TODO"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/rectangle"
-        android:contentDescription="TODO" />
+        app:srcCompat="@drawable/rectangle" />
 
     <ImageView
         android:id="@+id/bgbooknow"
@@ -230,7 +230,7 @@
     <CalendarView
         android:id="@+id/Calendar"
         style="@android:style/Widget.DeviceDefault.CalendarView"
-        android:layout_width="367dp"
+        android:layout_width="wrap_content"
         android:layout_height="316dp"
         android:background="@drawable/bgcalendar"
         android:clickable="true"
@@ -353,33 +353,30 @@
         app:layout_constraintVertical_bias="0.017" />
 
 
+    <Button
+        android:id="@+id/btnsubmit"
+        android:layout_width="221dp"
+        android:layout_height="51dp"
+        android:layout_gravity="center"
+        android:width="226dp"
+        android:height="55dp"
+        android:background="@drawable/startbuttonbg"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:longClickable="true"
+        android:padding="16dp"
+        android:text="Make Payment"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/blurred"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clouds"
+        app:layout_constraintVertical_bias="0.95" />
 
-
-
-
-        <Button
-            android:id="@+id/btnsubmit"
-            android:layout_width="221dp"
-            android:layout_height="51dp"
-            android:layout_gravity="center"
-            android:width="226dp"
-            android:height="55dp"
-            android:background="@drawable/startbuttonbg"
-            android:clickable="true"
-            android:fontFamily="@font/montserrat_bold"
-            android:gravity="center"
-            android:longClickable="true"
-            android:padding="16dp"
-            android:text="Make Payment"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/blurred"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/clouds"
-            app:layout_constraintVertical_bias="0.95" />
 
 
 

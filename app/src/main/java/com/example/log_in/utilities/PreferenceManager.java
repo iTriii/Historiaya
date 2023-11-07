@@ -16,7 +16,9 @@ public class PreferenceManager {
         editor.apply();
     }
      public Boolean getBoolean(String key) {
-        return sharedPreferences.getBoolean(key, false);
+
+        return sharedPreferences.getBoolean(
+                key, false);
   }
      public void putString(String key, String value) {
          SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -25,7 +27,9 @@ public class PreferenceManager {
      }
 
      public String getString(String key) {
-        return sharedPreferences.getString(key, null);
+
+        return sharedPreferences
+                .getString(key, null);
      }
 
      public void clear(){
