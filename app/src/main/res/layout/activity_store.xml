@@ -179,7 +179,7 @@
                         android:background="@drawable/p1"
                         />
                     <TextView
-                        android:id="@+id/ProDes1"
+                        android:id="@+id/ProductDescription1"
                         android:layout_width="117dp"
                         android:layout_height="18dp"
                         android:gravity="center"
@@ -236,7 +236,7 @@
                     />
 
                     <TextView
-                        android:id="@+id/ProDes2"
+                        android:id="@+id/ProductDescription2"
                         android:layout_width="117dp"
                         android:layout_height="18dp"
                         android:gravity="center"
@@ -275,10 +275,6 @@
                         />
 
                 </androidx.cardview.widget.CardView>
-
-
-
-
             </LinearLayout>
 
             <LinearLayout
@@ -303,7 +299,7 @@
                         android:scaleType="fitCenter" />
 
                     <TextView
-                        android:id="@+id/ProDes3"
+                        android:id="@+id/ProductDescription3"
                         android:layout_width="117dp"
                         android:layout_height="18dp"
                         android:gravity="center"
@@ -359,7 +355,7 @@
 
 
                     <TextView
-                        android:id="@+id/ProDes4"
+                        android:id="@+id/ProductDescription4"
                         android:layout_width="117dp"
                         android:layout_height="18dp"
                         android:gravity="center"
@@ -421,7 +417,7 @@
                         android:scaleType="fitCenter"/>
 
                     <TextView
-                        android:id="@+id/ProDes5"
+                        android:id="@+id/ProductDescription5"
                         android:layout_width="117dp"
                         android:layout_height="18dp"
                         android:gravity="center"
@@ -476,7 +472,7 @@
 
 
                     <TextView
-                        android:id="@+id/ProDes6"
+                        android:id="@+id/ProductDescription6"
                         android:layout_width="117dp"
                         android:layout_height="18dp"
                         android:gravity="center"

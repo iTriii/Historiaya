@@ -13,8 +13,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.facebook.AccessToken;
-import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -32,7 +30,6 @@ public class LogIn extends AppCompatActivity {
     ProgressBar progressbar;
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,19 +125,6 @@ public class LogIn extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-        // Check if the user is authenticated with Facebook
-        AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
-
-        if (isLoggedIn) {
-            // User is authenticated with Facebook, log them out
-            LoginManager.getInstance().logOut();
-        }
     }
 
     private void signIn() {
