@@ -15,7 +15,8 @@
         android:layout_height="1024dp"
         android:layout_marginStart="4dp"
         android:layout_marginBottom="4dp"
-        app:srcCompat="@drawable/newproject" />
+        app:srcCompat="@drawable/newproject"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/grass_start"

@@ -5,6 +5,176 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Payment">
+    <ImageView
+        android:id="@+id/rizal_Start"
+        android:layout_width="match_parent"
+        android:layout_height="1024dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="4dp"
+        app:srcCompat="@drawable/newproject"
+        tools:ignore="MissingConstraints" />
 
+    <ImageView
+        android:id="@+id/grass_start"
+        android:layout_width="match_parent"
+        android:layout_height="1024dp"
+        android:layout_marginTop="184dp"
+        android:alpha=".95"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/grass_1" />
+
+    <ImageView
+        android:id="@+id/twoppl"
+        android:layout_width="match_parent"
+        android:layout_height="1024dp"
+        android:layout_marginTop="180dp"
+        android:alpha=".89"
+        app:layout_constraintEnd_toEndOf="@+id/grass_start"
+        app:layout_constraintHorizontal_bias="0.688"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/backdrop" />
+
+
+    <!-- Payment Items -->
+
+
+    <ImageView
+        android:id="@+id/blurred"
+        android:layout_width="match_parent"
+        android:layout_height="1024dp"
+        android:alpha=".5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/rectangle" />
+
+    <TextView
+        android:id="@+id/txtupload"
+        android:layout_width="218dp"
+        android:layout_height="51dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center_horizontal"
+        android:text="Upload your proof of payment here."
+        android:textColor="@color/green"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.134" />
+
+    <TextView
+        android:id="@+id/txtupload2"
+        android:layout_width="137dp"
+        android:layout_height="29dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center_horizontal"
+        android:text="upload Image"
+        android:textColor="@color/green"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/select"
+        app:layout_constraintVertical_bias="0.054" />
+
+    <ImageButton
+        android:id="@+id/back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/shadow"
+        android:clickable="true"
+        android:contentDescription="@string/BookNow"
+        android:contextClickable="true"
+        android:elevation="10dp"
+        android:longClickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/arrow_back" />
+
+
+    <Button
+        android:id="@+id/okbtn"
+        android:layout_width="221dp"
+        android:layout_height="54dp"
+        android:layout_marginBottom="124dp"
+        android:width="226dp"
+        android:height="55dp"
+        android:background="@drawable/startbuttonbg"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:longClickable="true"
+        android:text="Done"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/blurred"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgviewpayment"
+        app:layout_constraintVertical_bias="0.961" />
+
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
+        app:layout_constraintBottom_toBottomOf="@+id/blurred"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/blurred"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/progress"/>
+
+
+    <ImageView
+        android:id="@+id/imgviewpayment"
+        android:layout_width="276dp"
+        android:layout_height="248dp"
+        android:layout_below="@+id/progress"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.581"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="172dp" />
+
+    <ImageButton
+        android:id="@+id/select"
+        android:layout_width="57dp"
+        android:layout_height="51dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="452dp"
+        android:background="@drawable/shadow"
+        android:clickable="true"
+        android:contentDescription="@string/BookNow"
+        android:contextClickable="true"
+        android:elevation="10dp"
+        android:longClickable="true"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.422"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/baseline_photo_size_select_actual_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
