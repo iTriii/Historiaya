@@ -138,6 +138,9 @@ public class BookNow extends AppCompatActivity {
                 //DONT'T ERASE THIS.. IMPORTANTE TO!
     private void addDataToFirestore(String userId, String selectedTour, String selectedTouristNum) {
         if (!selectedTour.equals("Select Tour") && !selectedTouristNum.equals("Number of Tourists")) {
+
+
+
             DocumentReference userDocRef = db.collection("users").document(userId);
             userDocRef.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {

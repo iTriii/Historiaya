@@ -123,7 +123,8 @@ public class Payment extends AppCompatActivity {
                 .addOnSuccessListener(taskSnapshot -> {
                     imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
                         String imageUrl = uri.toString();
-                        saveUserDataToFirestore(mAuth.getCurrentUser(), imageUrl);
+                        String userId = mAuth.getCurrentUser().getUid();
+                        saveUserDataToFirestore(userId, imageUrl);
                     });
                 })
                 .addOnFailureListener(e -> {
@@ -133,21 +134,41 @@ public class Payment extends AppCompatActivity {
         progress.setVisibility(View.VISIBLE);
     }
 
-    private void saveUserDataToFirestore(FirebaseUser user, String imageUrl) {
-        if (user != null) {
-            DocumentReference userDocRef = db.collection("users").document(user.getUid()).getFirestore().document("proof");
-            Map<String, Object> userData = new HashMap<>();
-            userData.put("ImageUrl", imageUrl);
+    private void saveUserDataToFirestore(String userId, String imageUrl) {
+        if (userId != null) {
+            DocumentReference userDocRef = db.collection("users").document(userId).getFirestore().document("proof");
+
+            userDocRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Map<String, Object> paymentData = task.getResult().getData();
+                    // If the user has already made a booking, update the existing booking.
+                    if (paymentData != null) {
+                        paymentData.put("ImageUrl", imageUrl);
+                        userDocRef.update(paymentData).addOnSuccessListener(documentReference -> {
+                            Toast.makeText(getApplicationContext(), "Successfully Uploaded!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), Main2.class));
+
+                        }).addOnFailureListener(exception -> {
+                            Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
+                        });
+                    }else {
+                        // Create a new booking.
+                        HashMap<String, Object> user = new HashMap<>();
+                        paymentData.put("ImageUrl", imageUrl);
+
+                        userDocRef.set(user).addOnSuccessListener(documentReference -> {
+                            Toast.makeText(getApplicationContext(), "Booking created", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), Psummary.class));
+                        }).addOnFailureListener(exception -> {
+                            Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
+                        });
+                    }
+                };
+            });
+        }
 
             // Add a Log statement to check the imageUrl
             Log.d(TAG, "Image URL: " + imageUrl);
 
-            userDocRef.set(userData)
-                    .addOnCompleteListener(task -> {
-                        if (!task.isSuccessful()) {
-                            Log.e(TAG, "Failed to save user data to Firestore: " + task.getException().getMessage());
-                        }
-                    });
         }
     }
-}

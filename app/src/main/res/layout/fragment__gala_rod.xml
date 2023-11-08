@@ -67,13 +67,12 @@
         android:textColor="#FEC242"
         android:textSize="25sp" />
 
-
     <TextView
         android:id="@+id/Note"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="14dp"
-        android:layout_marginTop="420dp"
+        android:layout_marginTop="464dp"
         android:fontFamily="@font/montserrat_alternates_extrabold"
         android:shadowColor="@color/black"
         android:shadowDx="2"
@@ -81,21 +80,20 @@
         android:shadowRadius="2"
         android:text="Dear Tourists "
         android:textColor="#FEC242"
-        android:textSize="30sp" />
-
+        android:textSize="20sp" />
 
     <TextView
         android:id="@+id/Paalala"
         android:layout_width="324dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="480dp"
+        android:layout_marginTop="500dp"
         android:fontFamily="@font/montserrat"
         android:shadowColor="@color/black"
         android:shadowDx="2"
         android:shadowDy="-2"
         android:shadowRadius="2"
-        android:text="Review the name and amount carefully before sending; Upload your proof of payment"
+        android:text="Review the name and amount carefully before sending; Send your proof of payment trough chat"
         android:textColor="#FEC242"
         android:textSize="18sp"
         android:textStyle="bold" />
@@ -105,7 +103,7 @@
         android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="550dp"
+        android:layout_marginTop="570dp"
         android:fontFamily="@font/montserrat"
         android:shadowColor="@color/black"
         android:shadowDx="2"
@@ -116,8 +114,6 @@
         android:textSize="18sp"
         android:textStyle="bold" />
 
-
-
     <Button
         android:id="@+id/donebtn"
         android:layout_width="221dp"
@@ -125,7 +121,7 @@
         android:layout_marginLeft="86dp"
         android:width="226dp"
         android:height="55dp"
-        android:layout_marginTop="650dp"
+        android:layout_marginTop="610dp"
         android:background="@drawable/startbuttonbg"
         android:clickable="true"
         android:fontFamily="@font/montserrat_bold"
@@ -134,5 +130,6 @@
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="15sp" />
+
 
 </FrameLayout>
