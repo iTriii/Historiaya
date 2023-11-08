@@ -80,22 +80,29 @@ public class Payment extends AppCompatActivity {
             }
         });
 
-        // Add a click listener for the "Done" button
+
         btndone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Check if an image has been selected
                 if (selectedImageUri == null) {
                     Toast.makeText(Payment.this, "Please select an image", Toast.LENGTH_LONG).show();
                 } else {
-                    // Upload the selected image to Firebase Storage
-                    uploadImageToFirebaseStorage(selectedImageUri);
+                    // Image uploaded successfully, show a message
+                    Toast.makeText(Payment.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
+
+                    // Close the current Payment activity
+                    finish();
+
+                    // Start the Payment activity again
+                    Intent intent = new Intent(Payment.this, Main2.class);
+                    startActivity(intent);
                 }
             }
         });
+
     }
 
-    @Override
+        @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -103,7 +110,6 @@ public class Payment extends AppCompatActivity {
             if (requestCode == SELECT_PICTURE) {
                 selectedImageUri = data.getData();
                 if (selectedImageUri != null) {
-                    // Apply Glide to load and crop the image
                     RequestOptions requestOptions = new RequestOptions();
                     Glide.with(Payment.this)
                             .load(selectedImageUri)
@@ -141,7 +147,7 @@ public class Payment extends AppCompatActivity {
             userDocRef.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     Map<String, Object> paymentData = task.getResult().getData();
-                    // If the user has already made a booking, update the existing booking.
+                    // If the user has already made a booking, update the existing picture.
                     if (paymentData != null) {
                         paymentData.put("ImageUrl", imageUrl);
                         userDocRef.update(paymentData).addOnSuccessListener(documentReference -> {
@@ -152,13 +158,13 @@ public class Payment extends AppCompatActivity {
                             Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
                         });
                     }else {
-                        // Create a new booking.
+                        // sending a new  proof of payment
                         HashMap<String, Object> user = new HashMap<>();
                         paymentData.put("ImageUrl", imageUrl);
 
                         userDocRef.set(user).addOnSuccessListener(documentReference -> {
-                            Toast.makeText(getApplicationContext(), "Booking created", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), Psummary.class));
+                            Toast.makeText(getApplicationContext(), "Successfully uploaded!", Toast.LENGTH_SHORT).show();
+                            startActivity(new Intent(getApplicationContext(), Main2.class));
                         }).addOnFailureListener(exception -> {
                             Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
                         });
