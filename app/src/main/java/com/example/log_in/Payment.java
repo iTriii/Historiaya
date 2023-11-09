@@ -89,7 +89,7 @@ public class Payment extends AppCompatActivity {
                 } else {
                     // Image uploaded successfully, show a message
                     Toast.makeText(Payment.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
-
+                    progress.setVisibility(View.GONE);
                     // Close the current Payment activity
                     finish();
 
