@@ -277,7 +277,6 @@
                     android:contentDescription="@string/txtview_for_select_date"
                     android:fontFamily="@font/inter_bold"
                     android:maxLines="2"
-                    android:padding="10dp"
                     android:text="@string/select_date"
                     android:textAlignment="center"
                     android:textColor="@color/green"
@@ -496,12 +495,11 @@
 
                 <Button
                     android:id="@+id/btnsubmit"
-                    android:layout_width="200dp"
-                    android:layout_height="55dp"
-                    android:layout_marginLeft="-190dp"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="-230dp"
                     android:layout_marginTop="215dp"
-                    android:width="226dp"
-                    android:height="55dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/startbuttonbg"
                     android:clickable="true"
                     android:fontFamily="@font/montserrat_bold"
@@ -510,8 +508,29 @@
                     android:text="Make Payment"
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
-                    android:textSize="18sp"
+                    android:textSize="13sp"
                     app:layout_constraintVertical_bias="0.95" />
+
+                <Button
+                    android:id="@+id/btncancel"
+                    android:layout_width="150dp"
+                    android:layout_height="50dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="215dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/cancelbg"
+                    android:clickable="true"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:longClickable="true"
+                    android:padding="16dp"
+                    android:text="Cancel"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="13sp"
+                    app:layout_constraintVertical_bias="0.95" />
+
+
+
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

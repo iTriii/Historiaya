@@ -60,23 +60,23 @@
         app:srcCompat="@drawable/rectangle" />
 
     <TextView
-        android:layout_width="262dp"
-        android:layout_height="52dp"
+        android:layout_width="314dp"
+        android:layout_height="50dp"
         android:fontFamily="@font/montserrat_alternates_extrabold"
         android:gravity="center_horizontal"
         android:shadowColor="@color/black"
         android:shadowDx="2"
         android:shadowDy="-4"
         android:shadowRadius="2"
-        android:text="Payment Summary"
+        android:text="Booking Details "
         android:textColor="#FEC242"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.201"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.157" />
+        app:layout_constraintVertical_bias="0.132" />
 
     <TextView
         android:id="@+id/GalaRodriguez"

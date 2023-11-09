@@ -19,12 +19,10 @@ public class chat extends AppCompatActivity {
     private FirebaseFirestore db;
     private ImageButton  backbtn;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
-
 
         backbtn = findViewById(R.id.imgback);
 
