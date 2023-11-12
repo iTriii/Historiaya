@@ -1,4 +1,4 @@
-package com.example.log_in;
+ package com.example.log_in;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Main2 extends AppCompatActivity {
 
- TextView Start, BookNow, Store, Map;
+ TextView Start, BookNow, Map;
  ImageView Share, Settings, Profile, notif;
  Dialog dialog;
 
@@ -27,8 +27,7 @@ public class Main2 extends AppCompatActivity {
         BookNow = findViewById(R.id.BookNow);
         BookNow.setOnClickListener(v -> BookNow());
 
-        Store = findViewById(R.id.Store);
-        Store.setOnClickListener(v -> Store());
+
 
         Map = findViewById(R.id.Map);
         Map.setOnClickListener(v -> Map());
@@ -62,10 +61,6 @@ public class Main2 extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void Store() {
-        Intent intent = new Intent(this, Store.class);
-        startActivity(intent);
-    }
 
     public void Map() {
         Intent intent = new Intent(this, Map.class);
@@ -77,3 +72,4 @@ public class Main2 extends AppCompatActivity {
         startActivity(intent);
     }
 }
+

@@ -57,7 +57,7 @@ public class BookNowCancellation extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(BookNowCancellation.this, Main2.class);
                 startActivity(intent);
-                Toast.makeText(BookNowCancellation.this,"Confirm", Toast.LENGTH_SHORT).show();
+                Toast.makeText(BookNowCancellation.this,"Confirm  Cancellation please wait for approval", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
             }
         });

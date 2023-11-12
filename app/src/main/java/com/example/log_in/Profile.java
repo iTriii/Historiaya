@@ -1,9 +1,11 @@
 package com.example.log_in;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
@@ -43,19 +45,26 @@ public class Profile extends AppCompatActivity {
     private ListenerRegistration userDataListener;
     private static final int EDIT_PROFILE_REQUEST_CODE = 1;
 
+    Button btnongoing,btnresched;
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
 
-        
+
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
         back = findViewById(R.id.back);
         back.setOnClickListener(v -> main2());
-        
-        prog();
+
+
+        btnongoing = findViewById(R.id.btnongoing);
+        btnresched = findViewById(R.id.btnresched);
+
+            prog();
 
         AchievementsTab  = findViewById(R.id.AchievementsTab);
         Achievements_Tab = findViewById(R.id.Achievements_Tab);
@@ -79,6 +88,21 @@ public class Profile extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         user = auth.getCurrentUser();
+
+
+
+        //navigate to cancellation activity
+        btnongoing.setOnClickListener(view -> {
+            Intent intent = new Intent(Profile.this, BookNowCancellation.class);
+            startActivity(intent);
+        });
+
+        //navigate to resched activity
+        btnresched.setOnClickListener(view -> {
+            Intent intent = new Intent(Profile.this, BookingDetails.class);
+            startActivity(intent);
+        });
+
 
         if (user != null) {
             // Fetch and display user data from Firestore
