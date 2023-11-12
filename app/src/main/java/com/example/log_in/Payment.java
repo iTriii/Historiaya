@@ -56,42 +56,26 @@ public class Payment extends AppCompatActivity {
         btndone = findViewById(R.id.okbtn);
         selectbtn = findViewById(R.id.select);
 
-
-        // Add a click listener for the select button
-        selectbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                // Start an activity to select an image
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                startActivityForResult(intent, SELECT_PICTURE);
-            }
+        selectbtn.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_PICK);
+            intent.setType("image/*");
+            startActivityForResult(intent, SELECT_PICTURE);
         });
 
-
-        btndone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (selectedImageUri == null) {
-                    Toast.makeText(Payment.this, "Please select an image", Toast.LENGTH_LONG).show();
-                } else {
-                    // Image uploaded successfully, show a message
-                    Toast.makeText(Payment.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
-                    progress.setVisibility(View.GONE);
-                    // Close the current Payment activity
-                    finish();
-
-                    // Start the Payment activity again
-                    Intent intent = new Intent(Payment.this, Profile.class);
-                    startActivity(intent);
-                }
+        btndone.setOnClickListener(v -> {
+            if (selectedImageUri == null) {
+                Toast.makeText(Payment.this, "Please select an image", Toast.LENGTH_LONG).show();
+            } else {
+                uploadImageToFirebaseStorage(selectedImageUri);
+                // Image uploaded successfully, show a message
+                Toast.makeText(Payment.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
+                progress.setVisibility(View.GONE);
+                finish();
             }
         });
-
     }
 
-        @Override
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
@@ -130,8 +114,9 @@ public class Payment extends AppCompatActivity {
     }
 
     private void saveUserDataToFirestore(String userId, String imageUrl) {
+        userId = mAuth.getCurrentUser().getUid();
         if (userId != null) {
-            DocumentReference userDocRef = db.collection("users").document(userId).getFirestore().document("proof");
+            DocumentReference userDocRef = db.collection("users").document(userId).getFirestore().document("proofOfPayment");
 
             userDocRef.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
@@ -141,17 +126,17 @@ public class Payment extends AppCompatActivity {
                         paymentData.put("ImageUrl", imageUrl);
                         userDocRef.update(paymentData).addOnSuccessListener(documentReference -> {
                             Toast.makeText(getApplicationContext(), "Successfully Uploaded!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), Main2.class));
-
-                        }).addOnFailureListener(exception -> {
+                            startActivity(new Intent(getApplicationContext(), Profile.class));
+                            finish();
+                        })
+                                .addOnFailureListener(exception -> {
                             Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
                         });
                     }else {
                         // sending a new  proof of payment
                         HashMap<String, Object> user = new HashMap<>();
                         paymentData.put("ImageUrl", imageUrl);
-
-                        userDocRef.set(user).addOnSuccessListener(documentReference -> {
+                        userDocRef.set(paymentData).addOnSuccessListener(documentReference -> {
                             Toast.makeText(getApplicationContext(), "Successfully uploaded!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplicationContext(), Main2.class));
                         }).addOnFailureListener(exception -> {

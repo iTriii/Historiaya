@@ -147,7 +147,7 @@ public class BookNow extends AppCompatActivity {
 
         //cancel btn
         btncancel.setOnClickListener(view -> {
-            Intent intent = new Intent(BookNow.this, BookNowCancellation.class);
+            Intent intent = new Intent(BookNow.this, Main2.class);
             startActivity(intent);
         });
 
@@ -157,6 +157,11 @@ public class BookNow extends AppCompatActivity {
         //calendar
 
 
+
+
+
+
+        // Spinner starts here
         reservedDate = "";
         btnsave.setOnClickListener(view -> {
 
@@ -169,6 +174,10 @@ public class BookNow extends AppCompatActivity {
             Toast.makeText(this, "Reserved Date: " + reservedDate, Toast.LENGTH_SHORT).show();
 
 
+
+
+
+            //spinner starts here
             String selectedTour = spinTour.getSelectedItem().toString();
             String selectedTouristNumStr = spinNum.getSelectedItem().toString();
 
@@ -211,7 +220,6 @@ public class BookNow extends AppCompatActivity {
 
     double calculateSubtotal(String selectedTour) {
         double subtotal = 0.0;
-        double reserveFeeHouse = 0.0;
         switch (selectedTour) {
             case "Don Catalino":
                 subtotal = 500.0;
@@ -223,16 +231,17 @@ public class BookNow extends AppCompatActivity {
                 subtotal = 1500.0;
                 break;
         }
+
         return subtotal;
     }
 
 
-
+//service charge
     private double calculateServiceCharge(String selectedTour) {
         double serviceCharge = 500;
         return serviceCharge;
     }
-
+//Tourguide
     private double calculateTourGuide(int selectedTouristNum) {
         double tourGuideFee = 0.0;
         if (selectedTouristNum >= 1 && selectedTouristNum <= 5) {
@@ -244,22 +253,7 @@ public class BookNow extends AppCompatActivity {
     }
 
 
-    private double calculateReserveFeeHouse(String selectedTour) {
-        double reserveFeeHouse = 0.0;
-        switch (selectedTour) {
-            case "Don Catalino":
-                reserveFeeHouse = 500.0;
-                break;
-            case "Gala Rodriguez":
-                reserveFeeHouse = 1000.0;
-                break;
-            case "Both":
-                reserveFeeHouse = 1500.0;
-                break;
-        }
-        return reserveFeeHouse;
-    }
-
+//Tourprice per house
     private double calculateTourPrice(String selectedTour) {
             double tourPrice = 0.0;
             switch (selectedTour) {

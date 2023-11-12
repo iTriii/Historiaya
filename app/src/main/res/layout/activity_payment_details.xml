@@ -157,13 +157,12 @@
 
     <ScrollView
         android:id="@+id/ScrollViewDonCata"
-        android:layout_width="390dp"
-        android:layout_height="647dp"
+        android:layout_width="388dp"
+        android:layout_height="597dp"
         android:layout_marginTop="10dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup">
 
@@ -205,9 +204,9 @@
                     android:layout_marginStart="102dp"
                     android:layout_marginTop="-360dp"
                     android:fontFamily="@font/montserrat_alternates_extrabold"
-                    android:shadowColor="@color/green3"
+                    android:shadowColor="@color/black"
                     android:shadowDx="6"
-                    android:shadowDy="-7"
+                    android:shadowDy="-2"
                     android:shadowRadius="2"
                     android:text="Scan to Pay"
                     android:textColor="#FEC242"
@@ -216,8 +215,8 @@
 
                 <TextView
                     android:id="@+id/Note"
-                    android:layout_width="317dp"
-                    android:layout_height="74dp"
+                    android:layout_width="388dp"
+                    android:layout_height="78dp"
                     android:layout_marginStart="14dp"
                     android:layout_marginTop="360dp"
                     android:fontFamily="@font/montserrat_alternates_extrabold"
@@ -234,7 +233,7 @@
                     android:layout_width="221dp"
                     android:layout_height="54dp"
                     android:layout_marginLeft="86dp"
-                    android:layout_marginTop="70dp"
+                    android:layout_marginTop="10dp"
                     android:width="226dp"
                     android:height="55dp"
                     android:background="@drawable/startbuttonbg"
@@ -252,19 +251,23 @@
 
     <ScrollView
         android:id="@+id/ScrollViewGalaRod"
-        android:layout_width="393dp"
-        android:layout_height="573dp"
-        android:layout_marginTop="5dp"
+        android:layout_width="388dp"
+        android:layout_height="597dp"
+        android:layout_marginTop="10dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="651dp"
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
@@ -324,7 +327,7 @@
                 android:layout_width="221dp"
                 android:layout_height="54dp"
                 android:layout_marginLeft="86dp"
-                android:layout_marginTop="70dp"
+                android:layout_marginTop="-60dp"
                 android:width="226dp"
                 android:height="55dp"
                 android:background="@drawable/startbuttonbg"
@@ -335,6 +338,7 @@
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="15sp" />
+        </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

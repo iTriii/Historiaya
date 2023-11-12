@@ -3,6 +3,7 @@ package com.example.log_in;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
@@ -19,6 +20,8 @@ public class PaymentDetails extends AppCompatActivity {
     View lineone, linetwo;
 
     ImageButton backbtn, chatbtn;
+    Button donebtn, donebtn2;
+
 
 
     @Override
@@ -30,6 +33,8 @@ public class PaymentDetails extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
         backbtn = findViewById(R.id.backbtn);
         chatbtn = findViewById(R.id.chatbtn);
+        donebtn = findViewById(R.id.donebtn);
+        donebtn2 = findViewById(R.id.donebtn2);
         ScrollViewDonCata = findViewById(R.id.ScrollViewDonCata); //scrollview
         DonCat_Radio = findViewById(R.id.DonCat_Radio);
         DonCat_Radio.setOnClickListener(v -> DonCat_Radio());
@@ -46,6 +51,16 @@ public class PaymentDetails extends AppCompatActivity {
             startActivity(intent);
         });
 
+        //doncatbutton
+        donebtn.setOnClickListener(v -> {
+            Intent intent = new Intent(PaymentDetails.this, Payment.class);
+            startActivity(intent);
+        });
+        //galabutton
+        donebtn2.setOnClickListener(v -> {
+            Intent intent = new Intent(PaymentDetails.this, Payment.class);
+            startActivity(intent);
+        });
 
         // Back button
         backbtn.setOnClickListener(view -> {
@@ -53,11 +68,6 @@ public class PaymentDetails extends AppCompatActivity {
             startActivity(intent);
         });
 
-    }
-    public void main2() {
-        Intent intent = new Intent(this, Main2.class);
-        startActivity(intent);
-        overridePendingTransition(com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_in_left, com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_out_right);
     }
 
     private void Gala_Radio() {
@@ -81,4 +91,5 @@ public class PaymentDetails extends AppCompatActivity {
         lineone.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
         linetwo.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
     }
+
 }

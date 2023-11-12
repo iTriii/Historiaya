@@ -266,7 +266,7 @@
     <string name="payments_show_name" translatable="false">Successfully received payment data for
     </string>
 
-
+    <!-- PAYMENT ACTIVITY -->
     <string name="payment_summary">Payment Summary</string>
     <string name="backbutton">backbutton</string>
     <string name="image">image</string>
@@ -287,6 +287,22 @@
     <string name="select_user"> Select User</string>
     <string name="sign_in">Sign In</string>
     <string name="type_a_message">Type a message…</string>
+
+
+    <!-- BOOKING -->
+    <string name="mybooking">mybooking</string>
+    <string name="don_catalino_house">Don Catalino House</string>
+    <string name="service_charge">Service Charge</string>
+    <string name="total">Total</string>
+    <string name="gcash_qr_code">GCASH QR CODE</string>
+    <string name="review_the_mobile_number_and_amount_carefully_before_sending_confirmed_transactions_will_not_be_refunded">Review the mobile number and amount carefully before sending. Confirmed transactions will not be refunded.</string>
+    <string name="note">NOTE:</string>
+    <string name="review_the_name_and_amount_carefully_before_sending">Review the name and amount carefully before sending.</string>
+    <string name="send_the_proof_of_payment_trough_chat">Send the proof of payment trough chat.</string>
+    <string name="servicecharge">Service Charge</string>
+    <string name="gala_rodriguez">Gala Rodriguez</string>
+    <string name="don_catalino">Don Catalino</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="large_text">
@@ -378,13 +394,19 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
-    <string name="mybooking">mybooking</string>
-    <string name="don_catalino_house">Don Catalino House</string>
-    <string name="service_charge">Service Charge</string>
-    <string name="total">Total</string>
-    <string name="gcash_qr_code">GCASH QR CODE</string>
-    <string name="review_the_mobile_number_and_amount_carefully_before_sending_confirmed_transactions_will_not_be_refunded">Review the mobile number and amount carefully before sending. Confirmed transactions will not be refunded.</string>
-    <string name="note">NOTE:</string>
-    <string name="review_the_name_and_amount_carefully_before_sending">Review the name and amount carefully before sending.</string>
-    <string name="send_the_proof_of_payment_trough_chat">Send the proof of payment trough chat.</string>
+
+    <!-- CANCELATION -->
+    <string name="cancellation_details">Cancellation Details</string>
+    <string name="you_will_not_be_able_to_cancel_this_booking_again_once_you_withdraw_this_request_confirm_to_withdraw_your_cancellation_request">You will not be able to cancel this booking again once you withdraw this request.Confirm to withdraw your cancellation request?</string>
+    <string name="cancelation_details">Cancelation Details</string>
+    <string name="waiting_for_admin_to_respond">Waiting for admin to respond</string>
+    <string name="withdraw_request">Withdraw Request</string>
+
+
+    <!-- RESCHED ACTIVITY -->
+    <string name="what_do_you_want_to_change">What do you want to change?</string>
+    <string name="change_your_booking">Change your Booking</string>
+    <string name="date">Select Date</string>
+
+
 </resources>

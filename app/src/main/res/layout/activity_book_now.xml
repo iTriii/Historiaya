@@ -245,17 +245,17 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="429dp"
+                android:layout_height="446dp"
                 android:orientation="horizontal">
 
                 <CalendarView
                     android:id="@+id/Calendar"
-                    android:background="@drawable/bgcalendar"
                     style="@android:style/Widget.DeviceDefault.CalendarView"
                     android:layout_width="wrap_content"
                     android:layout_height="319dp"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="55dp"
+                    android:layout_marginTop="65dp"
+                    android:background="@drawable/bgcalendar"
                     android:clickable="true"
                     android:labelFor="@id/SDate"
                     android:maxDate="01/01/4099"
@@ -268,12 +268,13 @@
                     app:layout_constraintTop_toTopOf="@+id/twopips"
                     app:layout_constraintVertical_bias="0.687" />
 
+
                 <TextView
                     android:id="@+id/SDate"
                     android:layout_width="285dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="-320dp"
-                    android:layout_marginTop="13dp"
+                    android:layout_marginTop="16dp"
                     android:contentDescription="@string/txtview_for_select_date"
                     android:fontFamily="@font/inter_bold"
                     android:maxLines="2"
@@ -294,7 +295,7 @@
                     android:layout_width="84dp"
                     android:layout_height="44dp"
                     android:layout_marginLeft="-315dp"
-                    android:layout_marginTop="375dp"
+                    android:layout_marginTop="395dp"
                     android:background="@drawable/btntime"
                     android:clickable="true"
                     android:fontFamily="@font/montserrat_bold"
@@ -316,7 +317,7 @@
                     android:layout_width="84dp"
                     android:layout_height="44dp"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginTop="375dp"
+                    android:layout_marginTop="395dp"
                     android:background="@drawable/btntime"
                     android:clickable="true"
                     android:fontFamily="@font/montserrat_bold"
@@ -338,7 +339,7 @@
                     android:layout_width="84dp"
                     android:layout_height="44dp"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginTop="375dp"
+                    android:layout_marginTop="395dp"
                     android:background="@drawable/btntime"
                     android:clickable="true"
                     android:fontFamily="@font/montserrat_bold"
@@ -360,7 +361,7 @@
                     android:layout_width="84dp"
                     android:layout_height="44dp"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginTop="375dp"
+                    android:layout_marginTop="395dp"
                     android:background="@drawable/btntime"
                     android:clickable="true"
                     android:fontFamily="@font/montserrat_bold"
