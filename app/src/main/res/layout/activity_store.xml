@@ -176,7 +176,7 @@
                         android:layout_height="104dp"
                         android:layout_marginStart="30dp"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/p1"
+                        android:src="@drawable/p1"
                         />
                     <TextView
                         android:id="@+id/ProductDescription1"
@@ -295,7 +295,7 @@
                         android:layout_height="104dp"
                         android:layout_marginStart="30dp"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/p3"
+                        android:src="@drawable/p3"
                         android:scaleType="fitCenter" />
 
                     <TextView
@@ -350,7 +350,7 @@
                         android:layout_height="104dp"
                         android:layout_marginStart="30dp"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/p4"
+                        android:src="@drawable/p4"
                         android:scaleType="fitCenter" />
 
 
@@ -413,7 +413,7 @@
                         android:layout_height="104dp"
                         android:layout_marginStart="30dp"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/p5"
+                        android:src="@drawable/p5"
                         android:scaleType="fitCenter"/>
 
                     <TextView
@@ -467,7 +467,7 @@
                         android:layout_height="104dp"
                         android:layout_marginStart="30dp"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/p6"
+                        android:src="@drawable/p6"
                         android:scaleType="fitCenter" />
 
 
@@ -529,7 +529,7 @@
                         android:layout_height="104dp"
                         android:layout_marginStart="30dp"
                         android:layout_marginTop="10dp"
-                        android:background="@drawable/p7"
+                        android:src="@drawable/p7"
                         android:scaleType="fitCenter" />
 
                     <TextView

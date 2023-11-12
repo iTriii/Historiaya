@@ -10,19 +10,22 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRadioButton;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,6 +40,7 @@ public class Store extends AppCompatActivity {
     Dialog mdialog;
     Button plus;
     Button B1P1, B2P2, B3P3, B4P4, B5P5, B6P6, B7P7;
+    private final ImageView[] phArray = new ImageView[7];
     LinearLayout V1, V2, V3, V4, V5;
     View storeTabIndicator, purchasesTabIndicator;
     ScrollView StoreScrollView, PurchasesScrollView;
@@ -66,6 +70,7 @@ public class Store extends AppCompatActivity {
         initializePurchaseCounts();
 
 
+
         back = findViewById(R.id.back);
         back.setOnClickListener(v -> main2());
 
@@ -85,6 +90,16 @@ public class Store extends AppCompatActivity {
         Store = findViewById(R.id.Store);
         points = findViewById(R.id.points);
 
+
+        for (int i = 0; i < phArray.length; i++) {
+            int imageViewId = getResources().getIdentifier("ph" + (i + 1), "id", getPackageName());
+            phArray[i] = findViewById(imageViewId);
+        }
+
+        if (currentUser != null) {
+            retrieveUserPoints();
+            retrieveProductImages();
+        }
         V1 = findViewById(R.id.V1);
         V2 = findViewById(R.id.V2);
         V3 = findViewById(R.id.V3);
@@ -152,6 +167,7 @@ public class Store extends AppCompatActivity {
 
         if (currentUser != null) {
             retrieveUserPoints();
+            retrieveProductImages();
         }
     }
 
@@ -168,7 +184,7 @@ public class Store extends AppCompatActivity {
                 .update("HistoriaPoints", newPoints)
                 .addOnSuccessListener(aVoid -> {
                     // Database update successful
-                    Log.d("StoreActivity", "HistoriaPoints updated in database: " + newPoints);
+                    Log.d("StoreActi    vity", "HistoriaPoints updated in database: " + newPoints);
                 })
                 .addOnFailureListener(e -> {
                     // Handle the error
@@ -186,18 +202,47 @@ public class Store extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         DocumentSnapshot document = task.getResult();
                         if (document.exists()) {
-                            Long userPoints = document.getLong("HistoriaPoints"); // Use the correct field name
+                            Long userPoints = document.getLong("HistoriaPoints");
                             if (userPoints != null) {
-                                currentPoints = userPoints.intValue(); // Convert to int
+                                currentPoints = userPoints.intValue();
                                 points.setText(String.valueOf(currentPoints));
 
-                                // Add a log statement to verify the retrieved points
-                                Log.d("StoreActivity", "Retrieved points: " + currentPoints);
+                                // Retrieve image references from Firestore
+                                retrieveProductImages();
                             }
                         }
                     }
                 });
     }
+
+    private void retrieveProductImages() {
+        for (int i = 0; i < phArray.length; i++) {
+            String productId = "ph" + (i + 1);
+            String storagePath = "Products/product" + (i + 1) + "/" + productId + ".jpg";
+
+            Log.d("StoreActivity", "Retrieving image for productId: " + productId);
+            Log.d("StoreActivity", "Storage path: " + storagePath);
+
+            phArray[i].setImageDrawable(null);
+
+            StorageReference storageRef = FirebaseStorage.getInstance().getReference(storagePath);
+
+            final int index = i;
+
+            storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                Log.d("StoreActivity", "Download URL for " + productId + ": " + uri);
+
+                // Use Glide to load the image into the ImageView
+                Glide.with(Store.this)
+                        .load(uri)
+                        .into(phArray[index]);
+            }).addOnFailureListener(exception -> {
+                Log.e("StoreActivity", "Error getting download URL for " + productId, exception);
+            });
+        }
+    }
+
+
 
     private void StoreScrollView() {
         store_tab.setChecked(true);
@@ -270,7 +315,6 @@ public class Store extends AppCompatActivity {
                 if (purchaseCount >= PURCHASE_LIMIT) {
                     // Disable the button and change its appearance
                     disableProductButton(productId);
-                    Toast.makeText(this, "Product is currently unavailable", Toast.LENGTH_SHORT).show();
                 }
             } else {
                 // User has reached the purchase limit for this product
