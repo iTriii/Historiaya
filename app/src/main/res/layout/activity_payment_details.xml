@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:textAlignment="center"
+    tools:context=".PaymentDetails">
+
+
+
+    <ImageView
+        android:id="@+id/rizal_Start"
+        android:layout_width="420dp"
+        android:layout_height="452dp"
+        android:layout_marginTop="136dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="192dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.584"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/newproject" />
+
+    <ImageView
+        android:id="@+id/grass_start"
+        android:layout_width="495dp"
+        android:layout_height="631dp"
+        android:layout_marginTop="372dp"
+        android:alpha=".95"
+        android:contentDescription="TODO"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.369"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/grass_1" />
+
+    <ImageView
+        android:id="@+id/twoppl"
+        android:layout_width="425dp"
+        android:layout_height="550dp"
+        android:layout_marginTop="300dp"
+        android:alpha=".89"
+        app:layout_constraintEnd_toEndOf="@+id/grass_start"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/twopips" />
+
+    <ImageView
+        android:id="@+id/blurred"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha=".5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/rectangle" />
+
+    <Button
+        android:id="@+id/done"
+        android:layout_width="221dp"
+        android:layout_height="51dp"
+        android:layout_marginBottom="16dp"
+        android:width="226dp"
+        android:height="55dp"
+        android:background="@drawable/startbuttonbg"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:longClickable="true"
+        android:text="DONE"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/blurred"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/backbtn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/shadow"
+        android:clickable="true"
+        android:contentDescription="@string/BookNow"
+        android:contextClickable="true"
+        android:elevation="10dp"
+        android:longClickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/arrow_back" />
+
+
+    <TextView
+        android:id="@+id/pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:fontFamily="@font/montserrat_alternates_extrabold"
+        android:text="GCASH QR CODE"
+        android:textColor="#FEC242"
+        android:textSize="33sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.625"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="411dp"
+        android:layout_height="38dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="109dp"
+        tools:ignore="MissingConstraints">
+
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/DonCatalino_Tab"
+            android:layout_width="0dp"
+            android:layout_height="53dp"
+            android:layout_weight="1"
+            android:button="@color/transparent"
+            android:checked="true"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/don_catalino_rodriguez"
+            android:textColor="@color/green"
+            android:textSize="19sp" />
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/GalaRodriguez_Tab"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:button="@android:color/transparent"
+            android:checked="false"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
+            android:onClick="onRadioButtonClicked"
+            android:text="@string/gala_rogriguez"
+            android:textColor="@color/green"
+            android:textSize="19sp" />
+    </RadioGroup>
+
+
+    <View
+        android:id="@+id/DonCatalinoTabIndicator"
+        android:layout_width="200dp"
+        android:layout_height="3dp"
+        android:layout_marginBottom="50dp"
+        android:background="@color/green"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <View
+        android:id="@+id/GalaRodriguez_TabIndicator"
+        android:layout_width="200dp"
+        android:layout_height="3dp"
+        android:layout_marginStart="68dp"
+        android:background="@color/green"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteY="557dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        tools:ignore="MissingConstraints"/>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/house1"
+        android:layout_width="242dp"
+        android:layout_height="238dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/bgcalendar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup"
+        app:layout_constraintVertical_bias="0.078"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="84dp">
+
+
+        <ImageView
+            android:id="@+id/gcash1"
+            android:layout_width="207dp"
+            android:layout_height="203dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/img"
+            android:scaleType="center" />
+
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:id="@+id/line2"
+        android:layout_width="150dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="276dp"
+        android:background="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+    </View>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="150dp"
+        android:layout_height="1dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="276dp"
+        android:background="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+    </View>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

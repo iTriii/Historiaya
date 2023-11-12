@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="viewSupporter" type="id" />
+    <item name="textName" type="id" />
+    <item name="textEmail" type="id" />
+</resources>
