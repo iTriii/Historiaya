@@ -73,23 +73,31 @@ public class LogIn extends AppCompatActivity {
         li.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressbar.setVisibility(View.VISIBLE);
+                progressbar.setVisibility(View.VISIBLE); // Show progress bar
+                li.setVisibility(View.INVISIBLE); // Hide login button during progress
+
                 String inputEmail = inputemail.getText().toString();
                 String inputPass = inputpass.getText().toString();
 
                 if (TextUtils.isEmpty(inputEmail)) {
                     Toast.makeText(LogIn.this, "Enter email", Toast.LENGTH_SHORT).show();
+                    progressbar.setVisibility(View.GONE); // Hide progress bar
+                    li.setVisibility(View.VISIBLE); // Show login button
                     return;
                 }
                 if (TextUtils.isEmpty(inputPass)) {
                     Toast.makeText(LogIn.this, "Enter password", Toast.LENGTH_SHORT).show();
+                    progressbar.setVisibility(View.GONE); // Hide progress bar
+                    li.setVisibility(View.VISIBLE); // Show login button
                     return;
                 }
 
                 // Authenticate with Firebase using email and password
                 mAuth.signInWithEmailAndPassword(inputEmail, inputPass)
                         .addOnCompleteListener(task -> {
-                            progressbar.setVisibility(View.GONE);
+                            progressbar.setVisibility(View.GONE); // Hide progress bar
+                            li.setVisibility(View.VISIBLE); // Show login button
+
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 if (user != null) {
@@ -108,6 +116,7 @@ public class LogIn extends AppCompatActivity {
                         });
             }
         });
+
 
         regnow.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -102,7 +102,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.161"
+        app:layout_constraintVertical_bias="0.142"
         tools:ignore="TextSizeCheck" />
 
     <ImageButton
@@ -155,7 +155,7 @@
         android:text="@string/select_tour"
         android:textAlignment="center"
         android:textColor="@color/green"
-        android:textSize="22sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/NumTourist"
         app:layout_constraintTop_toTopOf="@+id/blurred"
         app:layout_constraintVertical_bias="0.0"
@@ -174,7 +174,7 @@
         android:text="#_of_tourist"
         android:textAlignment="center"
         android:textColor="@color/green"
-        android:textSize="22sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="@+id/blurred"
         app:layout_constraintVertical_bias="0.0"
@@ -186,14 +186,13 @@
     <Spinner
         android:id="@+id/spinTour"
         style="@style/Widget.AppCompat.Light.Spinner.DropDown.ActionBar"
-        android:layout_width="176dp"
+        android:layout_width="160dp"
         android:layout_height="43dp"
         android:layout_marginTop="228dp"
         android:background="@drawable/borderspinner"
         android:dropDownWidth="wrap_content"
         android:fontFamily="@font/montserrat_thin"
         android:foregroundTint="#009688"
-        android:paddingRight="2dp"
         android:spinnerMode="dropdown"
         android:gravity="center"
         android:textAlignment="center"
@@ -208,9 +207,8 @@
     <Spinner
         android:id="@+id/touristnum"
         style="@style/Widget.AppCompat.Light.Spinner.DropDown.ActionBar"
-        android:layout_width="176dp"
+        android:layout_width="160dp"
         android:layout_height="43dp"
-        android:paddingEnd="2dp"
         android:gravity="center"
         android:dropDownWidth="wrap_content"
         android:fontFamily="@font/montserrat_thin"
@@ -246,27 +244,28 @@
         app:layout_constraintVertical_bias="0.343"
         tools:ignore="MissingConstraints" />
 
+
     <TextView
         android:id="@+id/SDate"
-        android:layout_width="175dp"
-        android:layout_height="40dp"
+        android:layout_width="100dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="155dp"
         android:contentDescription="@string/txtview_for_select_date"
         android:ellipsize="end"
         android:fontFamily="@font/inter_bold"
+        android:gravity="center"
         android:maxLines="2"
         android:text="@string/select_date"
         android:textAlignment="center"
         android:textColor="@color/green"
-        android:textSize="22sp"
+        android:textSize="13sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.135"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/blurred"
-        app:layout_constraintTop_toBottomOf="@+id/NumTourist"
-        app:layout_constraintVertical_bias="0.01"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.466"
         tools:ignore="MissingConstraints" />
-
-
 
     <Button
         android:id="@+id/btntime1"
@@ -353,34 +352,28 @@
         app:layout_constraintVertical_bias="0.017" />
 
 
-
-
-
-
-        <Button
-            android:id="@+id/btnsubmit"
-            android:layout_width="221dp"
-            android:layout_height="51dp"
-            android:layout_gravity="center"
-            android:width="226dp"
-            android:height="55dp"
-            android:background="@drawable/startbuttonbg"
-            android:clickable="true"
-            android:fontFamily="@font/montserrat_bold"
-            android:gravity="center"
-            android:longClickable="true"
-            android:padding="16dp"
-            android:text="Make Payment"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="@+id/blurred"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/clouds"
-            app:layout_constraintVertical_bias="0.95" />
-
+    <Button
+        android:id="@+id/btnsubmit"
+        android:layout_width="221dp"
+        android:layout_height="51dp"
+        android:layout_gravity="center"
+        android:width="226dp"
+        android:height="55dp"
+        android:background="@drawable/startbuttonbg"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:longClickable="true"
+        android:padding="16dp"
+        android:text="Make Payment"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/blurred"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clouds"
+        app:layout_constraintVertical_bias="0.935" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -223,8 +223,6 @@ public class Store extends AppCompatActivity {
             Log.d("StoreActivity", "Retrieving image for productId: " + productId);
             Log.d("StoreActivity", "Storage path: " + storagePath);
 
-            phArray[i].setImageDrawable(null);
-
             StorageReference storageRef = FirebaseStorage.getInstance().getReference(storagePath);
 
             final int index = i;
@@ -241,7 +239,6 @@ public class Store extends AppCompatActivity {
             });
         }
     }
-
 
 
     private void StoreScrollView() {
