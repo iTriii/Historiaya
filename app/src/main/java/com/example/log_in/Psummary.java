@@ -6,15 +6,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
-
-import java.util.HashMap;
 
 public class Psummary extends BookNow {
     private FirebaseFirestore db;
@@ -41,7 +37,7 @@ public class Psummary extends BookNow {
 
         // Initialize UI elements and set up spinners
         backbtn = findViewById(R.id.back);
-        btnsave = findViewById(R.id.btnsubmit);
+
         proceed2payment = findViewById(R.id.proceed);
         GalaRodriguez = findViewById(R.id.GalaRodriguez);
         DonCatalino = findViewById(R.id.DonCatalino);
@@ -49,8 +45,6 @@ public class Psummary extends BookNow {
         ReserveFee = findViewById(R.id.ReserveFee);
         ReserveFeeHouse = findViewById(R.id.ReserveFeeHouse);
         Total = findViewById(R.id.Total);
-        spinTour = findViewById(R.id.spinTour);
-        spinNum = findViewById(R.id.touristnum);
 
 
         // Set listeners

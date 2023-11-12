@@ -1,7 +1,5 @@
 package com.example.log_in;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,28 +7,38 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class BookNow extends AppCompatActivity {
-
-    private FirebaseFirestore db;
     private ImageButton chatbtn, backbtn;
-    Spinner spinTour;
-    Spinner spinNum;
-    Button btnsave;
-    FirebaseAuth mAuth;
-    ScrollView BookScrollView;
-    TextView GalaRodriguez, DonCatalino, Subtotal, RFTourGuide, RFHouse, Total;
+    private FirebaseFirestore db;
+    private Spinner spinTour;
+    private Spinner spinNum;
+    private Button btnsave, btncancel, btntime1, btntime2, btntime3, btntime4;
+    private FirebaseAuth mAuth;
+    private ScrollView BookScrollView;
+    private TextView selectedHouse, Subtotal, RFTourGuide, Total, SCharge, SDate;
+    CalendarView calendarView;
+    private String reservedDate;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,30 +48,42 @@ public class BookNow extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
+        Calendar currentTime = Calendar.getInstance();
 
-        // Initialize UI elements and set up spinners
+        // Initialize UI elements
         btnsave = findViewById(R.id.btnsubmit);
-        chatbtn = findViewById(R.id.chatbtn);
-        backbtn = findViewById(R.id.backbtn);
         spinTour = findViewById(R.id.spinTour);
         spinNum = findViewById(R.id.touristnum);
         BookScrollView = findViewById(R.id.BookScrollView);
-
-        GalaRodriguez = findViewById(R.id.GalaRodriguez);
-        DonCatalino = findViewById(R.id.DonCatalino);
+        btncancel = findViewById(R.id.btncancel);
+        chatbtn = findViewById(R.id.chatbtn);
+        selectedHouse = findViewById(R.id.selectedHouse);
         Subtotal = findViewById(R.id.Subtotal);
         RFTourGuide = findViewById(R.id.RFTourGuide);
-        RFHouse = findViewById(R.id.RFHouse);
         Total = findViewById(R.id.Total);
+        SCharge = findViewById(R.id.SCharge);
+        backbtn = findViewById(R.id.backbtn);
+        SDate = findViewById(R.id.SDate);
+        calendarView = findViewById(R.id.Calendar);
+
+        btntime1 = findViewById(R.id.btntime1);
+        btntime2 = findViewById(R.id.btntime2);
+        btntime3 = findViewById(R.id.btntime3);
+        btntime4 = findViewById(R.id.btntime4);
 
 
-        // ArrayAdapter for the HeritageHouses Spinner
+
+        setupSpinners();
+        setListeners();
+        setupButtonClickListener();
+    }
+
+    private void setupSpinners() {
         ArrayAdapter<CharSequence> heritageHouseAdapter = ArrayAdapter.createFromResource(
                 this, R.array.HeritageHouses, android.R.layout.simple_spinner_item);
         heritageHouseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinTour.setAdapter(heritageHouseAdapter);
 
-        // ArrayAdapter for the TouristNumbers Spinner
         ArrayAdapter<CharSequence> touristNumAdapter = ArrayAdapter.createFromResource(
                 this, R.array.TouristNumbers, android.R.layout.simple_spinner_item);
         touristNumAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -73,8 +93,7 @@ public class BookNow extends AppCompatActivity {
         spinTour.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                String selectedHouse = spinTour.getSelectedItem().toString();
-                showToast("Heritage House Selected: " + selectedHouse);
+                showToast("Heritage House Selected: " + spinTour.getSelectedItem().toString());
             }
 
             @Override
@@ -86,8 +105,7 @@ public class BookNow extends AppCompatActivity {
         spinNum.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                String selectedTouristNum = spinNum.getSelectedItem().toString();
-                showToast("Tourist Number Selected: " + selectedTouristNum);
+                showToast("Tourist Number Selected: " + spinNum.getSelectedItem().toString());
             }
 
             @Override
@@ -95,9 +113,6 @@ public class BookNow extends AppCompatActivity {
                 showToast("No Tourist Number Selected");
             }
         });
-
-        setListeners();
-        setupButtonClickListener();
     }
 
     private void setListeners() {
@@ -106,15 +121,17 @@ public class BookNow extends AppCompatActivity {
 
     private void BookScrollView() {
         BookScrollView.setVisibility(View.VISIBLE);
+        Subtotal.setVisibility(View.VISIBLE);
+        Total.setVisibility(View.VISIBLE);
     }
+
 
     // Toast message
     private void showToast(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
 
-    // Button click listener setup
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "DefaultLocale"})
     private void setupButtonClickListener() {
         // Chat button
         chatbtn.setOnClickListener(v -> {
@@ -123,39 +140,59 @@ public class BookNow extends AppCompatActivity {
         });
 
         // Back button
-        backbtn.setOnClickListener(view -> {
-            onBackPressed();
+        backbtn.setOnClickListener(v -> {
+            Intent intent = new Intent(BookNow.this, Main2.class);
+            startActivity(intent);
         });
 
-        // Save button
+        //cancel btn
+        btncancel.setOnClickListener(view -> {
+            Intent intent = new Intent(BookNow.this, BookNowCancellation.class);
+            startActivity(intent);
+        });
+
+
+
+
+        //calendar
+
+
+        reservedDate = "";
         btnsave.setOnClickListener(view -> {
+
+            long selectedDateInMillis = calendarView.getDate();
+
+            Calendar selectedDateTime = Calendar.getInstance();
+            selectedDateTime.setTimeInMillis(selectedDateInMillis);
+            SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM d, yyyy", Locale.getDefault());
+            reservedDate = dateFormat.format(selectedDateTime.getTime());
+            Toast.makeText(this, "Reserved Date: " + reservedDate, Toast.LENGTH_SHORT).show();
+
+
             String selectedTour = spinTour.getSelectedItem().toString();
             String selectedTouristNumStr = spinNum.getSelectedItem().toString();
 
             if (!selectedTour.equals("Select Tour") && !selectedTouristNumStr.equals("Number of Tourists")) {
                 int selectedTouristNum = Integer.parseInt(selectedTouristNumStr);
 
+
                 // Calculate payment details
+                double rfTourGuide = calculateTourGuide(selectedTouristNum);
+                double serviceCharge = calculateServiceCharge(selectedTour);
                 double tourPrice = calculateTourPrice(selectedTour);
-                double rfTourGuide = calculateRFTourGuide(selectedTouristNum);
-                double rfHouse = calculateRFHouse(selectedTour);
-                double serviceCharge = 1000.00;
-                double subtotal = calculateSubtotal(selectedTour, tourPrice);
-                double total = calculateTotal(selectedTour, tourPrice, rfTourGuide, serviceCharge, subtotal);
+                double subtotal = calculateSubtotal(selectedTour);
+                double total = calculateTotal(rfTourGuide, serviceCharge, subtotal);
 
-// Set the text for TextViews
-                GalaRodriguez.setText("Gala Rodriguez: " + calculateTourPrice("Gala Rodriguez"));
-                DonCatalino.setText("Don Catalino: " + calculateTourPrice("Don Catalino"));
-                Subtotal.setText("Subtotal: " + calculateSubtotal(selectedTour, tourPrice));
-                RFTourGuide.setText("Reserve Fee (TourGuide): " + rfTourGuide);
-                RFHouse.setText("Reserve Fee (House): " + rfHouse);
-                Total.setText("Total: " + total);
-
-
-                String userId = mAuth.getCurrentUser().getUid();
+                // Set the text of the Subtotal TextView
+                Subtotal.setText(String.format("Subtotal: ₱%.2f", subtotal));
+                selectedHouse.setText(String.format("Selected House: %s", selectedTour));
+                RFTourGuide.setText(String.format("Reserve Fee (TourGuide): ₱%.2f", rfTourGuide));
+                SCharge.setText(String.format("Service Charge: ₱%.2f", serviceCharge));
+                Total.setText(String.format("Total Payment: ₱%.2f", total));
 
                 // Add data to Firestore
-                addDataToFirestore(userId, selectedTour, selectedTouristNumStr);
+                String userId = mAuth.getCurrentUser().getUid();
+                addDataToFirestore(userId, selectedTour, selectedTouristNumStr, reservedDate);
 
                 // Make the ScrollView visible
                 BookScrollView();
@@ -165,98 +202,115 @@ public class BookNow extends AppCompatActivity {
         });
     }
 
-    private double calculateRFHouse(String selectedTour) {
-        double reservationFeeHouse = 0.0;
-
-        // Calculate the reservation fee for the house based on the selected tour
-        if (selectedTour.equals("Don Catalino")) {
-            reservationFeeHouse = 500.0;
-        } else if (selectedTour.equals("Gala Rodriguez")) {
-            reservationFeeHouse = 1000.0;
-        } else if (selectedTour.equals("Both")) {
-            reservationFeeHouse = 1500.0;
-        }
-        return reservationFeeHouse;
-    }
-    private double calculateServiceCharge() {
-        double serviceCharge = 1000.0;
-        return serviceCharge;
-    }
-
-    // Calculate the tour price based on the selected tour
-    private double calculateTourPrice(String selectedTour) {
-        double tourPrice = 0.0;
-        if (selectedTour.equals("Don Catalino")) {
-            tourPrice= 500.0;
-        } else if (selectedTour.equals("Gala Rodriguez")) {
-            tourPrice = 1000.0;
-        } else if (selectedTour.equals("Both")) {
-            tourPrice = 1500.0;
-        }
-        return tourPrice;
-    }
-
-    //  calculating the reservation fee for the tour guide
-    private double calculateRFTourGuide(int selectedTouristNum) {
-        double reservationFee = 0.0;
-        if (selectedTouristNum >= 1 && selectedTouristNum <= 5) {
-            reservationFee = 500.0;
-        } else if (selectedTouristNum > 5) {
-            reservationFee = 1000.0;
-        }
-        return reservationFee;
-    }
-
-
-// calculation in subtotal
-private double calculateSubtotal(String selectedTour, double tourPrice) {
-    double subtotal = 0.0;
-    if (selectedTour.equals("Don Catalino") || selectedTour.equals("Gala Rodriguez") || selectedTour.equals("Both")) {
-        subtotal = tourPrice;
-    }
-    return subtotal;
-}
-
-
-    // calculating the total here
-    private double calculateTotal(String selectedTour, double tourPrice, double reservationFeeTourGuide, double serviceCharge, double subtotal) {
+    //calculation starts here
+    private double calculateTotal(double rfTourGuide, double serviceCharge, double subtotal) {
         double total = 0.0;
-        if (selectedTour.equals("Don Catalino") || selectedTour.equals("Gala Rodriguez") || selectedTour.equals("Both")) {
-            total = tourPrice + reservationFeeTourGuide + serviceCharge + subtotal;
-        }
+        total = subtotal + rfTourGuide + serviceCharge;
         return total;
     }
 
+    double calculateSubtotal(String selectedTour) {
+        double subtotal = 0.0;
+        double reserveFeeHouse = 0.0;
+        switch (selectedTour) {
+            case "Don Catalino":
+                subtotal = 500.0;
+                break;
+            case "Gala Rodriguez":
+                subtotal = 1000.0;
+                break;
+            case "Both":
+                subtotal = 1500.0;
+                break;
+        }
+        return subtotal;
+    }
+
+
+
+    private double calculateServiceCharge(String selectedTour) {
+        double serviceCharge = 500;
+        return serviceCharge;
+    }
+
+    private double calculateTourGuide(int selectedTouristNum) {
+        double tourGuideFee = 0.0;
+        if (selectedTouristNum >= 1 && selectedTouristNum <= 5) {
+            tourGuideFee = 500.0;
+        } else if (selectedTouristNum > 5) {
+            tourGuideFee = 1000.0;
+        }
+        return tourGuideFee;
+    }
+
+
+    private double calculateReserveFeeHouse(String selectedTour) {
+        double reserveFeeHouse = 0.0;
+        switch (selectedTour) {
+            case "Don Catalino":
+                reserveFeeHouse = 500.0;
+                break;
+            case "Gala Rodriguez":
+                reserveFeeHouse = 1000.0;
+                break;
+            case "Both":
+                reserveFeeHouse = 1500.0;
+                break;
+        }
+        return reserveFeeHouse;
+    }
+
+    private double calculateTourPrice(String selectedTour) {
+            double tourPrice = 0.0;
+            switch (selectedTour) {
+                case "Don Catalino":
+                    tourPrice = 500.0;
+                    break;
+                case "Gala Rodriguez":
+                    tourPrice = 1000.0;
+                    break;
+                case "Both":
+                    tourPrice = 1500.0;
+                    break;
+            }
+            return tourPrice;
+    }
+
+
     // Add data to Firestore... Wag mo iirremove lea
-    private void addDataToFirestore(String userId, String selectedTour, String selectedTouristNum) {
+    private void addDataToFirestore(String userId, String selectedTour, String selectedTouristNum, String reservedDate) {
         if (!selectedTour.equals("Select Tour") && !selectedTouristNum.equals("Number of Tourists")) {
             DocumentReference userDocRef = db.collection("users").document(userId);
             userDocRef.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-                    Map<String, Object> bookingData = task.getResult().getData();
+                    Map<String, Object> bookingData = new HashMap<>();
 
-                    if (bookingData != null) {
-                        bookingData.put("selectedTour", selectedTour);
-                        bookingData.put("selectedTouristNum", selectedTouristNum);
-
-                        userDocRef.update(bookingData).addOnSuccessListener(documentReference -> {
-                            Toast.makeText(getApplicationContext(), "Booking updated", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), PaymentDetails.class));
-                        }).addOnFailureListener(exception -> {
-                            Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
-                        });
-                    } else {
-                        HashMap<String, Object> user = new HashMap<>();
-                        user.put("selectedTour", selectedTour);
-                        user.put("selectedTouristNum", selectedTouristNum);
-
-                        userDocRef.set(user).addOnSuccessListener(documentReference -> {
-                            Toast.makeText(getApplicationContext(), "Booking created", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), PaymentDetails.class));
-                        }).addOnFailureListener(exception -> {
-                            Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
-                        });
+                    if (task.getResult() != null && task.getResult().getData() != null) {
+                        bookingData.putAll(task.getResult().getData());
                     }
+                    bookingData.put("selectedTour", selectedTour);
+                    bookingData.put("selectedTouristNum", selectedTouristNum);
+                    bookingData.put("reservedDate", reservedDate);
+
+                    userDocRef.update(bookingData).addOnSuccessListener(documentReference -> {
+                        Toast.makeText(getApplicationContext(), "Booking updated", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), PaymentDetails.class));
+                    }).addOnFailureListener(exception -> {
+                        Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+                } else {
+                    HashMap<String, Object> user = new HashMap<>();
+                    user.put("selectedTour", selectedTour);
+                    user.put("selectedTouristNum", selectedTouristNum);
+                    user.put("reservedDate", reservedDate);
+
+                    // creating a book
+                    userDocRef.set(user).addOnSuccessListener(documentReference -> {
+                        Toast.makeText(getApplicationContext(), "Booking created", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), PaymentDetails.class));
+                    }).addOnFailureListener(exception -> {
+                        Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
                 }
             });
         }
