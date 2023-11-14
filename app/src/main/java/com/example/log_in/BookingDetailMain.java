@@ -18,7 +18,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
 
 public class BookingDetailMain extends AppCompatActivity {
-    Button notnowbtn, confirmbtn, Nextbtn;
+    Button notnowbtn, confirmbtn, Nextbtn, Donebut;
     ImageButton backbutton, reschedbtn, cancelbtn, refundbtn;
     TextView selectedTourText, totalText, selectedtouristsText, datetext;
     Dialog dialog;
@@ -46,6 +46,7 @@ public class BookingDetailMain extends AppCompatActivity {
         refundbtn = findViewById(R.id.refundbtn);
         reschedbtn = findViewById(R.id.reschedbtn);
         cancelbtn = findViewById(R.id.cancelbtn);
+        Donebut = findViewById(R.id.Donebut);
 
     // Initialize the dialog
     dialog = new Dialog(BookingDetailMain.this);
@@ -69,13 +70,10 @@ public class BookingDetailMain extends AppCompatActivity {
         dialog.dismiss();
     });
 
-    Nextbtn = findViewById(R.id.Nextbtn);
-        Nextbtn.setOnClickListener(v -> {
-            dialog.show();
-
-         //   Intent intent = new Intent(BookingDetailMain.this, Main2.class);
-          //  startActivity(intent);
-        });
+   // Nextbtn = findViewById(R.id.Nextbtn);
+    //    Nextbtn.setOnClickListener(v -> {
+     //       dialog.show();
+     //   });
 
         //NAVIGATE TO BOOKING DETAILS FOR RESCHEDULE TOUR
         reschedbtn.setOnClickListener(v -> {
@@ -96,7 +94,11 @@ public class BookingDetailMain extends AppCompatActivity {
             startActivity(intent);
         });
 
-
+        //NAVIGATE TO MAin2
+        Donebut.setOnClickListener(v -> {
+            Intent intent = new Intent(BookingDetailMain.this, Main2.class);
+            startActivity(intent);
+        });
 
         // Retrieve and display data from Firestore
     retrieveDataFromFirestore();

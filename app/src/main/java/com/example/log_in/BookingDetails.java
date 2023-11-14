@@ -2,10 +2,13 @@ package com.example.log_in;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -29,14 +32,15 @@ import java.util.Map;
 public class BookingDetails extends AppCompatActivity {
 
     private Spinner spinTour, spinNum;
-    private Button btnnext, btncancel;
+    Dialog dialog;
+    private Button btnnext, btncancel, confirmbtn;
     private FirebaseAuth mAuth;
-    private String userId;
     private FirebaseFirestore db;
-    TextView Date, Time;
+    private TextView Date, Time;
     private Calendar calendar;
-    ImageButton reschedcalendarbtn, reschedtimebtn;
-    private Object selectedDate;
+    private ImageButton reschedcalendarbtn, reschedtimebtn;
+    public Object selectedDate;
+    private String selectedTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +55,32 @@ public class BookingDetails extends AppCompatActivity {
         reschedtimebtn = findViewById(R.id.reschedtimebtn);
         Date = findViewById(R.id.Date);
         Time = findViewById(R.id.Time);
+
+
+        // Initialize the dialog
+        dialog = new Dialog(BookingDetails.this);
+        dialog.setContentView(R.layout.dialog_reschedule);
+
+// Set the dialog window size and make it not cancellable
+        dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        dialog.setCancelable(true);
+
+// Find buttons in the dialog layout
+        confirmbtn = dialog.findViewById(R.id.confirmbtn);
+
+
+
+        confirmbtn.setOnClickListener(v -> {
+            Intent backIntent = new Intent(BookingDetails.this, Main2.class);
+            startActivity(backIntent);
+            Toast.makeText(BookingDetails.this, "Your Booking is successfully schedule. please wait for approval", Toast.LENGTH_SHORT).show();
+            dialog.dismiss();
+        });
+
+
         // Initialize Firebase
         FirebaseApp.initializeApp(this);
         db = FirebaseFirestore.getInstance();
-
         mAuth = FirebaseAuth.getInstance();
         calendar = Calendar.getInstance();
         setupSpinners();
@@ -72,38 +98,30 @@ public class BookingDetails extends AppCompatActivity {
                     BookingDetails.this,
                     (view, year1, month1, dayOfMonth1) -> {
                         selectedDate = (month1 + 1) + "/" + dayOfMonth1 + "/" + year1;
-                        Date.setText("Selected Date: ");
+                        Date.setText("Selected Date: " );
                     },
                     year,
                     month,
                     dayOfMonth);
-
             datePickerDialog.show();
         });
 
-
         btncancel.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingDetails.this, Main2.class);
+            Intent intent = new Intent(BookingDetails.this, Profile.class);
             startActivity(intent);
         });
-
 
         // Initialize TimePickerDialog
         reschedtimebtn.setOnClickListener(v -> {
             @SuppressLint("SetTextI18n") TimePickerDialog timePickerDialog = new TimePickerDialog(
                     BookingDetails.this,
                     (view, hourOfDay, minute) -> {
-                        @SuppressLint("DefaultLocale") String selectedTime = String.format("%02d:%02d", hourOfDay, minute);
+                        selectedTime = String.format("%02d:%02d", hourOfDay, minute);
                         Time.setText("Selected Time: ");
-
-                        // Save the selected date and time to Firestore
-                        saveDateTimeToFirestore(selectedDate, selectedTime);
-                    }, // Add a comma here
-
+                    },
                     calendar.get(Calendar.HOUR_OF_DAY),
                     calendar.get(Calendar.MINUTE),
                     false);
-            // Show TimePickerDialog after selecting the date
             timePickerDialog.show();
         });
     }
@@ -118,6 +136,18 @@ public class BookingDetails extends AppCompatActivity {
         // Create a new document in the "rescheduleBooking" collection
         DocumentReference newBookingDocRef = rescheduleBookingCollectionRef.document();
 
+        // Check if the selected date and time are null
+        if (selectedDate == null || TextUtils.isEmpty(selectedTime)) {
+            Toast.makeText(getApplicationContext(), "Please select a date and time.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Validate the selected date and time
+        if (!isValidDate(selectedDate) || !isValidTime(selectedTime)) {
+            Toast.makeText(getApplicationContext(), "Please select a valid date and time.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
         // Add data to Firestore
         Map<String, Object> bookingData = new HashMap<>();
         bookingData.put("selectedTour for Reschedule", spinTour.getSelectedItem().toString());
@@ -128,13 +158,20 @@ public class BookingDetails extends AppCompatActivity {
         newBookingDocRef.set(bookingData)
                 .addOnSuccessListener(documentReference -> {
                     Toast.makeText(getApplicationContext(), "Reschedule uploaded. Please wait for the admin", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(), BookingDetailMain.class));
+                    startActivity(new Intent(getApplicationContext(), Main2.class));
                 })
                 .addOnFailureListener(exception -> {
                     Toast.makeText(getApplicationContext(), "Error creating new booking document: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 
+    private boolean isValidTime(String selectedTime) {
+        return !TextUtils.isEmpty(selectedTime);
+    }
+
+    private boolean isValidDate(Object selectedDate) {
+        return selectedDate != null;
+    }
 
     private void setupSpinners() {
         ArrayAdapter<CharSequence> heritageHouseAdapter = ArrayAdapter.createFromResource(
@@ -176,10 +213,10 @@ public class BookingDetails extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
     }
 
-
-    //btn next. navigate to cancellation activity
+    // btn next.
     private void setupButtonClickListener() {
         btnnext.setOnClickListener(view -> {
+            dialog.show();
             String selectedTour = spinTour.getSelectedItem().toString();
             String selectedTouristNumStr = spinNum.getSelectedItem().toString();
 
@@ -189,28 +226,15 @@ public class BookingDetails extends AppCompatActivity {
                 return;
             }
 
-            // Initialize Firestore references
-            userId = mAuth.getCurrentUser().getUid();
-            DocumentReference userDocRef = db.collection("users").document(userId);
-            CollectionReference rescheduleBookingCollectionRef = userDocRef.collection("rescheduleBooking");
+            // Get the selected date
+            Object selectedDate = Date.getText().toString();
 
-            // Create a new document in the "rescheduleBooking" collection
-            DocumentReference newBookingDocRef = rescheduleBookingCollectionRef.document();
-
-            // Add data to Firestore
-            Map<String, Object> bookingData = new HashMap<>();
-            bookingData.put("selectedTour for Reschedule", selectedTour);
-            bookingData.put("selectedTouristNum for Reschedule", selectedTouristNumStr);
-            bookingData.put("selectedDate for Reschedule", selectedDate);
-
-            newBookingDocRef.set(bookingData)
-                    .addOnSuccessListener(documentReference -> {
-                        Toast.makeText(getApplicationContext(), "Rescheddule uploaded. Please wait for the admin", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), BookingDetailMain.class));
-                    })
-                    .addOnFailureListener(exception -> {
-                        Toast.makeText(getApplicationContext(), "Error creating new booking document: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
-                    });
+            // Check if the selected date is null
+            if (TextUtils.isEmpty(selectedDate.toString())) {
+                Toast.makeText(getApplicationContext(), "Please select a date.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            saveDateTimeToFirestore(selectedDate, selectedTime);
         });
     }
 }

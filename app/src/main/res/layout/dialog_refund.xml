@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="365dp"
+        android:layout_height="272dp"
+        android:layout_gravity="center"
+        android:foregroundGravity="center"
+        app:cardCornerRadius="@dimen/fab_margin"
+        app:cardMaxElevation="70dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:strokeWidth="4dp"
+        tools:layout_editor_absoluteY="174dp"
+        tools:ignore="MissingConstraints">
+
+        <Button
+            android:id="@+id/confirmbtn"
+            android:layout_width="144dp"
+            android:layout_height="55dp"
+            android:layout_marginLeft="193dp"
+            android:layout_marginTop="170dp"
+            android:background="@drawable/btntime"
+            android:backgroundTint="@color/GREEN"
+            android:clickable="true"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
+            android:longClickable="true"
+            android:text="Confirm"
+            android:textAlignment="center"
+            android:textColor="#00684E"
+            android:textSize="15sp" />
+
+        <Button
+            android:id="@+id/notnowbtn"
+            android:layout_width="144dp"
+            android:layout_height="55dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginTop="170dp"
+            android:background="@drawable/btntime"
+            android:backgroundTint="@color/lightsalmon"
+            android:clickable="true"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
+            android:longClickable="true"
+            android:text="Not Now"
+            android:textAlignment="center"
+            android:textColor="#00684E"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/note"
+            android:layout_width="314dp"
+            android:layout_height="105dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="55dp"
+            android:text="@string/notice"
+            android:textColor="@color/green"
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/pay"
+            android:layout_width="241dp"
+            android:layout_height="39dp"
+            android:fontFamily="@font/montserrat_alternates_extrabold"
+            android:shadowColor="@color/gray"
+            android:shadowDx="4"
+            android:shadowDy="-3"
+            android:shadowRadius="2"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="20dp"
+            android:text="Refund Notice"
+            android:textAlignment="center"
+            android:textColor="@color/GREEN"
+            android:textSize="20sp" />
+    </androidx.cardview.widget.CardView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -398,63 +398,109 @@
 
 
                 <TextView
-                    android:id="@+id/selectedHouse"
-                    android:layout_width="290dp"
+                    android:id="@+id/selectedHousetxt"
+                    android:layout_width="159dp"
                     android:layout_height="35dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="-220dp"
+                    android:layout_marginLeft="-230dp"
                     android:layout_marginTop="-110dp"
                     android:fontFamily="@font/montserrat"
                     android:text=" Selected House    "
                     android:textColor="@color/green"
                     android:textSize="15sp" />
 
+                <TextView
+                    android:id="@+id/selectedHouse"
+                    android:layout_width="163dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="-110dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="    "
+                    android:textColor="@color/green"
+                    android:textSize="15sp" />
 
                 <View
                     android:layout_width="310dp"
                     android:layout_height="1dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="-285dp"
+                    android:layout_marginLeft="-325dp"
                     android:layout_marginTop="-90dp"
                     android:background="@android:color/black" />
 
 
                 <TextView
-                    android:id="@+id/Subtotal"
-                    android:layout_width="290dp"
+                    android:id="@+id/Subtotaltxt"
+                    android:layout_width="156dp"
                     android:layout_height="25dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="-315dp"
                     android:layout_marginTop="-70dp"
-                    android:textStyle="bold"
                     android:fontFamily="@font/montserrat"
                     android:text="Subtotal:"
                     android:textColor="@color/green"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/Subtotal"
+                    android:layout_width="156dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="-70dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text=" "
+                    android:textColor="@color/green"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
 
                 <TextView
-                    android:id="@+id/RFTourGuide"
-                    android:layout_width="290dp"
+                    android:id="@+id/RFTourGuidetxt"
+                    android:layout_width="165dp"
                     android:layout_height="35dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="-290dp"
+                    android:layout_marginLeft="-330dp"
                     android:layout_marginTop="-30dp"
                     android:fontFamily="@font/montserrat"
                     android:text="Reservation Fee/TourGuide: "
                     android:textColor="@color/green"
                     android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/RFTourGuide"
+                    android:layout_width="156dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="-30dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="  "
+                    android:textColor="@color/green"
+                    android:textSize="15sp" />
 
 
                 <TextView
-                    android:id="@+id/SCharge"
-                    android:layout_width="290dp"
+                    android:id="@+id/SChargetxt"
+                    android:layout_width="165dp"
                     android:layout_height="35dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="-287dp"
-                    android:layout_marginTop="1dp"
+                    android:layout_marginLeft="-330dp"
+                    android:layout_marginTop="5dp"
                     android:fontFamily="@font/montserrat"
                     android:text="@string/servicecharge"
+                    android:textColor="@color/green"
+                    android:textSize="15sp"/>
+
+                <TextView
+                    android:id="@+id/SCharge"
+                    android:layout_width="156dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="1dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text=" "
                     android:textColor="@color/green"
                     android:textSize="15sp"/>
 
@@ -463,13 +509,13 @@
                     android:layout_width="310dp"
                     android:layout_height="1dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="-295dp"
+                    android:layout_marginLeft="-335dp"
                     android:layout_marginTop="25dp"
                     android:background="@android:color/black" />
 
                 <TextView
-                    android:id="@+id/Total"
-                    android:layout_width="290dp"
+                    android:id="@+id/Totaltxt"
+                    android:layout_width="165dp"
                     android:layout_height="35dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="-305dp"
@@ -480,12 +526,25 @@
                     android:textColor="@color/green"
                     android:textSize="18sp" />
 
+                <TextView
+                    android:id="@+id/Total"
+                    android:layout_width="156dp"
+                    android:layout_height="35dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="60dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text=" "
+                    android:textStyle="bold"
+                    android:textColor="@color/green"
+                    android:textSize="18sp" />
+
 
                 <Button
                     android:id="@+id/btnsubmit"
                     android:layout_width="150dp"
                     android:layout_height="50dp"
-                    android:layout_marginLeft="-280dp"
+                    android:layout_marginLeft="-335dp"
                     android:layout_marginTop="320dp"
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/startbuttonbg"
