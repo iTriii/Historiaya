@@ -56,6 +56,7 @@ public class PaymentDetails extends AppCompatActivity {
             Intent intent = new Intent(PaymentDetails.this, Payment.class);
             startActivity(intent);
         });
+
         //galabutton
         donebtn2.setOnClickListener(v -> {
             Intent intent = new Intent(PaymentDetails.this, Payment.class);

@@ -89,11 +89,17 @@ public class BookNow extends AppCompatActivity {
         touristNumAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinNum.setAdapter(touristNumAdapter);
 
-        // Set item selection listeners for both Spinners
+        // listeners for both Spinners
         spinTour.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+
+
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 showToast("Heritage House Selected: " + spinTour.getSelectedItem().toString());
+
+
+
             }
 
             @Override
@@ -175,33 +181,32 @@ public class BookNow extends AppCompatActivity {
 
 
 
-
-
             //spinner starts here
             String selectedTour = spinTour.getSelectedItem().toString();
             String selectedTouristNumStr = spinNum.getSelectedItem().toString();
 
+
             if (!selectedTour.equals("Select Tour") && !selectedTouristNumStr.equals("Number of Tourists")) {
                 int selectedTouristNum = Integer.parseInt(selectedTouristNumStr);
-
-
                 // Calculate payment details
+
                 double rfTourGuide = calculateTourGuide(selectedTouristNum);
                 double serviceCharge = calculateServiceCharge(selectedTour);
                 double tourPrice = calculateTourPrice(selectedTour);
                 double subtotal = calculateSubtotal(selectedTour);
                 double total = calculateTotal(rfTourGuide, serviceCharge, subtotal);
 
-                // Set the text of the Subtotal TextView
-                Subtotal.setText(String.format("Subtotal: ₱%.2f", subtotal));
-                selectedHouse.setText(String.format("Selected House: %s", selectedTour));
-                RFTourGuide.setText(String.format("Reserve Fee (TourGuide): ₱%.2f", rfTourGuide));
-                SCharge.setText(String.format("Service Charge: ₱%.2f", serviceCharge));
-                Total.setText(String.format("Total Payment: ₱%.2f", total));
+// Set the text of the Subtotal TextView
+                Subtotal.setText(String.format(" ₱%.2f", subtotal));
+                selectedHouse.setText(String.format(" %s", selectedTour));
+                RFTourGuide.setText(String.format(" ₱%.2f", rfTourGuide));
+                SCharge.setText(String.format(" ₱%.2f", serviceCharge));
+                Total.setText(String.format("₱%.2f", total));
+
 
                 // Add data to Firestore
                 String userId = mAuth.getCurrentUser().getUid();
-                addDataToFirestore(userId, selectedTour, selectedTouristNumStr, reservedDate);
+                addDataToFirestore(userId, selectedTour, selectedTouristNumStr, reservedDate, total);
 
                 // Make the ScrollView visible
                 BookScrollView();
@@ -210,6 +215,7 @@ public class BookNow extends AppCompatActivity {
             }
         });
     }
+
 
     //calculation starts here
     private double calculateTotal(double rfTourGuide, double serviceCharge, double subtotal) {
@@ -271,8 +277,9 @@ public class BookNow extends AppCompatActivity {
     }
 
 
+
     // Add data to Firestore... Wag mo iirremove lea
-    private void addDataToFirestore(String userId, String selectedTour, String selectedTouristNum, String reservedDate) {
+    private void addDataToFirestore(String userId, String selectedTour, String selectedTouristNum, String reservedDate, double totalAmount) {
         if (!selectedTour.equals("Select Tour") && !selectedTouristNum.equals("Number of Tourists")) {
             DocumentReference userDocRef = db.collection("users").document(userId);
             userDocRef.get().addOnCompleteListener(task -> {
@@ -285,6 +292,7 @@ public class BookNow extends AppCompatActivity {
                     bookingData.put("selectedTour", selectedTour);
                     bookingData.put("selectedTouristNum", selectedTouristNum);
                     bookingData.put("reservedDate", reservedDate);
+                    bookingData.put("totalAmount", totalAmount); // Add the total amount to Firestore
 
                     userDocRef.update(bookingData).addOnSuccessListener(documentReference -> {
                         Toast.makeText(getApplicationContext(), "Booking updated", Toast.LENGTH_SHORT).show();
@@ -297,6 +305,7 @@ public class BookNow extends AppCompatActivity {
                     user.put("selectedTour", selectedTour);
                     user.put("selectedTouristNum", selectedTouristNum);
                     user.put("reservedDate", reservedDate);
+                    user.put("totalAmount", totalAmount); // Add the total amount to Firestore
 
                     // creating a book
                     userDocRef.set(user).addOnSuccessListener(documentReference -> {
@@ -309,4 +318,6 @@ public class BookNow extends AppCompatActivity {
             });
         }
     }
+
+
 }

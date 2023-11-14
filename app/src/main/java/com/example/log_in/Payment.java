@@ -29,8 +29,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Payment extends AppCompatActivity {
-    Button btndone;
-    ImageButton uploadbtn, selectbtn; // Change to ImageButton
+    Button okbtn;
+    ImageButton back, selectbtn; // Change to ImageButton
     StorageReference storageRef;
     LinearProgressIndicator progress;
     ImageView imageView;
@@ -53,24 +53,34 @@ public class Payment extends AppCompatActivity {
         supportActionBar = findViewById(R.id.toolbar);
         progress = findViewById(R.id.progress);
         imageView = findViewById(R.id.imgviewpayment);
-        btndone = findViewById(R.id.okbtn);
+        okbtn = findViewById(R.id.okbtn);
         selectbtn = findViewById(R.id.select);
+        back = findViewById(R.id.back);
+
+
+        // Back button
+        back.setOnClickListener(v -> {
+            Intent intent = new Intent(Payment.this, PaymentDetails.class);
+            finish();
+        });
+
 
         selectbtn.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_PICK);
             intent.setType("image/*");
             startActivityForResult(intent, SELECT_PICTURE);
+
         });
 
-        btndone.setOnClickListener(v -> {
+        okbtn.setOnClickListener(v -> {
             if (selectedImageUri == null) {
                 Toast.makeText(Payment.this, "Please select an image", Toast.LENGTH_LONG).show();
             } else {
                 uploadImageToFirebaseStorage(selectedImageUri);
                 // Image uploaded successfully, show a message
                 Toast.makeText(Payment.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
-                progress.setVisibility(View.GONE);
-                finish();
+                progress.setVisibility(View.VISIBLE);
+                startActivity(new Intent(getApplicationContext(), Main2.class));
             }
         });
     }
@@ -102,53 +112,38 @@ public class Payment extends AppCompatActivity {
                 .addOnSuccessListener(taskSnapshot -> {
                     imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
                         String imageUrl = uri.toString();
-                        String userId = mAuth.getCurrentUser().getUid();
-                        saveUserDataToFirestore(userId, imageUrl);
+                        saveUserDataToFirestore(imageUrl);
                     });
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(this, "Image upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
-
-        progress.setVisibility(View.VISIBLE);
     }
 
-    private void saveUserDataToFirestore(String userId, String imageUrl) {
-        userId = mAuth.getCurrentUser().getUid();
-        if (userId != null) {
-            DocumentReference userDocRef = db.collection("users").document(userId).getFirestore().document("proofOfPayment");
+    private void saveUserDataToFirestore(String imageUrl) {
+        String userId = mAuth.getCurrentUser().getUid();
+        DocumentReference userDocRef = db.collection("users").document(userId).collection("proofOfPayment").document();
 
-            userDocRef.get().addOnCompleteListener(task -> {
-                if (task.isSuccessful()) {
-                    Map<String, Object> paymentData = task.getResult().getData();
-                    // If the user has already made a booking, update the existing picture.
-                    if (paymentData != null) {
-                        paymentData.put("ImageUrl", imageUrl);
-                        userDocRef.update(paymentData).addOnSuccessListener(documentReference -> {
-                            Toast.makeText(getApplicationContext(), "Successfully Uploaded!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), Profile.class));
-                            finish();
-                        })
-                                .addOnFailureListener(exception -> {
-                            Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
-                        });
-                    }else {
-                        // sending a new  proof of payment
-                        HashMap<String, Object> user = new HashMap<>();
-                        paymentData.put("ImageUrl", imageUrl);
-                        userDocRef.set(paymentData).addOnSuccessListener(documentReference -> {
-                            Toast.makeText(getApplicationContext(), "Successfully uploaded!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), Main2.class));
-                        }).addOnFailureListener(exception -> {
-                            Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
-                        });
-                    }
-                };
-            });
-        }
+        userDocRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Map<String, Object> user = new HashMap<>();
+                if (task.getResult() != null && task.getResult().getData() != null) {
+                    user.putAll(task.getResult().getData());
+                }
 
-            // Add a Log statement to check the imageUrl
-            Log.d(TAG, "Image URL: " + imageUrl);
+                // If the user has already made a booking, update the existing picture.
+                user.put("ImageUrl", imageUrl);
 
-        }
+                userDocRef.set(user).addOnSuccessListener(documentReference -> {
+                    Toast.makeText(getApplicationContext(), "Successfully Uploaded!", Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(getApplicationContext(), Main2.class));
+                }).addOnFailureListener(exception -> {
+                    Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+            }
+        });
+
+        // Add a Log statement to check the imageUrl
+        Log.d(TAG, "Image URL: " + imageUrl);
     }
+}

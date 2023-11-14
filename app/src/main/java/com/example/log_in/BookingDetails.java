@@ -29,7 +29,7 @@ import java.util.Map;
 public class BookingDetails extends AppCompatActivity {
 
     private Spinner spinTour, spinNum;
-    private Button btnnext;
+    private Button btnnext, btncancel;
     private FirebaseAuth mAuth;
     private String userId;
     private FirebaseFirestore db;
@@ -46,6 +46,7 @@ public class BookingDetails extends AppCompatActivity {
         spinTour = findViewById(R.id.spinTour);
         spinNum = findViewById(R.id.spinNum);
         btnnext = findViewById(R.id.btnnext);
+        btncancel = findViewById(R.id.btncancel);
         reschedcalendarbtn = findViewById(R.id.reschedcalendarbtn);
         reschedtimebtn = findViewById(R.id.reschedtimebtn);
         Date = findViewById(R.id.Date);
@@ -79,6 +80,14 @@ public class BookingDetails extends AppCompatActivity {
 
             datePickerDialog.show();
         });
+
+
+        btncancel.setOnClickListener(v -> {
+            Intent intent = new Intent(BookingDetails.this, Main2.class);
+            startActivity(intent);
+        });
+
+
         // Initialize TimePickerDialog
         reschedtimebtn.setOnClickListener(v -> {
             @SuppressLint("SetTextI18n") TimePickerDialog timePickerDialog = new TimePickerDialog(
@@ -94,7 +103,6 @@ public class BookingDetails extends AppCompatActivity {
                     calendar.get(Calendar.HOUR_OF_DAY),
                     calendar.get(Calendar.MINUTE),
                     false);
-
             // Show TimePickerDialog after selecting the date
             timePickerDialog.show();
         });
@@ -120,7 +128,7 @@ public class BookingDetails extends AppCompatActivity {
         newBookingDocRef.set(bookingData)
                 .addOnSuccessListener(documentReference -> {
                     Toast.makeText(getApplicationContext(), "Reschedule uploaded. Please wait for the admin", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(), BookNowCancellation.class));
+                    startActivity(new Intent(getApplicationContext(), BookingDetailMain.class));
                 })
                 .addOnFailureListener(exception -> {
                     Toast.makeText(getApplicationContext(), "Error creating new booking document: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
@@ -198,7 +206,7 @@ public class BookingDetails extends AppCompatActivity {
             newBookingDocRef.set(bookingData)
                     .addOnSuccessListener(documentReference -> {
                         Toast.makeText(getApplicationContext(), "Rescheddule uploaded. Please wait for the admin", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), BookNowCancellation.class));
+                        startActivity(new Intent(getApplicationContext(), BookingDetailMain.class));
                     })
                     .addOnFailureListener(exception -> {
                         Toast.makeText(getApplicationContext(), "Error creating new booking document: " + exception.getMessage(), Toast.LENGTH_SHORT).show();

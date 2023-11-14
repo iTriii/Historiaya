@@ -408,7 +408,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/dates"
+            android:id="@+id/DateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
@@ -441,7 +441,7 @@
                         android:src="@drawable/don_catalino1" />
 
                     <TextView
-                        android:id="@+id/DonCat"
+                        android:id="@+id/selectedTourText"
                         android:layout_width="140dp"
                         android:layout_height="30dp"
                         android:layout_marginLeft="110dp"
@@ -453,7 +453,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/date"
+                        android:id="@+id/MonthText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="110dp"
@@ -464,31 +464,20 @@
                         android:textColor="@color/GREEN" />
 
                     <Button
-                        android:id="@+id/btnongoing"
+                        android:id="@+id/upcomingbtn"
                         android:layout_width="90dp"
-                        android:layout_height="25dp"
-                        android:layout_marginLeft="250dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_height="28dp"
+                        android:layout_marginStart="250dp"
+                        android:layout_marginTop="11dp"
                         android:clickable="true"
                         android:background="@drawable/ongoing"
                         android:fontFamily="@font/montserrat_bold"
-                        android:text="Up Coming"
+                        android:text="@string/up_coming"
                         android:textAlignment="center"
                         android:textColor="@color/GREEN"
-                        android:textSize="10sp" />
-                    <Button
-                        android:id="@+id/btnresched"
-                        android:layout_width="90dp"
-                        android:layout_height="25dp"
-                        android:layout_marginLeft="250dp"
-                        android:layout_marginTop="63dp"
-                        android:clickable="true"
-                        android:textColor="@color/white"
-                        android:background="@drawable/cancelbtn"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:text="Resched"
-                        android:textAlignment="center"
-                        android:textSize="10sp" />
+                        android:textSize="10sp"
+                        tools:ignore="SmallSp" />
+
 
                 </androidx.cardview.widget.CardView>
             </LinearLayout>

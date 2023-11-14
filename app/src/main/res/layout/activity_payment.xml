@@ -75,8 +75,8 @@
 
     <TextView
         android:id="@+id/txtupload2"
-        android:layout_width="152dp"
-        android:layout_height="41dp"
+        android:layout_width="169dp"
+        android:layout_height="28dp"
         android:fontFamily="@font/montserrat"
         android:gravity="center_horizontal"
         android:text="upload Image"
@@ -166,7 +166,7 @@
         android:layout_width="57dp"
         android:layout_height="51dp"
         android:layout_marginStart="45dp"
-        android:layout_marginTop="552dp"
+        android:layout_marginTop="532dp"
         android:background="@drawable/shadow"
         android:clickable="true"
         android:contentDescription="@string/BookNow"
