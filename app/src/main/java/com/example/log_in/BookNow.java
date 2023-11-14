@@ -97,8 +97,7 @@ public class BookNow extends AppCompatActivity {
             String selectedTouristNum = spinNum.getSelectedItem().toString();
             addDataToFirestore(userId, selectedTour, selectedTouristNum);
 
-            // After successful login and booking, start Crisp chat
-            startCrispChat();
+
         });
     }
 

@@ -6,8 +6,6 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import im.crisp.client.Crisp;
-
 public class MainActivity extends AppCompatActivity {
     private Button GetStarted;
 
@@ -15,7 +13,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
 
         GetStarted = findViewById(R.id.GetStarted);

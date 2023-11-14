@@ -144,44 +144,47 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/chat" />
 
+
     <TextView
         android:id="@+id/selecttour"
         android:layout_width="175dp"
         android:layout_height="39dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="229dp"
         android:ellipsize="end"
         android:fontFamily="@font/montserrat"
+        android:gravity="center"
         android:maxLines="2"
         android:text="@string/select_tour"
         android:textAlignment="center"
         android:textColor="@color/green"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/NumTourist"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/blurred"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="32dp" />
+        app:layout_constraintVertical_bias="0.057"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/NumTourist"
         android:layout_width="175dp"
         android:layout_height="39dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="277dp"
         android:contentDescription="@string/total_number_of_tourist"
         android:ellipsize="end"
         android:fontFamily="@font/montserrat"
+        android:gravity="center"
         android:maxLines="2"
         android:text="#_of_tourist"
         android:textAlignment="center"
         android:textColor="@color/green"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/blurred"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="32dp" />
-
-
+        app:layout_constraintVertical_bias="0.009"
+        tools:ignore="MissingConstraints" />
 
     <Spinner
         android:id="@+id/spinTour"
@@ -189,17 +192,17 @@
         android:layout_width="160dp"
         android:layout_height="43dp"
         android:layout_marginTop="228dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/borderspinner"
         android:dropDownWidth="wrap_content"
         android:fontFamily="@font/montserrat_thin"
         android:foregroundTint="#009688"
-        android:spinnerMode="dropdown"
         android:gravity="center"
+        android:spinnerMode="dropdown"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.931"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/selecttour"
         app:layout_constraintTop_toTopOf="@+id/bgbooknow"
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="MissingConstraints" />
@@ -209,19 +212,19 @@
         style="@style/Widget.AppCompat.Light.Spinner.DropDown.ActionBar"
         android:layout_width="160dp"
         android:layout_height="43dp"
-        android:gravity="center"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/borderspinner"
         android:dropDownWidth="wrap_content"
         android:fontFamily="@font/montserrat_thin"
-        android:textAlignment="center"
         android:foregroundTint="#009688"
+        android:gravity="center"
         android:spinnerMode="dropdown"
+        android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.931"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/NumTourist"
         app:layout_constraintTop_toBottomOf="@+id/spinTour"
         app:layout_constraintVertical_bias="0.014"
-        android:background="@drawable/borderspinner"
         tools:ignore="MissingConstraints" />
 
 
@@ -248,8 +251,9 @@
     <TextView
         android:id="@+id/SDate"
         android:layout_width="100dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="155dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="324dp"
         android:contentDescription="@string/txtview_for_select_date"
         android:ellipsize="end"
         android:fontFamily="@font/inter_bold"
@@ -259,12 +263,8 @@
         android:textAlignment="center"
         android:textColor="@color/green"
         android:textSize="13sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/blurred"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.466"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -364,7 +364,6 @@
         android:fontFamily="@font/montserrat_bold"
         android:gravity="center"
         android:longClickable="true"
-        android:padding="16dp"
         android:text="Make Payment"
         android:textAlignment="center"
         android:textColor="#FFFFFF"

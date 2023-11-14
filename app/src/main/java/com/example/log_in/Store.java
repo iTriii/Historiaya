@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,11 +20,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRadioButton;
 
 import com.bumptech.glide.Glide;
-import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.PropertyName;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -40,7 +41,11 @@ public class Store extends AppCompatActivity {
     Dialog mdialog;
     Button plus;
     Button B1P1, B2P2, B3P3, B4P4, B5P5, B6P6, B7P7;
+
     private final ImageView[] phArray = new ImageView[7];
+    private final EditText[] Prooduct = new EditText[7];
+    private final EditText[] ProductDescription = new EditText[7];
+
     LinearLayout V1, V2, V3, V4, V5;
     View storeTabIndicator, purchasesTabIndicator;
     ScrollView StoreScrollView, PurchasesScrollView;
@@ -53,22 +58,21 @@ public class Store extends AppCompatActivity {
     private FirebaseUser currentUser;
     private FirebaseFirestore db;
     private SharedPreferences sharedPreferences;
+    private StorageReference[] storageRefs = new StorageReference[7];
+    private String[] productIds = {"product1", "product2", "product3", "product4", "product5", "product6", "product7"};
 
-
+    private static final int NUM_PRODUCTS = 7;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store);
 
-        // Initialize Firebase
-        FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
         db = FirebaseFirestore.getInstance();
         initializeProductPrices();
         initBuyButtonListeners();
         initializePurchaseCounts();
-
 
 
         back = findViewById(R.id.back);
@@ -90,6 +94,10 @@ public class Store extends AppCompatActivity {
         Store = findViewById(R.id.Store);
         points = findViewById(R.id.points);
 
+        // Initialize storage references
+        for (int i = 0; i < productIds.length; i++) {
+            storageRefs[i] = FirebaseStorage.getInstance().getReference("Products/" + productIds[i] + "/image.jpg");
+        }
 
         for (int i = 0; i < phArray.length; i++) {
             int imageViewId = getResources().getIdentifier("ph" + (i + 1), "id", getPackageName());
@@ -98,7 +106,6 @@ public class Store extends AppCompatActivity {
 
         if (currentUser != null) {
             retrieveUserPoints();
-            retrieveProductImages();
         }
         V1 = findViewById(R.id.V1);
         V2 = findViewById(R.id.V2);
@@ -164,12 +171,34 @@ public class Store extends AppCompatActivity {
                 updatePointsInDatabase(currentPoints);
             }
         });
-
         if (currentUser != null) {
             retrieveUserPoints();
-            retrieveProductImages();
+
+            // Loop through each product and retrieve its image
+            for (int i = 0; i < NUM_PRODUCTS; i++) {
+                String productId = "product" + (i + 1);
+                retrieveProductImage(productId, phArray[i]);
+            }
         }
     }
+
+
+    public static class ProductInformation {
+        @PropertyName("ProductName")
+        private String productName;
+
+        @PropertyName("ProductDescription")
+        private String productDescription;
+
+        public String getProductName() {
+            return productName;
+        }
+
+        public String getProductDescription() {
+            return productDescription;
+        }
+    }
+
 
     private void updatePointsInDatabase(int newPoints) {
         String userId = currentUser.getUid();
@@ -207,37 +236,31 @@ public class Store extends AppCompatActivity {
                                 currentPoints = userPoints.intValue();
                                 points.setText(String.valueOf(currentPoints));
 
-                                // Retrieve image references from Firestore
-                                retrieveProductImages();
                             }
                         }
                     }
                 });
     }
 
-    private void retrieveProductImages() {
-        for (int i = 0; i < phArray.length; i++) {
-            String productId = "ph" + (i + 1);
-            String storagePath = "Products/product" + (i + 1) + "/" + productId + ".jpg";
 
-            Log.d("StoreActivity", "Retrieving image for productId: " + productId);
-            Log.d("StoreActivity", "Storage path: " + storagePath);
+    private void retrieveProductImage(String productId, ImageView imageView) {
+        String storagePath = "Products/" + productId + "/image.jpg";
 
-            StorageReference storageRef = FirebaseStorage.getInstance().getReference(storagePath);
+        Log.d("StoreActivity", "Retrieving image for productId: " + productId);
+        Log.d("StoreActivity", "Storage path: " + storagePath);
 
-            final int index = i;
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference(storagePath);
 
-            storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                Log.d("StoreActivity", "Download URL for " + productId + ": " + uri);
+        storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+            Log.d("StoreActivity", "Download URL for " + productId + ": " + uri);
 
-                // Use Glide to load the image into the ImageView
-                Glide.with(Store.this)
-                        .load(uri)
-                        .into(phArray[index]);
-            }).addOnFailureListener(exception -> {
-                Log.e("StoreActivity", "Error getting download URL for " + productId, exception);
-            });
-        }
+            // Use Glide to load the image into the specified ImageView
+            Glide.with(Store.this)
+                    .load(uri)
+                    .into(imageView);
+        }).addOnFailureListener(exception -> {
+            Log.e("StoreActivity", "Error getting download URL for " + productId, exception);
+        });
     }
 
 

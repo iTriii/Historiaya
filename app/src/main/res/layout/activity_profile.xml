@@ -168,7 +168,7 @@
             android:background="@color/transparent"
             android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
-            android:text="@string/mybooking"
+            android:text="@string/MyBooking"
             android:textAlignment="center"
             android:checked="false"
             android:textColor="@color/green"
