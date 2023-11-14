@@ -25,7 +25,7 @@ public class BookingDetailMain extends AppCompatActivity {
     FirebaseUser user;
     FirebaseAuth auth;
     private FirebaseFirestore db;
-    private ListenerRegistration userDataListener;
+    public ListenerRegistration userDataListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,10 +70,6 @@ public class BookingDetailMain extends AppCompatActivity {
         dialog.dismiss();
     });
 
-   // Nextbtn = findViewById(R.id.Nextbtn);
-    //    Nextbtn.setOnClickListener(v -> {
-     //       dialog.show();
-     //   });
 
         //NAVIGATE TO BOOKING DETAILS FOR RESCHEDULE TOUR
         reschedbtn.setOnClickListener(v -> {

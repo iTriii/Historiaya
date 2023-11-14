@@ -1,6 +1,5 @@
 package com.example.log_in;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,40 +32,39 @@ import java.util.TimerTask;
 public class Profile extends AppCompatActivity {
     ImageButton back, EditProfile;
     ShapeableImageView icon;
-    TextView ProfileName;
+    TextView ProfileName, selectedTourText, MonthText, DateText; // Adjusted the order
     FirebaseUser user;
     FirebaseAuth auth;
-    RadioButton Achievements_Tab,MyBooking_Tab,History_Tab;
-    ScrollView AchievementsTab,MyBookingTab,HistoryTab;
+    RadioButton Achievements_Tab, MyBooking_Tab, History_Tab;
+    ScrollView AchievementsTab, MyBookingTab, HistoryTab;
     View uno, dos, tres;
-    ProgressBar quest_progressbar,scavenger_progressbar,quiz_progressbar;
-    int counter=0;
+    ProgressBar quest_progressbar, scavenger_progressbar, quiz_progressbar;
+    int counter = 0;
     private FirebaseFirestore db;
-    private ListenerRegistration userDataListener;
+    public ListenerRegistration userDataListener;
     private static final int EDIT_PROFILE_REQUEST_CODE = 1;
 
-    Button btnongoing,btnresched;
+    Button upcomingbtn;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
         back = findViewById(R.id.back);
         back.setOnClickListener(v -> main2());
+        upcomingbtn = findViewById(R.id.upcomingbtn);
 
+        MonthText = findViewById(R.id.MonthText);
+        selectedTourText = findViewById(R.id.selectedTourText);
+        DateText = findViewById(R.id.DateText);
 
-        btnongoing = findViewById(R.id.btnongoing);
-        btnresched = findViewById(R.id.btnresched);
+        prog();
 
-            prog();
-
-        AchievementsTab  = findViewById(R.id.AchievementsTab);
+        AchievementsTab = findViewById(R.id.AchievementsTab);
         Achievements_Tab = findViewById(R.id.Achievements_Tab);
         Achievements_Tab.setOnClickListener(v -> Achievements_Tab());
         MyBookingTab = findViewById(R.id.MyBookingTab);
@@ -89,20 +87,10 @@ public class Profile extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         user = auth.getCurrentUser();
 
-
-
-        //navigate to cancellation activity
-        btnongoing.setOnClickListener(view -> {
-            Intent intent = new Intent(Profile.this, BookNowCancellation.class);
+        upcomingbtn.setOnClickListener(view -> {
+            Intent intent = new Intent(Profile.this, BookingDetailMain.class);
             startActivity(intent);
         });
-
-        //navigate to resched activity
-        btnresched.setOnClickListener(view -> {
-            Intent intent = new Intent(Profile.this, BookingDetails.class);
-            startActivity(intent);
-        });
-
 
         if (user != null) {
             // Fetch and display user data from Firestore
@@ -124,8 +112,8 @@ public class Profile extends AppCompatActivity {
         quiz_progressbar = (ProgressBar) findViewById(R.id.quiz_progressbar);
 
         final Timer timer = new Timer();
-        TimerTask timertask = new TimerTask(){
-            public void run(){
+        TimerTask timertask = new TimerTask() {
+            public void run() {
                 counter++;
                 quest_progressbar.setProgress(counter);
                 scavenger_progressbar.setProgress(counter);
@@ -152,7 +140,13 @@ public class Profile extends AppCompatActivity {
                             String firstName = documentSnapshot.getString("FirstName");
                             String lastName = documentSnapshot.getString("LastName");
                             String imageUrl = documentSnapshot.getString("ImageUrl");
-
+                            String selectedTour = documentSnapshot.getString("selectedTour");// display data in texview
+                            String reservedDate = documentSnapshot.getString("reservedDate");
+                                //TextViews with the retrieved data
+                                MonthText.setText(reservedDate);
+                                if (selectedTourText != null) {
+                                    selectedTourText.setText(selectedTour);
+                                }
                             if (firstName != null && lastName != null) {
                                 ProfileName.setText(firstName + " " + lastName);
                             } else {
@@ -197,6 +191,7 @@ public class Profile extends AppCompatActivity {
         Intent intent = new Intent(this, Profile_Edit.class);
         startActivityForResult(intent, EDIT_PROFILE_REQUEST_CODE);
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -212,7 +207,9 @@ public class Profile extends AppCompatActivity {
                 ProfileName.setText(editedFirstName + " " + editedLastName);
             }
         }
+
     }
+
     private ActivityResultLauncher<Intent> editProfileLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {
@@ -227,7 +224,8 @@ public class Profile extends AppCompatActivity {
                 }
             }
     );
-    private void Achievements_Tab(){
+
+    private void Achievements_Tab() {
         Achievements_Tab.setChecked(true);
         Achievements_Tab.setTextColor(ContextCompat.getColor(this, R.color.green));
         AchievementsTab.setVisibility(View.VISIBLE);
@@ -241,7 +239,8 @@ public class Profile extends AppCompatActivity {
         dos.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
         tres.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
     }
-    private void MyBooking_Tab(){
+
+    private void MyBooking_Tab() {
         Achievements_Tab.setChecked(false);
         Achievements_Tab.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
         AchievementsTab.setVisibility(View.GONE);
@@ -257,7 +256,8 @@ public class Profile extends AppCompatActivity {
         tres.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
 
     }
-    private void History_Tab(){
+
+    private void History_Tab() {
         Achievements_Tab.setChecked(false);
         Achievements_Tab.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
         AchievementsTab.setVisibility(View.GONE);
