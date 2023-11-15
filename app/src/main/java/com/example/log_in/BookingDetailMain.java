@@ -13,7 +13,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
 
@@ -22,7 +21,7 @@ public class BookingDetailMain extends AppCompatActivity {
     ImageButton backbutton, reschedbtn, cancelbtn, refundbtn;
     TextView selectedTourText, totalText, selectedtouristsText, datetext;
     Dialog dialog;
-    FirebaseUser user;
+
     FirebaseAuth auth;
     private FirebaseFirestore db;
     public ListenerRegistration userDataListener;
@@ -47,6 +46,7 @@ public class BookingDetailMain extends AppCompatActivity {
         reschedbtn = findViewById(R.id.reschedbtn);
         cancelbtn = findViewById(R.id.cancelbtn);
         Donebut = findViewById(R.id.Donebut);
+
 
     // Initialize the dialog
     dialog = new Dialog(BookingDetailMain.this);
@@ -77,6 +77,11 @@ public class BookingDetailMain extends AppCompatActivity {
             startActivity(intent);
         });
 
+        // NAVIGATE TO PROFILE BUTTON
+        backbutton.setOnClickListener(v -> {
+            Intent intent = new Intent(BookingDetailMain.this,Profile.class);
+            startActivity(intent);
+        });
 
         //NAVIGATE TO BOOKING DETAILS FOR RESCHEDULE TOUR
         refundbtn.setOnClickListener(v -> {
@@ -108,7 +113,7 @@ public class BookingDetailMain extends AppCompatActivity {
                 .document(auth.getCurrentUser().getUid())
                 .addSnapshotListener((documentSnapshot, error) -> {
                     if (error != null) {
-                        Log.e("BookingDetailsMainSureActivity", "Error fetching user data: " + error.getMessage());
+                        Log.e("BookingDetailMainActivity", "Error fetching user data: " + error.getMessage());
                         return;
                     }
                     if (documentSnapshot != null && documentSnapshot.exists()) {

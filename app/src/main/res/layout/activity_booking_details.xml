@@ -91,7 +91,7 @@
         tools:ignore="TextSizeCheck" />
 
     <ImageButton
-        android:id="@+id/backbtn"
+        android:id="@+id/backkk"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="30dp"
@@ -107,6 +107,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/arrow_back" />
+
 
     <ImageButton
         android:id="@+id/chatbtn"
@@ -196,7 +197,7 @@
                 <TextView
                     android:id="@+id/Date"
                     android:layout_width="197dp"
-                    android:layout_height="43dp"
+                    android:layout_height="55dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="245dp"
                     android:fontFamily="@font/montserrat"
@@ -220,13 +221,13 @@
                     android:id="@+id/reschedcalendarbtn"
                     android:layout_width="162dp"
                     android:layout_height="40dp"
+                    android:layout_centerInParent="true"
                     android:layout_marginStart="210dp"
                     android:layout_marginTop="245dp"
                     android:background="@drawable/btntime"
                     android:clickable="true"
                     android:contextClickable="true"
                     android:elevation="10dp"
-                    android:layout_centerInParent="true"
                     android:longClickable="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -369,7 +370,6 @@
                     tools:ignore="MissingConstraints" />
 
 
-
                 <View
                     android:layout_width="wrap_content"
                     android:layout_height="1dp"
@@ -377,6 +377,7 @@
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="90dp"
                     android:background="@color/gray" />
+
                 <Button
                     android:id="@+id/btncancel"
                     android:layout_width="150dp"
