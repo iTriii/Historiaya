@@ -6,4 +6,565 @@
     android:layout_height="match_parent"
     tools:context=".TourismHead">
 
+
+
+    <ImageView
+        android:id="@+id/clouds"
+        android:layout_width="536dp"
+        android:layout_height="430dp"
+        android:layout_marginBottom="232dp"
+        android:contentDescription="@string/clouds"
+        app:layout_constraintBottom_toBottomOf="@+id/rizal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/cloud" />
+
+    <ImageView
+        android:id="@+id/rizal"
+        android:layout_width="420dp"
+        android:layout_height="452dp"
+        android:layout_marginTop="212dp"
+        android:contentDescription="@string/rizal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/newproject" />
+
+    <ImageView
+        android:id="@+id/grass"
+        android:layout_width="878dp"
+        android:layout_height="612dp"
+        android:layout_marginTop="300dp"
+        android:contentDescription="@string/grass"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/grass_1" />
+
+
+    <ImageView
+        android:id="@+id/twopips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="316dp"
+        android:contentDescription="@string/twopips"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/twopips" />
+
+    <ImageView
+        android:id="@+id/blurred"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha=".5"
+        android:contentDescription="TODO"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/rectangle" />
+
+
+    <TextView
+        android:id="@+id/pay"
+        android:layout_width="260dp"
+        android:layout_height="46dp"
+        android:fontFamily="@font/montserrat_alternates_extrabold"
+        android:shadowColor="#FFFDFD"
+        android:shadowDx="7"
+        android:shadowDy="-9"
+        android:shadowRadius="2"
+        android:text="Booking"
+        android:textAlignment="center"
+        android:textColor="#FEC242"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.042"
+        tools:ignore="TextSizeCheck" />
+
+    <ImageButton
+        android:id="@+id/notiftn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="45dp"
+        android:layout_marginTop="55dp"
+        android:background="@drawable/shadow"
+        android:clickable="true"
+        android:contentDescription="@string/BookNow"
+        android:contextClickable="true"
+        android:elevation="10dp"
+        android:longClickable="true"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.883"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_notif" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="383dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/SDate"
+                android:layout_width="175dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="95dp"
+                android:contentDescription="@string/txtview_for_select_date"
+                android:fontFamily="@font/inter_bold"
+                android:maxLines="2"
+                android:text="@string/select_date"
+                android:textAlignment="center"
+                android:textColor="@color/green"
+                android:textSize="23sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.11"
+                app:layout_constraintStart_toStartOf="@+id/blurred"
+                app:layout_constraintTop_toBottomOf="@+id/NumTourist"
+                app:layout_constraintVertical_bias="0.048" />
+
+            <CalendarView
+                android:id="@+id/Calendar"
+                style="@android:style/Widget.DeviceDefault.CalendarView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="-180dp"
+                android:layout_marginTop="135dp"
+                android:background="@drawable/bgcalendar"
+                android:clickable="true"
+                android:labelFor="@id/SDate"
+                android:maxDate="01/01/2025"
+                android:minDate="15/11/2023"
+                android:weekDayTextAppearance="@style/TextAppearance.AppCompat.Body2"
+                app:layout_constraintBottom_toBottomOf="@+id/rizal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.488"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/twopips"
+                app:layout_constraintVertical_bias="0.687" />
+
+            <Button
+                android:id="@+id/Editbtn"
+                android:layout_width="168dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="-250dp"
+                android:layout_marginTop="480dp"
+                android:width="226dp"
+                android:height="55dp"
+                android:background="@drawable/startbuttonbg"
+                android:clickable="true"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:longClickable="true"
+                android:text="EDIT CALENDAR"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
+                app:cardMaxElevation="70dp"
+                app:layout_constraintBottom_toBottomOf="@+id/blurred"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.631"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/cardView"
+                app:layout_constraintVertical_bias="1.0" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+    <RadioGroup
+        android:id="@+id/radioGroup2"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="530dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/Upcoming_Tab"
+            android:layout_width="125dp"
+            android:layout_height="match_parent"
+            android:button="@color/transparent"
+            android:background="@color/transparent"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="-5dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:checked="true"
+            android:gravity="center"
+            android:text="Upcoming"
+            android:textAlignment="center"
+            android:textColor="@color/green"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@+id/ProfileName"
+            tools:layout_editor_absoluteX="4dp"/>
+
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/History_tab"
+            android:layout_width="125dp"
+            android:layout_height="match_parent"
+            android:button="@color/transparent"
+            android:background="@color/transparent"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
+            android:text="History"
+            android:textAlignment="center"
+            android:checked="false"
+            android:textColor="@color/green"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="-10dp"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@+id/ProfileName"
+            tools:layout_editor_absoluteX="4dp"/>
+
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/Pending_Tab"
+            android:layout_width="125dp"
+            android:layout_height="50dp"
+            android:button="@color/transparent"
+            android:background="@color/transparent"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
+            android:checked="true"
+            android:layout_marginEnd="30dp"
+            android:text="@string/pending"
+            android:textAlignment="center"
+            android:textColor="@color/green"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@+id/ProfileName"
+            tools:layout_editor_absoluteX="4dp"/>
+    </RadioGroup>
+
+    <View
+        android:id="@+id/wan"
+        android:layout_width="120dp"
+        android:layout_height="3dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="565dp"
+        android:background="@color/green"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/to"
+        android:layout_width="120dp"
+        android:layout_height="3dp"
+        android:layout_marginTop="565dp"
+        android:background="@color/green"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        app:layout_constraintEnd_toStartOf="@+id/tre"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toEndOf="@+id/wan"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/tre"
+        android:layout_width="120dp"
+        android:layout_height="3dp"
+        android:layout_marginTop="565dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="5dp"
+        android:background="@color/green"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/Upcoming_ScrollView"
+        android:layout_width="382dp"
+        android:layout_height="149dp"
+        android:layout_marginTop="-40dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="137dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/MonthTourHeadText"
+                    android:layout_width="136dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="-90dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/november"
+                    android:textColor="#000000"
+                    android:textSize="19sp" />
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView"
+                    android:layout_width="341dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="20dp"
+                    android:foregroundGravity="fill"
+                    app:cardCornerRadius="@dimen/fab_margin"
+                    app:cardMaxElevation="70dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.555"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_bias="0.595"
+                    app:strokeWidth="4dp">
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="6dp"
+                        android:padding="5dp"
+                        android:background="@drawable/shadow"
+                        android:src="@drawable/don_catalino1" />
+
+                    <TextView
+                        android:id="@+id/BahayTourHeadText"
+                        android:layout_width="159dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="-20dp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/don_catalino_rodriguez_house"
+                        android:textColor="#000000"
+                        android:textSize="19sp" />
+
+                    <TextView
+                        android:id="@+id/ArawTourHeadText"
+                        android:layout_width="159dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/montserrat"
+                        android:text=" November 15, 2023"
+                        android:textColor="#000000"
+                        android:textSize="19sp" />
+
+
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+    <ScrollView
+        android:id="@+id/History_ScrollView"
+        android:layout_width="382dp"
+        android:layout_height="188dp"
+        android:layout_marginTop="-20dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="137dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/MontHistoText"
+                    android:layout_width="230dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="-50dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/november"
+                    android:textColor="#000000"
+                    android:textSize="19sp" />
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView1"
+                    android:layout_width="341dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="20dp"
+                    android:foregroundGravity="fill"
+                    app:cardCornerRadius="@dimen/fab_margin"
+                    app:cardMaxElevation="70dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.555"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_bias="0.595"
+                    app:strokeWidth="4dp">
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="6dp"
+                   android:padding="5dp"
+                        android:background="@drawable/shadow"
+                        android:src="@drawable/don_catalino1" />
+
+                    <TextView
+                        android:id="@+id/BahayHistoText"
+                        android:layout_width="159dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="-20dp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/don_catalino_rodriguez_house"
+                        android:textColor="#000000"
+                        android:textSize="19sp" />
+
+                    <TextView
+                        android:id="@+id/ArawHistoText"
+                        android:layout_width="159dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/montserrat"
+                        android:text=" November 15, 2023"
+                        android:textColor="#000000"
+                        android:textSize="19sp" />
+
+
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/Pending_ScrollView"
+        android:layout_width="382dp"
+        android:layout_height="188dp"
+        android:layout_marginTop="-20dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="137dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/PendingText"
+                    android:layout_width="230dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="-50dp"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:text="@string/november"
+                    android:textColor="#000000"
+                    android:textSize="19sp" />
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView2"
+                    android:layout_width="341dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="20dp"
+                    android:foregroundGravity="fill"
+                    app:cardCornerRadius="@dimen/fab_margin"
+                    app:cardMaxElevation="70dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.555"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintVertical_bias="0.595"
+                    app:strokeWidth="4dp">
+
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
+                        android:layout_marginLeft="6dp"
+                     android:padding="5dp"
+                        android:background="@drawable/shadow"
+                        android:src="@drawable/don_catalino1" />
+
+                    <TextView
+                        android:id="@+id/BahayPendingText"
+                        android:layout_width="159dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="-20dp"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/don_catalino_rodriguez_house"
+                        android:textColor="#000000"
+                        android:textSize="19sp" />
+
+                    <TextView
+                        android:id="@+id/ArawPendingText"
+                        android:layout_width="159dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="10dp"
+                        android:fontFamily="@font/montserrat"
+                        android:text=" November 15, 2023"
+                        android:textColor="#000000"
+                        android:textSize="19sp" />
+
+
+                </androidx.cardview.widget.CardView>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

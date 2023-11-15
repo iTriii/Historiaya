@@ -12,16 +12,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.ListenerRegistration;
 
 public class RefundUserCopy extends AppCompatActivity {
 
     private FirebaseFirestore db;
-    TextView pickhouseRefText, detailsclickRef,nameRefText, OptionText, AmountRefText;
-    Button withdrawbtn, backbutton;
-    ImageButton backbuttonRef;
-    private Object userDataListener;
-    FirebaseUser user;
-    FirebaseAuth auth;
+    private TextView pickhouseRefText, nameRefText, AmountRefText;
+    private Button Dbtn, backbutton;
+    private ImageButton backbuttonRef;
+    private TextView detailsclickRef, OptionText,ReasonRefText;  // Add OptionText
+    private ListenerRegistration userDataListener;
+    private FirebaseUser user;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,11 +32,11 @@ public class RefundUserCopy extends AppCompatActivity {
 
         pickhouseRefText = findViewById(R.id.pickhouseRefText);
         nameRefText = findViewById(R.id.nameRefText);
-        withdrawbtn = findViewById(R.id.withdrawbtn);
+        Dbtn = findViewById(R.id.Dbtn);
         AmountRefText = findViewById(R.id.AmountRefText);
-        backbuttonRef=findViewById(R.id.backbuttonRef);
-        detailsclickRef=findViewById(R.id.detailsclickRef);
-
+        backbuttonRef = findViewById(R.id.backbuttonRef);
+        detailsclickRef = findViewById(R.id.detailsclickRef);
+        ReasonRefText = findViewById(R.id.ReasonRefText);
 
         // Initialize Firebase Authentication
         auth = FirebaseAuth.getInstance();
@@ -42,25 +44,20 @@ public class RefundUserCopy extends AppCompatActivity {
         user = auth.getCurrentUser();
 
         // NAVIGATE TO Main2
-        withdrawbtn.setOnClickListener(v -> {
+        Dbtn.setOnClickListener(v -> {
             Intent intent = new Intent(RefundUserCopy.this, Main2.class);
             startActivity(intent);
         });
-
 
         detailsclickRef.setOnClickListener(v -> {
             Intent intent = new Intent(RefundUserCopy.this, Profile.class);
             startActivity(intent);
         });
 
-
-        backbutton.setOnClickListener(v -> {
-            Intent intent = new Intent(RefundUserCopy.this,Profile.class);
+        backbuttonRef.setOnClickListener(v -> {
+            Intent intent = new Intent(RefundUserCopy.this, Profile.class);
             startActivity(intent);
         });
-
-
-
 
         // Retrieve and display data from Firestore
         retrieveDataFromFirestore();
@@ -78,12 +75,12 @@ public class RefundUserCopy extends AppCompatActivity {
                     if (documentSnapshot.exists()) {
                         try {
                             String selectedTour = documentSnapshot.getString("selectedTour");
-                            String selectedOption = documentSnapshot.getString("selectedOption");
+                            String selectedOption = documentSnapshot.getString("selectedRefundOption");
                             String E_mail = documentSnapshot.getString("Email");
                             double total = documentSnapshot.getDouble("totalAmount");
 
                             // TextViews with the retrieved data
-                            if ( AmountRefText != null) {
+                            if (AmountRefText != null) {
                                 AmountRefText.setText(String.format("₱%.2f", total));
                             }
                             if (pickhouseRefText != null) {
@@ -91,6 +88,9 @@ public class RefundUserCopy extends AppCompatActivity {
                             }
                             if (nameRefText != null) {
                                 nameRefText.setText(E_mail);
+                            }
+                            if (ReasonRefText != null){
+                                ReasonRefText.setText(selectedOption);
                             }
                         } catch (Exception e) {
                             Log.e("RefundUserCopy", "Error in retrieveDataFromFirestore: " + e.getMessage());
@@ -105,7 +105,7 @@ public class RefundUserCopy extends AppCompatActivity {
         // Remove the Firestore snapshot listener when the activity is destroyed
         if (userDataListener != null) {
             // Remove the listener
-            userDataListener = null;
+            userDataListener.remove();
         }
     }
 }

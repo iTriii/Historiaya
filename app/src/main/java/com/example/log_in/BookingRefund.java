@@ -69,7 +69,7 @@ public class BookingRefund extends AppCompatActivity {
 
         Button confirmDialogbtn = dialog.findViewById(R.id.confirmDialogbtn);
         confirmDialogbtn.setOnClickListener(v -> {
-            Intent confirmIntent = new Intent(BookingRefund.this, Main2.class);
+            Intent confirmIntent = new Intent(BookingRefund.this, RefundUserCopy.class);
             startActivity(confirmIntent);
             Toast.makeText(BookingRefund.this, "Confirm Refund, please wait for approval", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
@@ -78,6 +78,7 @@ public class BookingRefund extends AppCompatActivity {
         // SUBMIT BUTTON
         btnsub.setOnClickListener(v -> {
             dialog.show();
+            //SAVE TO THE FIRESTORE
             saveOptionToFirestore();
         });
 

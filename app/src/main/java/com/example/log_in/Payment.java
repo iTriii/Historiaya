@@ -122,7 +122,7 @@ public class Payment extends AppCompatActivity {
 
     private void saveUserDataToFirestore(String imageUrl) {
         String userId = mAuth.getCurrentUser().getUid();
-        DocumentReference userDocRef = db.collection("users").document(userId).collection("proofOfPayment").document();
+        DocumentReference userDocRef = db.collection("users").document(userId).collection("proofOfPayment").document(); //CREATE A SUB COLLECTION FOR USER
 
         userDocRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
