@@ -72,7 +72,7 @@
 
 
     <TextView
-        android:id="@+id/pay"
+        android:id="@+id/TITLEBOOKING"
         android:layout_width="260dp"
         android:layout_height="46dp"
         android:fontFamily="@font/montserrat_alternates_extrabold"
@@ -124,7 +124,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/SDate"
+                android:id="@+id/SDateTourism"
                 android:layout_width="175dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="20dp"
@@ -144,7 +144,7 @@
                 app:layout_constraintVertical_bias="0.048" />
 
             <CalendarView
-                android:id="@+id/Calendar"
+                android:id="@+id/CalendarTourismHead"
                 style="@android:style/Widget.DeviceDefault.CalendarView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -164,7 +164,7 @@
                 app:layout_constraintVertical_bias="0.687" />
 
             <Button
-                android:id="@+id/Editbtn"
+                android:id="@+id/EditbtnTH"
                 android:layout_width="168dp"
                 android:layout_height="45dp"
                 android:layout_marginLeft="-250dp"

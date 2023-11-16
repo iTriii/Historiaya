@@ -71,7 +71,9 @@ public class PaymentDetails extends AppCompatActivity {
 
     }
 
-    private void Gala_Radio() {
+
+
+    private void DonCat_Radio() {
         DonCat_Radio.setChecked(true);
         DonCat_Radio.setTextColor(ContextCompat.getColor(this, R.color.green));
         ScrollViewDonCata.setVisibility(View.VISIBLE);
@@ -82,15 +84,14 @@ public class PaymentDetails extends AppCompatActivity {
         linetwo.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
     }
 
-    private void DonCat_Radio() {
-        DonCat_Radio.setChecked(true);
-        DonCat_Radio.setTextColor(ContextCompat.getColor(this, R.color.green));
+    private void  Gala_Radio() {
+        DonCat_Radio.setChecked(false);
+        DonCat_Radio.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
         ScrollViewDonCata.setVisibility(View.GONE);
-        Gala_Radio.setChecked(false);
-        Gala_Radio.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
+        Gala_Radio.setChecked(true);
+        Gala_Radio.setTextColor(ContextCompat.getColor(this, R.color.green));
         ScrollViewGalaRod.setVisibility(View.VISIBLE);
-        lineone.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
-        linetwo.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
+        lineone.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
+        linetwo.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
     }
-
 }

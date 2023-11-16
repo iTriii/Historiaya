@@ -1,8 +1,10 @@
 package com.example.log_in;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -23,7 +25,9 @@ public class TourismHead extends AppCompatActivity {
     TextView MonthTourHeadText,ArawTourHeadText,BahayTourHeadText;
     FirebaseUser user;
     FirebaseAuth auth;
+    Button EditbtnTH;
     FirebaseFirestore db;
+
     private ListenerRegistration userDataListener;
 
 
@@ -32,12 +36,19 @@ public class TourismHead extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tourism_head);
 
-        MonthTourHeadText.findViewById(R.id.MonthTourHeadText);
-        BahayTourHeadText.findViewById(R.id.BahayTourHeadText);
-        ArawTourHeadText.findViewById(R.id.ArawTourHeadText);
-        wan.findViewById(R.id.wan);
-        to.findViewById(R.id.to);
-        tre.findViewById(R.id.tre);
+        MonthTourHeadText = findViewById(R.id.MonthTourHeadText);
+        BahayTourHeadText = findViewById(R.id.BahayTourHeadText);
+        ArawTourHeadText = findViewById(R.id.ArawTourHeadText);
+        wan = findViewById(R.id.wan);
+        to = findViewById(R.id.to);
+        tre = findViewById(R.id.tre);
+        EditbtnTH = findViewById(R.id.EditbtnTH);
+
+
+        // Initialize Firebase Authentication
+        auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        user = auth.getCurrentUser();
 
         Upcoming_ScrollView = findViewById(R.id.Upcoming_ScrollView);
         Upcoming_Tab = findViewById(R.id.Upcoming_Tab);
@@ -49,23 +60,23 @@ public class TourismHead extends AppCompatActivity {
         Pending_Tab = findViewById(R.id.Pending_Tab);
         Pending_Tab.setOnClickListener(v -> Pending_Tab());
 
-
-        // Initialize Firebase Authentication
-        auth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
-        user = auth.getCurrentUser();
-
-
         if (user != null) {
             // Fetch and display user data from Firestore
             try {
                 fetchAndDisplayUserData();
             } catch (Exception e) {
-                Log.e("ReceptionistActivity", "Error in fetchAndDisplayUserData: " + e.getMessage());
+                Log.e("TourismHeadActivity", "Error in fetchAndDisplayUserData: " + e.getMessage());
             }
         } else {
             finish();
         }
+    }
+
+
+    public void main2() {
+        Intent intent = new Intent(this, Main2.class);
+        startActivity(intent);
+        overridePendingTransition(com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_in_left, com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_out_right);
     }
 
     private void fetchAndDisplayUserData() {
@@ -73,7 +84,7 @@ public class TourismHead extends AppCompatActivity {
                 .document(user.getUid())
                 .addSnapshotListener((documentSnapshot, error) -> {
                     if (error != null) {
-                        Log.e("ProfileActivity", "Error fetching user data: " + error.getMessage());
+                        Log.e("TourismHead", "Error fetching user data: " + error.getMessage());
                         return;
                     }
 
@@ -96,7 +107,7 @@ public class TourismHead extends AppCompatActivity {
                                 BahayTourHeadText.setText(selectedTour);
                             }
                         } catch (Exception e) {
-                            Log.e("ProfileActivity", "Error in fetchAndDisplayUserData: " + e.getMessage());
+                            Log.e("TourismHead", "Error in fetchAndDisplayUserData: " + e.getMessage());
 
                         }
 
@@ -156,6 +167,8 @@ public class TourismHead extends AppCompatActivity {
         tre.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
     }
 
-}
+    }
+
+
 
 

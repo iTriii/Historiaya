@@ -396,7 +396,7 @@
         android:layout_width="350dp"
         android:layout_height="430dp"
         android:layout_marginTop="-15dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
@@ -476,6 +476,20 @@
                         android:textSize="10sp"
                         tools:ignore="SmallSp" />
 
+                    <Button
+                        android:id="@+id/adminView"
+                        android:layout_width="90dp"
+                        android:layout_height="28dp"
+                        android:layout_marginStart="250dp"
+                        android:layout_marginTop="60dp"
+                        android:clickable="true"
+                        android:background="@drawable/ongoing"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="ADMINBUTTONS"
+                        android:textAlignment="center"
+                        android:textColor="@color/GREEN"
+                        android:textSize="10sp"
+                        tools:ignore="SmallSp" />
 
                 </androidx.cardview.widget.CardView>
             </LinearLayout>

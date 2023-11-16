@@ -21,6 +21,7 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.ParseException;
@@ -88,7 +89,11 @@ public class BookNow extends AppCompatActivity {
         setupButtonClickListener();
         initializeAvailableTimes();
         createTimeButtons();
+
+        // Check for past or done tours when the app is launched
+       // checkAndMoveToHistory();
     }
+
 
 
     private void setupSpinners() {
@@ -198,7 +203,7 @@ public class BookNow extends AppCompatActivity {
                 double serviceCharge = calculateServiceCharge(selectedTour);
                 double tourPrice = calculateTourPrice(selectedTour);
                 double subtotal = calculateSubtotal(selectedTour);
-                double total = calculateTotal(rfTourGuide, serviceCharge, subtotal);
+                double total = calculateTotal(rfTourGuide, serviceCharge, String.valueOf(subtotal));
 
 // Set the text of the Subtotal TextView
                 Subtotal.setText(String.format(" ₱%.2f", subtotal));
@@ -243,11 +248,12 @@ public class BookNow extends AppCompatActivity {
     }
 
     //calculation starts here
-    private double calculateTotal(double rfTourGuide, double serviceCharge, double subtotal) {
-        double total = 0.0;
-        total = subtotal + rfTourGuide + serviceCharge;
+    private double calculateTotal(double rfTourGuide, double serviceCharge, String selectedTour) {
+        double subtotal = calculateSubtotal(selectedTour);
+        double total = subtotal + rfTourGuide + serviceCharge;
         return total;
     }
+
 
     double calculateSubtotal(String selectedTour) {
         double subtotal = 0.0;
@@ -260,6 +266,8 @@ public class BookNow extends AppCompatActivity {
                 break;
             case "Both":
                 subtotal = 1500.0;
+                break;
+            default:
                 break;
         }
 
@@ -347,13 +355,21 @@ public class BookNow extends AppCompatActivity {
         });
     }
 
+    private void moveToHistory(String userId, String selectedTour, String reservedDate) {
 
-    private boolean isTourDone(String reservedDate) {
+    }
+
+
+    private boolean isTourDone(String reservedDateStr) {
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat(" MMM d, yyyy", Locale.getDefault());
+            SimpleDateFormat sdf = new SimpleDateFormat("MMM d, yyyy", Locale.getDefault());
+
             // Get the current date
-            Date currentDate = new Date();
-            Date tourDate = sdf.parse(reservedDate);
+            Date currentDate = Calendar.getInstance().getTime();
+
+            // Parse the reserved date string
+            Date tourDate = sdf.parse(reservedDateStr);
+
             // Compare the dates
             return currentDate.after(tourDate);
         } catch (ParseException e) {
@@ -362,41 +378,21 @@ public class BookNow extends AppCompatActivity {
         }
     }
 
+    private void moveToHistory(String userId, String selectedTour, String reservedDate, DocumentSnapshot documentSnapshot) {
+        // Get a reference to the "history" collection
+        CollectionReference historyCollection = db.collection("history");
 
-    private void moveToHistory(String userId, String selectedTour, String reservedDate) {
-        // Get a reference to the current user's document
-        DocumentReference userDocRef = db.collection("users").document(userId);
-
-        // Get the data from the current user's document
-        userDocRef.get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                // Get the data from the current document
-                Map<String, Object> bookingData = task.getResult().getData();
-
-                // Check if the tour is done
-                if (isTourDone(reservedDate)) {
-                    CollectionReference historyCollection = db.collection("history");
-
-                    // Add the booking data to the history collection
-                    historyCollection.add(bookingData).addOnSuccessListener(documentReference -> {
-                        // Remove the booking data from the current user's document
-                        userDocRef.delete().addOnSuccessListener(aVoid -> {
-                            Toast.makeText(getApplicationContext(), "Booking moved to history", Toast.LENGTH_SHORT).show();
-                        }).addOnFailureListener(exception -> {
-                            Toast.makeText(getApplicationContext(), "Failed to delete booking: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
-                        });
-                    }).addOnFailureListener(exception -> {
-                        Toast.makeText(getApplicationContext(), "Failed to move booking to history: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
-                    });
-                } else {
-                    // The tour is not yet done
-                    Toast.makeText(getApplicationContext(), "Tour is not yet done", Toast.LENGTH_SHORT).show();
-                }
-            } else {
-                Toast.makeText(getApplicationContext(), "Failed to retrieve booking data: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-            }
+        // Add the booking data to the "history" collection
+        historyCollection.add(documentSnapshot.getData()).addOnSuccessListener(documentReference -> {
+            // Remove the booking data from the current user's document
+            db.collection("users").document(userId).delete().addOnSuccessListener(aVoid -> {
+                Toast.makeText(getApplicationContext(), "Booking moved to history", Toast.LENGTH_SHORT).show();
+            }).addOnFailureListener(exception -> {
+                Toast.makeText(getApplicationContext(), "Failed to delete booking: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+            });
+        }).addOnFailureListener(exception -> {
+            Toast.makeText(getApplicationContext(), "Failed to move booking to history: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
         });
-
     }
 
     // Method to initialize available times
@@ -421,23 +417,9 @@ public class BookNow extends AppCompatActivity {
             // Time is available, mark it as reserved
             availableTimes.remove(selectedTime);
             Toast.makeText(getApplicationContext(), "Time reserved: " + selectedTime, Toast.LENGTH_SHORT).show();
-
-            // Disable all time buttons to prevent further selection
-       //     disableAllTimeButtons();
         } else {
             // Time is already reserved, notify the user or handle accordingly
             Toast.makeText(getApplicationContext(), "Time not available: " + selectedTime, Toast.LENGTH_SHORT).show();
         }
     }
-
-    // Method to disable all time buttons
-   // private void disableAllTimeButtons() {
-     //   LinearLayout timeButtonContainer = findViewById(R.id.timeButtonContainer);
-   //     for (int i = 0; i < timeButtonContainer.getChildCount(); i++) {
-      //      View child = timeButtonContainer.getChildAt(i);
-     //       if (child instanceof Button) {
-     //           ((Button) child).setEnabled(false);
-    //        }
-        //}
-  //  }
 }

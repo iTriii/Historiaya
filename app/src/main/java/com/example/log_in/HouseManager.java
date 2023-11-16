@@ -38,9 +38,9 @@ Calendar CalendarHouseManager;
         setContentView(R.layout.activity_house_manager);
 
 
-        MonthHouseManagerText.findViewById(R.id.MonthHouseManagerText);
-        BahayHouseManagerText.findViewById(R.id.BahayHouseManagerText);
-        ArawHouseManagerText.findViewById(R.id.ArawHouseManagerText);
+        MonthHouseManagerText = findViewById(R.id.MonthHouseManagerText);
+        BahayHouseManagerText= findViewById(R.id.BahayHouseManagerText);
+        ArawHouseManagerText = findViewById(R.id.ArawHouseManagerText);
 
         EditHousebtn.findViewById(R.id.EditHousebtn);
 

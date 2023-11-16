@@ -180,7 +180,7 @@
                     android:id="@+id/cardviewDonCata"
                     android:layout_width="270dp"
                     android:layout_height="321dp"
-                    android:layout_marginLeft="60dp"
+                    android:layout_marginLeft="65dp"
                     android:layout_marginTop="60dp"
                     android:backgroundTint="@color/green3"
                     android:foregroundGravity="center_vertical">
@@ -224,7 +224,7 @@
                     android:shadowDx="2"
                     android:shadowDy="-2"
                     android:shadowRadius="2"
-                    android:text="Dear Tourists Scan this QR for payment in Gala Rodriguez house "
+                    android:text="Dear Tourists Scan this QR for payment in Don Catalino house "
                     android:textColor="#FEC242"
                     android:textSize="20sp" />
 
@@ -318,7 +318,7 @@
                 android:shadowDx="2"
                 android:shadowDy="-2"
                 android:shadowRadius="2"
-                android:text="Dear Tourists: Scan this QR for payment in DonCatalino House "
+                android:text="Dear Tourists: Scan this QR for payment in Gala Rodriguez House "
                 android:textColor="#FEC242"
                 android:textSize="20sp" />
 
