@@ -1,5 +1,6 @@
 package com.example.log_in;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -32,7 +33,7 @@ import java.util.TimerTask;
 public class Profile extends AppCompatActivity {
     ImageButton back, EditProfile;
     ShapeableImageView icon;
-    TextView ProfileName, selectedTourText, MonthText, DateText; // Adjusted the order
+    TextView ProfileName, selectedTourText, MonthText, DateText, MonthTextt, selectedTourTextt,DateHisto, UpdatingtheTouristText; // Adjusted the order
     FirebaseUser user;
     FirebaseAuth auth;
     RadioButton Achievements_Tab, MyBooking_Tab, History_Tab;
@@ -44,7 +45,7 @@ public class Profile extends AppCompatActivity {
     public ListenerRegistration userDataListener;
     private static final int EDIT_PROFILE_REQUEST_CODE = 1;
 
-    Button upcomingbtn;
+    Button upcomingbtn,adminView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,13 @@ public class Profile extends AppCompatActivity {
         MonthText = findViewById(R.id.MonthText);
         selectedTourText = findViewById(R.id.selectedTourText);
         DateText = findViewById(R.id.DateText);
+        MonthTextt = findViewById(R.id.MonthTextt);
+        selectedTourTextt = findViewById(R.id.selectedTourTextt);
+        DateHisto = findViewById(R.id.DateHisto);
+        adminView = findViewById(R.id.adminView);
+        UpdatingtheTouristText = findViewById(R.id.UpdatingtheTouristText);
+
+
 
         prog();
 
@@ -86,6 +94,18 @@ public class Profile extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         user = auth.getCurrentUser();
+
+
+
+
+
+//try
+
+        adminView.setOnClickListener(view -> {
+            Intent intent = new Intent(Profile.this, adminsTry.class);
+            startActivity(intent);
+        });
+
 
         upcomingbtn.setOnClickListener(view -> {
             Intent intent = new Intent(Profile.this, BookingDetailMain.class);
@@ -144,9 +164,27 @@ public class Profile extends AppCompatActivity {
                             String reservedDate = documentSnapshot.getString("reservedDate");
                                 //TextViews with the retrieved data
                                 MonthText.setText(reservedDate);
-                                if (selectedTourText != null) {
-                                    selectedTourText.setText(selectedTour);
+                                if (MonthText != null) {
+                                    MonthText.setText(reservedDate);
                                 }
+                            MonthTextt.setText(reservedDate);
+                            if (MonthTextt != null) {
+                                MonthTextt.setText(reservedDate);
+                            }
+                            selectedTourTextt.setText(selectedTour);
+                            if(selectedTourTextt !=null){
+                                selectedTourTextt.setText(selectedTour);
+                            }
+                            selectedTourText.setText(selectedTour);
+                            if (selectedTourText != null){
+                                selectedTourText.setText(selectedTour);
+                            }
+                                // Update reservation status in the UI
+                                if (UpdatingtheTouristText != null) {
+                                    UpdatingtheTouristText.setText("Approved");
+                                }
+                                //ADD AS LONG AS MAY IAADD
+
                             if (firstName != null && lastName != null) {
                                 ProfileName.setText(firstName + " " + lastName);
                             } else {
@@ -166,7 +204,7 @@ public class Profile extends AppCompatActivity {
                         }
                     }
                 });
-    }
+            }
 
     @Override
     protected void onDestroy() {
@@ -186,6 +224,8 @@ public class Profile extends AppCompatActivity {
         startActivity(intent);
         overridePendingTransition(com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_in_left, com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_out_right);
     }
+
+
 
     public void Profile_Edit() {
         Intent intent = new Intent(this, Profile_Edit.class);
@@ -210,6 +250,7 @@ public class Profile extends AppCompatActivity {
 
     }
 
+    @SuppressLint("SetTextI18n")
     private ActivityResultLauncher<Intent> editProfileLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> {

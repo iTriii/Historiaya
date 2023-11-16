@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
@@ -22,12 +24,13 @@ public class TourismHead extends AppCompatActivity {
     RadioButton Upcoming_Tab, History_tab, Pending_Tab;
     ScrollView Upcoming_ScrollView, History_ScrollView, Pending_ScrollView;
     View wan, to, tre;
-    TextView MonthTourHeadText,ArawTourHeadText,BahayTourHeadText;
+    TextView MonthTourHeadText, ArawTourHeadText, BahayTourHeadText, MontHistoText, BahayHistoText, ArawHistoText, PendingMonthText, BahayPendingText, ArawPendingText, bookebyNamePending, TotalNumberPending, SelectedHousePending;
     FirebaseUser user;
     FirebaseAuth auth;
-    Button EditbtnTH;
+    Button EditbtnTH, approvedbtn;
     FirebaseFirestore db;
-
+    ImageView profileImagaPEnding;
+    ImageButton backbutton, notifbtn;
     private ListenerRegistration userDataListener;
 
 
@@ -60,6 +63,7 @@ public class TourismHead extends AppCompatActivity {
         Pending_Tab = findViewById(R.id.Pending_Tab);
         Pending_Tab.setOnClickListener(v -> Pending_Tab());
 
+
         if (user != null) {
             // Fetch and display user data from Firestore
             try {
@@ -90,10 +94,13 @@ public class TourismHead extends AppCompatActivity {
 
                     if (documentSnapshot.exists()) {
                         try {
-
-                            String selectedTour = documentSnapshot.getString("selectedTour");// display data in texview
+                            // Fetch data from Firestore
                             String reservedDate = documentSnapshot.getString("reservedDate");
-                            //TextViews with the retrieved data
+                            String selectedTour = documentSnapshot.getString("selectedTour");
+                            String E_mail = documentSnapshot.getString("Email");
+                            String selectedTouristNumStr = documentSnapshot.getString("selectedTouristNum");
+
+                            // Update TextViews with the retrieved data
                             MonthTourHeadText.setText(reservedDate);
                             if (MonthTourHeadText != null) {
                                 MonthTourHeadText.setText(reservedDate);
@@ -103,9 +110,13 @@ public class TourismHead extends AppCompatActivity {
                                 ArawTourHeadText.setText(reservedDate);
                             }
                             BahayTourHeadText.setText(selectedTour);
-                            if (BahayTourHeadText != null) {
-                                BahayTourHeadText.setText(selectedTour);
-                            }
+                            PendingMonthText.setText(reservedDate);
+                            bookebyNamePending.setText(E_mail);
+                            BahayPendingText.setText(selectedTour);
+                            ArawPendingText.setText(reservedDate);
+                            TotalNumberPending.setText(selectedTouristNumStr);
+                            SelectedHousePending.setText(selectedTour);
+
                         } catch (Exception e) {
                             Log.e("TourismHead", "Error in fetchAndDisplayUserData: " + e.getMessage());
 

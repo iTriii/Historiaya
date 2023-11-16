@@ -93,7 +93,25 @@
         tools:ignore="TextSizeCheck" />
 
     <ImageButton
-        android:id="@+id/notiftn"
+        android:id="@+id/backbutton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/shadow"
+        android:clickable="true"
+        android:contentDescription="@string/BookNow"
+        android:contextClickable="true"
+        android:elevation="10dp"
+        android:longClickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/arrow_back" />
+
+    <ImageButton
+        android:id="@+id/notifbtn"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="45dp"
@@ -300,7 +318,7 @@
         android:layout_width="382dp"
         android:layout_height="149dp"
         android:layout_marginTop="-40dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
@@ -324,7 +342,6 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="-90dp"
                     android:fontFamily="@font/montserrat_bold"
-                    android:text="@string/november"
                     android:textColor="#000000"
                     android:textSize="19sp" />
 
@@ -361,7 +378,6 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="-20dp"
                         android:fontFamily="@font/montserrat_bold"
-                        android:text="@string/don_catalino_rodriguez_house"
                         android:textColor="#000000"
                         android:textSize="19sp" />
 
@@ -373,7 +389,6 @@
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="10dp"
                         android:fontFamily="@font/montserrat"
-                        android:text=" November 15, 2023"
                         android:textColor="#000000"
                         android:textSize="19sp" />
 
@@ -446,15 +461,15 @@
 
                     <TextView
                         android:id="@+id/BahayHistoText"
-                        android:layout_width="159dp"
-                        android:layout_height="30dp"
+                        android:layout_width="214dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginLeft="40dp"
                         android:layout_marginTop="-20dp"
                         android:fontFamily="@font/montserrat_bold"
                         android:text="@string/don_catalino_rodriguez_house"
                         android:textColor="#000000"
-                        android:textSize="19sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/ArawHistoText"
@@ -462,11 +477,11 @@
                         android:layout_height="30dp"
                         android:layout_gravity="center"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         android:fontFamily="@font/montserrat"
                         android:text=" November 15, 2023"
                         android:textColor="#000000"
-                        android:textSize="19sp" />
+                        android:textSize="16sp" />
 
 
                 </androidx.cardview.widget.CardView>
@@ -481,7 +496,7 @@
         android:layout_width="382dp"
         android:layout_height="188dp"
         android:layout_marginTop="-20dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
@@ -495,11 +510,11 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="137dp"
+                android:layout_height="340dp"
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/PendingText"
+                    android:id="@+id/PendingMonthText"
                     android:layout_width="230dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
@@ -513,7 +528,7 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/cardView2"
                     android:layout_width="341dp"
-                    android:layout_height="100dp"
+                    android:layout_height="280dp"
                     android:layout_marginLeft="20dp"
                     android:foregroundGravity="fill"
                     app:cardCornerRadius="@dimen/fab_margin"
@@ -528,35 +543,131 @@
                     <ImageView
                         android:id="@+id/imageView5"
                         android:layout_width="100dp"
-                        android:layout_height="100dp"
+                        android:layout_height="107dp"
                         android:layout_marginLeft="6dp"
-                     android:padding="5dp"
+                        android:layout_marginTop="30dp"
                         android:background="@drawable/shadow"
+                        android:padding="5dp"
                         android:src="@drawable/don_catalino1" />
 
                     <TextView
                         android:id="@+id/BahayPendingText"
-                        android:layout_width="159dp"
-                        android:layout_height="30dp"
+                        android:layout_width="152dp"
+                        android:layout_height="40dp"
                         android:layout_gravity="center"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginTop="-20dp"
+                        android:layout_marginTop="-70dp"
                         android:fontFamily="@font/montserrat_bold"
                         android:text="@string/don_catalino_rodriguez_house"
                         android:textColor="#000000"
-                        android:textSize="19sp" />
+                        android:textSize="16sp" />
 
                     <TextView
                         android:id="@+id/ArawPendingText"
                         android:layout_width="159dp"
-                        android:layout_height="30dp"
+                        android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="-20dp"
                         android:fontFamily="@font/montserrat"
                         android:text=" November 15, 2023"
                         android:textColor="#000000"
-                        android:textSize="19sp" />
+                        android:textSize="15sp" />
+
+                    <Button
+                        android:id="@+id/approvedbtn"
+                        android:layout_width="85dp"
+                        android:layout_height="28dp"
+                        android:layout_marginStart="250dp"
+                        android:layout_marginTop="11dp"
+                        android:background="@drawable/ongoing"
+                        android:clickable="true"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="Approve"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="10sp"
+                        tools:ignore="SmallSp" />
+
+                    <ImageView
+                        android:id="@+id/profileImagaPEnding"
+                        android:layout_width="100dp"
+                        android:layout_height="117dp"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginTop="135dp"
+                        android:background="@drawable/shadow"
+                        android:padding="5dp"
+                        android:src="@drawable/don_catalino1" />
+
+
+                    <TextView
+                        android:id="@+id/bookeby"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="-20dp"
+                        android:layout_marginTop="50dp"
+                        android:fontFamily="@font/montserrat"
+                        android:text=" Booked By: "
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/bookebyNamePending"
+                        android:layout_width="134dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="95dp"
+                        android:layout_marginTop="50dp"
+                        android:fontFamily="@font/montserrat"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="-20dp"
+                        android:layout_marginTop="80dp"
+                        android:fontFamily="@font/montserrat"
+                        android:text=" # of tourists: "
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/TotalNumberPending"
+                        android:layout_width="134dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="95dp"
+                        android:layout_marginTop="80dp"
+                        android:fontFamily="@font/montserrat"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/housePending"
+                        android:layout_width="79dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="-20dp"
+                        android:layout_marginTop="105dp"
+                        android:fontFamily="@font/montserrat"
+                        android:text=" Hosue:"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
+
+                    <TextView
+                        android:id="@+id/SelectedHousePending"
+                        android:layout_width="134dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="95dp"
+                        android:layout_marginTop="110dp"
+                        android:fontFamily="@font/montserrat"
+                        android:textColor="#000000"
+                        android:textSize="15sp" />
 
 
                 </androidx.cardview.widget.CardView>
