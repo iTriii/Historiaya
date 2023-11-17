@@ -34,7 +34,7 @@ public class Receptionist extends AppCompatActivity {
         setContentView(R.layout.activity_receptionist);
 
         BahayRecepText2 = findViewById(R.id.BahayRecepText2);
-        ArawRecepText = findViewById(R.id.ArawText);
+    //    ArawRecepText = findViewById(R.id.ArawText);
         MonthRecepText = findViewById(R.id.MonthText);
         wanRecep = findViewById(R.id.wanRecep);
         toRecep = findViewById(R.id.toRecep);
@@ -66,7 +66,7 @@ public class Receptionist extends AppCompatActivity {
         }
     }
 
-    private void UpcomingRecep_Tab() {
+    private void HistoryRecep_tab() {
         UpcomingRecep_Tab.setChecked(true);
         UpcomingRecep_Tab.setTextColor(ContextCompat.getColor(this, R.color.green));
         UpcomingRecep_ScrollView.setVisibility(View.VISIBLE);
@@ -77,7 +77,7 @@ public class Receptionist extends AppCompatActivity {
         toRecep.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
     }
 
-    private void HistoryRecep_tab() {
+    private void UpcomingRecep_Tab() {
         UpcomingRecep_Tab.setChecked(false);
         UpcomingRecep_Tab.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
         UpcomingRecep_ScrollView.setVisibility(View.GONE);

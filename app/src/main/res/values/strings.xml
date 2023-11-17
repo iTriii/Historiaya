@@ -300,8 +300,8 @@
     <string name="review_the_name_and_amount_carefully_before_sending">Review the name and amount carefully before sending.</string>
     <string name="send_the_proof_of_payment_trough_chat">Send the proof of payment trough chat.</string>
     <string name="servicecharge">Service Charge</string>
-    <string name="gala_rodriguez">Gala Rodriguez</string>
-    <string name="don_catalino">Don Catalino</string>
+    <string name="galarodriguez">Gala Rodriguez</string>
+    <string name="doncatalino">Don Catalino</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -398,7 +398,7 @@
     <!-- CANCELATION -->
     <string name="cancellation_details">Cancellation Details</string>
     <string name="you_will_not_be_able_to_cancel_this_booking_again_once_you_withdraw_this_request_confirm_to_withdraw_your_cancellation_request">You will not be able to cancel this booking again once you withdraw this request.Confirm to withdraw your cancellation request?</string>
-    <string name="cancelation_details">Cancelation Details</string>
+    <string name="cancelation_details">Cancellation Details</string>
     <string name="waiting_for_admin_to_respond">Waiting for admin to respond</string>
     <string name="withdraw_request">Withdraw Request</string>
 
@@ -407,6 +407,23 @@
     <string name="what_do_you_want_to_change">What do you want to change?</string>
     <string name="change_your_booking">Change your Booking</string>
     <string name="date">Select Date</string>
+    <string name="up_coming">Up Coming</string>
+    <string name="notice">Please wait for confirmation from the admin. Thank you for your understanding.</string>
+    <string name="don_catalino_rodriguez_house">Don Catalino Rodriguez House</string>
+    <string name="november">November</string>
+    <string name="pending">Pending</string>
 
+    <!--refund reason-->
+    <string-array name="refund_options">
+        <item>Change of plans</item>
+        <item>Wrong booking details</item>
+        <item>Double booking</item>
+        <item>Other</item>
+    </string-array>
+
+    <!-- RESCHED  USER DETAILS ACTIVITY -->
+
+
+    <!-- RECEPTIONIST  ACTIVITY -->
 
 </resources>
