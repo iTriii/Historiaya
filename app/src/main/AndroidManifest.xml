@@ -67,9 +67,7 @@
         <activity
             android:name=".mainChat"
             android:exported="true" />
-        <activity
-            android:name=".facebookAuth"
-            android:exported="false" />
+
         <activity
             android:name=".Chap1_dropdown"
             android:exported="false" />
@@ -128,9 +126,6 @@
             android:name=".StorySelection"
             android:exported="true" />
         <activity
-            android:name=".OTP"
-            android:exported="true" />
-        <activity
             android:name=".LogIn"
             android:exported="true" />
         <activity
@@ -145,11 +140,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
 
         <meta-data
