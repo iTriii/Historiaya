@@ -1,5 +1,6 @@
 package com.example.log_in;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,12 +10,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRadioButton;
@@ -24,16 +25,18 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.PropertyName;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
 import java.util.Map;
 
-
-
 public class Store extends AppCompatActivity {
+
+    private static final String PREFS_NAME = "ImageURLPrefs";
+    private static final String PRODUCT_PREFS_NAME = "ProductPrefs";
+    private static final String PRODUCT_KEY_PREFIX = "product_";
+    private static final String PRODUCT_DESCRIPTION_KEY_PREFIX = "product_description_";
 
     AppCompatRadioButton store_tab, purchases_tab;
     TextView Store, points, Purchases;
@@ -43,8 +46,8 @@ public class Store extends AppCompatActivity {
     Button B1P1, B2P2, B3P3, B4P4, B5P5, B6P6, B7P7;
 
     private final ImageView[] phArray = new ImageView[7];
-    private final EditText[] Prooduct = new EditText[7];
-    private final EditText[] ProductDescription = new EditText[7];
+    private final TextView[] Product = new TextView[7];
+    private final TextView[] ProductDescription = new TextView[7];
 
     LinearLayout V1, V2, V3, V4, V5;
     View storeTabIndicator, purchasesTabIndicator;
@@ -57,11 +60,14 @@ public class Store extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseUser currentUser;
     private FirebaseFirestore db;
+
     private SharedPreferences sharedPreferences;
     private StorageReference[] storageRefs = new StorageReference[7];
     private String[] productIds = {"product1", "product2", "product3", "product4", "product5", "product6", "product7"};
 
     private static final int NUM_PRODUCTS = 7;
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +79,6 @@ public class Store extends AppCompatActivity {
         initializeProductPrices();
         initBuyButtonListeners();
         initializePurchaseCounts();
-
 
         back = findViewById(R.id.back);
         back.setOnClickListener(v -> main2());
@@ -94,7 +99,22 @@ public class Store extends AppCompatActivity {
         Store = findViewById(R.id.Store);
         points = findViewById(R.id.points);
 
-        // Initialize storage references
+        Product [0] = findViewById(R.id.Product1);
+        Product [1] = findViewById(R.id.Product2);
+        Product [2] = findViewById(R.id.Product3);
+        Product [3] = findViewById(R.id.Product4);
+        Product [4] = findViewById(R.id.Product5);
+        Product [5] = findViewById(R.id.Product6);
+        Product [6] = findViewById(R.id.Product7);
+
+        ProductDescription[0] = findViewById(R.id.ProductDescription1);
+        ProductDescription[1] = findViewById(R.id.ProductDescription2);
+        ProductDescription[2] = findViewById(R.id.ProductDescription3);
+        ProductDescription[3] = findViewById(R.id.ProductDescription4);
+        ProductDescription[4] = findViewById(R.id.ProductDescription5);
+        ProductDescription[5] = findViewById(R.id.ProductDescription6);
+        ProductDescription[6] = findViewById(R.id.ProductDescription7);
+
         for (int i = 0; i < productIds.length; i++) {
             storageRefs[i] = FirebaseStorage.getInstance().getReference("Products/" + productIds[i] + "/image.jpg");
         }
@@ -107,6 +127,7 @@ public class Store extends AppCompatActivity {
         if (currentUser != null) {
             retrieveUserPoints();
         }
+
         V1 = findViewById(R.id.V1);
         V2 = findViewById(R.id.V2);
         V3 = findViewById(R.id.V3);
@@ -157,7 +178,7 @@ public class Store extends AppCompatActivity {
             }
         });
 
-        Button plus = findViewById(R.id.plus);
+        plus = findViewById(R.id.plus);
         plus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -172,31 +193,55 @@ public class Store extends AppCompatActivity {
             }
         });
         if (currentUser != null) {
-            retrieveUserPoints();
-
-            // Loop through each product and retrieve its image
             for (int i = 0; i < NUM_PRODUCTS; i++) {
                 String productId = "product" + (i + 1);
+                fetchProductDataFromFirestore(i, productId, Product[i], ProductDescription[i]);
                 retrieveProductImage(productId, phArray[i]);
             }
         }
     }
 
+    private void fetchProductDataFromFirestore(int index, String productId, TextView productNameTextView, TextView productDescriptionTextView) {
+        String documentName = "Product" + (index + 1); // Adjust the document name as needed
 
-    public static class ProductInformation {
-        @PropertyName("ProductName")
-        private String productName;
+        // Fetch data from Firestore
+        db.collection("Products").document(documentName)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        String productName = documentSnapshot.getString("product_name");
+                        String productDescription = documentSnapshot.getString("product_description");
 
-        @PropertyName("ProductDescription")
-        private String productDescription;
+                        // Update UI with fetched data
+                        if (productName != null) {
+                            productNameTextView.setText(productName);
+                            // Save product name locally
+                            saveProductLocally(productId, productName);
+                        }
 
-        public String getProductName() {
-            return productName;
-        }
+                        if (productDescription != null) {
+                            productDescriptionTextView.setText(productDescription);
+                            // Save product description locally
+                            saveProductDescriptionLocally(productId, productDescription);
+                        }
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    showToast("Error fetching product data from Firestore: " + e.getMessage());
+                });
+    }
+    private void saveProductLocally(String productId, String productName) {
+        SharedPreferences productPrefs = getSharedPreferences(PRODUCT_PREFS_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = productPrefs.edit();
+        editor.putString(PRODUCT_KEY_PREFIX + productId, productName);
+        editor.apply();
+    }
 
-        public String getProductDescription() {
-            return productDescription;
-        }
+    private void saveProductDescriptionLocally(String productId, String productDescription) {
+        SharedPreferences productPrefs = getSharedPreferences(PRODUCT_PREFS_NAME, MODE_PRIVATE);
+        SharedPreferences.Editor editor = productPrefs.edit();
+        editor.putString(PRODUCT_DESCRIPTION_KEY_PREFIX + productId, productDescription);
+        editor.apply();
     }
 
 
@@ -213,7 +258,7 @@ public class Store extends AppCompatActivity {
                 .update("HistoriaPoints", newPoints)
                 .addOnSuccessListener(aVoid -> {
                     // Database update successful
-                    Log.d("StoreActi    vity", "HistoriaPoints updated in database: " + newPoints);
+                    Log.d("StoreActivity", "HistoriaPoints updated in database: " + newPoints);
                 })
                 .addOnFailureListener(e -> {
                     // Handle the error
@@ -242,7 +287,6 @@ public class Store extends AppCompatActivity {
                 });
     }
 
-
     private void retrieveProductImage(String productId, ImageView imageView) {
         String storagePath = "Products/" + productId + "/image.jpg";
 
@@ -262,7 +306,6 @@ public class Store extends AppCompatActivity {
             Log.e("StoreActivity", "Error getting download URL for " + productId, exception);
         });
     }
-
 
     private void StoreScrollView() {
         store_tab.setChecked(true);
@@ -300,7 +343,6 @@ public class Store extends AppCompatActivity {
         B6P6 = findViewById(R.id.B6P6);
         B7P7 = findViewById(R.id.B7P7);
 
-
         B1P1.setOnClickListener(v -> handlePurchase("store_ph1"));
         B2P2.setOnClickListener(v -> handlePurchase("store_ph2"));
         B3P3.setOnClickListener(v -> handlePurchase("store_ph3"));
@@ -309,7 +351,6 @@ public class Store extends AppCompatActivity {
         B6P6.setOnClickListener(v -> handlePurchase("store_ph6"));
         B7P7.setOnClickListener(v -> handlePurchase("store_ph7"));
     }
-
 
     private void handlePurchase(String productId) {
         int productPrice = getProductPriceForId(productId);
@@ -352,7 +393,8 @@ public class Store extends AppCompatActivity {
         if (productButton != null) {
             productButton.setEnabled(false);
             productButton.setBackgroundResource(R.drawable.price_button_with_outline); // Set the appearance for disabled state
-            // You can make further changes to text or other visual properties within the button if needed
+            // You can make further changes to text or other visual
+
         } else {
             Log.e("StoreActivity", "Invalid product ID: " + productId);
         }
@@ -391,9 +433,6 @@ public class Store extends AppCompatActivity {
         // Add more products and initialize their purchase counts
     }
 
-
-
-
     private Button findProductButtonById(String productId) {
         switch (productId) {
             case "store_ph1":
@@ -414,5 +453,8 @@ public class Store extends AppCompatActivity {
             default:
                 return null; // Invalid product ID
         }
+    }
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
