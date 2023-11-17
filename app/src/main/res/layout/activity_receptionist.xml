@@ -210,14 +210,14 @@
             android:id="@+id/UpcomingRecep_Tab"
             android:layout_width="148dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="-10dp"
-            android:layout_marginEnd="-20dp"
+            android:layout_marginStart="-110dp"
             android:background="@color/transparent"
             android:button="@color/transparent"
             android:checked="true"
             android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
             android:text="Upcoming"
+            android:layout_marginEnd="25dp"
             android:textAlignment="center"
             android:textColor="@color/green"
             android:textSize="20sp"
@@ -227,10 +227,10 @@
 
         <androidx.appcompat.widget.AppCompatRadioButton
             android:id="@+id/HistoryRecep_tab"
-            android:layout_width="148dp"
+            android:layout_width="145dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="-10dp"
+            android:layout_marginStart="-10dp"
+            android:layout_marginEnd="-100dp"
             android:background="@color/transparent"
             android:button="@color/transparent"
             android:checked="false"
@@ -246,8 +246,9 @@
     </RadioGroup>
 
     <View
-        android:id="@+id/wanRecep"
-        android:layout_width="120dp"
+
+        android:id="@+id/toRecep"
+        android:layout_width="100dp"
         android:layout_height="3dp"
         android:layout_marginStart="230dp"
         android:layout_marginTop="565dp"
@@ -256,7 +257,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/toRecep"
+        android:id="@+id/wanRecep"
         android:layout_width="120dp"
         android:layout_height="3dp"
         android:layout_marginStart="45dp"
@@ -329,22 +330,22 @@
                     <TextView
                         android:id="@+id/BahayRecepText2"
                         android:layout_width="159dp"
-                        android:layout_height="30dp"
+                        android:layout_height="45dp"
                         android:layout_gravity="center"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="-20dp"
                         android:fontFamily="@font/montserrat_bold"
                         android:text="@string/don_catalino_rodriguez_house"
                         android:textColor="#000000"
-                        android:textSize="19sp" />
+                        android:textSize="14sp" />
 
                     <TextView
-                        android:id="@+id/ArawText"
+                        android:id="@+id/ArawRecepText"
                         android:layout_width="159dp"
                         android:layout_height="30dp"
                         android:layout_gravity="center"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="25dp"
                         android:fontFamily="@font/montserrat"
                         android:text=" November 15, 2023"
                         android:textColor="#000000"

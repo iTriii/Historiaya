@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -26,14 +25,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
-import java.util.Set;
 
 public class BookNow extends AppCompatActivity {
     private ImageButton chatbtn, backbtn;
@@ -45,15 +41,14 @@ public class BookNow extends AppCompatActivity {
     private ScrollView BookScrollView;
     private TextView selectedHouse, Subtotal, RFTourGuide, Total, SCharge, SDate;
     CalendarView calendarView;
-    private String reservedDate;
+    String reservedDate = "";
     private String userId;
     String selectedTime = "";
 
-    // Set to store available times
-    Set<String> availableTimes = new HashSet<>();
 
-    // Sample available times (replace with your actual available times)
-    String[] allTimes = {"9:00 AM", "11:00 AM", "1:00 PM", "3:00 PM"};
+
+
+
 
 
     @Override
@@ -83,15 +78,17 @@ public class BookNow extends AppCompatActivity {
         SDate = findViewById(R.id.SDate);
         calendarView = findViewById(R.id.Calendar);
 
+btntime1 = findViewById(R.id.btntime1);
+btntime2 = findViewById(R.id.btntime2);
+btntime3 = findViewById(R.id.btntime3);
+btntime4 = findViewById(R.id.btntime4);
+
+
+
 
         setupSpinners();
         setListeners();
-        setupButtonClickListener();
-        initializeAvailableTimes();
-        createTimeButtons();
-
-        // Check for past or done tours when the app is launched
-       // checkAndMoveToHistory();
+        setupButtonClickListener(btntime1, btntime2,  btntime3, btntime4);
     }
 
 
@@ -154,7 +151,7 @@ public class BookNow extends AppCompatActivity {
     }
 
     @SuppressLint({"SetTextI18n", "DefaultLocale"})
-    private void setupButtonClickListener() {
+    private void setupButtonClickListener( Button btntime1, Button btntime2, Button btntime3, Button btntime4) {
         // Chat button
         chatbtn.setOnClickListener(v -> {
             Intent intent = new Intent(BookNow.this, chat.class);
@@ -172,28 +169,50 @@ public class BookNow extends AppCompatActivity {
             Intent intent = new Intent(BookNow.this, Main2.class);
             startActivity(intent);
         });
+     
+            btntime1.setOnClickListener(v -> {
+                selectedTime = "10:00 AM";
+                showToastAndStoreTime(selectedTime);
+            });
+
+            btntime2.setOnClickListener(v -> {
+                selectedTime = "11:00 AM";
+                showToastAndStoreTime(selectedTime);
+            });
+
+            btntime3.setOnClickListener(v -> {
+                selectedTime = "1:00 PM";
+                showToastAndStoreTime(selectedTime);
+            });
+
+            btntime4.setOnClickListener(v -> {
+                selectedTime = "2:00 PM";
+                showToastAndStoreTime(selectedTime);
+            });
 
 
-        //calendar
 
 
-        // Spinner starts here
-        reservedDate = "";
+// Set up the date listener before the button click listener
+        calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
+            // Handle date selection here
+            reservedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
+            showToast("Selected Date: " + reservedDate);
+        });
+
+
         btnsave.setOnClickListener(view -> {
-            selectedTime = getSelectedTime();
-            long selectedDateInMillis = calendarView.getDate();
+            // Use the reservedDate directly in your button click listener
+            if (reservedDate == null || reservedDate.isEmpty()) {
+                Toast.makeText(this, "Please select a date", Toast.LENGTH_SHORT).show();
+                return;
+            }
 
-            Calendar selectedDateTime = Calendar.getInstance();
-            selectedDateTime.setTimeInMillis(selectedDateInMillis);
-            SimpleDateFormat dateFormat = new SimpleDateFormat("MMM d, yyyy", Locale.getDefault());
-            reservedDate = dateFormat.format(selectedDateTime.getTime());
-            Toast.makeText(this, "Reserved Date: " + reservedDate, Toast.LENGTH_SHORT).show();
 
 
             //spinner starts here
             String selectedTour = spinTour.getSelectedItem().toString();
             String selectedTouristNumStr = spinNum.getSelectedItem().toString();
-            String selectedTime = availableTimes.toString();
 
             if (!selectedTour.equals("Select Tour") && !selectedTouristNumStr.equals("Number of Tourists")) {
                 int selectedTouristNum = Integer.parseInt(selectedTouristNumStr);
@@ -233,19 +252,14 @@ public class BookNow extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Please select a valid tour and number of tourists.", Toast.LENGTH_SHORT).show();
             }
         });
+}
+
+
+    //TOAST FOR SELECTED TIME OF THE TOURISTS
+    private void showToastAndStoreTime(String selectedTime) {
+        showToast("Time selected: " + selectedTime);
     }
 
-    // Method to retrieve the selected time
-    private String getSelectedTime() {
-        LinearLayout timeButtonContainer = findViewById(R.id.timeButtonContainer);
-        for (int i = 0; i < timeButtonContainer.getChildCount(); i++) {
-            View child = timeButtonContainer.getChildAt(i);
-            if (child instanceof Button && !((Button) child).isEnabled()) {
-                return ((Button) child).getText().toString();
-            }
-        }
-        return "";
-    }
 
     //calculation starts here
     private double calculateTotal(double rfTourGuide, double serviceCharge, String selectedTour) {
@@ -312,7 +326,7 @@ public class BookNow extends AppCompatActivity {
 
 
     // Add data to Firestore... Wag mo iirremove lea
-    // Add data to Firestore
+
     private void addDataToFirestore(String userId, String selectedTour, String selectedTouristNum, String reservedDate, double totalAmount, String selectedTime) {
         DocumentReference userDocRef = db.collection("users").document(userId);
         userDocRef.get().addOnCompleteListener(task -> {
@@ -395,31 +409,4 @@ public class BookNow extends AppCompatActivity {
         });
     }
 
-    // Method to initialize available times
-    private void initializeAvailableTimes() {
-        availableTimes.addAll(Arrays.asList(allTimes));
-    }
-
-    // Method to create time buttons dynamically
-    private void createTimeButtons() {
-        LinearLayout timeButtonContainer = findViewById(R.id.timeButtonContainer);
-        for (String time : allTimes) {
-            Button timeButton = new Button(this);
-            timeButton.setText(time);
-            timeButton.setOnClickListener(v -> onTimeButtonClick(time));
-            timeButtonContainer.addView(timeButton);
-        }
-    }
-
-    // Method to handle time button click
-    private void onTimeButtonClick(String selectedTime) {
-        if (availableTimes.contains(selectedTime)) {
-            // Time is available, mark it as reserved
-            availableTimes.remove(selectedTime);
-            Toast.makeText(getApplicationContext(), "Time reserved: " + selectedTime, Toast.LENGTH_SHORT).show();
-        } else {
-            // Time is already reserved, notify the user or handle accordingly
-            Toast.makeText(getApplicationContext(), "Time not available: " + selectedTime, Toast.LENGTH_SHORT).show();
-        }
-    }
 }

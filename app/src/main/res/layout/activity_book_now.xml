@@ -182,6 +182,18 @@
         tools:layout_editor_absoluteX="32dp" />
 
 
+    <ImageView
+        android:id="@+id/houseImageView"
+        android:layout_width="40dp"
+        android:layout_height="39dp"
+        android:layout_marginLeft="-30dp"
+        app:layout_constraintBottom_toBottomOf="@+id/spinTour"
+        app:layout_constraintEnd_toEndOf="@+id/spinTour"
+        app:layout_constraintHorizontal_bias="0.145"
+        app:layout_constraintStart_toEndOf="@+id/selecttour"
+        app:layout_constraintTop_toTopOf="@+id/spinTour"
+        app:layout_constraintVertical_bias="0.0"/>
+
     <Spinner
         android:id="@+id/spinTour"
         style="@style/Widget.AppCompat.Light.Spinner.DropDown.ActionBar"
@@ -290,40 +302,93 @@
                     app:layout_constraintVertical_bias="0.048" />
 
 
-                <TextView
-                    android:id="@+id/STime"
-                    android:layout_width="285dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="-280dp"
-                    android:layout_marginTop="390dp"
-                    android:contentDescription="@string/txtview_for_select_date"
-                    android:fontFamily="@font/inter_bold"
-                    android:maxLines="2"
-                    android:text="SELECT TIME"
+                <Button
+                    android:id="@+id/btntime1"
+                    android:layout_width="84dp"
+                    android:layout_height="44dp"
+                    android:layout_marginLeft="-315dp"
+                    android:layout_marginTop="395dp"
+                    android:background="@drawable/btntime"
+                    android:clickable="true"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:longClickable="true"
+                    android:text="10:00 AM"
                     android:textAlignment="center"
-                    android:textColor="@color/green"
-                    android:textSize="28sp"
+                    android:textColor="#00684E"
+                    android:textSize="10sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.11"
-                    app:layout_constraintStart_toStartOf="@+id/blurred"
-                    app:layout_constraintTop_toBottomOf="@+id/NumTourist"
-                    app:layout_constraintVertical_bias="0.048" />
+                    app:layout_constraintHorizontal_bias="0.349"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/clouds"
+                    app:layout_constraintVertical_bias="0.018" />
 
-            </LinearLayout>
+                <Button
+                    android:id="@+id/btntime2"
+                    android:layout_width="84dp"
+                    android:layout_height="44dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="395dp"
+                    android:background="@drawable/btntime"
+                    android:clickable="true"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:longClickable="true"
+                    android:text="11:00 AM"
+                    android:textAlignment="center"
+                    android:textColor="#00684E"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.655"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/clouds"
+                    app:layout_constraintVertical_bias="0.017" />
 
+                <Button
+                    android:id="@+id/btntime3"
+                    android:layout_width="84dp"
+                    android:layout_height="44dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="395dp"
+                    android:background="@drawable/btntime"
+                    android:clickable="true"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:longClickable="true"
+                    android:text="1:00 PM"
+                    android:textAlignment="center"
+                    android:textColor="#00684E"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.957"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/clouds"
+                    app:layout_constraintVertical_bias="0.017" />
 
-
-            <LinearLayout
-                android:id="@+id/timeButtonContainer"
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:layout_marginTop="-10dp"
-                android:background="@drawable/btntime"
-                android:orientation="horizontal"
-                android:padding="16dp">
-
-
+                <Button
+                    android:id="@+id/btntime4"
+                    android:layout_width="84dp"
+                    android:layout_height="44dp"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="395dp"
+                    android:background="@drawable/btntime"
+                    android:clickable="true"
+                    android:fontFamily="@font/montserrat_bold"
+                    android:gravity="center"
+                    android:longClickable="true"
+                    android:text="2:00 PM"
+                    android:textAlignment="center"
+                    android:textColor="#00684E"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.051"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/clouds"
+                    app:layout_constraintVertical_bias="0.017" />
 
             </LinearLayout>
 
@@ -521,6 +586,8 @@
                     android:textColor="#FFFFFF"
                     android:textSize="13sp"
                     app:layout_constraintVertical_bias="0.95" />
+
+
 
             </LinearLayout>
         </LinearLayout>
