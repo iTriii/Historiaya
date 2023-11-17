@@ -397,7 +397,7 @@
         android:layout_width="350dp"
         android:layout_height="430dp"
         android:layout_marginTop="-15dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
@@ -408,8 +408,105 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-    </LinearLayout>
+        <TextView
+            android:id="@+id/DateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textSize="15sp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="November 2023"
+            android:textColor="@color/black" />
+        <TextView
+            android:id="@+id/UpdatingtheTouristText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="200dp"
+            android:textSize="15sp"
+            android:layout_marginTop="-25dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:text="November 2023"
+            android:textColor="@color/black" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/booked1"
+                    android:layout_width="350dp"
+                    android:layout_height="107dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/shadow"
+                    app:cardCornerRadius="7dp">
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="97dp"
+                        android:layout_height="95dp"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/shadow"
+                        android:src="@drawable/don_catalino1" />
+
+                    <TextView
+                        android:id="@+id/selectedTourText"
+                        android:layout_width="140dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="110dp"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/montserrat_alternates_extrabold"
+                        android:textColor="@color/GREEN"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/MonthText"
+                        android:layout_width="93dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="110dp"
+                        android:layout_marginTop="55dp"
+                        android:fontFamily="@font/montserrat"
+                        android:textColor="@color/GREEN"
+                        android:textSize="15sp" />
+
+                    <Button
+                        android:id="@+id/upcomingbtn"
+                        android:layout_width="90dp"
+                        android:layout_height="28dp"
+                        android:layout_marginStart="250dp"
+                        android:layout_marginTop="11dp"
+                        android:clickable="true"
+                        android:background="@drawable/ongoing"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="@string/up_coming"
+                        android:textAlignment="center"
+                        android:textColor="@color/GREEN"
+                        android:textSize="10sp"
+                        tools:ignore="SmallSp" />
+
+                    <Button
+                        android:id="@+id/adminView"
+                        android:layout_width="90dp"
+                        android:layout_height="28dp"
+                        android:layout_marginStart="250dp"
+                        android:layout_marginTop="60dp"
+                        android:clickable="true"
+                        android:background="@drawable/ongoing"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="ADMINBUTTONS"
+                        android:textAlignment="center"
+                        android:textColor="@color/GREEN"
+                        android:textSize="10sp"
+                        tools:ignore="SmallSp" />
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </LinearLayout>
     </ScrollView>
+
     <ScrollView
         android:id="@+id/HistoryTab"
         android:layout_width="350dp"
@@ -426,6 +523,78 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <TextView
+                android:id="@+id/DateHisto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:textSize="15sp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="November 2023"
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/booked1.1"
+                    android:layout_width="350dp"
+                    android:layout_height="107dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/shadow"
+                    app:cardCornerRadius="7dp">
+
+                    <ImageView
+                        android:id="@+id/housepickk"
+                        android:layout_width="97dp"
+                        android:layout_height="95dp"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/shadow"
+                        android:src="@drawable/don_catalino1" />
+
+                    <TextView
+                        android:id="@+id/selectedTourTextt"
+                        android:layout_width="140dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="110dp"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/montserrat_alternates_extrabold"
+                        android:textColor="@color/GREEN"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/MonthTextt"
+                        android:layout_width="93dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="110dp"
+                        android:layout_marginTop="55dp"
+                        android:fontFamily="@font/montserrat"
+                        android:textColor="@color/GREEN"
+                        android:textSize="15sp" />
+
+                    <Button
+                        android:id="@+id/doneitu"
+                        android:layout_width="90dp"
+                        android:layout_height="28dp"
+                        android:layout_marginStart="250dp"
+                        android:layout_marginTop="11dp"
+                        android:clickable="true"
+                        android:background="@drawable/ongoing"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="Done"
+                        android:textAlignment="center"
+                        android:textColor="@color/GREEN"
+                        android:textSize="10sp"
+                        tools:ignore="SmallSp" />
+
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

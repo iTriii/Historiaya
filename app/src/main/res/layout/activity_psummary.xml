@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:textAlignment="center"
+    tools:context=".Psummary">
+
+
+    <ImageView
+        android:id="@+id/rizal_Start"
+        android:layout_width="match_parent"
+        android:layout_height="1024dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="4dp"
+        app:srcCompat="@drawable/newproject"
+        tools:ignore="MissingConstraints" />
+
+    <ImageView
+        android:id="@+id/grass_start"
+        android:layout_width="match_parent"
+        android:layout_height="1024dp"
+        android:layout_marginTop="184dp"
+        android:alpha=".95"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/grass_1" />
+
+    <ImageView
+        android:id="@+id/twoppl"
+        android:layout_width="match_parent"
+        android:layout_height="1024dp"
+        android:layout_marginTop="180dp"
+        android:alpha=".89"
+        app:layout_constraintEnd_toEndOf="@+id/grass_start"
+        app:layout_constraintHorizontal_bias="0.688"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/backdrop" />
+
+
+    <!-- Payment Items -->
+
+
+    <ImageView
+        android:id="@+id/blurred"
+        android:layout_width="match_parent"
+        android:layout_height="1024dp"
+        android:alpha=".5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.92"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@drawable/rectangle" />
+
+    <TextView
+        android:layout_width="314dp"
+        android:layout_height="50dp"
+        android:fontFamily="@font/montserrat_alternates_extrabold"
+        android:gravity="center_horizontal"
+        android:shadowColor="@color/black"
+        android:shadowDx="2"
+        android:shadowDy="-4"
+        android:shadowRadius="2"
+        android:text="Booking Details "
+        android:textColor="#FEC242"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.132" />
+
+    <TextView
+        android:id="@+id/GalaRodriguez"
+        android:layout_width="232dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="42dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center_horizontal"
+        android:text="Gala Rodriguez House"
+        android:textColor="@color/green"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.089"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/grass_start"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/DonCatalino"
+        android:layout_width="223dp"
+        android:layout_height="43dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center_horizontal"
+        android:text="@string/don_catalino_house"
+        android:textColor="@color/green"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.248" />
+
+    <View
+        android:layout_width="365dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.391"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.565" />
+
+    <TextView
+        android:id="@+id/Subtotal"
+        android:layout_width="111dp"
+        android:layout_height="38dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center_horizontal"
+        android:text="Subtotal"
+        android:textColor="@color/green"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.381" />
+
+    <TextView
+        android:id="@+id/ReserveFee"
+        android:layout_width="267dp"
+        android:layout_height="40dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center_horizontal"
+        android:text="Reservation Fee/Tour Guide"
+        android:textColor="@color/green"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.125"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.49" />
+
+    <TextView
+        android:id="@+id/ReserveFeeHouse"
+        android:layout_width="295dp"
+        android:layout_height="37dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center_horizontal"
+        android:text="Reservation Fee/Heritage House"
+        android:textColor="@color/green"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.137"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.435" />
+
+    <TextView
+        android:id="@+id/serviceCharge"
+        android:layout_width="149dp"
+        android:layout_height="36dp"
+        android:fontFamily="@font/montserrat"
+        android:gravity="center_horizontal"
+        android:text="@string/service_charge"
+        android:textColor="@color/green"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.072"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.545" />
+
+    <View
+        android:layout_width="365dp"
+        android:layout_height="1dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.347"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.358" />
+
+    <TextView
+        android:id="@+id/Total"
+        android:layout_width="108dp"
+        android:layout_height="39dp"
+        android:fontFamily="@font/montserrat_alternates_extrabold"
+        android:gravity="center_horizontal"
+        android:shadowColor="@color/black"
+        android:shadowDx="2"
+        android:shadowDy="-4"
+        android:shadowRadius="2"
+        android:text="@string/total"
+        android:textColor="#FEC242"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.099"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.612" />
+
+    <ImageButton
+        android:id="@+id/back"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/shadow"
+        android:clickable="true"
+        android:contentDescription="@string/BookNow"
+        android:contextClickable="true"
+        android:elevation="10dp"
+        android:longClickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/arrow_back" />
+
+    <Button
+        android:id="@+id/proceed"
+        android:layout_width="221dp"
+        android:layout_height="54dp"
+        android:layout_marginBottom="16dp"
+        android:width="226dp"
+        android:height="55dp"
+        android:background="@drawable/startbuttonbg"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:gravity="center"
+        android:longClickable="true"
+        android:text="Proceed to Check out"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="@+id/blurred"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

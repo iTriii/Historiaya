@@ -46,4 +46,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
+    <ScrollView
+        android:id="@+id/cancellationScrollView"
+        android:layout_width="391dp"
+        android:layout_height="705dp"
+        android:layout_marginBottom="4dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="500dp"
+            android:layout_marginTop="-25dp"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="351dp"
+                android:layout_height="123dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="80dp"
+                android:foregroundGravity="fill"
+                app:cardCornerRadius="@dimen/fab_margin"
+                app:cardMaxElevation="70dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.555"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.595"
+                app:strokeWidth="4dp">
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

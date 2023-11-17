@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RefundUserCopy">
+
+
+        <ImageView
+            android:id="@+id/clouds"
+            android:layout_width="536dp"
+            android:layout_height="430dp"
+            android:layout_marginBottom="232dp"
+            android:contentDescription="@string/clouds"
+            app:layout_constraintBottom_toBottomOf="@+id/rizal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.504"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/cloud" />
+
+
+        <ImageView
+            android:id="@+id/rizal"
+            android:layout_width="408dp"
+            android:layout_height="390dp"
+            android:layout_marginTop="212dp"
+            android:contentDescription="@string/rizal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.555"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/newproject" />
+
+        <ImageView
+            android:id="@+id/grass"
+            android:layout_width="878dp"
+            android:layout_height="612dp"
+            android:layout_marginTop="300dp"
+            android:contentDescription="@string/grass"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/grass_1" />
+
+
+        <ImageView
+            android:id="@+id/twopips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="316dp"
+            android:contentDescription="@string/twopips"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/twopips" />
+
+        <ImageView
+            android:id="@+id/blurred"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha=".5"
+            android:contentDescription="TODO"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/rectangle" />
+
+        <ImageButton
+            android:id="@+id/backbuttonRef"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="52dp"
+            android:background="@drawable/shadow"
+            android:clickable="true"
+            android:contentDescription="@string/BookNow"
+            android:contextClickable="true"
+            android:elevation="10dp"
+            android:longClickable="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/arrow_back" />
+
+
+    <TextView
+        android:id="@+id/pay"
+        android:layout_width="251dp"
+        android:layout_height="42dp"
+        android:layout_marginEnd="60dp"
+        android:fontFamily="@font/montserrat_alternates_extrabold"
+        android:shadowColor="#FFFDFD"
+        android:shadowDx="7"
+        android:shadowDy="-9"
+        android:shadowRadius="2"
+        android:text="Your Refund Details"
+        android:textAlignment="center"
+        android:textColor="#FEC242"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/rizal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.294"
+        tools:ignore="TextSizeCheck" />
+
+    <ScrollView
+        android:id="@+id/cancellationScrollView"
+        android:layout_width="392dp"
+        android:layout_height="710dp"
+        android:layout_marginBottom="4dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="wrap_content"
+                android:layout_height="272dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="10dp"
+                android:foregroundGravity="fill"
+                app:cardCornerRadius="@dimen/fab_margin"
+                app:cardMaxElevation="70dp"
+                app:layout_constraintBottom_toBottomOf="@+id/blurred"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.555"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pay"
+                app:layout_constraintVertical_bias="0.595"
+                app:strokeWidth="4dp">
+
+
+                <TextView
+                    android:id="@+id/detailsclickRef"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="270dp"
+                    android:layout_marginTop="15dp"
+                    android:clickable="true"
+                    android:contextClickable="true"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center_horizontal"
+                    android:text="View"
+                    android:textColor="@color/green"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.094"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.336" />
+
+                <View
+                    android:layout_width="45dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="127dp"
+                    android:layout_marginTop="-100dp"
+                    android:background="@android:color/holo_green_dark" />
+
+                <TextView
+                    android:id="@+id/pickhouseRefText"
+                    android:layout_width="199dp"
+                    android:layout_height="58dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="25dp"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center_horizontal"
+                    android:text="Don Catalino Heritage House "
+                    android:textColor="@color/green"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.094"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.336" />
+
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="-40dp"
+                    android:background="@android:color/black" />
+
+
+                <TextView
+                    android:id="@+id/refund"
+                    android:layout_width="179dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="130dp"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center_horizontal"
+                    android:text=" Refund Amount: "
+                    android:textColor="@color/green"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.094"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.336" />
+
+                <TextView
+                    android:id="@+id/AmountRefText"
+                    android:layout_width="124dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="210dp"
+                    android:layout_marginTop="130dp"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/green"
+                    android:textSize="17sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.094"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.336" />
+
+                <TextView
+                    android:id="@+id/requestedby"
+                    android:layout_width="164dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="165dp"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center_horizontal"
+                    android:text="Requested By:  "
+                    android:textColor="@color/green"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.094"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.336" />
+
+                <TextView
+                    android:id="@+id/nameRefText"
+                    android:layout_width="174dp"
+                    android:layout_height="32dp"
+                    android:layout_marginLeft="180dp"
+                    android:layout_marginTop="165dp"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/green"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.094"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.336" />
+
+                <TextView
+                    android:id="@+id/ReasonRefText"
+                    android:layout_width="174dp"
+                    android:layout_height="32dp"
+                    android:layout_marginLeft="180dp"
+                    android:layout_marginTop="195dp"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/green"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.094"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.336" />
+                <TextView
+                    android:id="@+id/TouristsReason"
+                    android:layout_width="164dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="195dp"
+                    android:fontFamily="@font/montserrat"
+                    android:gravity="center_horizontal"
+                    android:text="Tourists Reason  "
+                    android:textColor="@color/green"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.094"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.336" />
+
+            </androidx.cardview.widget.CardView>
+
+            <Button
+                android:id="@+id/Dbtn"
+                android:layout_width="279dp"
+                android:layout_height="66dp"
+                android:layout_marginLeft="-333dp"
+                android:layout_marginTop="600dp"
+                android:width="226dp"
+                android:height="55dp"
+                android:background="@drawable/startbuttonbg"
+                android:clickable="true"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:longClickable="true"
+                android:text="DONE"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp"
+                app:cardMaxElevation="70dp"
+                app:layout_constraintBottom_toBottomOf="@+id/blurred"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.631"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/cardView"
+                app:layout_constraintVertical_bias="1.0" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

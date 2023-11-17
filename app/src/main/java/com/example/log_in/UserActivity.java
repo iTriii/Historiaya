@@ -6,7 +6,7 @@ import android.content.Intent;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -16,7 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.log_in.adapters.UsersAdapter;
-import com.example.log_in.databinding.UserActivityBinding;
 import com.example.log_in.listener.UserListener;
 import com.example.log_in.models.User;
 
@@ -84,9 +83,7 @@ public class UserActivity extends AppCompatActivity implements UserListener {
     }
     private void setListeners() {
         backbtn.setOnClickListener(v -> {
-            // navigate to chat
-            Intent intent = new Intent(UserActivity.this, chat.class);
-            startActivity(intent);
+            onBackPressed();
         });
 
 
