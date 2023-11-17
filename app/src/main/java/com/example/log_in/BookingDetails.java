@@ -27,6 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class BookingDetails extends AppCompatActivity {
@@ -110,7 +111,7 @@ public class BookingDetails extends AppCompatActivity {
             DatePickerDialog datePickerDialog = new DatePickerDialog(
                     BookingDetails.this,
                     (view, year1, month1, dayOfMonth1) -> {
-                        selectedDate = String.format("\"dd-MMM-yy hh.mm.ss.S aa\"", month1 + 1, dayOfMonth1, year1);
+                        selectedDate = String.format("MMMM d, yyyy", Locale.ENGLISH);
                         Date.setText("Selected date: " + selectedDate);
                         // Check if the selected date is in the past
                         if (isDateInPast(year1, month1, dayOfMonth1)) {

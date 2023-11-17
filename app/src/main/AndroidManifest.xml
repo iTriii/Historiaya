@@ -20,9 +20,6 @@
             android:name=".adminsTry"
             android:exported="false" />
         <activity
-            android:name=".Admins"
-            android:exported="false" />
-        <activity
             android:name=".RefundUserCopy"
             android:exported="false" />
         <activity
@@ -31,21 +28,14 @@
         <activity
             android:name=".BookingDetailMain"
             android:exported="false" />
-        <activity
-            android:name=".BookNowDetailsMainSure"
-            android:exported="false" />
-        <activity
-            android:name=".BookingDetailsMain"
-            android:exported="false" />
+
         <activity
             android:name=".BookingRefund"
             android:exported="false" />
         <activity
             android:name=".BookingDetails"
             android:exported="false" />
-        <activity
-            android:name=".calendarview"
-            android:exported="false" />
+
         <activity
             android:name=".Receptionist"
             android:exported="false" />
@@ -55,15 +45,11 @@
         <activity
             android:name=".HouseManager"
             android:exported="false" />
-        <activity
-            android:name=".BookingDetailsMainSure"
-            android:exported="false" />
+
         <activity
             android:name=".PaymentDetails"
             android:exported="false" />
-        <activity
-            android:name=".Psummary"
-            android:exported="false" />
+
         <activity
             android:name=".mainChat"
             android:exported="true" />
@@ -147,7 +133,6 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -222,7 +222,7 @@ btntime4 = findViewById(R.id.btntime4);
                 double serviceCharge = calculateServiceCharge(selectedTour);
                 double tourPrice = calculateTourPrice(selectedTour);
                 double subtotal = calculateSubtotal(selectedTour);
-                double total = calculateTotal(rfTourGuide, serviceCharge, String.valueOf(subtotal));
+                double total = subtotal + rfTourGuide + serviceCharge;
 
 // Set the text of the Subtotal TextView
                 Subtotal.setText(String.format(" ₱%.2f", subtotal));
