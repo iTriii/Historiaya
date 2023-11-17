@@ -65,7 +65,6 @@ public class Profile extends AppCompatActivity {
         MonthTextt = findViewById(R.id.MonthTextt);
         selectedTourTextt = findViewById(R.id.selectedTourTextt);
         DateHisto = findViewById(R.id.DateHisto);
-        adminView = findViewById(R.id.adminView);
         UpdatingtheTouristText = findViewById(R.id.UpdatingtheTouristText);
 
 
@@ -97,14 +96,6 @@ public class Profile extends AppCompatActivity {
 
 
 
-
-
-//try
-
-        adminView.setOnClickListener(view -> {
-            Intent intent = new Intent(Profile.this, adminsTry.class);
-            startActivity(intent);
-        });
 
 
         upcomingbtn.setOnClickListener(view -> {
