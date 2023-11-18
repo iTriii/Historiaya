@@ -31,6 +31,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 import im.crisp.client.ChatActivity;
 import im.crisp.client.Crisp;
@@ -92,8 +93,6 @@ btntime1 = findViewById(R.id.btntime1);
 btntime2 = findViewById(R.id.btntime2);
 btntime3 = findViewById(R.id.btntime3);
 btntime4 = findViewById(R.id.btntime4);
-
-
 
 
         setupSpinners();
@@ -180,7 +179,7 @@ btntime4 = findViewById(R.id.btntime4);
     private void setupButtonClickListener( Button btntime1, Button btntime2, Button btntime3, Button btntime4) {
         // Chat button
         chatbtn.setOnClickListener(v -> {
-            Intent intent = new Intent(BookNow.this, chat.class);
+            Intent intent = new Intent(BookNow.this, ChatActivity.class);
             startActivity(intent);
         });
 
@@ -281,7 +280,7 @@ btntime4 = findViewById(R.id.btntime4);
 }
 
     private void startCrispChat() {
-        Crisp.setUserEmail(mAuth.getCurrentUser().getEmail());
+        Crisp.setUserEmail(Objects.requireNonNull(mAuth.getCurrentUser().getEmail()));
 
         // Start Crisp chat
         Intent chatIntent = new Intent(this, ChatActivity.class);

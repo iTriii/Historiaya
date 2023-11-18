@@ -7,6 +7,7 @@ android {
     namespace 'com.example.log_in'
     compileSdk 34
 
+
     defaultConfig {
         applicationId "com.example.log_in"
         minSdk 26
