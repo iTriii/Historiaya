@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -22,39 +23,53 @@ public class Settings extends AppCompatActivity {
     Button Credits, Feedback, PrivacyandTerms, LogOut;
     ImageButton Tutorial1;
     TextView Tutorial;
+    ImageView Speaker, Speaker_off;
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     Switch audio;
     Dialog dialog;
     FirebaseAuth mAuth;
+    AudioManager audioManager;
+    private int savedVolume = 0;
+    private static final String PREFS_NAME = "MyPrefs";
+    private static final String AUDIO_STATE_KEY = "audioState";
 
-
-
-    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        mAuth = FirebaseAuth.getInstance();
-
         audio = findViewById(R.id.audio);
-        ImageView speaker = findViewById(R.id.Speaker);
+        Speaker = findViewById(R.id.Speaker);
+        Speaker_off = findViewById(R.id.Speaker_off);
+        audioManager = (AudioManager) getSystemService(AUDIO_SERVICE);
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        boolean audioState = settings.getBoolean(AUDIO_STATE_KEY, false);
+        audio.setChecked(audioState);
+
         audio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked) {
-                    // Enable audio (music)
-                    audio.setEnabled(true);
-                    // Set the "speaker" image without the slash overlay
-                    speaker.setImageResource(R.drawable.audio);
+                    audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, savedVolume, 0);
+                    Speaker.setVisibility(View.VISIBLE);
+                    Speaker_off.setVisibility(View.GONE);
                 } else {
-                    // Disable audio (music)
-                    audio.setEnabled(false);
-                    // Set the "speaker" image with the slash overlay
-                    speaker.setImageResource(R.drawable.audio);
+                    savedVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+                    audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
+                    Speaker.setVisibility(View.GONE);
+                    Speaker_off.setVisibility(View.VISIBLE);
                 }
             }
         });
+
+        if (audioState) {
+            Speaker.setVisibility(View.VISIBLE);
+            Speaker_off.setVisibility(View.GONE);
+        } else {
+            Speaker.setVisibility(View.GONE);
+            Speaker_off.setVisibility(View.VISIBLE);
+        }
 
 
         Credits = findViewById(R.id.Credits);
@@ -97,7 +112,6 @@ public class Settings extends AppCompatActivity {
             }
         });
 
-
         Tutorial = findViewById(R.id.Tutorial);
         Tutorial.setOnClickListener(v -> Tutorial());
 
@@ -108,27 +122,40 @@ public class Settings extends AppCompatActivity {
         dialog.setContentView(R.layout.activity_settings);
         dialog.setContentView(R.layout.activity_notifications);
         dialog.getWindow().setBackgroundDrawableResource(R.drawable.popup_background);
+    }
 
-    }
     public void Credits() {
-        Intent intent =new Intent(this, Credits.class);
+        Intent intent = new Intent(this, Credits.class);
         startActivity(intent);
     }
+
     public void Feedback() {
-        Intent intent =new Intent(this, Feedback.class);
+        Intent intent = new Intent(this, Feedback.class);
         startActivity(intent);
     }
+
     public void PrivacyandTerms() {
-        Intent intent =new Intent(this, PrivacyandTerms.class);
+        Intent intent = new Intent(this, PrivacyandTerms.class);
         startActivity(intent);
     }
 
     public void Tutorial() {
-        Intent intent =new Intent(this, Tutorial.class);
+        Intent intent = new Intent(this, Tutorial.class);
         startActivity(intent);
     }
+
     public void Tutorial1() {
         Intent intent = new Intent(this, Tutorial.class);
         startActivity(intent);
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putBoolean(AUDIO_STATE_KEY, audio.isChecked());
+        editor.apply();
     }
+}

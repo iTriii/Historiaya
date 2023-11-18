@@ -71,6 +71,7 @@
     <string name="BookNow">Book Now</string>
     <string name="Store">Store</string>
     <string name="Map">Map</string>
+    <string name="Sharelink">https://chat.openai.com</string>
 
     <!--Profile-->
     <string name="Profile">Profile</string>

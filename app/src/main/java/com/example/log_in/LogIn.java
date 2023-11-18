@@ -13,9 +13,6 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.facebook.AccessToken;
-import com.facebook.CallbackManager;
-import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -31,10 +28,8 @@ public class LogIn extends AppCompatActivity {
     FirebaseAuth mAuth;
     ImageView googleBtn;
     ProgressBar progressbar;
-    CallbackManager callbackManager;
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,8 +53,6 @@ public class LogIn extends AppCompatActivity {
 
         gsc = GoogleSignIn.getClient(this,gso);
 
-        callbackManager = CallbackManager.Factory.create();
-
         googleBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -80,23 +73,31 @@ public class LogIn extends AppCompatActivity {
         li.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                progressbar.setVisibility(View.VISIBLE);
+                progressbar.setVisibility(View.VISIBLE); // Show progress bar
+                li.setVisibility(View.INVISIBLE); // Hide login button during progress
+
                 String inputEmail = inputemail.getText().toString();
                 String inputPass = inputpass.getText().toString();
 
                 if (TextUtils.isEmpty(inputEmail)) {
                     Toast.makeText(LogIn.this, "Enter email", Toast.LENGTH_SHORT).show();
+                    progressbar.setVisibility(View.GONE); // Hide progress bar
+                    li.setVisibility(View.VISIBLE); // Show login button
                     return;
                 }
                 if (TextUtils.isEmpty(inputPass)) {
                     Toast.makeText(LogIn.this, "Enter password", Toast.LENGTH_SHORT).show();
+                    progressbar.setVisibility(View.GONE); // Hide progress bar
+                    li.setVisibility(View.VISIBLE); // Show login button
                     return;
                 }
 
                 // Authenticate with Firebase using email and password
                 mAuth.signInWithEmailAndPassword(inputEmail, inputPass)
                         .addOnCompleteListener(task -> {
-                            progressbar.setVisibility(View.GONE);
+                            progressbar.setVisibility(View.GONE); // Hide progress bar
+                            li.setVisibility(View.VISIBLE); // Show login button
+
                             if (task.isSuccessful()) {
                                 FirebaseUser user = mAuth.getCurrentUser();
                                 if (user != null) {
@@ -116,6 +117,7 @@ public class LogIn extends AppCompatActivity {
             }
         });
 
+
         regnow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,19 +134,6 @@ public class LogIn extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-        // Check if the user is authenticated with Facebook
-        AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
-
-        if (isLoggedIn) {
-            // User is authenticated with Facebook, log them out
-            LoginManager.getInstance().logOut();
-        }
     }
 
     private void signIn() {

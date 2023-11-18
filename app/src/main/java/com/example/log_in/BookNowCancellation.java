@@ -25,7 +25,7 @@ public class BookNowCancellation extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_book_now_cancellation);
+        setContentView(R.layout.activity_booking_cancellation);
 
 
         dialog = new Dialog(BookNowCancellation.this);

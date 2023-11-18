@@ -218,39 +218,57 @@ public class Profile_Edit extends AppCompatActivity {
             return; // Don't proceed if any of the fields are empty
         }
 
+        // Check if a new image was selected and uploaded
         if (selectedImageUri != null) {
-            // Update the Firestore document with the edited values and new image URL
-            String imageUrl = selectedImageUri.toString();
+            // Image was changed, update the Firestore document with the edited values and new image URL
+            db.collection("users")
+                    .document(user.getUid())
+                    .update("FirstName", newFirstName, "LastName", newLastName,
+                            "ContactNo", newContact, "ImageUrl", selectedImageUri.toString())
+                    .addOnSuccessListener(aVoid -> {
+                        // Update successful
 
-            updateUserData(newFirstName, newLastName, newContact, imageUrl);
+                        // Fetch and display the updated user data
+                        fetchAndDisplayUserData();
+
+                        // Return to the previous activity (Profile)
+                        Intent resultIntent = new Intent(Profile_Edit.this, Profile.class);
+                        resultIntent.putExtra("editedFirstName", newFirstName);
+                        resultIntent.putExtra("editedLastName", newLastName);
+                        startActivity(resultIntent);
+                        setResult(RESULT_OK, resultIntent);
+
+                        finish(); // Finish the Profile_Edit activity
+                    })
+                    .addOnFailureListener(e -> {
+                        // Handle the error
+                        Toast.makeText(Profile_Edit.this, "Failed to save changes: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
         } else {
-            // Update the Firestore document with only the edited values
-            updateUserData(newFirstName, newLastName, newContact, null);
+            // No image change, update the Firestore document with only the edited values
+            db.collection("users")
+                    .document(user.getUid())
+                    .update("FirstName", newFirstName, "LastName", newLastName, "ContactNo", newContact)
+                    .addOnSuccessListener(aVoid -> {
+                        // Update successful
+                        Toast.makeText(Profile_Edit.this, "Changes saved successfully", Toast.LENGTH_SHORT).show();
+
+                        // Fetch and display the updated user data
+                        fetchAndDisplayUserData();
+
+                        // Return to the previous activity (Profile)
+                        Intent resultIntent = new Intent();
+                        resultIntent.putExtra("editedFirstName", newFirstName);
+                        resultIntent.putExtra("editedLastName", newLastName);
+                        setResult(RESULT_OK, resultIntent);
+                        finish(); // Finish the Profile_Edit activity
+                    })
+                    .addOnFailureListener(e -> {
+                        // Handle the error
+                        Toast.makeText(Profile_Edit.this, "Failed to save changes: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
         }
     }
 
-    private void updateUserData(String firstName, String lastName, String contact, String imageUrl) {
-        db.collection("users")
-                .document(user.getUid())
-                .update("FirstName", firstName, "LastName", lastName, "ContactNo", contact, "ImageUrl", imageUrl)
-                .addOnSuccessListener(aVoid -> {
-                    // Update successful
-                    Toast.makeText(Profile_Edit.this, "Changes saved successfully", Toast.LENGTH_SHORT).show();
-
-                    // Fetch and display the updated user data
-                    fetchAndDisplayUserData();
-
-                    // Return to the previous activity (Profile)
-                    Intent resultIntent = new Intent();
-                    resultIntent.putExtra("editedFirstName", firstName);
-                    resultIntent.putExtra("editedLastName", lastName);
-                    setResult(RESULT_OK, resultIntent);
-                    finish(); // Finish the Profile_Edit activity
-                })
-                .addOnFailureListener(e -> {
-                    // Handle the error
-                    Toast.makeText(Profile_Edit.this, "Failed to save changes: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                });
-    }
-
 }
+

@@ -1,36 +1,38 @@
 package com.example.log_in;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Spinner;
 
-import com.example.log_in.databinding.ActivityChatBinding;
-import com.example.log_in.models.User;
-import com.example.log_in.utilities.Constants;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import im.crisp.client.ChatActivity;
+import im.crisp.client.Crisp;
 
 public class chat extends AppCompatActivity {
 
     private FirebaseFirestore db;
-    private ImageButton  backbtn;
+    private ImageButton imgback;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-        backbtn = findViewById(R.id.imgback);
 
-    // Back button
-        backbtn.setOnClickListener(view -> {
-        onBackPressed();
-    });
+        Crisp.configure(getApplicationContext(), "2a53b3b9-d275-4fb1-81b6-efad59022426");
+        Intent chatbtn = new Intent(this, ChatActivity.class);
+        startActivity(chatbtn);
+    }
+    public void BookNow() {
+        Intent intent = new Intent(this, BookNow.class);
+        startActivity(intent);
+        overridePendingTransition(com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_in_left, com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_out_right);
     }
     }
+
 
 

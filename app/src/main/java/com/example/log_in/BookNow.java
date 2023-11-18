@@ -18,8 +18,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.ParseException;
@@ -31,6 +33,10 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+
+import im.crisp.client.ChatActivity;
+import im.crisp.client.Crisp;
+
 
 public class BookNow extends AppCompatActivity {
     private ImageButton chatbtn, backbtn;
@@ -76,6 +82,11 @@ public class BookNow extends AppCompatActivity {
         SDate = findViewById(R.id.SDate);
         calendarView = findViewById(R.id.Calendar);
 
+        // Configure Crisp
+        Crisp.configure(getApplicationContext(), "2a53b3b9-d275-4fb1-81b6-efad59022426");
+
+        // Set up spinner adapters
+
 btntime1 = findViewById(R.id.btntime1);
 btntime2 = findViewById(R.id.btntime2);
 btntime3 = findViewById(R.id.btntime3);
@@ -102,6 +113,22 @@ btntime4 = findViewById(R.id.btntime4);
         touristNumAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinNum.setAdapter(touristNumAdapter);
 
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        if (user != null) {
+            String userEmail = user.getEmail();
+            String username= user.getDisplayName();
+
+            // Set user attributes in Crisp
+            assert userEmail != null;
+            Crisp.setUserEmail(userEmail);
+        }
+
+        // Set listeners
+        setListener();
+    }
+
+    private void setListener() {
         // listeners for both Spinners
         spinTour.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -144,12 +171,6 @@ btntime4 = findViewById(R.id.btntime4);
 
     @SuppressLint({"SetTextI18n", "DefaultLocale"})
     private void setupButtonClickListener( Button btntime1, Button btntime2, Button btntime3, Button btntime4) {
-
-
-
-
-
-
         // Chat button
         chatbtn.setOnClickListener(v -> {
             Intent intent = new Intent(BookNow.this, chat.class);
@@ -250,6 +271,13 @@ btntime4 = findViewById(R.id.btntime4);
         });
 }
 
+    private void startCrispChat() {
+        Crisp.setUserEmail(mAuth.getCurrentUser().getEmail());
+
+        // Start Crisp chat
+        Intent chatIntent = new Intent(this, ChatActivity.class);
+        startActivity(chatIntent);
+    }
 
     //TOAST FOR SELECTED TIME OF THE TOURISTS
     //TOAST FOR SELECTED TIME OF THE TOURISTS
