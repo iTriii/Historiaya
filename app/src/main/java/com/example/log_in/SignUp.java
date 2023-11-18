@@ -20,6 +20,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
 import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.log_in.utilities.PreferenceManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -31,6 +32,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class SignUp extends AppCompatActivity {
+
+
     ImageView icon;
     EditText firstname, lastname, E_mail, contact, pass, reenter;
     Button signUpButton;
@@ -40,11 +43,13 @@ public class SignUp extends AppCompatActivity {
     int SELECT_PICTURE = 1;
     private String imageUrl = "";
     private Uri selectedImageUri;
+    private PreferenceManager preferenceManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
 
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -99,6 +104,7 @@ public class SignUp extends AppCompatActivity {
     private void uploadImageToFirebaseStorage(Uri imageUri, FirebaseUser user, String firstName, String lastName, String userEmail, String userContact, int points) {
         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("images"); // Set your desired storage path
 
+
         // Generate a unique file name for the image
         String imageName = "image_" + System.currentTimeMillis() + ".jpg";
 
@@ -120,6 +126,8 @@ public class SignUp extends AppCompatActivity {
                 });
     }
 
+
+    //sign up
     private void signUp() {
         String fName = firstname.getText().toString().trim();
         String lName = lastname.getText().toString().trim();
@@ -129,7 +137,9 @@ public class SignUp extends AppCompatActivity {
         String reenterPass = reenter.getText().toString().trim();
         String imageUrl = "";
 
+        //firstname lastname email
         if (TextUtils.isEmpty(fName) || TextUtils.isEmpty(lName) || TextUtils.isEmpty(email) ||
+               // contactnum password // reenter
                 TextUtils.isEmpty(contactNo) || TextUtils.isEmpty(password) || TextUtils.isEmpty(reenterPass)) {
             Toast.makeText(this, "All fields are required", Toast.LENGTH_LONG).show();
             return;
@@ -210,6 +220,5 @@ public class SignUp extends AppCompatActivity {
                     }
                 });
     }
-
-
 }
+

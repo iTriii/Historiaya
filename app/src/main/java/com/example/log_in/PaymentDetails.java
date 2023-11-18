@@ -45,11 +45,6 @@ public class PaymentDetails extends AppCompatActivity {
         lineone = findViewById(R.id.lineone);
         linetwo = findViewById(R.id.linetwo);
 
-        // Chat button
-        chatbtn.setOnClickListener(v -> {
-            Intent intent = new Intent(PaymentDetails.this, chat.class);
-            startActivity(intent);
-        });
 
         //doncatbutton
         donebtn.setOnClickListener(v -> {

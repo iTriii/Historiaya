@@ -109,25 +109,6 @@
         app:srcCompat="@drawable/arrow_back" />
 
 
-    <ImageButton
-        android:id="@+id/chatbtn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="55dp"
-        android:background="@drawable/shadow"
-        android:clickable="true"
-        android:contentDescription="@string/BookNow"
-        android:contextClickable="true"
-        android:elevation="10dp"
-        android:longClickable="true"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.883"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/chat" />
-
     <ScrollView
         android:id="@+id/cancellationScrollView"
         android:layout_width="409dp"

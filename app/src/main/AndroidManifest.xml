@@ -4,6 +4,7 @@
     package="com.example.log_in">
 
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -11,13 +12,26 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@drawable/a210"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/AppName"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".adminsTry"
+            android:name=".chat"
+            android:exported="false" />
+        <activity
+            android:name=".Splashscreen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".v5"
             android:exported="false" />
         <activity
             android:name=".RefundUserCopy"
@@ -28,33 +42,29 @@
         <activity
             android:name=".BookingDetailMain"
             android:exported="false" />
-
         <activity
             android:name=".BookingRefund"
             android:exported="false" />
         <activity
             android:name=".BookingDetails"
             android:exported="false" />
-
-        <activity
-            android:name=".Receptionist"
-            android:exported="false" />
-        <activity
-            android:name=".TourismHead"
-            android:exported="false" />
-        <activity
-            android:name=".HouseManager"
-            android:exported="false" />
-
         <activity
             android:name=".PaymentDetails"
             android:exported="false" />
-
         <activity
-            android:name=".mainChat"
-            android:exported="true" />
+            android:name=".v4"
+            android:exported="false" />
         <activity
-            android:name=".facebookAuth"
+            android:name=".v3"
+            android:exported="false" />
+        <activity
+            android:name=".v2"
+            android:exported="false" />
+        <activity
+            android:name=".v1"
+            android:exported="false" />
+        <activity
+            android:name=".Store"
             android:exported="false" />
         <activity
             android:name=".Chap1_dropdown"
@@ -82,7 +92,7 @@
             android:exported="false" />
         <activity
             android:name=".Settings"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".Profile_Edit"
             android:exported="false" />
@@ -94,12 +104,6 @@
             android:exported="true" />
         <activity
             android:name=".Payment"
-            android:exported="true" />
-        <activity
-            android:name=".chat"
-            android:exported="true" />
-        <activity
-            android:name=".Store"
             android:exported="true" />
         <activity
             android:name=".BookNow"
@@ -114,9 +118,6 @@
             android:name=".StorySelection"
             android:exported="true" />
         <activity
-            android:name=".OTP"
-            android:exported="true" />
-        <activity
             android:name=".LogIn"
             android:exported="true" />
         <activity
@@ -126,34 +127,18 @@
             android:name=".SignUp"
             android:exported="true" />
         <activity
+            android:name=".CreateNewPassword"
+            android:exported="true" />
+        <activity
             android:name=".Reset_Password"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true"></activity>
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />
-        <meta-data
-            android:name="com.facebook.sdk.ClientToken"
-            android:value="@string/facebook_client_token" />
-
-        <service
-            android:name=".firebase.MessagingService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
     </application>
 
 </manifest>
