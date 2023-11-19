@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRadioButton;
+import androidx.cardview.widget.CardView;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -48,6 +49,7 @@ public class Store extends AppCompatActivity {
     private final ImageView[] phArray = new ImageView[7];
     private final TextView[] Product = new TextView[7];
     private final TextView[] ProductDescription = new TextView[7];
+    CardView store_ph1, store_ph2,store_ph3, store_ph4,store_ph5, store_ph6, store_ph7;
 
     LinearLayout V1, V2, V3, V4, V5;
     View storeTabIndicator, purchasesTabIndicator;
@@ -64,6 +66,12 @@ public class Store extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
     private StorageReference[] storageRefs = new StorageReference[7];
     private String[] productIds = {"product1", "product2", "product3", "product4", "product5", "product6", "product7"};
+    private static final String VISIBILITY_PREFS_NAME = "VisibilityPrefs";
+    private static final String VISIBILITY_KEY_V1 = "visibility_v1";
+    private static final String VISIBILITY_KEY_V2 = "visibility_v2";
+    private static final String VISIBILITY_KEY_V3 = "visibility_v3";
+    private static final String VISIBILITY_KEY_V4 = "visibility_v4";
+    private static final String VISIBILITY_KEY_V5 = "visibility_v5";
 
     private static final int NUM_PRODUCTS = 7;
 
@@ -134,6 +142,29 @@ public class Store extends AppCompatActivity {
         V4 = findViewById(R.id.V4);
         V5 = findViewById(R.id.V5);
         mdialog = new Dialog(this);
+
+        sharedPreferences = getSharedPreferences(VISIBILITY_PREFS_NAME, MODE_PRIVATE);
+
+        // Retrieve and set the visibility state for V1
+        boolean isV1Visible = getVisibilityState(VISIBILITY_KEY_V1);
+        V1.setVisibility(isV1Visible ? View.VISIBLE : View.GONE);
+
+        // Retrieve and set the visibility state for V2
+        boolean isV2Visible = getVisibilityState(VISIBILITY_KEY_V2);
+        V2.setVisibility(isV2Visible ? View.VISIBLE : View.GONE);
+
+        // Retrieve and set the visibility state for V3
+        boolean isV3Visible = getVisibilityState(VISIBILITY_KEY_V3);
+        V3.setVisibility(isV3Visible ? View.VISIBLE : View.GONE);
+
+        // Retrieve and set the visibility state for V4
+        boolean isV4Visible = getVisibilityState(VISIBILITY_KEY_V4);
+        V4.setVisibility(isV4Visible ? View.VISIBLE : View.GONE);
+
+        // Retrieve and set the visibility state for V5
+        boolean isV5Visible = getVisibilityState(VISIBILITY_KEY_V5);
+        V5.setVisibility(isV5Visible ? View.VISIBLE : View.GONE);
+
         V1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -201,6 +232,16 @@ public class Store extends AppCompatActivity {
         }
     }
 
+    private boolean getVisibilityState(String viewId) {
+        return sharedPreferences.getBoolean(viewId, false);
+    }
+
+    private void saveVisibilityState(String viewId, boolean isVisible) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putBoolean(viewId, isVisible);
+        editor.apply();
+    }
+
     private void fetchProductDataFromFirestore(int index, String productId, TextView productNameTextView, TextView productDescriptionTextView) {
         String documentName = "Product" + (index + 1); // Adjust the document name as needed
 
@@ -252,17 +293,18 @@ public class Store extends AppCompatActivity {
         Map<String, Object> pointsMap = new HashMap<>();
         pointsMap.put("HistoriaPoints", newPoints);
 
-        // Update only the "HistoriaPoints" field in the Firestore document
         db.collection("users")
                 .document(userId)
                 .update("HistoriaPoints", newPoints)
                 .addOnSuccessListener(aVoid -> {
                     // Database update successful
                     Log.d("StoreActivity", "HistoriaPoints updated in database: " + newPoints);
+                    // Add a log or Toast message here
                 })
                 .addOnFailureListener(e -> {
                     // Handle the error
                     Log.e("StoreActivity", "Error updating HistoriaPoints in database: " + e.getMessage());
+                    // Add a log or Toast message here
                 });
     }
 
@@ -343,15 +385,45 @@ public class Store extends AppCompatActivity {
         B6P6 = findViewById(R.id.B6P6);
         B7P7 = findViewById(R.id.B7P7);
 
-        B1P1.setOnClickListener(v -> handlePurchase("store_ph1"));
-        B2P2.setOnClickListener(v -> handlePurchase("store_ph2"));
-        B3P3.setOnClickListener(v -> handlePurchase("store_ph3"));
-        B4P4.setOnClickListener(v -> handlePurchase("store_ph4"));
-        B5P5.setOnClickListener(v -> handlePurchase("store_ph5"));
+        B1P1.setOnClickListener(v -> showProductView("V1"));
+        B2P2.setOnClickListener(v -> showProductView("V2"));
+        B3P3.setOnClickListener(v -> showProductView("V3"));
+        B4P4.setOnClickListener(v -> showProductView("V4"));
+        B5P5.setOnClickListener(v -> showProductView("V5"));
         B6P6.setOnClickListener(v -> handlePurchase("store_ph6"));
         B7P7.setOnClickListener(v -> handlePurchase("store_ph7"));
     }
 
+    private void showProductView(String viewId) {
+        switch (viewId) {
+            case "V1":
+                V1.setVisibility(View.VISIBLE);
+                saveVisibilityState(VISIBILITY_KEY_V1, true);
+                break;
+            case "V2":
+                V2.setVisibility(View.VISIBLE);
+                saveVisibilityState(VISIBILITY_KEY_V2, true);
+                break;
+            case "V3":
+                V3.setVisibility(View.VISIBLE);
+                saveVisibilityState(VISIBILITY_KEY_V3, true);
+                break;
+            case "V4":
+                V4.setVisibility(View.VISIBLE);
+                saveVisibilityState(VISIBILITY_KEY_V4, true);
+                break;
+            case "V5":
+                V5.setVisibility(View.VISIBLE);
+                saveVisibilityState(VISIBILITY_KEY_V5, true);
+                break;
+
+            default:
+                mdialog.setContentView(R.layout.activity_v1);
+                mdialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                mdialog.show();
+                break;
+        }
+    }
     private void handlePurchase(String productId) {
         int productPrice = getProductPriceForId(productId);
         Log.d("StoreActivity", "handlePurchase method invoked for product: " + productId);
@@ -359,27 +431,23 @@ public class Store extends AppCompatActivity {
         Log.d("StoreActivity", "Current Points before purchase: " + currentPoints);
 
         if (currentPoints >= productPrice) {
+            // Deduct points
+            currentPoints -= productPrice;
+            updatePointsInDatabase(currentPoints);
+            points.setText(String.valueOf(currentPoints));
+
+            Log.d("StoreActivity", "Points Deducted. Current Points after purchase: " + currentPoints);
+
             int purchaseCount = purchaseCounts.get(productId);
 
-            if (purchaseCount < PURCHASE_LIMIT) {
-                // Deduct points
-                currentPoints -= productPrice;
-                updatePointsInDatabase(currentPoints);
-                points.setText(String.valueOf(currentPoints));
-                Log.d("StoreActivity", "Points Deducted. Current Points after purchase: " + currentPoints);
+            // Increment the purchase count
+            purchaseCount++;
+            purchaseCounts.put(productId, purchaseCount);
 
-                // Increment the purchase count
-                purchaseCount++;
-                purchaseCounts.put(productId, purchaseCount);
-
-                // Check if the purchase limit is reached
-                if (purchaseCount >= PURCHASE_LIMIT) {
-                    // Disable the button and change its appearance
-                    disableProductButton(productId);
-                }
-            } else {
-                // User has reached the purchase limit for this product
-                Log.d("StoreActivity", "Purchase limit reached for " + productId);
+            // Check if the purchase limit is reached
+            if (purchaseCount >= PURCHASE_LIMIT) {
+                // Disable the button and change its appearance
+                disableProductButton(productId);
             }
         } else {
             // User doesn't have enough points to buy the product
@@ -411,13 +479,13 @@ public class Store extends AppCompatActivity {
 
     private void initializeProductPrices() {
         productPrices = new HashMap<>();
-        productPrices.put("store_ph1", 90);
-        productPrices.put("store_ph2", 100);
-        productPrices.put("store_ph3", 80);
-        productPrices.put("store_ph4", 100);
-        productPrices.put("store_ph5", 90);
-        productPrices.put("store_ph6", 100);
-        productPrices.put("store_ph7", 80);
+        productPrices.put("B1P1", 90);
+        productPrices.put("B2P2", 100);
+        productPrices.put("B3P3", 80);
+        productPrices.put("B4P4", 100);
+        productPrices.put("B5P5", 90);
+        productPrices.put("B6P6", 100);
+        productPrices.put("B7P7", 80);
         // Add more product prices as needed
     }
 
@@ -452,6 +520,41 @@ public class Store extends AppCompatActivity {
             // Add more cases as needed for additional products
             default:
                 return null; // Invalid product ID
+        }
+    }
+    private void resetVoucherVisibilityPreferences() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.remove(VISIBILITY_KEY_V1);
+        editor.remove(VISIBILITY_KEY_V2);
+        editor.remove(VISIBILITY_KEY_V3);
+        editor.remove(VISIBILITY_KEY_V4);
+        editor.remove(VISIBILITY_KEY_V5);
+        editor.apply();
+
+        // Set the default visibility state for vouchers
+        V1.setVisibility(View.VISIBLE);
+        V2.setVisibility(View.VISIBLE);
+        V3.setVisibility(View.VISIBLE);
+        V4.setVisibility(View.VISIBLE);
+        V5.setVisibility(View.VISIBLE);
+    }
+    private void updateUserEmail(String newEmail) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (user != null) {
+            user.updateEmail(newEmail)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            // Email update successful
+                            Log.d("StoreActivity", "User email updated to: " + newEmail);
+
+                            // Reset visibility preferences for vouchers
+                            resetVoucherVisibilityPreferences();
+                        } else {
+                            // Email update failed
+                            Log.e("StoreActivity", "Error updating user email: " + task.getException());
+                        }
+                    });
         }
     }
     private void showToast(String message) {

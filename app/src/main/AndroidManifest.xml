@@ -3,7 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.log_in">
 
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -18,20 +23,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar"
         tools:targetApi="31">
-
+        <activity
+            android:name=".StoreManager"
+            android:exported="false" />
+        <activity
+            android:name=".Admin"
+            android:exported="false" />
         <activity
             android:name=".Splashscreen"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".v5"
             android:exported="false" />
-
         <activity
             android:name=".adminsTry"
             android:exported="false" />
@@ -44,14 +53,12 @@
         <activity
             android:name=".BookingDetailMain"
             android:exported="false" />
-
         <activity
             android:name=".BookingRefund"
             android:exported="false" />
         <activity
             android:name=".BookingDetails"
             android:exported="false" />
-
         <activity
             android:name=".Receptionist"
             android:exported="false" />
@@ -70,7 +77,6 @@
         <activity
             android:name=".mainChat"
             android:exported="true" />
-
         <activity
             android:name=".v4"
             android:exported="false" />
@@ -122,11 +128,9 @@
         <activity
             android:name=".Profile"
             android:exported="true" />
-
         <activity
             android:name=".Payment"
             android:exported="true" />
-
         <activity
             android:name=".BookNow"
             android:exported="true" />
@@ -151,23 +155,20 @@
         <activity
             android:name=".CreateNewPassword"
             android:exported="true" />
-
         <activity
             android:name=".Reset_Password"
             android:exported="true" />
         <activity
             android:name=".chat"
             android:exported="true"
-            android:label="Chat Activity"/>
+            android:label="Chat Activity" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
     </application>
 
 </manifest>

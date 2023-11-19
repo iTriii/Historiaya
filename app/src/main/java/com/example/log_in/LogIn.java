@@ -3,6 +3,7 @@ package com.example.log_in;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -53,89 +54,79 @@ public class LogIn extends AppCompatActivity {
 
         gsc = GoogleSignIn.getClient(this,gso);
 
-        googleBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Check if the user is already signed in with Google
-                GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(LogIn.this);
-                if (account != null) {
-                    // User is signed in with Google, sign them out
-                    signOutGoogle();
-                } else {
-                    // User is not signed in with Google, initiate Google sign-in
-                    signIn();
+        googleBtn.setOnClickListener(view -> {
+            // Check if the user is already signed in with Google
+            GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(LogIn.this);
+            if (account != null) {
+                // User is signed in with Google, sign them out
+                signOutGoogle();
+            } else {
+                // User is not signed in with Google, initiate Google sign-in
+                signIn();
 
-                }
             }
         });
+        li.setOnClickListener(v -> {
+            progressbar.setVisibility(View.VISIBLE); // Show progress bar
+            li.setVisibility(View.INVISIBLE); // Hide login button during progress
 
+            String inputEmail = inputemail.getText().toString();
+            String inputPass = inputpass.getText().toString();
 
-        li.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                progressbar.setVisibility(View.VISIBLE); // Show progress bar
-                li.setVisibility(View.INVISIBLE); // Hide login button during progress
+            if (TextUtils.isEmpty(inputEmail)) {
+                Toast.makeText(LogIn.this, "Enter email", Toast.LENGTH_SHORT).show();
+                progressbar.setVisibility(View.GONE); // Hide progress bar
+                li.setVisibility(View.VISIBLE); // Show login button
+                return;
+            }
+            if (TextUtils.isEmpty(inputPass)) {
+                Toast.makeText(LogIn.this, "Enter password", Toast.LENGTH_SHORT).show();
+                progressbar.setVisibility(View.GONE); // Hide progress bar
+                li.setVisibility(View.VISIBLE); // Show login button
+                return;
+            }
 
-                String inputEmail = inputemail.getText().toString();
-                String inputPass = inputpass.getText().toString();
+            // Authenticate with Firebase using email and password
+            mAuth.signInWithEmailAndPassword(inputEmail, inputPass)
+                    .addOnCompleteListener(task -> {
+                        progressbar.setVisibility(View.GONE); // Hide progress bar
+                        li.setVisibility(View.VISIBLE); // Show login button
 
-                if (TextUtils.isEmpty(inputEmail)) {
-                    Toast.makeText(LogIn.this, "Enter email", Toast.LENGTH_SHORT).show();
-                    progressbar.setVisibility(View.GONE); // Hide progress bar
-                    li.setVisibility(View.VISIBLE); // Show login button
-                    return;
-                }
-                if (TextUtils.isEmpty(inputPass)) {
-                    Toast.makeText(LogIn.this, "Enter password", Toast.LENGTH_SHORT).show();
-                    progressbar.setVisibility(View.GONE); // Hide progress bar
-                    li.setVisibility(View.VISIBLE); // Show login button
-                    return;
-                }
-
-                // Authenticate with Firebase using email and password
-                mAuth.signInWithEmailAndPassword(inputEmail, inputPass)
-                        .addOnCompleteListener(task -> {
-                            progressbar.setVisibility(View.GONE); // Hide progress bar
-                            li.setVisibility(View.VISIBLE); // Show login button
-
-                            if (task.isSuccessful()) {
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                if (user != null) {
-                                    if (user.isEmailVerified()) {
-                                        Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
-                                        Intent intent = new Intent(getApplicationContext(), Main2.class);
-                                        startActivity(intent);
-                                        finish();
-                                    } else {
-                                        Toast.makeText(LogIn.this, "Email is not verified. Please check your email for verification instructions.", Toast.LENGTH_SHORT).show();
-                                    }
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            if (user != null) {
+                                // Check if the email is the specified admin email
+                                if ("historiaya.acc@gmail.com".equals(user.getEmail())) {
+                                    // Redirect to Admin class
+                                    Toast.makeText(getApplicationContext(), "Admin Login Successful", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getApplicationContext(), Admin.class);
+                                    startActivity(intent);
+                                    finish();
+                                } else {
+                                    // Proceed with the login process for non-admin users
+                                    Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(getApplicationContext(), Main2.class);
+                                    startActivity(intent);
+                                    finish();
                                 }
-                            } else {
-                                Toast.makeText(LogIn.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
                             }
-                        });
-            }
+                        } else {
+                            Toast.makeText(LogIn.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
         });
 
-
-        regnow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // If the user wants to register, navigate to the signup activity
-                Intent intent = new Intent(LogIn.this, SignUp.class);
-                startActivity(intent);
-            }
+            regnow.setOnClickListener(v -> {
+            // If the user wants to register, navigate to the signup activity
+            Intent intent = new Intent(LogIn.this, SignUp.class);
+            startActivity(intent);
         });
 
-        forgotpass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LogIn.this, Reset_Password.class);
-                startActivity(intent);
-            }
+        forgotpass.setOnClickListener(v -> {
+            Intent intent = new Intent(LogIn.this, Reset_Password.class);
+            startActivity(intent);
         });
     }
-
     private void signIn() {
         Intent signInIntent = gsc.getSignInIntent();
         startActivityForResult(signInIntent, 1000);
@@ -150,23 +141,23 @@ public class LogIn extends AppCompatActivity {
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 if (account != null) {
-                    // Check if the Google account is linked to a Firebase account
                     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                     if (firebaseUser != null && firebaseUser.getEmail().equals(account.getEmail())) {
-                        // The Google account is linked to Firebase
-                        // Check if the email is verified
                         if (firebaseUser.isEmailVerified()) {
-                            // Email is verified, navigate to Main2
-                            navigateToSecondActivity();
+                            if (isAdminEmail(account.getEmail())) {
+                                // Admin email, navigate to Admin class
+                                navigateToAdminActivity();
+                            } else {
+                                // Non-admin email, navigate to Main2
+                                navigateToSecondActivity();
+                            }
                         } else {
                             // Email is not verified
                             Toast.makeText(LogIn.this, "Email is not verified. Please sign up.", Toast.LENGTH_LONG).show();
-                            // You may want to sign out the user here if needed
                             signOutGoogle();
                         }
                     } else {
                         // The Google account is not linked to Firebase
-                        // You might want to handle this case differently
                         Toast.makeText(LogIn.this, "Email is not verified. Please sign up", Toast.LENGTH_LONG).show();
                     }
                 }
@@ -176,12 +167,67 @@ public class LogIn extends AppCompatActivity {
         }
     }
 
+    private boolean isAdminEmail(String email) {
+        return "historiaya.acc@gmail.com".equals(email);
+    }
+
+    private void navigateToAdminActivity() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            if (user.isEmailVerified()) {
+                if ("historiaya.acc@gmail.com".equals(user.getEmail())) {
+                    // Admin email, navigate to Admin class
+                    Toast.makeText(getApplicationContext(), "Admin Login Successful", Toast.LENGTH_SHORT).show();
+                    Log.d("Navigate", "Navigating to Admin.class");
+                    finish();
+                    Intent intent = new Intent(LogIn.this, Admin.class);
+                    startActivity(intent);
+                } else {
+                    // Non-admin email, navigate to Main2
+                    Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+                    Log.d("Navigate", "Navigating to Main2.class");
+                    retrieveUserPoints();
+                    finish();
+                    Intent intent = new Intent(LogIn.this, Main2.class);
+                    startActivity(intent);
+                }
+            } else {
+                // Email is not verified, send verification email
+                Toast.makeText(LogIn.this, "Email is not verified. Sending verification email.", Toast.LENGTH_LONG).show();
+
+                user.sendEmailVerification().addOnCompleteListener(emailVerificationTask -> {
+                    if (emailVerificationTask.isSuccessful()) {
+                        // Email verification sent
+                        Toast.makeText(LogIn.this, "Verification email sent. Check your email.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                // You may want to sign out the user here if needed
+                signOutGoogle();
+            }
+        } else {
+            // User is not logged in
+            Toast.makeText(LogIn.this, "User not authenticated.", Toast.LENGTH_LONG).show();
+            // You may want to sign out the user here if needed
+            signOutGoogle();
+        }
+    }
+
+
     private void navigateToSecondActivity() {
-        Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
-        retrieveUserPoints();
-        finish();
-        Intent intent = new Intent(LogIn.this, Main2.class);
-        startActivity(intent);
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null && user.isEmailVerified()) {
+            Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+            retrieveUserPoints();
+            finish();
+            Intent intent = new Intent(LogIn.this, Main2.class);
+            startActivity(intent);
+        } else {
+            // User is not logged in or email not verified
+            Toast.makeText(LogIn.this, "User not authenticated or email not verified.", Toast.LENGTH_LONG).show();
+            // You may want to sign out the user here if needed
+            signOutGoogle();
+        }
     }
 
     private void retrieveUserPoints() {

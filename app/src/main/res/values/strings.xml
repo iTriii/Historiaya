@@ -163,10 +163,10 @@
     <string name="discount">5% off for 5pcs</string>
     <string name="discount1">5% off for 5pcs\nPinagong</string>
     <string name="discount11">5% off for 5pcs Pinagong</string>
-    <string name="discount2">5% off for 5pcs\nUraro</string>
-    <string name="discount3">5% off for 5pcs\nTikoy</string>
-    <string name="discount4">5% off for 5pcs\nPaborita</string>
-    <string name="discount5">5% off for 5pcs\nBroas</string>
+    <string name="discount2">5% off for 5pcs\nPaborita</string>
+    <string name="discount3">5% off for 5pcs\nBroas</string>
+    <string name="discount4">5% off for 5pcs\nTikoy</string>
+    <string name="discount5">5% off for 5pcs\nBignay Lipote</string>
 
     <string name="questclear">Quest Clear</string>
     <string name="scavenger">Scavenger</string>
@@ -382,6 +382,7 @@
     <string name="don_catalino_rodriguez_house">Don Catalino Rodriguez House</string>
     <string name="november">November</string>
     <string name="pending">Pending</string>
+    <string name="store_manager">Store Manager</string>
 
     <!--refund reason-->
     <string-array name="refund_options">
@@ -390,6 +391,16 @@
         <item>Double booking</item>
         <item>Other</item>
     </string-array>
+
+    <!--StoreManager-->
+    <string name="shop">Shop</string>
+    <string name="edit">Edit</string>
+    <string name="remove">Remove</string>
+    <string name="add">Add</string>
+    <string name="addItem">Add an Item</string>
+    <string name="productdescription">Add product description</string>
+    <string name="QR">Scan QR</string>
+    <string name="logout">Log Out</string>
 
     <!-- RESCHED  USER DETAILS ACTIVITY -->
 
