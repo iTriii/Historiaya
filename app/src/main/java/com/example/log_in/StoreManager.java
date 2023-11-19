@@ -200,24 +200,32 @@ public class StoreManager extends AppCompatActivity {
     private void loadImages() {
         SharedPreferences preferences = getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
 
-        for (int i = 0; i < phArray.length; i++) {
-            String imageUrl = preferences.getString("image_url_" + i, null);
+        // Start fetching product data for each image sequentially
+        fetchProductDataSequentially(0);
+    }
+
+    private void fetchProductDataSequentially(final int index) {
+        if (index < phArray.length) {
+            String imageUrl = preferences.getString("image_url_" + index, null);
 
             if (imageUrl != null) {
                 // Load the image using the URL
                 // You can use a library like Glide or Picasso for efficient image loading
                 Glide.with(this)
                         .load(imageUrl)
-                        .into(phArray[i]);
-                addDrawables[i].setVisibility(View.GONE);
+                        .into(phArray[index]);
+                addDrawables[index].setVisibility(View.GONE);
 
                 // Fetch and display product and product description from Firestore
-                fetchProductDataFromFirestore(i);
+                fetchProductDataFromFirestore(index);
+            } else {
+                // Move to the next iteration if there is no image URL
+                fetchProductDataSequentially(index + 1);
             }
         }
     }
 
-    private void fetchProductDataFromFirestore(int index) {
+    private void fetchProductDataFromFirestore(final int index) {
         String documentName = "Product" + (index + 1); // Adjust the document name as needed
 
         // Fetch data from Firestore
@@ -237,11 +245,19 @@ public class StoreManager extends AppCompatActivity {
                             ProductDescription[index].setText(productDescription);
                         }
                     }
+
+                    // Move to the next iteration
+                    fetchProductDataSequentially(index + 1);
                 })
                 .addOnFailureListener(e -> {
                     showToast("Error fetching product data from Firestore: " + e.getMessage());
+
+                    // Move to the next iteration
+                    fetchProductDataSequentially(index + 1);
                 });
     }
+
+
     private void saveProductLocally(int clickedIndex, String productName) {
         SharedPreferences productPrefs = getSharedPreferences(PRODUCT_PREFS_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = productPrefs.edit();

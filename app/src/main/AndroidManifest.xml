@@ -165,6 +165,9 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
+        <activity
+            android:name=".QR_Scanner"
+            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"

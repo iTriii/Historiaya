@@ -201,7 +201,7 @@
                         android:layout_marginStart="22dp"/>
 
 
-                    <Button
+                     <Button
                         android:id="@+id/B1P1"
                         android:layout_width="wrap_content"
                         android:layout_height="30dp"

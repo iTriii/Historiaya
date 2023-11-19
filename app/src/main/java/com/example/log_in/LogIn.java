@@ -99,7 +99,7 @@ public class LogIn extends AppCompatActivity {
                                 if ("historiaya.acc@gmail.com".equals(user.getEmail())) {
                                     // Redirect to Admin class
                                     Toast.makeText(getApplicationContext(), "Admin Login Successful", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), Admin.class);
+                                    Intent intent = new Intent(getApplicationContext(), StoreManager.class);
                                     startActivity(intent);
                                     finish();
                                 } else {
@@ -180,7 +180,7 @@ public class LogIn extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Admin Login Successful", Toast.LENGTH_SHORT).show();
                     Log.d("Navigate", "Navigating to Admin.class");
                     finish();
-                    Intent intent = new Intent(LogIn.this, Admin.class);
+                    Intent intent = new Intent(LogIn.this, StoreManager.class);
                     startActivity(intent);
                 } else {
                     // Non-admin email, navigate to Main2
