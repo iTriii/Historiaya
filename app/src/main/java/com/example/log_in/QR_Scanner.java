@@ -16,7 +16,7 @@ import com.google.zxing.BarcodeFormat;
 import com.journeyapps.barcodescanner.CompoundBarcodeView;
 import com.journeyapps.barcodescanner.DefaultDecoderFactory;
 
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.List;
 
 public class QR_Scanner extends AppCompatActivity {
@@ -56,7 +56,7 @@ public class QR_Scanner extends AppCompatActivity {
 
         qr_scanner.setStatusText(""); // Remove the status text if you don't need it
 
-        List<BarcodeFormat> formats = Collections.singletonList(BarcodeFormat.QR_CODE); // Specify the format to QR_CODE
+        List<BarcodeFormat> formats = Arrays.asList(BarcodeFormat.QR_CODE); // Specify the format to QR_CODE
         qr_scanner.getBarcodeView().setDecoderFactory(new DefaultDecoderFactory(formats));
 
         qr_scanner.resume();
