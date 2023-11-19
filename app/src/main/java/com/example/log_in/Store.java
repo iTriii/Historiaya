@@ -50,7 +50,6 @@ public class Store extends AppCompatActivity {
     private final TextView[] Product = new TextView[7];
     private final TextView[] ProductDescription = new TextView[7];
     CardView store_ph1, store_ph2,store_ph3, store_ph4,store_ph5, store_ph6, store_ph7;
-
     LinearLayout V1, V2, V3, V4, V5;
     View storeTabIndicator, purchasesTabIndicator;
     ScrollView StoreScrollView, PurchasesScrollView;
@@ -214,7 +213,7 @@ public class Store extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Increment the points value by 5
-                currentPoints += 5;
+                currentPoints += 10;
 
                 // Update the TextView to display the new points value
                 points.setText(String.valueOf(currentPoints));
@@ -224,6 +223,7 @@ public class Store extends AppCompatActivity {
             }
         });
         if (currentUser != null) {
+            retrieveUserPoints();
             for (int i = 0; i < NUM_PRODUCTS; i++) {
                 String productId = "product" + (i + 1);
                 fetchProductDataFromFirestore(i, productId, Product[i], ProductDescription[i]);
@@ -385,45 +385,17 @@ public class Store extends AppCompatActivity {
         B6P6 = findViewById(R.id.B6P6);
         B7P7 = findViewById(R.id.B7P7);
 
-        B1P1.setOnClickListener(v -> showProductView("V1"));
-        B2P2.setOnClickListener(v -> showProductView("V2"));
-        B3P3.setOnClickListener(v -> showProductView("V3"));
-        B4P4.setOnClickListener(v -> showProductView("V4"));
-        B5P5.setOnClickListener(v -> showProductView("V5"));
+        // Set OnClickListener for purchase actions
+        B1P1.setOnClickListener(v -> handlePurchase("store_ph1"));
+        B2P2.setOnClickListener(v -> handlePurchase("store_ph2"));
+        B3P3.setOnClickListener(v -> handlePurchase("store_ph3"));
+        B4P4.setOnClickListener(v -> handlePurchase("store_ph4"));
+        B5P5.setOnClickListener(v -> handlePurchase("store_ph5"));
         B6P6.setOnClickListener(v -> handlePurchase("store_ph6"));
         B7P7.setOnClickListener(v -> handlePurchase("store_ph7"));
+
     }
 
-    private void showProductView(String viewId) {
-        switch (viewId) {
-            case "V1":
-                V1.setVisibility(View.VISIBLE);
-                saveVisibilityState(VISIBILITY_KEY_V1, true);
-                break;
-            case "V2":
-                V2.setVisibility(View.VISIBLE);
-                saveVisibilityState(VISIBILITY_KEY_V2, true);
-                break;
-            case "V3":
-                V3.setVisibility(View.VISIBLE);
-                saveVisibilityState(VISIBILITY_KEY_V3, true);
-                break;
-            case "V4":
-                V4.setVisibility(View.VISIBLE);
-                saveVisibilityState(VISIBILITY_KEY_V4, true);
-                break;
-            case "V5":
-                V5.setVisibility(View.VISIBLE);
-                saveVisibilityState(VISIBILITY_KEY_V5, true);
-                break;
-
-            default:
-                mdialog.setContentView(R.layout.activity_v1);
-                mdialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                mdialog.show();
-                break;
-        }
-    }
     private void handlePurchase(String productId) {
         int productPrice = getProductPriceForId(productId);
         Log.d("StoreActivity", "handlePurchase method invoked for product: " + productId);
@@ -431,75 +403,119 @@ public class Store extends AppCompatActivity {
         Log.d("StoreActivity", "Current Points before purchase: " + currentPoints);
 
         if (currentPoints >= productPrice) {
-            // Deduct points
-            currentPoints -= productPrice;
-            updatePointsInDatabase(currentPoints);
-            points.setText(String.valueOf(currentPoints));
-
-            Log.d("StoreActivity", "Points Deducted. Current Points after purchase: " + currentPoints);
-
             int purchaseCount = purchaseCounts.get(productId);
 
-            // Increment the purchase count
-            purchaseCount++;
-            purchaseCounts.put(productId, purchaseCount);
+            if (purchaseCount < PURCHASE_LIMIT) {
+                // Deduct points
+                currentPoints -= productPrice;
+                updatePointsInDatabase(currentPoints);
+                points.setText(String.valueOf(currentPoints));
+                Log.d("StoreActivity", "Points Deducted. Current Points after purchase: " + currentPoints);
 
-            // Check if the purchase limit is reached
-            if (purchaseCount >= PURCHASE_LIMIT) {
-                // Disable the button and change its appearance
-                disableProductButton(productId);
+                // Increment the purchase count
+                purchaseCount++;
+                purchaseCounts.put(productId, purchaseCount);
+
+                // Check if the purchase limit is reached
+                if (purchaseCount >= PURCHASE_LIMIT) {
+                    // Disable the button and change its appearance
+                    disableProductButton(productId);
+                }
+                    // Set the visibility of the corresponding voucher based on the product ID
+                    switch (productId) {
+                        case "store_ph1":
+                            setVoucherVisibility(V1, true);
+                            break;
+                        case "store_ph2":
+                            setVoucherVisibility(V2, true);
+                            break;
+                        case "store_ph3":
+                            setVoucherVisibility(V3, true);
+                            break;
+                        case "store_ph4":
+                            setVoucherVisibility(V4, true);
+                            break;
+                        case "store_ph5":
+                            setVoucherVisibility(V5, true);
+                            break;
+                        // Add more cases as needed for additional products
+                    }
+            } else {
+                // User has reached the purchase limit for this product
+                Log.d("StoreActivity", "Purchase limit reached for " + productId);
             }
         } else {
             // User doesn't have enough points to buy the product
             Log.d("StoreActivity", "Insufficient points to purchase " + productId);
         }
     }
-
-    private void disableProductButton(String productId) {
-        Button productButton = findProductButtonById(productId);
-
-        if (productButton != null) {
-            productButton.setEnabled(false);
-            productButton.setBackgroundResource(R.drawable.price_button_with_outline); // Set the appearance for disabled state
-            // You can make further changes to text or other visual
-
+    private void setVoucherVisibility(View voucherView, boolean isVisible) {
+        voucherView.setVisibility(isVisible ? View.VISIBLE : View.GONE);
+        saveVisibilityState(getVisibilityKeyForVoucher(voucherView), isVisible);
+    }
+    private String getVisibilityKeyForVoucher(View voucherView) {
+        int viewId = voucherView.getId();
+        if (viewId == R.id.V1) {
+            return VISIBILITY_KEY_V1;
+        } else if (viewId == R.id.V2) {
+            return VISIBILITY_KEY_V2;
+        } else if (viewId == R.id.V3) {
+            return VISIBILITY_KEY_V3;
+        } else if (viewId == R.id.V4) {
+            return VISIBILITY_KEY_V4;
+        } else if (viewId == R.id.V5) {
+            return VISIBILITY_KEY_V5;
         } else {
-            Log.e("StoreActivity", "Invalid product ID: " + productId);
+            return "";
         }
     }
 
-    private int getProductPriceForId(String productId) {
-        if (productPrices.containsKey(productId)) {
-            return productPrices.get(productId);
-        } else {
-            Log.e("StoreActivity", "Price not found for " + productId);
-            return 0;
+
+    private void disableProductButton (String productId){
+            Button productButton = findProductButtonById(productId);
+
+            if (productButton != null) {
+                productButton.setEnabled(false);
+                productButton.setBackgroundResource(R.drawable.price_button_with_outline); // Set the appearance for disabled state
+                // You can make further changes to text or other visual
+
+            } else {
+                Log.e("StoreActivity", "Invalid product ID: " + productId);
+            }
         }
-    }
 
-    private void initializeProductPrices() {
-        productPrices = new HashMap<>();
-        productPrices.put("B1P1", 90);
-        productPrices.put("B2P2", 100);
-        productPrices.put("B3P3", 80);
-        productPrices.put("B4P4", 100);
-        productPrices.put("B5P5", 90);
-        productPrices.put("B6P6", 100);
-        productPrices.put("B7P7", 80);
-        // Add more product prices as needed
-    }
+        private int getProductPriceForId (String productId) {
+            if (productPrices.containsKey(productId)) {
+                return productPrices.get(productId);
+            } else {
+                Log.e("StoreActivity", "Price not found for " + productId);
+                return 0;
+            }
+        }
 
-    private void initializePurchaseCounts() {
-        purchaseCounts = new HashMap<>();
-        purchaseCounts.put("store_ph1", 0);
-        purchaseCounts.put("store_ph2", 0);
-        purchaseCounts.put("store_ph3", 0);
-        purchaseCounts.put("store_ph4", 0);
-        purchaseCounts.put("store_ph5", 0);
-        purchaseCounts.put("store_ph6", 0);
-        purchaseCounts.put("store_ph7", 0);
-        // Add more products and initialize their purchase counts
-    }
+        private void initializeProductPrices () {
+            productPrices = new HashMap<>();
+            productPrices.put("store_ph1", 90);
+            productPrices.put("store_ph2", 100);
+            productPrices.put("store_ph3", 80);
+            productPrices.put("store_ph4", 100);
+            productPrices.put("store_ph5", 90);
+            productPrices.put("store_ph6", 100);
+            productPrices.put("store_ph7", 80);
+            // Add more product prices as needed
+        }
+
+        private void initializePurchaseCounts () {
+            purchaseCounts = new HashMap<>();
+            purchaseCounts.put("store_ph1", 0);
+            purchaseCounts.put("store_ph2", 0);
+            purchaseCounts.put("store_ph3", 0);
+            purchaseCounts.put("store_ph4", 0);
+            purchaseCounts.put("store_ph5", 0);
+            purchaseCounts.put("store_ph6", 0);
+            purchaseCounts.put("store_ph7", 0);
+            // Add more products and initialize their purchase counts
+        }
 
     private Button findProductButtonById(String productId) {
         switch (productId) {
@@ -538,6 +554,7 @@ public class Store extends AppCompatActivity {
         V4.setVisibility(View.VISIBLE);
         V5.setVisibility(View.VISIBLE);
     }
+
     private void updateUserEmail(String newEmail) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -561,3 +578,4 @@ public class Store extends AppCompatActivity {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 }
+
