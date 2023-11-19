@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.ParseException;
@@ -33,7 +34,9 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
+import java.util.Objects;
 
+import im.crisp.client.ChatActivity;
 import im.crisp.client.Crisp;
 
 
@@ -91,6 +94,9 @@ btntime2 = findViewById(R.id.btntime2);
 btntime3 = findViewById(R.id.btntime3);
 btntime4 = findViewById(R.id.btntime4);
 
+
+
+
         setupSpinners();
         setListeners();
         setupButtonClickListener(btntime1, btntime2,  btntime3, btntime4);
@@ -127,10 +133,13 @@ btntime4 = findViewById(R.id.btntime4);
     private void setListener() {
         // listeners for both Spinners
         spinTour.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
               //  showToast("Heritage House Selected: " + spinTour.getSelectedItem().toString());
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
             //    showToast("No Heritage House Selected. Please, Select a Tour");
@@ -142,6 +151,7 @@ btntime4 = findViewById(R.id.btntime4);
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 //  showToast("Tourist Number Selected: " + spinNum.getSelectedItem().toString());
             }
+
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
                 //   showToast("No Tourist Number Selected");
@@ -352,7 +362,9 @@ btntime4 = findViewById(R.id.btntime4);
         return tourPrice;
     }
 
+
     // Add data to Firestore... Wag mo iirremove lea
+
     private void addDataToFirestore(String userId, String selectedTour, String selectedTouristNum, String reservedDate, double totalAmount, String selectedTime) {
 //TO DELAY THE EXECUTION IN PAYMENT ACTIVITY
         int delayMillis = 60000; //1min delay
