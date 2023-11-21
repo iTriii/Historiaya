@@ -1,45 +1,37 @@
 package com.example.log_in.adapters;
 
-import static androidx.core.content.ContextCompat.startActivity;
-import static com.facebook.FacebookSdk.getApplicationContext;
-
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.text.TextUtils;
 import android.util.Base64;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.log_in.databinding.ItemContainerUserBinding;
-import com.example.log_in.listener.UserListener;
-import com.example.log_in.mainChat;
+import com.example.log_in.R;
 import com.example.log_in.models.User;
-import com.example.log_in.utilities.Constants;
 
 import java.util.List;
 
 public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHolder> {
 
     private final List<User> users;
-    private final UserListener userListener;
-    public UsersAdapter(List<User> users, UserListener userListener) {
-        this.users = users;
-        this.userListener = userListener;
 
+    public UsersAdapter(List<User> users) {
+        this.users = users;
     }
 
     @NonNull
     @Override
     public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemContainerUserBinding itemContainerUserBinding = ItemContainerUserBinding.inflate(
-                LayoutInflater.from(parent.getContext()),
-                parent,
-                false
-        );
-        return new UserViewHolder(itemContainerUserBinding);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_container_user, parent, false);
+        return new UserViewHolder(itemView);
     }
 
     @Override
@@ -52,25 +44,37 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
         return users.size();
     }
 
-
     class UserViewHolder extends RecyclerView.ViewHolder {
-        ItemContainerUserBinding binding;
+        private TextView firstName, lastName, userEmail;
+        private ImageView icon;
 
-        UserViewHolder(ItemContainerUserBinding itemContainerUserBinding) {
-            super(itemContainerUserBinding.getRoot());
-            binding = itemContainerUserBinding;
+        UserViewHolder(View itemView) {
+            super(itemView);
+
+            firstName = itemView.findViewById(R.id.textName);
+            userEmail = itemView.findViewById(R.id.textEmail);
+            icon = itemView.findViewById(R.id.icon);
         }
 
         void setUserData(User user) {
-                binding.textName.setText( user.name);
-                binding.textEmail.setText(user.email);
-                binding.imgProfile.setImageBitmap((getUserImage(user.image)));
-                 binding.getRoot().setOnClickListener(v ->  userListener.onUserClicked(user));
-                  }
-            }
-    private Bitmap getUserImage(String encodedImage) {
-        byte[] bytes = Base64.decode(encodedImage, Base64.DEFAULT);
-        return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-    }
+            firstName.setText(user.getFirstName());
+            lastName.setText(user.getLastName());
+            userEmail.setText(user.getUserEmail());
 
+            String iconBase64 = user.getImageBase64();
+            if (!TextUtils.isEmpty(iconBase64)) {
+                icon.setImageBitmap(getUserImage(iconBase64));
+            } else {
+                // Handle the case when the image is missing or empty
+                // You can set a default image or show an error message.
+                // For now, I'll show a Toast message for demonstration purposes.
+                Toast.makeText(itemView.getContext(), "User image is missing or empty", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        private Bitmap getUserImage(String iconBase64) {
+            byte[] bytes = Base64.decode(iconBase64, Base64.DEFAULT);
+            return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        }
+    }
 }

@@ -49,6 +49,11 @@ public class TourismHeadAdmin extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         user = auth.getCurrentUser();
+        // Example assuming these are View objects in your layout
+        wan = findViewById(R.id.wan);
+        to = findViewById(R.id.to);
+        tre = findViewById(R.id.tre);
+
 
         backbutton = findViewById(R.id.backbutton);
         Pending_RecyclerView = findViewById(R.id.Pending_RecyclerView);
