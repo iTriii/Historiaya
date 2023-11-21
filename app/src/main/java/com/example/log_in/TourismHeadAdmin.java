@@ -24,6 +24,7 @@ import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class TourismHeadAdmin extends AppCompatActivity {
     RadioButton Upcoming_Tab, History_tab, Pending_Tab;
@@ -32,7 +33,7 @@ public class TourismHeadAdmin extends AppCompatActivity {
     FirebaseFirestore db;
     ImageButton backbutton;
 
-    RecyclerView Pending_RecyclerView, History_RecyclerView, Upcoming_RecyclerView;
+    RecyclerView Pending_RecyclerView;
     ArrayList<User> userArrayList;
     MyAdapter myAdapter;
     ProgressDialog progressDialog;
@@ -48,8 +49,8 @@ public class TourismHeadAdmin extends AppCompatActivity {
         tre = findViewById(R.id.tre);
         backbutton = findViewById(R.id.backbutton);
         db = FirebaseFirestore.getInstance();
-        userArrayList = new ArrayList<User>();
-        myAdapter = new MyAdapter(TourismHeadAdmin.this, userArrayList);
+        userArrayList = new ArrayList<>();
+        myAdapter = new MyAdapter(this, userArrayList, db);
 
         // Set up RecyclerView and Adapter
         setUpRecyclerView();
@@ -76,22 +77,33 @@ public class TourismHeadAdmin extends AppCompatActivity {
     private void EventChangeListener() {
         db.collection("users").orderBy("reservedDate", Query.Direction.ASCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    HashMap<String, User> userHashMap = new HashMap<>();
                     @SuppressLint("NotifyDataSetChanged")
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                         if (error != null) {
                             if (!progressDialog.isShowing()) progressDialog.show();
-
                             Log.e("Error", error.getMessage());
                             return;
                         }
                         // Handle data changes
                         for (DocumentChange dc : value.getDocumentChanges()) {
-                            if (dc.getType() == DocumentChange.Type.ADDED) {
-                                User user = dc.getDocument().toObject(User.class);
-                                userArrayList.add(user);
+                            switch (dc.getType()) {
+                                case ADDED:
+                                case MODIFIED:
+                                    User user = dc.getDocument().toObject(User.class);
+                                    userHashMap.put(user.getEmail(), user);
+                                    break;
+                                case REMOVED:
+                                    User userRemoved = dc.getDocument().toObject(User.class);
+                                    userHashMap.remove(userRemoved.getEmail());
+                                    break;
                             }
                         }
+// Clear the existing list and add items from the HashMap
+                        userArrayList.clear();
+                        userArrayList.addAll(userHashMap.values());
+
                         // Update the RecyclerView adapter
                         myAdapter.notifyDataSetChanged();
 
@@ -121,7 +133,8 @@ public class TourismHeadAdmin extends AppCompatActivity {
         Pending_Tab = findViewById(R.id.Pending_Tab);
         Pending_Tab.setOnClickListener(v -> Pending_Tab());
     }
-        //tabs
+
+    // Tabs
     private void Upcoming_Tab() {
         Upcoming_Tab.setChecked(true);
         Upcoming_Tab.setTextColor(ContextCompat.getColor(this, R.color.green));
@@ -167,5 +180,3 @@ public class TourismHeadAdmin extends AppCompatActivity {
         tre.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
     }
 }
-
-

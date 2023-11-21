@@ -39,7 +39,7 @@
             android:layout_marginTop="40dp"
             android:background="@drawable/shadow"
             android:padding="5dp"
-            android:src="@drawable/clock" />
+            android:src="@drawable/don_catalino1" />
 
         <TextView
             android:id="@+id/BahayTourHeadText"
