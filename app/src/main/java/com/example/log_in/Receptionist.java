@@ -17,6 +17,8 @@ import com.google.firebase.firestore.ListenerRegistration;
 
 public class Receptionist extends AppCompatActivity {
 
+
+
     RadioButton UpcomingRecep_Tab, HistoryRecep_tab;
     ScrollView UpcomingRecep_ScrollView, HistoryRecep_ScrollView;
     View wanRecep, toRecep;
@@ -25,7 +27,7 @@ public class Receptionist extends AppCompatActivity {
     FirebaseUser user;
     FirebaseAuth auth;
     FirebaseFirestore db;
-   public ListenerRegistration userDataListener;
+    public ListenerRegistration userDataListener;
 
 
     @Override
@@ -33,8 +35,11 @@ public class Receptionist extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receptionist);
 
+
+
+
         BahayRecepText2 = findViewById(R.id.BahayRecepText2);
-    //    ArawRecepText = findViewById(R.id.ArawText);
+         ArawRecepText = findViewById(R.id.ArawRecepText);
         MonthRecepText = findViewById(R.id.MonthText);
         wanRecep = findViewById(R.id.wanRecep);
         toRecep = findViewById(R.id.toRecep);
