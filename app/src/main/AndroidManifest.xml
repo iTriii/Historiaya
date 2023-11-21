@@ -24,10 +24,25 @@
         android:theme="@style/Theme.Design.Light.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".StoreManager"
+            android:name=".UserAdapter"
+            android:exported="false" />
+        <activity
+            android:name=".GalaRodriguezAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".DonCatalinoAdmin"
             android:exported="false" />
         <activity
             android:name=".Admin"
+            android:exported="false" />
+        <activity
+            android:name=".Receptionist"
+            android:exported="false" />
+        <activity
+            android:name=".TourismHeadAdmin"
+            android:exported="false" />
+        <activity
+            android:name=".StoreManager"
             android:exported="false" />
         <activity
             android:name=".Splashscreen"
@@ -38,19 +53,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".v5"
-            android:exported="false" />
-
-        <activity
-            android:name=".adminsTry"
             android:exported="false" />
         <activity
             android:name=".RefundUserCopy"
             android:exported="false" />
         <activity
             android:name=".BookingCancellation"
+            android:exported="false" />
+        <activity
+            android:name=".QR_Scanner"
             android:exported="false" />
         <activity
             android:name=".BookingDetailMain"
@@ -62,24 +75,8 @@
             android:name=".BookingDetails"
             android:exported="false" />
         <activity
-            android:name=".Receptionist"
-            android:exported="false" />
-        <activity
-            android:name=".TourismHead"
-            android:exported="false" />
-        <activity
-            android:name=".HouseManager"
-            android:exported="false" />
-        <activity
             android:name=".PaymentDetails"
             android:exported="false" />
-        <activity
-            android:name=".Psummary"
-            android:exported="false" />
-        <activity
-            android:name=".mainChat"
-            android:exported="true" />
-
         <activity
             android:name=".v4"
             android:exported="false" />
@@ -131,11 +128,9 @@
         <activity
             android:name=".Profile"
             android:exported="true" />
-
         <activity
             android:name=".Payment"
             android:exported="true" />
-
         <activity
             android:name=".BookNow"
             android:exported="true" />
@@ -160,7 +155,6 @@
         <activity
             android:name=".CreateNewPassword"
             android:exported="true" />
-
         <activity
             android:name=".Reset_Password"
             android:exported="true" />
@@ -171,14 +165,10 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
-        <activity
-            android:name=".QR_Scanner"
-            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
     </application>
 
 </manifest>

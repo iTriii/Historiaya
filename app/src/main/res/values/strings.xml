@@ -401,6 +401,10 @@
     <string name="productdescription">Add product description</string>
     <string name="QR">Scan QR</string>
     <string name="logout">Log Out</string>
+    <string name="gala_rodriguez_admin">Gala Rodriguez Admin</string>
+    <string name="receptionist_admin">Receptionist Admin</string>
+    <string name="tourismhead_admin">TourismHead Admin</string>
+    <string name="don_catalino_admin">Don Catalino Admin</string>
 
     <!-- RESCHED  USER DETAILS ACTIVITY -->
 
