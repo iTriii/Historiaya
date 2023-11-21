@@ -1,5 +1,6 @@
 package com.example.log_in;
 
+import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,8 +16,6 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -30,15 +29,13 @@ public class TourismHeadAdmin extends AppCompatActivity {
     RadioButton Upcoming_Tab, History_tab, Pending_Tab;
     ScrollView Upcoming_ScrollView, History_ScrollView, Pending_ScrollView;
     View wan, to, tre;
-    FirebaseUser user;
-    FirebaseAuth auth;
     FirebaseFirestore db;
     ImageButton backbutton;
-    ProgressDialog progressDialog;
 
-    RecyclerView Pending_RecyclerView;
+    RecyclerView Pending_RecyclerView, History_RecyclerView, Upcoming_RecyclerView;
     ArrayList<User> userArrayList;
     MyAdapter myAdapter;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,71 +43,69 @@ public class TourismHeadAdmin extends AppCompatActivity {
         setContentView(R.layout.activity_tourism_head_admin);
 
         // Initialize Firebase Authentication and Firestore
-        auth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
-        user = auth.getCurrentUser();
-        // Example assuming these are View objects in your layout
         wan = findViewById(R.id.wan);
         to = findViewById(R.id.to);
         tre = findViewById(R.id.tre);
-
-
         backbutton = findViewById(R.id.backbutton);
-        Pending_RecyclerView = findViewById(R.id.Pending_RecyclerView);
+        db = FirebaseFirestore.getInstance();
+        userArrayList = new ArrayList<User>();
+        myAdapter = new MyAdapter(TourismHeadAdmin.this, userArrayList);
+
+        // Set up RecyclerView and Adapter
         setUpRecyclerView();
 
+        // Set up tabs and views
+        setUpTabsAndViews();
+
+        // Initialize ProgressDialog
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Loading...");
+
+        // Add data listener to load data from Firestore
         EventChangeListener();
 
-        // Back button
+        // back button
         backbutton.setOnClickListener(v -> {
             Intent intent = new Intent(TourismHeadAdmin.this, Admin.class);
             startActivity(intent);
-            finish();
         });
-
-        setUpTabsAndViews();
     }
 
+    // EventListener for data changes in Firestore
     private void EventChangeListener() {
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setCancelable(false);
-        progressDialog.setMessage("Fetching Data...");
-        progressDialog.show();
-
         db.collection("users").orderBy("reservedDate", Query.Direction.ASCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @SuppressLint("NotifyDataSetChanged")
                     @Override
                     public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
                         if (error != null) {
-                            if (progressDialog.isShowing())
-                                progressDialog.dismiss();
-                            Log.e("Firestore error...", error.getMessage());
+                            if (!progressDialog.isShowing()) progressDialog.show();
+
+                            Log.e("Error", error.getMessage());
                             return;
                         }
-
-                        userArrayList.clear(); // Clear the list before adding new data
+                        // Handle data changes
                         for (DocumentChange dc : value.getDocumentChanges()) {
                             if (dc.getType() == DocumentChange.Type.ADDED) {
-                                userArrayList.add(dc.getDocument().toObject(User.class));
+                                User user = dc.getDocument().toObject(User.class);
+                                userArrayList.add(user);
                             }
                         }
-
+                        // Update the RecyclerView adapter
                         myAdapter.notifyDataSetChanged();
 
-                        if (progressDialog.isShowing())
-                            progressDialog.dismiss();
+                        // Dismiss progress dialog when data is loaded
+                        if (progressDialog.isShowing()) progressDialog.dismiss();
                     }
                 });
     }
 
     private void setUpRecyclerView() {
         // RecyclerView setup
+        Pending_RecyclerView = findViewById(R.id.Pending_RecyclerView);
         Pending_RecyclerView.setHasFixedSize(true);
         Pending_RecyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-        // Initialize and set the adapter
-        userArrayList = new ArrayList<>();
-        myAdapter = new MyAdapter(this, userArrayList);
         Pending_RecyclerView.setAdapter(myAdapter);
     }
 
@@ -126,8 +121,7 @@ public class TourismHeadAdmin extends AppCompatActivity {
         Pending_Tab = findViewById(R.id.Pending_Tab);
         Pending_Tab.setOnClickListener(v -> Pending_Tab());
     }
-
-    // tabs
+        //tabs
     private void Upcoming_Tab() {
         Upcoming_Tab.setChecked(true);
         Upcoming_Tab.setTextColor(ContextCompat.getColor(this, R.color.green));
@@ -173,3 +167,5 @@ public class TourismHeadAdmin extends AppCompatActivity {
         tre.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
     }
 }
+
+
