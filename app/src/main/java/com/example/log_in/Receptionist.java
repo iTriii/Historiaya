@@ -20,7 +20,7 @@ public class Receptionist extends AppCompatActivity {
     RadioButton UpcomingRecep_Tab, HistoryRecep_tab;
     ScrollView UpcomingRecep_ScrollView, HistoryRecep_ScrollView;
     View wanRecep, toRecep;
-    TextView BahayRecepText, ArawRecepText, MonthRecepText, MonthText, ArawText, BahayRecepText2;
+    TextView BahayRecepText, ArawecepText, MonthRecepText, MonthText, ArawText, BahayRecepText2;
 
     FirebaseUser user;
     FirebaseAuth auth;
