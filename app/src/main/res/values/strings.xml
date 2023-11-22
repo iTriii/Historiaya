@@ -402,6 +402,12 @@
     <string name="QR">Scan QR</string>
     <string name="logout">Log Out</string>
 
+    <!--HouseManager-->
+    <string name="bookinglist">Booking List</string>
+    <string name="Heritagehouse">Heritage House</string>
+    <string name="edit_calendar">EDIT CALENDAR</string>
+    <string name="upcoming">Upcoming</string>
+
     <!-- RESCHED  USER DETAILS ACTIVITY -->
 
 

@@ -70,11 +70,11 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/rectangle" />
 
-
     <TextView
-        android:id="@+id/pay"
+        android:id="@+id/Boooking"
         android:layout_width="260dp"
         android:layout_height="46dp"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/montserrat_alternates_extrabold"
         android:shadowColor="#FFFDFD"
         android:shadowDx="7"
@@ -84,12 +84,9 @@
         android:textAlignment="center"
         android:textColor="#FEC242"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.042"
         tools:ignore="TextSizeCheck" />
 
     <ImageButton
@@ -119,23 +116,24 @@
         tools:ignore="MissingConstraints">
 
         <LinearLayout
+            android:layout_marginTop="120dp"
             android:layout_width="383dp"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="400dp"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/SDate"
                 android:layout_width="175dp"
                 android:layout_height="30dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="95dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="10dp"
                 android:contentDescription="@string/txtview_for_select_date"
                 android:fontFamily="@font/inter_bold"
                 android:maxLines="2"
                 android:text="@string/select_date"
                 android:textAlignment="center"
                 android:textColor="@color/green"
-                android:textSize="23sp"
+                android:textSize="21sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.11"
@@ -148,13 +146,13 @@
                 style="@android:style/Widget.DeviceDefault.CalendarView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="-180dp"
-                android:layout_marginTop="135dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/bgcalendar"
                 android:clickable="true"
                 android:labelFor="@id/SDate"
                 android:maxDate="01/01/2025"
-                android:minDate="15/11/2023"
+                android:minDate="15/11/2022"
                 android:weekDayTextAppearance="@style/TextAppearance.AppCompat.Body2"
                 app:layout_constraintBottom_toBottomOf="@+id/rizal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -167,7 +165,7 @@
                 android:id="@+id/EditHousebtn"
                 android:layout_width="168dp"
                 android:layout_height="45dp"
-                android:layout_marginLeft="-250dp"
+                android:layout_marginStart="-250dp"
                 android:layout_marginTop="480dp"
                 android:width="226dp"
                 android:height="55dp"
@@ -176,7 +174,7 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
                 android:longClickable="true"
-                android:text="EDIT CALENDAR"
+                android:text="@string/edit_calendar"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="13sp"
@@ -187,6 +185,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/cardView"
                 app:layout_constraintVertical_bias="1.0" />
+
+
+
 
         </LinearLayout>
     </LinearLayout>
@@ -210,17 +211,16 @@
             android:id="@+id/UpcomingHouseManager_Tab"
             android:layout_width="148dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="-10dp"
-            android:layout_marginEnd="-20dp"
+            android:layout_marginStart="-20dp"
             android:background="@color/transparent"
             android:button="@color/transparent"
             android:checked="true"
             android:fontFamily="@font/montserrat_bold"
             android:gravity="center"
-            android:text="Upcoming"
+            android:text="@string/upcoming"
             android:textAlignment="center"
             android:textColor="@color/green"
-            android:textSize="20sp"
+            android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@+id/ProfileName"
             tools:layout_editor_absoluteX="4dp" />
 
@@ -229,7 +229,7 @@
             android:id="@+id/HistoryHouseManager_tab"
             android:layout_width="148dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="40dp"
+            android:layout_marginStart="20dp"
             android:layout_marginEnd="-10dp"
             android:background="@color/transparent"
             android:button="@color/transparent"
@@ -239,7 +239,7 @@
             android:text="History"
             android:textAlignment="center"
             android:textColor="@color/green"
-            android:textSize="20sp"
+            android:textSize="16sp"
             app:layout_constraintTop_toBottomOf="@+id/ProfileName"
             tools:layout_editor_absoluteX="4dp" />
 
@@ -249,10 +249,10 @@
         android:id="@+id/toHouse"
         android:layout_width="125dp"
         android:layout_height="3dp"
-        android:layout_marginStart="210dp"
+        android:layout_marginEnd="70dp"
         android:layout_marginTop="565dp"
         android:background="@color/green"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
@@ -260,8 +260,8 @@
         android:layout_width="125dp"
         android:layout_height="3dp"
         android:layout_marginTop="565dp"
+        android:layout_marginStart="60dp"
         android:background="@color/green"
-        app:layout_constraintEnd_toStartOf="@+id/toHouse"
         app:layout_constraintStart_toStartOf="@+id/radioGroup2"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
@@ -270,8 +270,8 @@
     <ScrollView
         android:id="@+id/UpcomingHouse_ScrollView"
         android:layout_width="382dp"
-        android:layout_height="149dp"
-        android:layout_marginTop="-40dp"
+            android:layout_height="149dp"
+            android:layout_marginTop="-40dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -284,76 +284,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="137dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/MonthHouseManagerText"
-                    android:layout_width="136dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="-90dp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="@string/november"
-                    android:textColor="#000000"
-                    android:textSize="19sp" />
+               <androidx.recyclerview.widget.RecyclerView
+                   android:id="@+id/housemanager_upcomingRV"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent" />
 
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView"
-                    android:layout_width="341dp"
-                    android:layout_height="100dp"
-                    android:layout_marginLeft="20dp"
-                    android:foregroundGravity="fill"
-                    app:cardCornerRadius="@dimen/fab_margin"
-                    app:cardMaxElevation="70dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.555"
-                    app:layout_constraintHorizontal_weight="1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintVertical_bias="0.595"
-                    app:strokeWidth="4dp">
-
-                    <ImageView
-                        android:id="@+id/imageView3"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_marginLeft="6dp"
-                        android:padding="5dp"
-                        android:background="@drawable/shadow"
-                        android:src="@drawable/don_catalino1" />
-
-                    <TextView
-                        android:id="@+id/BahayHouseManagerText"
-                        android:layout_width="159dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="-20dp"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:text="@string/don_catalino_rodriguez_house"
-                        android:textColor="#000000"
-                        android:textSize="19sp" />
-
-                    <TextView
-                        android:id="@+id/ArawHouseManagerText"
-                        android:layout_width="159dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/montserrat"
-                        android:text=" November 15, 2023"
-                        android:textColor="#000000"
-                        android:textSize="19sp" />
-
-
-                </androidx.cardview.widget.CardView>
-
-
-            </LinearLayout>
         </LinearLayout>
     </ScrollView>
 
@@ -447,6 +383,5 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
