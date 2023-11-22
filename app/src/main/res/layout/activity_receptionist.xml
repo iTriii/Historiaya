@@ -111,85 +111,85 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_notif" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="383dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:orientation="vertical"
-            tools:ignore="MissingConstraints">
+            android:orientation="horizontal">
 
-            <LinearLayout
-                android:layout_width="383dp"
+            <TextView
+                android:id="@+id/SDate"
+                android:layout_width="175dp"
+                android:layout_height="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="95dp"
+                android:contentDescription="@string/txtview_for_select_date"
+                android:fontFamily="@font/inter_bold"
+                android:maxLines="2"
+                android:text="@string/select_date"
+                android:textAlignment="center"
+                android:textColor="@color/green"
+                android:textSize="23sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.11"
+                app:layout_constraintStart_toStartOf="@+id/blurred"
+                app:layout_constraintTop_toBottomOf="@+id/NumTourist"
+                app:layout_constraintVertical_bias="0.048" />
+
+            <CalendarView
+                android:id="@+id/CalendarRecep"
+                style="@android:style/Widget.DeviceDefault.CalendarView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:layout_marginLeft="-180dp"
+                android:layout_marginTop="135dp"
+                android:background="@drawable/bgcalendar"
+                android:clickable="true"
+                android:labelFor="@id/SDate"
+                android:maxDate="01/01/2025"
+                android:minDate="15/11/2023"
+                android:weekDayTextAppearance="@style/TextAppearance.AppCompat.Body2"
+                app:layout_constraintBottom_toBottomOf="@+id/rizal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.488"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/twopips"
+                app:layout_constraintVertical_bias="0.687" />
 
-                <TextView
-                    android:id="@+id/SDate"
-                    android:layout_width="175dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="95dp"
-                    android:contentDescription="@string/txtview_for_select_date"
-                    android:fontFamily="@font/inter_bold"
-                    android:maxLines="2"
-                    android:text="@string/select_date"
-                    android:textAlignment="center"
-                    android:textColor="@color/green"
-                    android:textSize="23sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.11"
-                    app:layout_constraintStart_toStartOf="@+id/blurred"
-                    app:layout_constraintTop_toBottomOf="@+id/NumTourist"
-                    app:layout_constraintVertical_bias="0.048" />
+            <Button
+                android:id="@+id/Editbtn"
+                android:layout_width="168dp"
+                android:layout_height="45dp"
+                android:layout_marginLeft="-250dp"
+                android:layout_marginTop="480dp"
+                android:width="226dp"
+                android:backgroundTint="#00A197"
 
-                <CalendarView
-                    android:id="@+id/CalendarRecep"
-                    style="@android:style/Widget.DeviceDefault.CalendarView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="-180dp"
-                    android:layout_marginTop="135dp"
-                    android:background="@drawable/bgcalendar"
-                    android:clickable="true"
-                    android:labelFor="@id/SDate"
-                    android:maxDate="01/01/2025"
-                    android:minDate="15/11/2023"
-                    android:weekDayTextAppearance="@style/TextAppearance.AppCompat.Body2"
-                    app:layout_constraintBottom_toBottomOf="@+id/rizal"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.488"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/twopips"
-                    app:layout_constraintVertical_bias="0.687" />
+                android:clickable="true"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:longClickable="true"
+                android:text="EDIT CALENDAR"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
+                app:cardMaxElevation="70dp"
+                app:layout_constraintBottom_toBottomOf="@+id/blurred"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.631"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/cardView"
+                app:layout_constraintVertical_bias="1.0" />
 
-                <Button
-                    android:id="@+id/Editbtn"
-                    android:layout_width="168dp"
-                    android:layout_height="45dp"
-                    android:layout_marginLeft="-250dp"
-                    android:layout_marginTop="480dp"
-                    android:width="226dp"
-                    android:height="55dp"
-                    android:background="@drawable/startbuttonbg"
-                    android:clickable="true"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:gravity="center"
-                    android:longClickable="true"
-                    android:text="EDIT CALENDAR"
-                    android:textAlignment="center"
-                    android:textColor="#FFFFFF"
-                    android:textSize="13sp"
-                    app:cardMaxElevation="70dp"
-                    app:layout_constraintBottom_toBottomOf="@+id/blurred"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.631"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/cardView"
-                    app:layout_constraintVertical_bias="1.0" />
-
-            </LinearLayout>
         </LinearLayout>
+    </LinearLayout>
 
 
 
@@ -288,7 +288,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="137dp"
+                android:layout_height="145dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -296,6 +296,7 @@
                     android:layout_width="136dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
                     android:layout_marginLeft="-90dp"
                     android:fontFamily="@font/montserrat_bold"
                     android:text="@string/november"
@@ -414,7 +415,7 @@
                         android:layout_width="100dp"
                         android:layout_height="100dp"
                         android:layout_marginLeft="6dp"
-                    android:padding="5dp"
+                        android:padding="5dp"
                         android:background="@drawable/shadow"
                         android:src="@drawable/don_catalino1" />
 
@@ -449,6 +450,8 @@
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

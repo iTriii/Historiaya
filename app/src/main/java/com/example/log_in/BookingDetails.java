@@ -1,6 +1,5 @@
 package com.example.log_in;
 
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.TimePickerDialog;
@@ -25,8 +24,10 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class BookingDetails extends AppCompatActivity {
@@ -76,14 +77,17 @@ public class BookingDetails extends AppCompatActivity {
         });
 
 
+        // NAVIGATE TO PROFILE
+        btncancel.setOnClickListener(v -> {
+            Intent intent = new Intent(BookingDetails.this, Profile.class);
+            startActivity(intent);
+        });
 
         // Back button
         backkk.setOnClickListener(v -> {
             Intent intent = new Intent(BookingDetails.this, Profile.class);
             startActivity(intent);
         });
-
-
 
 
         // Initialize Firebase
@@ -98,6 +102,7 @@ public class BookingDetails extends AppCompatActivity {
 
     // DATE PICKER
     private void setupDatePicker() {
+        // Initialize DatePickerDialog
         reschedcalendarbtn.setOnClickListener(v -> {
             int year = calendar.get(Calendar.YEAR);
             int month = calendar.get(Calendar.MONTH);
@@ -110,8 +115,18 @@ public class BookingDetails extends AppCompatActivity {
             DatePickerDialog datePickerDialog = new DatePickerDialog(
                     BookingDetails.this,
                     (view, year1, month1, dayOfMonth1) -> {
-                        selectedDate = String.format("\"dd-MMM-yy hh.mm.ss.S aa\"", month1 + 1, dayOfMonth1, year1);
+                        // Create a Calendar instance for the selected date
+                        Calendar selectedCalendar = Calendar.getInstance();
+                        selectedCalendar.set(Calendar.YEAR, year1);
+                        selectedCalendar.set(Calendar.MONTH, month1);
+                        selectedCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth1);
+
+                        // Format the selected date
+                        SimpleDateFormat sdfDate = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH);
+                        selectedDate = sdfDate.format(selectedCalendar.getTime());
+
                         Date.setText("Selected date: " + selectedDate);
+
                         // Check if the selected date is in the past
                         if (isDateInPast(year1, month1, dayOfMonth1)) {
                             // Show a message or handle the case where the date is in the past
@@ -130,19 +145,19 @@ public class BookingDetails extends AppCompatActivity {
             datePickerDialog.show();
         });
 
-        // NAVIGATE TO PROFILE
-        btncancel.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingDetails.this, Profile.class);
-            startActivity(intent);
-        });
-
         // Initialize TimePickerDialog
         reschedtimebtn.setOnClickListener(v -> {
-            @SuppressLint("SetTextI18n") TimePickerDialog timePickerDialog = new TimePickerDialog(
+            TimePickerDialog timePickerDialog = new TimePickerDialog(
                     BookingDetails.this,
                     (view, hourOfDay, minute) -> {
+                        // Format the selected time
+                        Calendar selectedTimeCalendar = Calendar.getInstance();
+                        selectedTimeCalendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                        selectedTimeCalendar.set(Calendar.MINUTE, minute);
 
-                        selectedTime = String.format("dd-MMM-yy hh.mm.ss.S aa", hourOfDay, minute);
+                        SimpleDateFormat sdfTime = new SimpleDateFormat("hh:mm a", Locale.ENGLISH);
+                        selectedTime = sdfTime.format(selectedTimeCalendar.getTime());
+
                         Time.setText("Selected Time: " + selectedTime);
                     },
                     calendar.get(Calendar.HOUR_OF_DAY),
@@ -151,6 +166,7 @@ public class BookingDetails extends AppCompatActivity {
             timePickerDialog.show();
         });
     }
+
 
     private boolean isDateInPast(int year1, int month1, int dayOfMonth1) {
         Calendar selectedCalendar = Calendar.getInstance();

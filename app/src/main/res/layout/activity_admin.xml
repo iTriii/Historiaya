@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -16,7 +17,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/newproject" />
+        app:srcCompat="@drawable/newproject"
+        android:contentDescription="TODO" />
 
     <ImageView
         android:id="@+id/grass_start"
@@ -28,7 +30,8 @@
         app:layout_constraintHorizontal_bias="0.507"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/grass_1" />
+        app:srcCompat="@drawable/grass_1"
+        android:contentDescription="TODO" />
 
     <ImageView
         android:id="@+id/twoppl"
@@ -71,55 +74,72 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/kahit"
+        android:id="@+id/DonCatbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:background="@drawable/startbuttonbg_ok"
         android:clickable="true"
         android:fontFamily="@font/montserrat_bold"
-        android:longClickable="true"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
+        android:text="@string/don_catalino_admin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AppName" />
 
     <TextView
-        android:id="@+id/BookNow"
+        android:id="@+id/Galarodbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/startbuttonbg_ok"
         android:clickable="true"
         android:fontFamily="@font/montserrat_bold"
-        android:longClickable="true"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
+        android:text="@string/gala_rodriguez_admin"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/kahit" />
+        app:layout_constraintTop_toBottomOf="@+id/DonCatbtn" />
 
     <TextView
-        android:id="@+id/Store"
+        android:id="@+id/Recep"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/startbuttonbg_ok"
         android:clickable="true"
         android:fontFamily="@font/montserrat_bold"
-        android:longClickable="true"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:text="@string/receptionist_admin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Galarodbtn" />
+
+    <TextView
+        android:id="@+id/TourismHead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/startbuttonbg_ok"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/tourismhead_admin"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BookNow" />
+        app:layout_constraintTop_toBottomOf="@+id/Recep" />
 
     <TextView
         android:id="@+id/StoreManager"
@@ -129,13 +149,13 @@
         android:background="@drawable/startbuttonbg_ok"
         android:clickable="true"
         android:fontFamily="@font/montserrat_bold"
-        android:text="@string/store_manager"
         android:longClickable="true"
+        android:text="@string/store_manager"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Store" />
+        app:layout_constraintTop_toBottomOf="@+id/TourismHead" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,7 @@ package com.example.log_in;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -29,8 +30,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Set;
 import java.util.Objects;
 
 import im.crisp.client.ChatActivity;
@@ -50,11 +53,8 @@ public class BookNow extends AppCompatActivity {
     String reservedDate = "";
     private String userId;
     String selectedTime = "";
-
-
-
-
-
+    String selectedTour;
+    private String time;
 
 
     @Override
@@ -93,6 +93,8 @@ btntime1 = findViewById(R.id.btntime1);
 btntime2 = findViewById(R.id.btntime2);
 btntime3 = findViewById(R.id.btntime3);
 btntime4 = findViewById(R.id.btntime4);
+
+
 
 
         setupSpinners();
@@ -135,26 +137,24 @@ btntime4 = findViewById(R.id.btntime4);
 
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                showToast("Heritage House Selected: " + spinTour.getSelectedItem().toString());
-
-
+              //  showToast("Heritage House Selected: " + spinTour.getSelectedItem().toString());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                showToast("No Heritage House Selected. Please, Select a Tour");
+            //    showToast("No Heritage House Selected. Please, Select a Tour");
             }
         });
 
         spinNum.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                showToast("Tourist Number Selected: " + spinNum.getSelectedItem().toString());
+                //  showToast("Tourist Number Selected: " + spinNum.getSelectedItem().toString());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                showToast("No Tourist Number Selected");
+                //   showToast("No Tourist Number Selected");
             }
         });
     }
@@ -177,9 +177,15 @@ btntime4 = findViewById(R.id.btntime4);
 
     @SuppressLint({"SetTextI18n", "DefaultLocale"})
     private void setupButtonClickListener( Button btntime1, Button btntime2, Button btntime3, Button btntime4) {
+
+
+
+
+
+
         // Chat button
         chatbtn.setOnClickListener(v -> {
-            Intent intent = new Intent(BookNow.this, ChatActivity.class);
+            Intent intent = new Intent(BookNow.this, chat.class);
             startActivity(intent);
         });
 
@@ -195,46 +201,54 @@ btntime4 = findViewById(R.id.btntime4);
             startActivity(intent);
         });
 
-            btntime1.setOnClickListener(v -> {
-                selectedTime = "10:00 AM";
-                showToastAndStoreTime(selectedTime);
-            });
+        //IMPLEMENT A BUTTON TIME
+        btntime1.setOnClickListener(v -> {
+            selectedTime = "10:00 AM";
+            // showToastAndStoreTime();
+        });
 
-            btntime2.setOnClickListener(v -> {
-                selectedTime = "11:00 AM";
-                showToastAndStoreTime(selectedTime);
-            });
+        btntime2.setOnClickListener(v -> {
+            selectedTime = "11:00 AM";
+            //  showToastAndStoreTime();
+        });
 
-            btntime3.setOnClickListener(v -> {
-                selectedTime = "1:00 PM";
-                showToastAndStoreTime(selectedTime);
-            });
+        btntime3.setOnClickListener(v -> {
+            selectedTime = "1:00 PM";
+            // showToastAndStoreTime(); // add selectedTime
+        });
 
-            btntime4.setOnClickListener(v -> {
-                selectedTime = "2:00 PM";
-                showToastAndStoreTime(selectedTime);
-            });
+        btntime4.setOnClickListener(v -> {
+            selectedTime = "2:00 PM";
+            //showToastAndStoreTime();
+        });
 
 
 
 
 // Set up the date listener before the button click listener
         calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
-            // Handle date selection here
-            reservedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
-            showToast("Selected Date: " + reservedDate);
+            // Get the current date
+            Calendar currentDate = Calendar.getInstance();
+            // Create a Calendar instance for the selected date
+            Calendar selectedDate = Calendar.getInstance();
+            selectedDate.set(year, month, dayOfMonth);
+            // Check if the selected date is in the past
+            if (selectedDate.before(currentDate)) {
+                showToast("Cannot select a past date");
+                long currentDateInMillis = currentDate.getTimeInMillis();
+                calendarView.setDate(currentDateInMillis, true, true);
+            } else {
+                // Handle date selection here
+                reservedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
+                //showToast("Your reserve date is: " + reservedDate);
+            }
         });
+
+
 
 
         btnsave.setOnClickListener(view -> {
             // Use the reservedDate directly in your button click listener
-            if (reservedDate == null || reservedDate.isEmpty()) {
-                Toast.makeText(this, "Please select a date", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-
-
             //spinner starts here
             String selectedTour = spinTour.getSelectedItem().toString();
             String selectedTouristNumStr = spinNum.getSelectedItem().toString();
@@ -242,14 +256,12 @@ btntime4 = findViewById(R.id.btntime4);
             if (!selectedTour.equals("Select Tour") && !selectedTouristNumStr.equals("Number of Tourists")) {
                 int selectedTouristNum = Integer.parseInt(selectedTouristNumStr);
                 // Calculate payment details
-
                 double rfTourGuide = calculateTourGuide(selectedTouristNum);
                 double serviceCharge = calculateServiceCharge(selectedTour);
                 double tourPrice = calculateTourPrice(selectedTour);
                 double subtotal = calculateSubtotal(selectedTour);
-                double total = calculateTotal(rfTourGuide, serviceCharge, String.valueOf(subtotal));
+                double total = subtotal + rfTourGuide + serviceCharge;
 
-// Set the text of the Subtotal TextView
                 Subtotal.setText(String.format(" ₱%.2f", subtotal));
                 selectedHouse.setText(String.format(" %s", selectedTour));
                 RFTourGuide.setText(String.format(" ₱%.2f", rfTourGuide));
@@ -261,35 +273,31 @@ btntime4 = findViewById(R.id.btntime4);
                 userId = mAuth.getCurrentUser().getUid();
                 addDataToFirestore(userId, selectedTour, selectedTouristNumStr, reservedDate, total, selectedTime);
 
-                // Check if the tour is done
-                if (isTourDone(reservedDate)) {
-                    // The tour is considered done
-                    // Implement logic to move the booking to the "history" tab
-                    moveToHistory(userId, selectedTour, reservedDate);
-                } else {
-                    // The tour is not yet done
-                    // Continue with other logic or display a message
-                }
-
                 // Make the ScrollView visible
                 BookScrollView();
             } else {
                 Toast.makeText(getApplicationContext(), "Please select a valid tour and number of tourists.", Toast.LENGTH_SHORT).show();
             }
         });
-}
+    }
 
+
+//CRISP
     private void startCrispChat() {
-        Crisp.setUserEmail(Objects.requireNonNull(mAuth.getCurrentUser().getEmail()));
+        Crisp.setUserEmail(mAuth.getCurrentUser().getEmail());
 
         // Start Crisp chat
-        Intent chatIntent = new Intent(this, ChatActivity.class);
+        Intent chatIntent = new Intent(this, chat.class);
         startActivity(chatIntent);
     }
 
     //TOAST FOR SELECTED TIME OF THE TOURISTS
-    private void showToastAndStoreTime(String selectedTime) {
+    private void showToastAndStoreTime() {
+        Set<String> selectedTime = new HashSet<>();
+        // Check if the time is already selected
         showToast("Time selected: " + selectedTime);
+        selectedTime.add(selectedTime.toString());
+
     }
 
 
@@ -299,27 +307,25 @@ btntime4 = findViewById(R.id.btntime4);
         double total = subtotal + rfTourGuide + serviceCharge;
         return total;
     }
-
-
     double calculateSubtotal(String selectedTour) {
         double subtotal = 0.0;
+        // subtotal based on the selected tour
         switch (selectedTour) {
-            case "Don Catalino":
+            case "Don Catalino Rodriguez House":
                 subtotal = 500.0;
                 break;
-            case "Gala Rodriguez":
+            case "Gala Rogriguez House":
                 subtotal = 1000.0;
                 break;
             case "Both":
                 subtotal = 1500.0;
                 break;
             default:
+                // Default case if the selectedTour doesn't match any known cases
                 break;
         }
-
         return subtotal;
     }
-
 
     //service charge
     private double calculateServiceCharge(String selectedTour) {
@@ -343,10 +349,10 @@ btntime4 = findViewById(R.id.btntime4);
     private double calculateTourPrice(String selectedTour) {
         double tourPrice = 0.0;
         switch (selectedTour) {
-            case "Don Catalino":
+            case "Don Catalino Rodriguez House":
                 tourPrice = 500.0;
                 break;
-            case "Gala Rodriguez":
+            case "Gala Rogriguez House":
                 tourPrice = 1000.0;
                 break;
             case "Both":
@@ -360,7 +366,14 @@ btntime4 = findViewById(R.id.btntime4);
     // Add data to Firestore... Wag mo iirremove lea
 
     private void addDataToFirestore(String userId, String selectedTour, String selectedTouristNum, String reservedDate, double totalAmount, String selectedTime) {
-        DocumentReference userDocRef = db.collection("users").document(userId);
+//TO DELAY THE EXECUTION IN PAYMENT ACTIVITY
+        int delayMillis = 60000; //1min delay
+        new Handler()
+                .postDelayed(() -> addDataToFirestore(userId, selectedTour, selectedTouristNum, reservedDate, totalAmount, selectedTime)
+                , delayMillis);
+
+
+    DocumentReference userDocRef = db.collection("users").document(userId);
         userDocRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Map<String, Object> bookingData = new HashMap<>();
@@ -372,8 +385,9 @@ btntime4 = findViewById(R.id.btntime4);
                 bookingData.put("reservedDate", reservedDate);
                 bookingData.put("totalAmount", totalAmount);
                 bookingData.put("selected Time", selectedTime);
+
                 userDocRef.update(bookingData).addOnSuccessListener(documentReference -> {
-                    Toast.makeText(getApplicationContext(), "Booking updated", Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(getApplicationContext(), "Booking updated", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(), PaymentDetails.class));
                     if (isTourDone(selectedTour)) {
                         moveToHistory(userId, selectedTour, reservedDate);
@@ -401,21 +415,13 @@ btntime4 = findViewById(R.id.btntime4);
         });
     }
 
-    private void moveToHistory(String userId, String selectedTour, String reservedDate) {
-
-    }
-
 
     private boolean isTourDone(String reservedDateStr) {
         try {
             SimpleDateFormat sdf = new SimpleDateFormat("MMM d, yyyy", Locale.getDefault());
-
             // Get the current date
             Date currentDate = Calendar.getInstance().getTime();
-
-            // Parse the reserved date string
             Date tourDate = sdf.parse(reservedDateStr);
-
             // Compare the dates
             return currentDate.after(tourDate);
         } catch (ParseException e) {
@@ -424,21 +430,33 @@ btntime4 = findViewById(R.id.btntime4);
         }
     }
 
-    private void moveToHistory(String userId, String selectedTour, String reservedDate, DocumentSnapshot documentSnapshot) {
-        // Get a reference to the "history" collection
-        CollectionReference historyCollection = db.collection("history");
+
+
+    private void moveToHistory(String userId, String selectedTour, String reservedDate) {
+        CollectionReference historyCollection = db.collection("users");
+        // Map containing the booking data
+        Map<String, Object> bookingData = new HashMap<>();
+        bookingData.put("userId", userId);
+        bookingData.put("selectedTour", selectedTour);
+        bookingData.put("reservedDate", reservedDate);
+        // Add other fields as needed
 
         // Add the booking data to the "history" collection
-        historyCollection.add(documentSnapshot.getData()).addOnSuccessListener(documentReference -> {
-            // Remove the booking data from the current user's document
-            db.collection("users").document(userId).delete().addOnSuccessListener(aVoid -> {
-                Toast.makeText(getApplicationContext(), "Booking moved to history", Toast.LENGTH_SHORT).show();
-            }).addOnFailureListener(exception -> {
-                Toast.makeText(getApplicationContext(), "Failed to delete booking: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
-            });
-        }).addOnFailureListener(exception -> {
-            Toast.makeText(getApplicationContext(), "Failed to move booking to history: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
-        });
+        historyCollection.add(bookingData)
+                .addOnSuccessListener(documentReference -> {
+                    // Remove the booking data from the current user's document
+                    db.collection("history").document(userId)
+                            .delete()
+                            .addOnSuccessListener(aVoid -> {
+                       //         Toast.makeText(getApplicationContext(), "Booking moved to history", Toast.LENGTH_SHORT).show();
+                            })
+                            .addOnFailureListener(exception -> {
+                         //       Toast.makeText(getApplicationContext(), "Failed to delete booking: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                            });
+                })
+                .addOnFailureListener(exception -> {
+                //    Toast.makeText(getApplicationContext(), "Failed to move booking to history: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                });
     }
 
 }

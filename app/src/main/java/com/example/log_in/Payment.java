@@ -74,11 +74,11 @@ public class Payment extends AppCompatActivity {
 
         okbtn.setOnClickListener(v -> {
             if (selectedImageUri == null) {
-                Toast.makeText(Payment.this, "Please select an image", Toast.LENGTH_LONG).show();
+                Toast.makeText(Payment.this, "Please upload your proof of payment. Thank You!", Toast.LENGTH_LONG).show();
             } else {
                 uploadImageToFirebaseStorage(selectedImageUri);
                 // Image uploaded successfully, show a message
-                Toast.makeText(Payment.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(Payment.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
                 progress.setVisibility(View.VISIBLE);
                 startActivity(new Intent(getApplicationContext(), Main2.class));
             }
@@ -116,7 +116,7 @@ public class Payment extends AppCompatActivity {
                     });
                 })
                 .addOnFailureListener(e -> {
-                    Toast.makeText(this, "Image upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Image upload failed. Please check your Internet connection " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 
@@ -135,7 +135,7 @@ public class Payment extends AppCompatActivity {
                 user.put("ImageUrl", imageUrl);
 
                 userDocRef.set(user).addOnSuccessListener(documentReference -> {
-                    Toast.makeText(getApplicationContext(), "Successfully Uploaded!", Toast.LENGTH_SHORT).show();
+                  //  Toast.makeText(getApplicationContext(), "Successfully Uploaded!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(), Main2.class));
                 }).addOnFailureListener(exception -> {
                     Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();

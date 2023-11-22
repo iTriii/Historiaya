@@ -109,25 +109,6 @@
         app:srcCompat="@drawable/arrow_back" />
 
 
-    <ImageButton
-        android:id="@+id/chatbtn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="55dp"
-        android:background="@drawable/shadow"
-        android:clickable="true"
-        android:contentDescription="@string/BookNow"
-        android:contextClickable="true"
-        android:elevation="10dp"
-        android:longClickable="true"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.883"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/chat" />
-
     <ScrollView
         android:id="@+id/cancellationScrollView"
         android:layout_width="409dp"
@@ -196,8 +177,8 @@
 
                 <TextView
                     android:id="@+id/Date"
-                    android:layout_width="197dp"
-                    android:layout_height="55dp"
+                    android:layout_width="200dp"
+                    android:layout_height="49dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="245dp"
                     android:fontFamily="@font/montserrat"
@@ -208,7 +189,7 @@
                     android:text="@string/date"
                     android:textAlignment="center"
                     android:textColor="@color/GREEN"
-                    android:textSize="25sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.41"
@@ -238,7 +219,7 @@
                 <TextView
                     android:id="@+id/Time"
                     android:layout_width="191dp"
-                    android:layout_height="43dp"
+                    android:layout_height="41dp"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="195dp"
                     android:fontFamily="@font/montserrat"
@@ -249,7 +230,7 @@
                     android:text="Select Time"
                     android:textAlignment="center"
                     android:textColor="@color/GREEN"
-                    android:textSize="25sp"
+                    android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.41"
