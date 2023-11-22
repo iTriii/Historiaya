@@ -405,6 +405,8 @@
     <string name="receptionist_admin">Receptionist Admin</string>
     <string name="tourismhead_admin">TourismHead Admin</string>
     <string name="don_catalino_admin">Don Catalino Admin</string>
+    <string name="approve">approve</string>
+    <string name="reject">Reject</string>
 
     <!-- RESCHED  USER DETAILS ACTIVITY -->
 

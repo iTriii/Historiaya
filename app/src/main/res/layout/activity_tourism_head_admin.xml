@@ -148,13 +148,13 @@
                 style="@android:style/Widget.DeviceDefault.CalendarView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="-180dp"
+                android:layout_marginStart="-180dp"
                 android:layout_marginTop="135dp"
                 android:background="@drawable/bgcalendar"
                 android:clickable="true"
                 android:labelFor="@id/SDate"
                 android:maxDate="01/01/2025"
-                android:minDate="15/11/2023"
+                android:minDate="15/11/2022"
                 android:weekDayTextAppearance="@style/TextAppearance.AppCompat.Body2"
                 app:layout_constraintBottom_toBottomOf="@+id/rizal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -300,10 +300,10 @@
 
     <ScrollView
         android:id="@+id/Upcoming_ScrollView"
-        android:layout_width="390dp"
-        android:layout_height="244dp"
+        android:layout_width="match_parent"
+        android:layout_height="292dp"
         android:layout_marginTop="-60dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -321,8 +321,8 @@
 
     <ScrollView
         android:id="@+id/History_ScrollView"
-        android:layout_width="382dp"
-        android:layout_height="243dp"
+        android:layout_width="match_parent"
+        android:layout_height="292dp"
         android:layout_marginTop="-20dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -340,10 +340,10 @@
 
     <ScrollView
         android:id="@+id/Pending_ScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="292dp"
+        android:layout_width="390dp"
+        android:layout_height="354dp"
         android:layout_marginTop="50dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
@@ -354,7 +354,6 @@
             android:id="@+id/Pending_RecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-
 
 
     </ScrollView>

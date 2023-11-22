@@ -119,6 +119,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                     Log.e("MyAdapter", "Error updating status: " + e.getMessage());   // Handle failure, log error, show toast, etc.
                 });
     }
+
+
+
+    //ALL USERS
     @Override
     public int getItemCount() {
         return userArrayList.size();
