@@ -148,9 +148,13 @@ public class LogIn extends AppCompatActivity {
     }
 
     private void signIn() {
-        Intent signInIntent = gsc.getSignInIntent();
-        startActivityForResult(signInIntent, 1000);
+        // Sign out any existing Google account to ensure account selection on button click
+        gsc.signOut().addOnCompleteListener(this, task -> {
+            Intent signInIntent = gsc.getSignInIntent();
+            startActivityForResult(signInIntent, 1000);
+        });
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {

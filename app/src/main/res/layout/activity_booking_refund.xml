@@ -362,7 +362,7 @@
                 style="@style/Widget.AppCompat.Light.Spinner.DropDown.ActionBar"
                 android:layout_width="332dp"
                 android:layout_height="37dp"
-                android:layout_marginStart="-190dp"
+                android:layout_marginStart="-200dp"
                 android:layout_marginTop="550dp"
                 android:autofillHints="Select you request reason"
                 android:background="@drawable/borderspinner"

@@ -63,7 +63,7 @@ public class TourismHeadAdmin extends AppCompatActivity {
 
     private customizedCalendar customizedCalendar;
     private String selectedDate;
-    EditText SaveSchedule;
+    EditText Event;
     private SQLiteDatabase sqLiteDatabase;
 
     @Override
@@ -74,7 +74,7 @@ public class TourismHeadAdmin extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        SaveSchedule = findViewById(R.id.SaveSchedule);
+        Event = findViewById(R.id.Event);
 
         calendarTourismHead = findViewById(R.id.CalendarTourismHead);
         calendarTourismHead.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
@@ -237,29 +237,37 @@ public class TourismHeadAdmin extends AppCompatActivity {
                 Toast.makeText(TourismHeadAdmin.this, "Selected Date: " + editDate, Toast.LENGTH_SHORT).show();
             });
         }
-
-        public void InsertDatabase (View view){
-            ContentValues contentValues = new ContentValues();
-            contentValues.put("Date", selectedDate);
-            contentValues.put("Event", SaveSchedule.getText().toString());
-            sqLiteDatabase.insert("EventCalendar", null, contentValues);
-
-        }
     public void ReadDatabase() {
         String query = "SELECT Event FROM EventCalendar WHERE Date = '" + selectedDate + "'";
         try {
             Cursor cursor = sqLiteDatabase.rawQuery(query, null);
             if (cursor.moveToFirst()) {
-                SaveSchedule.setText(cursor.getString(0)); // Update the appropriate view here
+                Event.setText(cursor.getString(0)); // Update the appropriate view here
             } else {
-                SaveSchedule.setText("");
+                Event.setText("");
             }
             cursor.close();
         } catch (Exception e) {
             e.printStackTrace();
-            SaveSchedule.setText("");
+            Event.setText("");
         }
     }
+    private void markSelectedDateUnavailable() {
+        CalendarView cv = findViewById(R.id.CalendarTourismHead);
+        cv.setDate(Long.parseLong(selectedDate), true, true); // Set the selected date
+
+        // Change the color of the selected date (example: to orange for unavailable)
+    }
+    public void InsertDatabase(View view) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("Date", selectedDate);
+        contentValues.put("Event", Event.getText().toString());
+        sqLiteDatabase.insert("EventCalendar", null, contentValues);
+
+        // After inserting the event, mark the selected date as unavailable
+        markSelectedDateUnavailable();
+    }
+
 
 
     private void setUpRecyclerView() {
