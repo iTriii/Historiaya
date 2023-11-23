@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.log_in.R;
+import com.example.log_in.User;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 
@@ -19,20 +20,20 @@ import java.util.ArrayList;
 public class historyHM_adapter extends RecyclerView.Adapter<historyHM_adapter.MyViewHolder> {
 
     Context context;
-    ArrayList <upcoming_reservation_of_user> userArrayList;
+    ArrayList <User> userArrayList;
 
     private final FirebaseFirestore db;
 
-    public historyHM_adapter(Context context, ArrayList <upcoming_reservation_of_user> userArrayList, FirebaseFirestore db){
+    public historyHM_adapter(Context context, ArrayList<User> userArrayList, FirebaseFirestore db){
         this.context = context;
-        this.userArrayList =userArrayList;
+        this.userArrayList = userArrayList;
         this.db = db;
     }
 
     @NonNull
     @Override
     public historyHM_adapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.upcoming_reservation,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.history_reservation,parent,false);
         return new MyViewHolder(view);
     }
 
@@ -40,13 +41,18 @@ public class historyHM_adapter extends RecyclerView.Adapter<historyHM_adapter.My
     @Override
     public void onBindViewHolder(@NonNull historyHM_adapter.MyViewHolder holder, int position) {
 
-        upcoming_reservation_of_user upcoming_reservation_of_user = userArrayList.get(position);
+        User HistoryHMUsers = userArrayList.get(position);
 
-        holder. MonthHouseManagerText.setText(upcoming_reservation_of_user.getReservedDate());
-        holder.BahayHouseManagerText.setText(upcoming_reservation_of_user.getSelectedTour());
-        holder.ArawHouseManagerText.setText(upcoming_reservation_of_user.getReservedDate() + " - " + upcoming_reservation_of_user.getselectedTime());
-        holder.TouristHouseManagerText.setText(upcoming_reservation_of_user.getFirstName() + " " + upcoming_reservation_of_user.getLastName());
-        holder.TouristNumber.setText(upcoming_reservation_of_user.getselectedTouristNum() + " persons");
+        holder. MonthHouseManagerText.setText(HistoryHMUsers.getReservedDate());
+        holder.BahayHouseManagerText.setText(HistoryHMUsers.getSelectedTour());
+        holder.ArawHouseManagerText.setText(HistoryHMUsers.getReservedDate());
+        holder.TouristHouseManagerText.setText(HistoryHMUsers.getEmail());
+        holder.TouristNumber.setText(HistoryHMUsers.getSelectedTouristNum());
+        holder.bookebyNameHMHistory.setText(HistoryHMUsers.getEmail());
+        holder.TotalNumberHMHistory.setText(HistoryHMUsers.getSelectedTouristNum());
+        holder.SelectedHouseHMHistory.setText(HistoryHMUsers.getSelectedTour());
+
+
     }
 
     @Override
@@ -55,9 +61,7 @@ public class historyHM_adapter extends RecyclerView.Adapter<historyHM_adapter.My
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-
-
-        TextView MonthHouseManagerText, BahayHouseManagerText, ArawHouseManagerText, TouristHouseManagerText, TouristNumber;
+        TextView MonthHouseManagerText, BahayHouseManagerText, ArawHouseManagerText, TouristHouseManagerText, TouristNumber,bookebyNameHMHistory,TotalNumberHMHistory,SelectedHouseHMHistory;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -66,6 +70,9 @@ public class historyHM_adapter extends RecyclerView.Adapter<historyHM_adapter.My
             ArawHouseManagerText = itemView.findViewById(R.id.ArawHouseManagerText);
             TouristHouseManagerText = itemView.findViewById(R.id.TouristHouseManagerText);
             TouristNumber = itemView.findViewById(R.id.TouristNumber);
+            bookebyNameHMHistory = itemView.findViewById(R.id.bookebyNameHMHistory);
+            TotalNumberHMHistory = itemView.findViewById(R.id.TotalNumberHMHistory);
+            SelectedHouseHMHistory = itemView.findViewById(R.id.SelectedHouseHMHistory);
         }
     }
 }
