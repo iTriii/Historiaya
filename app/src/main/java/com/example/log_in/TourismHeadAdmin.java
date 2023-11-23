@@ -77,6 +77,12 @@ public class TourismHeadAdmin extends AppCompatActivity {
 
         backbutton = findViewById(R.id.backbutton);
 
+        // back button
+        backbutton.setOnClickListener(v -> {
+            Intent intent = new Intent(TourismHeadAdmin.this, Admin.class);
+            startActivity(intent);
+        });
+
         // Initialize RecyclerViews and Adapters
         Pending_RecyclerView = findViewById(R.id.Pending_RecyclerView);
         Upcoming_RecyclerView = findViewById(R.id.Upcoming_RecyclerView);
@@ -85,17 +91,15 @@ public class TourismHeadAdmin extends AppCompatActivity {
         userArrayList = new ArrayList<>();
 
         myAdapter = new MyAdapter(this, userArrayList, db);
-        UpcomingAdapter = new UpcomingAdapter(this, userArrayList, db);  // Remove 'FirebaseFirestore'
-        HistoryAdapter = new HistoryAdapter(this, userArrayList, db);      // Remove 'FirebaseFirestore'
+        UpcomingAdapter = new UpcomingAdapter(this, userArrayList, db);
+        HistoryAdapter = new HistoryAdapter(this, userArrayList, db);
 
+        FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
+
         if (currentUser != null) {
-            String userId = currentUser.getUid();  // Get the authenticated user ID
-
-            // Assuming you have a Firestore reference and a CollectionReference for users
+            String userId = currentUser.getUid();
             CollectionReference usersDocRef = db.collection("users");
-
-            // Check if the user document exists and update or create accordingly
             DocumentReference userDocRef = usersDocRef.document(userId);
             userDocRef.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
@@ -106,13 +110,13 @@ public class TourismHeadAdmin extends AppCompatActivity {
                                 .addOnSuccessListener(aVoid -> Log.d("Firestore", "DocumentSnapshot successfully updated!"))
                                 .addOnFailureListener(e -> Log.e("Firestore", "Error updating document", e));
                     } else {
-                        // If the Document does not exist, create a new one
                         Map<String, Object> user = new HashMap<>();
                         user.put(User.FIELD_USER_ID, userId);
-                        user.put(User.FIELD_EMAIL, Email);
+                        user.put(User.FIELD_EMAIL, Email); // Ensure Email is not null
                         usersDocRef.document(userId).set(user)
                                 .addOnSuccessListener(aVoid -> Log.d("Firestore", "DocumentSnapshot successfully written!"))
                                 .addOnFailureListener(e -> Log.e("Firestore", "Error writing document", e));
+
                     }
                 } else {
                     // Handle the exception
@@ -124,6 +128,7 @@ public class TourismHeadAdmin extends AppCompatActivity {
             });
         }
 
+
         // Initialize ProgressDialog
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
@@ -132,14 +137,7 @@ public class TourismHeadAdmin extends AppCompatActivity {
         EventChangeListener();// Add data listener to load data from Firestore
         setUpRecyclerView(); // Set up RecyclerView and Adapter
         setUpTabsAndViews(); // Set up tabs and views
-
-        // back button
-        backbutton.setOnClickListener(v -> {
-            Intent intent = new Intent(TourismHeadAdmin.this, Admin.class);
-            startActivity(intent);
-        });
     }
-
     private void setUpTabsAndViews() {
 
             // Set up tabs and views
@@ -270,6 +268,10 @@ public class TourismHeadAdmin extends AppCompatActivity {
                                 case ADDED:
                                 case MODIFIED:
                                     User user = dc.getDocument().toObject(User.class);
+
+                                    // Set the user ID
+                                    user.setUserId(dc.getDocument().getId());
+
                                     userHashMap.put(user.getEmail(), user);
 
                                     if (user.isUpcoming()) {
@@ -281,11 +283,12 @@ public class TourismHeadAdmin extends AppCompatActivity {
                                 case REMOVED:
                                     User userRemoved = dc.getDocument().toObject(User.class);
                                     userHashMap.remove(userRemoved.getEmail());
-                                   upcomingUserHashMap.remove(userRemoved.getUserId());
-                                 historyUserHashMap.remove(userRemoved.getUserId());
+                                    upcomingUserHashMap.remove(userRemoved.getUserId());
+                                    historyUserHashMap.remove(userRemoved.getUserId());
                                     break;
                             }
                         }
+
 
                         userArrayList.clear();
                         userArrayList.addAll(userHashMap.values());
@@ -308,9 +311,27 @@ public class TourismHeadAdmin extends AppCompatActivity {
                     if (error != null) {
                         Log.e("TourismHeadActivity", "Error fetching user data: " + error.getMessage());
                         return;
-                        // display data in texview
+                    }
+                    // Handle the document snapshot here
+                    if (documentSnapshot != null && documentSnapshot.exists()) {
+                        // Extract data from the document snapshot
+                        String status = documentSnapshot.getString("status");
+
+                        // Display the data or perform other actions
+                        // For example, you can update a TextView with the fetched data
+                        // textView.setText(userData);
                     }
                 });
+    }
+
+    @Override
+    protected void onDestroy() {
+        // Remove the snapshot listener when the activity is destroyed
+        if (userDataListener != null) {
+            userDataListener.remove();
+        }
+
+        super.onDestroy();
 
 
         // Set a click listener for the edit button
