@@ -58,7 +58,7 @@
                 android:layout_width="216dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="30dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/montserrat"
                 android:text=" November 15, 2023"
