@@ -153,7 +153,6 @@
                 android:layout_marginTop="480dp"
                 android:width="226dp"
                 android:backgroundTint="#00A197"
-
                 android:clickable="true"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
@@ -256,7 +255,7 @@
         android:layout_width="match_parent"
         android:layout_height="239dp"
         android:layout_marginTop="-40dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -273,10 +272,10 @@
 
     <ScrollView
         android:id="@+id/History_ScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="242dp"
+        android:layout_width="391dp"
+        android:layout_height="276dp"
         android:layout_marginTop="-20dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.076"

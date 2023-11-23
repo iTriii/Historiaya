@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="158dp"
+        android:layout_height="146dp"
         android:layout_marginTop="30dp"
         android:orientation="vertical">
 
@@ -42,11 +42,11 @@
 
             <TextView
                 android:id="@+id/BahayHouseManagerText"
-                android:layout_width="244dp"
+                android:layout_width="232dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="40dp"
-                android:layout_marginTop="-80dp"
+                android:layout_marginTop="-100dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/don_catalino_rodriguez_house"
                 android:textColor="#000000"
@@ -55,10 +55,10 @@
 
             <TextView
                 android:id="@+id/ArawHouseManagerText"
-                android:layout_width="159dp"
+                android:layout_width="216dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="30dp"
                 android:layout_marginTop="2dp"
                 android:fontFamily="@font/montserrat"
                 android:text=" November 15, 2023"

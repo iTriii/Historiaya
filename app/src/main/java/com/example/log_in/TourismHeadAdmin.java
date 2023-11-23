@@ -2,13 +2,11 @@ package com.example.log_in;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
-import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.Toast;
@@ -41,7 +39,7 @@ public class TourismHeadAdmin extends AppCompatActivity {
     private ScrollView Upcoming_ScrollView, History_ScrollView, Pending_ScrollView;
     private View wan, to, tre;
     private FirebaseFirestore db;
-    private ImageButton backbutton;
+
 
     private RecyclerView Pending_RecyclerView, Upcoming_RecyclerView, History_RecyclerView;
     private ArrayList<User> userArrayList;
@@ -75,13 +73,6 @@ public class TourismHeadAdmin extends AppCompatActivity {
         to = findViewById(R.id.to);
         tre = findViewById(R.id.tre);
 
-        backbutton = findViewById(R.id.backbutton);
-
-        // back button
-        backbutton.setOnClickListener(v -> {
-            Intent intent = new Intent(TourismHeadAdmin.this, Admin.class);
-            startActivity(intent);
-        });
 
         // Initialize RecyclerViews and Adapters
         Pending_RecyclerView = findViewById(R.id.Pending_RecyclerView);
