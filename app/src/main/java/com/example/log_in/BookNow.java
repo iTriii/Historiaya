@@ -36,6 +36,7 @@ import java.util.Set;
 
 import im.crisp.client.ChatActivity;
 import im.crisp.client.Crisp;
+import im.crisp.client.ChatActivity;
 
 
 public class BookNow extends AppCompatActivity {
@@ -183,7 +184,7 @@ btntime4 = findViewById(R.id.btntime4);
 
         // Chat button
         chatbtn.setOnClickListener(v -> {
-            Intent intent = new Intent(BookNow.this, chat.class);
+            Intent intent = new Intent(BookNow.this, ChatActivity.class);
             startActivity(intent);
         });
 
