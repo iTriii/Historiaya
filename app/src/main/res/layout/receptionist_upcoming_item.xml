@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="8dp"
+    android:layout_margin="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/MonthTextRecep_Upcoming"
+                android:layout_width="136dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="-90dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/november"
+                android:textColor="#000000"
+                android:textSize="19sp" />
+
+
+
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_marginLeft="6dp"
+                    android:background="@drawable/shadow"
+                    android:padding="5dp"
+                    android:src="@drawable/don_catalino1" />
+
+            <TextView
+                android:id="@+id/BahayRecepUpcoming_Text"
+                android:layout_width="246dp"
+                android:layout_height="62dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="-100dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/don_catalino_rodriguez_house"
+                android:textColor="#000000"
+                android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/ArawRecepUpcoming_Text"
+                    android:layout_width="159dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="-10dp"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text=" November 15, 2023"
+                    android:textColor="#000000"
+                    android:textSize="20sp" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
