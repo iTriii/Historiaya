@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class adminsTry extends AppCompatActivity {
 
-    Button button1, button2, button3;
+    Button button1, button2;
 
 
     @Override
@@ -18,24 +18,11 @@ public class adminsTry extends AppCompatActivity {
 
         button1 = findViewById(R.id.button1);
         button2 = findViewById(R.id.button2);
-        button3 = findViewById(R.id.button3);
 
-
-        button1.setOnClickListener(view -> {
-            Intent intent = new Intent(adminsTry.this, TourismHead.class);
-            startActivity(intent);
-        });
 
         button2.setOnClickListener(view -> {
             Intent intent = new Intent(adminsTry.this, Receptionist.class);
             startActivity(intent);
         });
-        button3.setOnClickListener(view -> {
-            Intent intent = new Intent(adminsTry.this, HouseManager.class);
-            startActivity(intent);
-        });
-
-
-
     }
 }

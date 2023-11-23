@@ -98,7 +98,7 @@ public class LogIn extends AppCompatActivity {
                                 // Check if the email is the specified admin email
                                 if ("historiaya.acc@gmail.com".equals(user.getEmail())) {
                                     // Redirect to Admin class
-                                    Toast.makeText(getApplicationContext(), "Admin Login Successful", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Store Manager Login Successful", Toast.LENGTH_LONG).show();
                                     Intent intent = new Intent(getApplicationContext(), StoreManager.class);
                                     startActivity(intent);
                                     finish();
@@ -144,11 +144,14 @@ public class LogIn extends AppCompatActivity {
                     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                     if (firebaseUser != null && firebaseUser.getEmail().equals(account.getEmail())) {
                         if (firebaseUser.isEmailVerified()) {
-                            if (isAdminEmail(account.getEmail())) {
-                                // Admin email, navigate to Admin class
-                                navigateToAdminActivity();
+                            if (isStoreManagerEmail(account.getEmail())) {
+                                // historiaya.acc@gmail.com, navigate to StoreManager class
+                                navigateToStoreManagerActivity();
+                            } else if (isHouseManagerEmail(account.getEmail())) {
+                                // itri.acc@gmail.com, navigate to HouseManager class
+                                navigateToHouseManagerActivity();
                             } else {
-                                // Non-admin email, navigate to Main2
+                                // Other non-admin emails, navigate to Main2
                                 navigateToSecondActivity();
                             }
                         } else {
@@ -157,7 +160,7 @@ public class LogIn extends AppCompatActivity {
                             signOutGoogle();
                         }
                     } else {
-                        // The Google account is not linked to Firebase
+                        // The Google account is not linked to Firebase or other issues
                         Toast.makeText(LogIn.this, "Email is not verified. Please sign up", Toast.LENGTH_LONG).show();
                     }
                 }
@@ -167,20 +170,65 @@ public class LogIn extends AppCompatActivity {
         }
     }
 
-    private boolean isAdminEmail(String email) {
+    private boolean isStoreManagerEmail(String email) {
         return "historiaya.acc@gmail.com".equals(email);
     }
+    private boolean isHouseManagerEmail(String email) {
+        return "itri.acc@gmail.com".equals(email);
+    }
 
-    private void navigateToAdminActivity() {
+    private void navigateToStoreManagerActivity() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
             if (user.isEmailVerified()) {
                 if ("historiaya.acc@gmail.com".equals(user.getEmail())) {
                     // Admin email, navigate to Admin class
-                    Toast.makeText(getApplicationContext(), "Admin Login Successful", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Store Manager Login Successful", Toast.LENGTH_LONG).show();
                     Log.d("Navigate", "Navigating to Admin.class");
                     finish();
                     Intent intent = new Intent(LogIn.this, StoreManager.class);
+                    startActivity(intent);
+                } else {
+                    // Non-admin email, navigate to Main2
+                    Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+                    Log.d("Navigate", "Navigating to Main2.class");
+                    retrieveUserPoints();
+                    finish();
+                    Intent intent = new Intent(LogIn.this, Main2.class);
+                    startActivity(intent);
+                }
+            } else {
+                // Email is not verified, send verification email
+                Toast.makeText(LogIn.this, "Email is not verified. Sending verification email.", Toast.LENGTH_LONG).show();
+
+                user.sendEmailVerification().addOnCompleteListener(emailVerificationTask -> {
+                    if (emailVerificationTask.isSuccessful()) {
+                        // Email verification sent
+                        Toast.makeText(LogIn.this, "Verification email sent. Check your email.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                // You may want to sign out the user here if needed
+                signOutGoogle();
+            }
+        } else {
+            // User is not logged in
+            Toast.makeText(LogIn.this, "User not authenticated.", Toast.LENGTH_LONG).show();
+            // You may want to sign out the user here if needed
+            signOutGoogle();
+        }
+    }
+
+    private void navigateToHouseManagerActivity() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            if (user.isEmailVerified()) {
+                if ("itri.acc@gmail.com".equals(user.getEmail())) {
+                    // Admin email, navigate to Admin class
+                    Toast.makeText(getApplicationContext(), "House Manager Login Successful", Toast.LENGTH_LONG).show();
+                    Log.d("Navigate", "Navigating to HouseManager.class");
+                    finish();
+                    Intent intent = new Intent(LogIn.this, HouseManager.class);
                     startActivity(intent);
                 } else {
                     // Non-admin email, navigate to Main2
