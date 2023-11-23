@@ -64,8 +64,8 @@ public class upcoming_reservation_adapter extends RecyclerView.Adapter<upcoming_
             MonthHouseManagerText = itemView.findViewById(R.id.MonthHouseManagerText);
             BahayHouseManagerText = itemView.findViewById(R.id.BahayHouseManagerText);
             ArawHouseManagerText = itemView.findViewById(R.id.ArawHouseManagerText);
-            TouristHouseManagerText = itemView.findViewById(R.id.TouristHouseManagerText);
-            TouristNumber = itemView.findViewById(R.id.TouristNumber);
+           // TouristHouseManagerText = itemView.findViewById(R.id.TouristHouseManagerText);
+         //   TouristNumber = itemView.findViewById(R.id.TouristNumber);
         }
     }
 }

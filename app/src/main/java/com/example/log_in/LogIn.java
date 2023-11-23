@@ -31,6 +31,7 @@ public class LogIn extends AppCompatActivity {
     ProgressBar progressbar;
     GoogleSignInOptions gso;
     GoogleSignInClient gsc;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +53,7 @@ public class LogIn extends AppCompatActivity {
                 .requestEmail()
                 .build();
 
-        gsc = GoogleSignIn.getClient(this,gso);
+        gsc = GoogleSignIn.getClient(this, gso);
 
         googleBtn.setOnClickListener(view -> {
             // Check if the user is already signed in with Google
@@ -102,6 +103,24 @@ public class LogIn extends AppCompatActivity {
                                     Intent intent = new Intent(getApplicationContext(), StoreManager.class);
                                     startActivity(intent);
                                     finish();
+                                } else if ("itri.acc@gmail.com".equals(user.getEmail())) {
+                                    // Handle the case for the additional email
+                                    Toast.makeText(getApplicationContext(), "House ManagerLogin Successful", Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(getApplicationContext(), HouseManager.class);
+                                    startActivity(intent);
+                                    finish();
+                                } else if ("alcantaraleah914@gmail.com".equals(user.getEmail())) {
+                                    // Handle the case for the additional email
+                                    Toast.makeText(getApplicationContext(), "TourismHead Login Successful", Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(getApplicationContext(), TourismHeadAdmin.class);
+                                    startActivity(intent);
+                                    finish();
+                                }else if ("touristarya@gmail.com".equals(user.getEmail())) {
+                                    // Handle the case for the additional email
+                                    Toast.makeText(getApplicationContext(), "Receptionist Login Successful", Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(getApplicationContext(), Receptionist.class);
+                                    startActivity(intent);
+                                    finish();
                                 } else {
                                     // Proceed with the login process for non-admin users
                                     Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
@@ -116,7 +135,7 @@ public class LogIn extends AppCompatActivity {
                     });
         });
 
-            regnow.setOnClickListener(v -> {
+        regnow.setOnClickListener(v -> {
             // If the user wants to register, navigate to the signup activity
             Intent intent = new Intent(LogIn.this, SignUp.class);
             startActivity(intent);
@@ -127,6 +146,7 @@ public class LogIn extends AppCompatActivity {
             startActivity(intent);
         });
     }
+
     private void signIn() {
         Intent signInIntent = gsc.getSignInIntent();
         startActivityForResult(signInIntent, 1000);
@@ -150,8 +170,14 @@ public class LogIn extends AppCompatActivity {
                             } else if (isHouseManagerEmail(account.getEmail())) {
                                 // itri.acc@gmail.com, navigate to HouseManager class
                                 navigateToHouseManagerActivity();
+                            } else if (isTourismHeadEmail(account.getEmail())) {
+                                // alcantaraleah914@gmail.com, navigate to Tourism HeadHouse class
+                                navigateToTourismHeadActivity();
+                            }else if (isReceptionistEmail(account.getEmail())) {
+                                // touristarya@gmail.com, navigate to RECEPTIONIST class
+                                navigateToReceptionistActivity();
                             } else {
-                                // Other non-admin emails, navigate to Main2
+                                // Non-admin email, navigate to Main2
                                 navigateToSecondActivity();
                             }
                         } else {
@@ -160,7 +186,7 @@ public class LogIn extends AppCompatActivity {
                             signOutGoogle();
                         }
                     } else {
-                        // The Google account is not linked to Firebase or other issues
+                        // The Google account is not linked to Firebase
                         Toast.makeText(LogIn.this, "Email is not verified. Please sign up", Toast.LENGTH_LONG).show();
                     }
                 }
@@ -170,12 +196,25 @@ public class LogIn extends AppCompatActivity {
         }
     }
 
+
     private boolean isStoreManagerEmail(String email) {
         return "historiaya.acc@gmail.com".equals(email);
     }
+//HOUSE MANAGER
     private boolean isHouseManagerEmail(String email) {
         return "itri.acc@gmail.com".equals(email);
     }
+
+    //TOURISM HEAD
+    private boolean isTourismHeadEmail(String email) {
+        return "alcantaraleah914@gmail.com".equals(email);
+    }
+
+    //RECEPTIONIST
+    private boolean isReceptionistEmail(String email) {
+        return "touristarya@gmail.com".equals(email);
+    }
+
 
     private void navigateToStoreManagerActivity() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -219,6 +258,8 @@ public class LogIn extends AppCompatActivity {
         }
     }
 
+
+
     private void navigateToHouseManagerActivity() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
@@ -229,6 +270,92 @@ public class LogIn extends AppCompatActivity {
                     Log.d("Navigate", "Navigating to HouseManager.class");
                     finish();
                     Intent intent = new Intent(LogIn.this, HouseManager.class);
+                    startActivity(intent);
+                } else {
+                    // Non-admin email, navigate to Main2
+                    Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+                    Log.d("Navigate", "Navigating to Main2.class");
+                    retrieveUserPoints();
+                    finish();
+                    Intent intent = new Intent(LogIn.this, Main2.class);
+                    startActivity(intent);
+                }
+            } else {
+                // Email is not verified, send verification email
+                Toast.makeText(LogIn.this, "Email is not verified. Sending verification email.", Toast.LENGTH_LONG).show();
+
+                user.sendEmailVerification().addOnCompleteListener(emailVerificationTask -> {
+                    if (emailVerificationTask.isSuccessful()) {
+                        // Email verification sent
+                        Toast.makeText(LogIn.this, "Verification email sent. Check your email.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                // You may want to sign out the user here if needed
+                signOutGoogle();
+            }
+        } else {
+            // User is not logged in
+            Toast.makeText(LogIn.this, "User not authenticated.", Toast.LENGTH_LONG).show();
+            // You may want to sign out the user here if needed
+            signOutGoogle();
+        }
+    }
+
+    //TOURISM HEAD
+    private void navigateToTourismHeadActivity() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            if (user.isEmailVerified()) {
+                if ("alcantaraleah914@gmail.com".equals(user.getEmail())) {
+                    // Admin email, navigate to Admin class
+                    Toast.makeText(getApplicationContext(), "TourismHead Login Successful", Toast.LENGTH_LONG).show();
+                    Log.d("Navigate", "Navigating to Admin.class");
+                    finish();
+                    Intent intent = new Intent(LogIn.this, Admin.class);
+                    startActivity(intent);
+                } else {
+                    // Non-admin email, navigate to Main2
+                    Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+                    Log.d("Navigate", "Navigating to Main2.class");
+                    retrieveUserPoints();
+                    finish();
+                    Intent intent = new Intent(LogIn.this, Main2.class);
+                    startActivity(intent);
+                }
+            } else {
+                // Email is not verified, send verification email
+                Toast.makeText(LogIn.this, "Email is not verified. Sending verification email.", Toast.LENGTH_LONG).show();
+
+                user.sendEmailVerification().addOnCompleteListener(emailVerificationTask -> {
+                    if (emailVerificationTask.isSuccessful()) {
+                        // Email verification sent
+                        Toast.makeText(LogIn.this, "Verification email sent. Check your email.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                // You may want to sign out the user here if needed
+                signOutGoogle();
+            }
+        } else {
+            // User is not logged in
+            Toast.makeText(LogIn.this, "User not authenticated.", Toast.LENGTH_LONG).show();
+            // You may want to sign out the user here if needed
+            signOutGoogle();
+        }
+    }
+
+    //RECEPTIONIST
+    private void navigateToReceptionistActivity() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            if (user.isEmailVerified()) {
+                if ("touristarya@gmail.com".equals(user.getEmail())) {
+                    // Receptionist, navigate to Admin class
+                    Toast.makeText(getApplicationContext(), "Receptionist Login Successful", Toast.LENGTH_LONG).show();
+                    Log.d("Navigate", "Navigating to HouseManager.class");
+                    finish();
+                    Intent intent = new Intent(LogIn.this, Receptionist.class);
                     startActivity(intent);
                 } else {
                     // Non-admin email, navigate to Main2

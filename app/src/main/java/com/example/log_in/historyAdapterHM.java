@@ -59,8 +59,8 @@ public class historyAdapterHM extends RecyclerView.Adapter<historyAdapterHM.MyVi
             MonthHouseManagerText = itemView.findViewById(R.id.MonthHouseManagerText);
             BahayHouseManagerText = itemView.findViewById(R.id.BahayHouseManagerText);
             ArawHouseManagerText = itemView.findViewById(R.id.ArawHouseManagerText);
-            bookebyNameHMHistory = itemView.findViewById(R.id.bookebyNameHMHistory);
-            TotalNumberHMHistory = itemView.findViewById(R.id.TotalNumberHMHistory);
+            bookebyNameHMHistory = itemView.findViewById(R.id.bookebyNameHM_History);
+            TotalNumberHMHistory = itemView.findViewById(R.id.TotalNumberHM_History);
             SelectedHouseHMHistory = itemView.findViewById(R.id.SelectedHouseHMHistory);
 
 

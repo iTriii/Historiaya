@@ -49,7 +49,6 @@ public class historyHM_adapter extends RecyclerView.Adapter<historyHM_adapter.My
         holder.TouristHouseManagerText.setText(HistoryHMUsers.getEmail());
         holder.TouristNumber.setText(HistoryHMUsers.getSelectedTouristNum());
         holder.bookebyNameHMHistory.setText(HistoryHMUsers.getEmail());
-        holder.TotalNumberHMHistory.setText(HistoryHMUsers.getSelectedTouristNum());
         holder.SelectedHouseHMHistory.setText(HistoryHMUsers.getSelectedTour());
 
 
@@ -61,17 +60,15 @@ public class historyHM_adapter extends RecyclerView.Adapter<historyHM_adapter.My
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView MonthHouseManagerText, BahayHouseManagerText, ArawHouseManagerText, TouristHouseManagerText, TouristNumber,bookebyNameHMHistory,TotalNumberHMHistory,SelectedHouseHMHistory;
+        TextView MonthHouseManagerText, BahayHouseManagerText, ArawHouseManagerText, TouristHouseManagerText, TouristNumber,bookebyNameHMHistory,TotalNumberHM_History,SelectedHouseHMHistory;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             MonthHouseManagerText = itemView.findViewById(R.id.MonthHouseManagerText);
             BahayHouseManagerText = itemView.findViewById(R.id.BahayHouseManagerText);
             ArawHouseManagerText = itemView.findViewById(R.id.ArawHouseManagerText);
-            TouristHouseManagerText = itemView.findViewById(R.id.TouristHouseManagerText);
-            TouristNumber = itemView.findViewById(R.id.TouristNumber);
-            bookebyNameHMHistory = itemView.findViewById(R.id.bookebyNameHMHistory);
-            TotalNumberHMHistory = itemView.findViewById(R.id.TotalNumberHMHistory);
+            bookebyNameHMHistory = itemView.findViewById(R.id.bookebyNameHM_History);
+            TotalNumberHM_History = itemView.findViewById(R.id.TotalNumberHM_History);
             SelectedHouseHMHistory = itemView.findViewById(R.id.SelectedHouseHMHistory);
         }
     }

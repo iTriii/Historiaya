@@ -1,49 +1,132 @@
 package com.example.log_in;
 
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
-import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Receptionist extends AppCompatActivity {
-
 
 
     RadioButton UpcomingRecep_Tab, HistoryRecep_tab;
     ScrollView UpcomingRecep_ScrollView, HistoryRecep_ScrollView;
     View wanRecep, toRecep;
-    TextView BahayRecepText, ArawecepText, MonthRecepText, MonthText, ArawText, BahayRecepText2;
 
+    public ListenerRegistration userDataListener;
     FirebaseUser user;
     FirebaseAuth auth;
     FirebaseFirestore db;
-    public ListenerRegistration userDataListener;
-
+    RecyclerView ReceptionistUpcoming_RecyclerView, ReceptionistHistory_RecyclerView;
+    private ProgressDialog progressDialog;
+    private ArrayList<User> userArrayList;
+    Receptionist_Adapter_History Receptionist_Adapter_History;
+    Receptionist_Upcoming_Adapter Receptionist_Upcoming_Adapter;
+    private CalendarView CalendarHouseManager;
+    private Button Editbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receptionist);
+// Inside onCreate or wherever you initialize your FirebaseFirestore
+        db = FirebaseFirestore.getInstance();
 
-
-
-
-        BahayRecepText2 = findViewById(R.id.BahayRecepText2);
-        MonthRecepText = findViewById(R.id.MonthText);
+        //VIEW
         wanRecep = findViewById(R.id.wanRecep);
         toRecep = findViewById(R.id.toRecep);
 
+// Initialize Firebase Authentication
+        auth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        user = auth.getCurrentUser();
 
+        Editbtn = findViewById(R.id.Editbtn);
+        // Initialize RecyclerViews and Adapters
+        ReceptionistUpcoming_RecyclerView = findViewById(R.id.ReceptionistUpcoming_RecyclerView);
+        ReceptionistHistory_RecyclerView = findViewById(R.id.ReceptionistHistory_RecyclerView);
+        userArrayList = new ArrayList<>();
+
+
+        Receptionist_Adapter_History = new Receptionist_Adapter_History(this, userArrayList, db);
+        Receptionist_Upcoming_Adapter = new Receptionist_Upcoming_Adapter(this, userArrayList, db);
+
+
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = auth.getCurrentUser();
+
+
+        if (currentUser != null) {
+            String userId = currentUser.getUid();
+            CollectionReference usersDocRef = db.collection("users");
+            DocumentReference userDocRef = usersDocRef.document(userId);
+            userDocRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document != null && document.exists()) {
+                        // Document exists, update fields
+                        userDocRef.update(User.FIELD_STATUS, "")
+                                .addOnSuccessListener(aVoid -> Log.d("Firestore", "DocumentSnapshot successfully updated!"))
+                                .addOnFailureListener(e -> Log.e("Firestore", "Error updating document", e));
+                    } else {
+                        Map<String, Object> user = new HashMap<>();
+                        user.put(User.FIELD_USER_ID, userId);
+                        user.put(User.FIELD_EMAIL, currentUser.getEmail()); // Ensure Email is not null
+                        usersDocRef.document(userId).set(user)
+                                .addOnSuccessListener(aVoid -> Log.d("Firestore", "DocumentSnapshot successfully written!"))
+                                .addOnFailureListener(e -> Log.e("Firestore", "Error writing document", e));
+
+                    }
+                } else {
+                    // Handle the exception
+                    Exception exception = task.getException();
+                    if (exception != null) {
+                        Log.e("Firestore", "Error getting document", exception);
+                    }
+                }
+            });
+        }
+
+
+        // Initialize ProgressDialog
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setCancelable(false);
+        progressDialog.setMessage("Loading...");
+
+        EventChangeListener();// Add data listener to load data from Firestore
+        setUpRecyclerView(); // Set up RecyclerView and Adapter
+        setUpTabsAndViews(); // Set up tabs and views
+    }
+
+    private void setUpTabsAndViews() {
         UpcomingRecep_ScrollView = findViewById(R.id.Upcoming_ScrollView);
         UpcomingRecep_Tab = findViewById(R.id.UpcomingRecep_Tab);
         UpcomingRecep_Tab.setOnClickListener(v -> UpcomingRecep_Tab());
@@ -51,12 +134,76 @@ public class Receptionist extends AppCompatActivity {
         HistoryRecep_tab = findViewById(R.id.HistoryRecep_tab);
         HistoryRecep_tab.setOnClickListener(v -> HistoryRecep_tab());
 
+    }
 
-        // Initialize Firebase Authentication
-        auth = FirebaseAuth.getInstance();
-        db = FirebaseFirestore.getInstance();
-        user = auth.getCurrentUser();
+    private void setUpRecyclerView() {
+        // RecyclerView setup
+        ReceptionistUpcoming_RecyclerView.setHasFixedSize(true);
+        ReceptionistUpcoming_RecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        ReceptionistUpcoming_RecyclerView.setAdapter(Receptionist_Upcoming_Adapter);
 
+        ReceptionistHistory_RecyclerView.setHasFixedSize(true);
+        ReceptionistHistory_RecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        ReceptionistHistory_RecyclerView.setAdapter(Receptionist_Adapter_History);
+    }
+
+    private void EventChangeListener() {
+        db.collection("users").orderBy("reservedDate", Query.Direction.ASCENDING)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    // Initialize HashMaps for users
+                    final HashMap<String, User> userHashMap = new HashMap<>();
+                    final HashMap<String, User> upcomingUserHashMap = new HashMap<>();
+                    final HashMap<String, User> historyUserHashMap = new HashMap<>();
+
+
+                    @SuppressLint("NotifyDataSetChanged")
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if (error != null) {
+                            try {
+                                fetchAndDisplayUserData();
+                            } catch (Exception e) {
+                                Log.e("Receptionist", "Error in fetchAndDisplayUserData: " + e.getMessage());
+                            }
+
+                            if (!progressDialog.isShowing()) progressDialog.show();
+                            Log.e("Error", error.getMessage());
+                            return;
+                        }
+
+                        // Handle data changes
+                        for (DocumentChange dc : value.getDocumentChanges()) {
+                            switch (dc.getType()) {
+                                case ADDED:
+                                case MODIFIED:
+                                    User user = dc.getDocument().toObject(User.class);
+                                    // Set the user ID
+                                    user.setUserId(dc.getDocument().getId());
+                                    userHashMap.put(user.getEmail(), user);
+                                    if (user.isUpcoming()) {
+                                        upcomingUserHashMap.put(user.getEmail(), user);
+                                    } else {
+                                        historyUserHashMap.put(user.getEmail(), user);
+                                    }
+                                    break;
+                                case REMOVED:
+                                    User userRemoved = dc.getDocument().toObject(User.class);
+                                    userHashMap.remove(userRemoved.getEmail());
+                                    upcomingUserHashMap.remove(userRemoved.getUserId());
+                                    historyUserHashMap.remove(userRemoved.getUserId());
+                                    break;
+                            }
+                        }
+
+                        userArrayList.clear();
+                        userArrayList.addAll(userHashMap.values());
+
+                        Receptionist_Upcoming_Adapter.notifyDataSetChanged();
+                        Receptionist_Adapter_History.notifyDataSetChanged();
+
+                        if (progressDialog.isShowing()) progressDialog.dismiss();
+                    }
+                });
 
         if (user != null) {
             // Fetch and display user data from Firestore
@@ -70,7 +217,8 @@ public class Receptionist extends AppCompatActivity {
         }
     }
 
-    private void HistoryRecep_tab() {
+
+        private void HistoryRecep_tab() {
         UpcomingRecep_Tab.setChecked(true);
         UpcomingRecep_Tab.setTextColor(ContextCompat.getColor(this, R.color.green));
         UpcomingRecep_ScrollView.setVisibility(View.VISIBLE);
@@ -82,54 +230,60 @@ public class Receptionist extends AppCompatActivity {
     }
 
     private void UpcomingRecep_Tab() {
-        UpcomingRecep_Tab.setChecked(false);
+        UpcomingRecep_Tab.setChecked(true);
         UpcomingRecep_Tab.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
         UpcomingRecep_ScrollView.setVisibility(View.GONE);
-        HistoryRecep_tab.setChecked(true);
+        HistoryRecep_tab.setChecked(false);
         HistoryRecep_tab.setTextColor(ContextCompat.getColor(this, R.color.green));
         HistoryRecep_ScrollView.setVisibility(View.VISIBLE);
         wanRecep.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
         toRecep.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
+
     }
 
-
-    //getting the data from firestore (users booking)
     private void fetchAndDisplayUserData() {
         userDataListener = db.collection("users")
                 .document(user.getUid())
                 .addSnapshotListener((documentSnapshot, error) -> {
                     if (error != null) {
-                        Log.e("ProfileActivity", "Error fetching user data: " + error.getMessage());
+                        Log.e("Receptionist", "Error fetching user data: " + error.getMessage());
                         return;
                     }
 
-                    if (documentSnapshot.exists()) {
-                        try {
+                    // Handle the document snapshot here
+                    if (documentSnapshot != null && documentSnapshot.exists()) {
+                        // Extract data from the document snapshot
+                        if (documentSnapshot.contains("status")) {
+                            String status = documentSnapshot.getString("status");
 
-                            String selectedTour = documentSnapshot.getString("selectedTour");// display data in texview
-                            String reservedDate = documentSnapshot.getString("reservedDate");
-                            //TextViews with the retrieved data
-                            MonthText.setText(reservedDate);
-                            if (MonthText != null) {
-                                MonthText.setText(reservedDate);
-                            }
-                            ArawText.setText(reservedDate);
-                            if (ArawText != null) {
-                                ArawText.setText(reservedDate);
-                            }
-                            BahayRecepText.setText(selectedTour);
-                            if (BahayRecepText != null) {
-                                BahayRecepText.setText(selectedTour);
-                            }
-                        } catch (Exception e) {
-                            Log.e("ProfileActivity", "Error in fetchAndDisplayUserData: " + e.getMessage());
-
+                            // Display the data or perform other actions
+                            // For example, you can update a TextView with the fetched data
+                            // textView.setText(userData);
                         }
-
                     }
                 });
     }
+
+
+
+    @Override
+    protected void onDestroy() {
+        // Remove the snapshot listener when the activity is destroyed
+        if (userDataListener != null) {
+            userDataListener.remove();
+        }
+
+        super.onDestroy();
+
+
+        // Set a click listener for the edit button
+        Editbtn.setOnClickListener(v -> {
+            // Handle edit button click (implement your edit/update/delete logic here)
+            Toast.makeText(Receptionist.this, "Edit button clicked", Toast.LENGTH_SHORT).show();
+        });
+    }
 }
+
 
 
 

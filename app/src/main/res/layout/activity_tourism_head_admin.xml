@@ -340,9 +340,9 @@
 
     <ScrollView
         android:id="@+id/Pending_ScrollView"
-        android:layout_width="390dp"
-        android:layout_height="354dp"
-        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="292dp"
+        android:layout_marginTop="20dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

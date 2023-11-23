@@ -92,24 +92,6 @@
         app:layout_constraintVertical_bias="0.042"
         tools:ignore="TextSizeCheck" />
 
-    <ImageButton
-        android:id="@+id/notiftn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="55dp"
-        android:background="@drawable/shadow"
-        android:clickable="true"
-        android:contentDescription="@string/BookNow"
-        android:contextClickable="true"
-        android:elevation="10dp"
-        android:longClickable="true"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.883"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_notif" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -271,187 +253,43 @@
 
     <ScrollView
         android:id="@+id/Upcoming_ScrollView"
-        android:layout_width="382dp"
-        android:layout_height="149dp"
+        android:layout_width="398dp"
+        android:layout_height="239dp"
         android:layout_marginTop="-40dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup2">
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2"
+        app:layout_constraintVertical_bias="1.0">
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ReceptionistUpcoming_RecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="wrap_content" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="145dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/MonthText"
-                    android:layout_width="136dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="-90dp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="@string/november"
-                    android:textColor="#000000"
-                    android:textSize="19sp" />
-
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView"
-                    android:layout_width="341dp"
-                    android:layout_height="100dp"
-                    android:layout_marginLeft="20dp"
-                    android:foregroundGravity="fill"
-                    app:cardCornerRadius="@dimen/fab_margin"
-                    app:cardMaxElevation="70dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.555"
-                    app:layout_constraintHorizontal_weight="1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintVertical_bias="0.595"
-                    app:strokeWidth="4dp">
-
-                    <ImageView
-                        android:id="@+id/imageView3"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_marginLeft="6dp"
-                        android:padding="5dp"
-                        android:background="@drawable/shadow"
-                        android:src="@drawable/don_catalino1" />
-
-                    <TextView
-                        android:id="@+id/BahayRecepText2"
-                        android:layout_width="159dp"
-                        android:layout_height="45dp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="-20dp"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:text="@string/don_catalino_rodriguez_house"
-                        android:textColor="#000000"
-                        android:textSize="14sp" />
-
-                    <TextView
-                        android:id="@+id/ArawRecepText"
-                        android:layout_width="159dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="25dp"
-                        android:fontFamily="@font/montserrat"
-                        android:text=" November 15, 2023"
-                        android:textColor="#000000"
-                        android:textSize="19sp" />
-
-
-                </androidx.cardview.widget.CardView>
-
-
-            </LinearLayout>
-        </LinearLayout>
     </ScrollView>
-
 
     <ScrollView
         android:id="@+id/History_ScrollView"
-        android:layout_width="382dp"
-        android:layout_height="188dp"
+        android:layout_width="match_parent"
+        android:layout_height="242dp"
         android:layout_marginTop="-20dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintHorizontal_bias="0.076"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup2">
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2"
+        app:layout_constraintVertical_bias="1.0">
 
-        <LinearLayout
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ReceptionistHistory_RecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="137dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/MontHistoText"
-                    android:layout_width="230dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="-50dp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="@string/november"
-                    android:textColor="#000000"
-                    android:textSize="19sp" />
-
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardView1"
-                    android:layout_width="341dp"
-                    android:layout_height="100dp"
-                    android:layout_marginLeft="20dp"
-                    android:foregroundGravity="fill"
-                    app:cardCornerRadius="@dimen/fab_margin"
-                    app:cardMaxElevation="70dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.555"
-                    app:layout_constraintHorizontal_weight="1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintVertical_bias="0.595"
-                    app:strokeWidth="4dp">
-
-                    <ImageView
-                        android:id="@+id/imageView4"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:layout_marginLeft="6dp"
-                        android:padding="5dp"
-                        android:background="@drawable/shadow"
-                        android:src="@drawable/don_catalino1" />
-
-                    <TextView
-                        android:id="@+id/BahayHistoText"
-                        android:layout_width="159dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="-20dp"
-                        android:fontFamily="@font/montserrat_bold"
-                        android:text="@string/don_catalino_rodriguez_house"
-                        android:textColor="#000000"
-                        android:textSize="19sp" />
-
-                    <TextView
-                        android:id="@+id/ArawHistoText"
-                        android:layout_width="159dp"
-                        android:layout_height="30dp"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="20dp"
-                        android:layout_marginTop="10dp"
-                        android:fontFamily="@font/montserrat"
-                        android:text=" November 15, 2023"
-                        android:textColor="#000000"
-                        android:textSize="19sp" />
-
-
-                </androidx.cardview.widget.CardView>
-
-
-            </LinearLayout>
-        </LinearLayout>
+            android:layout_height="wrap_content" />
     </ScrollView>
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
