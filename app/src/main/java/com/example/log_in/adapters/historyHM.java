@@ -1,9 +1,9 @@
 package com.example.log_in.adapters;
 
-public class upcoming_reservation_of_user {
+public class historyHM {
     private String reservedDate, selectedTime, selectedTour, FirstName, LastName, selectedTouristNum;
 
-    public upcoming_reservation_of_user() {
+    public historyHM() {
     }
 
     public String getReservedDate() {
@@ -31,7 +31,7 @@ public class upcoming_reservation_of_user {
     }
 
 
-    public upcoming_reservation_of_user(String reservedDate, String selectedTime, String selectedTour, String FirstName, String LastName, String selectedTouristNum) {
+    public historyHM(String reservedDate, String selectedTime, String selectedTour, String FirstName, String LastName, String selectedTouristNum) {
         this.reservedDate = reservedDate;
         this.selectedTime = selectedTime;
         this.selectedTour = selectedTour;

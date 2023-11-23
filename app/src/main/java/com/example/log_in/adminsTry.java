@@ -20,12 +20,6 @@ public class adminsTry extends AppCompatActivity {
         button2 = findViewById(R.id.button2);
 
 
-
-        button1.setOnClickListener(view -> {
-            Intent intent = new Intent(adminsTry.this, TourismHead.class);
-            startActivity(intent);
-        });
-
         button2.setOnClickListener(view -> {
             Intent intent = new Intent(adminsTry.this, Receptionist.class);
             startActivity(intent);

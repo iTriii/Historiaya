@@ -22,7 +22,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.ParseException;
@@ -34,9 +33,7 @@ import java.util.HashSet;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
-import java.util.Objects;
 
-import im.crisp.client.ChatActivity;
 import im.crisp.client.Crisp;
 
 
@@ -384,7 +381,7 @@ btntime4 = findViewById(R.id.btntime4);
                 bookingData.put("selectedTouristNum", selectedTouristNum);
                 bookingData.put("reservedDate", reservedDate);
                 bookingData.put("totalAmount", totalAmount);
-                bookingData.put("selected Time", selectedTime);
+                bookingData.put("selectedTime", selectedTime);
 
                 userDocRef.update(bookingData).addOnSuccessListener(documentReference -> {
                   //  Toast.makeText(getApplicationContext(), "Booking updated", Toast.LENGTH_SHORT).show();
@@ -401,7 +398,7 @@ btntime4 = findViewById(R.id.btntime4);
                 user.put("selectedTouristNum", selectedTouristNum);
                 user.put("reservedDate", reservedDate);
                 user.put("totalAmount", totalAmount);
-                user.put("Selected Time", selectedTime);
+                user.put("SelectedTime", selectedTime);
 
                 userDocRef.set(user).addOnSuccessListener(documentReference -> {
                     Toast.makeText(getApplicationContext(), "Booking created", Toast.LENGTH_SHORT).show();

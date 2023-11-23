@@ -9,6 +9,8 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_marginTop="30dp"
+        android:foregroundGravity="fill"
+        android:background="#00FFFFFF"
         android:orientation="vertical">
 
             <TextView
@@ -55,28 +57,61 @@
                     <TextView
                         android:id="@+id/BahayHouseManagerText"
                         android:layout_width="159dp"
-                        android:layout_height="30dp"
+                        android:layout_height="20dp"
                         android:layout_gravity="center"
                         android:layout_marginLeft="20dp"
-                        android:layout_marginTop="-80dp"
+                        android:layout_marginTop="-90dp"
                         android:fontFamily="@font/montserrat_bold"
                         android:text="@string/don_catalino_rodriguez_house"
                         android:textColor="#000000"
-                        android:textSize="10sp" />
+                        android:textSize="15sp" />
+
+                    <Button
+                        android:id="@+id/done"
+                        android:layout_width="50dp"
+                        android:layout_height="25dp"
+                        android:textAlignment="center"
+                        android:text="@string/done"
+                        android:fontFamily="@font/montserrat"
+                        android:textColor="@color/white"
+                        android:textSize="10sp"
+                        android:layout_marginTop="-20dp"
+                        android:layout_marginStart="285dp"
+                        android:background="@drawable/store_price_button_ok"/>
 
                     <TextView
-                        android:id="@+id/ArawHouseManagerText"
-                        android:layout_width="159dp"
-                        android:layout_height="30dp"
+                        android:id="@+id/TouristHouseManagerText"
+                        android:layout_width="150dp"
+                        android:layout_height="20dp"
                         android:layout_gravity="center"
-                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_marginStart="15dp"
+                        android:fontFamily="@font/montserrat"
+                        android:text=" Eunice Ordillano"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
+                    <TextView
+                        android:id="@+id/ArawHouseManagerText"
+                        android:layout_width="180dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="30dp"
                         android:layout_marginTop="2dp"
                         android:fontFamily="@font/montserrat"
                         android:text=" November 15, 2023"
                         android:textColor="#000000"
-                        android:textSize="10sp" />
+                        android:textSize="12sp" />
 
-
+                    <TextView
+                        android:id="@+id/TouristNumber"
+                        android:layout_width="130dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="10dp"
+                        android:fontFamily="@font/montserrat"
+                        android:text="10"
+                        android:textColor="#000000"
+                        android:textSize="12sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 

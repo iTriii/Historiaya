@@ -39,7 +39,6 @@ public class Receptionist extends AppCompatActivity {
 
 
         BahayRecepText2 = findViewById(R.id.BahayRecepText2);
-         ArawRecepText = findViewById(R.id.ArawRecepText);
         MonthRecepText = findViewById(R.id.MonthText);
         wanRecep = findViewById(R.id.wanRecep);
         toRecep = findViewById(R.id.toRecep);
