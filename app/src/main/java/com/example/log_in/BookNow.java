@@ -34,6 +34,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
+import im.crisp.client.ChatActivity;
 import im.crisp.client.Crisp;
 
 
@@ -284,7 +285,7 @@ btntime4 = findViewById(R.id.btntime4);
         Crisp.setUserEmail(mAuth.getCurrentUser().getEmail());
 
         // Start Crisp chat
-        Intent chatIntent = new Intent(this, chat.class);
+        Intent chatIntent = new Intent(this, ChatActivity.class);
         startActivity(chatIntent);
     }
 
