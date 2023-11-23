@@ -16,12 +16,12 @@ import java.util.ArrayList;
 public class UpcomingAdapter  extends RecyclerView.Adapter<UpcomingAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<User> UpcomingUsersArrayList;
+    ArrayList<User>  userArrayList;
     private final FirebaseFirestore db;
 
     public UpcomingAdapter(Context context, ArrayList<User> userArrayList, FirebaseFirestore db) {
         this.context = context;
-        this.UpcomingUsersArrayList = userArrayList;
+        this. userArrayList = userArrayList;
         this.db = db;
     }
 
@@ -37,7 +37,7 @@ public class UpcomingAdapter  extends RecyclerView.Adapter<UpcomingAdapter.MyVie
 
     @Override
     public void onBindViewHolder(@NonNull UpcomingAdapter.MyViewHolder holder, int position) {
-        User UpcomingUsers = UpcomingUsersArrayList.get(position);
+        User UpcomingUsers =  userArrayList.get(position);
 
         holder.MonthTourHeadText.setText(UpcomingUsers.getReservedDate());
         holder.BahayTourHeadText.setText(UpcomingUsers.getSelectedTour());
@@ -47,7 +47,7 @@ public class UpcomingAdapter  extends RecyclerView.Adapter<UpcomingAdapter.MyVie
 
     @Override
     public int getItemCount() {
-        return UpcomingUsersArrayList.size();
+        return  userArrayList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="170dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="8dp"
+    android:layout_margin="10dp">
 
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="158dp"
         android:layout_marginTop="30dp"
         android:orientation="vertical">
 
@@ -24,63 +26,48 @@
             android:textSize="19sp" />
 
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="341dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="20dp"
-            android:foregroundGravity="fill"
-            app:cardCornerRadius="@dimen/fab_margin"
-            app:cardMaxElevation="70dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.555"
-            app:layout_constraintHorizontal_weight="1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintVertical_bias="0.595"
-            app:strokeWidth="4dp" >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="113dp"
+                android:layout_height="112dp"
+                android:layout_marginStart="6dp"
+                android:background="@drawable/shadow"
+                android:padding="5dp"
+                android:src="@drawable/don_catalino1" />
 
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginStart="6dp"
-                    android:background="@drawable/shadow"
-                    android:padding="5dp"
-                    android:src="@drawable/don_catalino1" />
-
-                <TextView
-                    android:id="@+id/BahayHouseManagerText"
-                    android:layout_width="159dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="-80dp"
-                    android:fontFamily="@font/montserrat_bold"
-                    android:text="@string/don_catalino_rodriguez_house"
-                    android:textColor="#000000"
-                    android:textSize="10sp" />
+            <TextView
+                android:id="@+id/BahayHouseManagerText"
+                android:layout_width="244dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="-80dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/don_catalino_rodriguez_house"
+                android:textColor="#000000"
+                android:textSize="20sp" />
 
 
-                <TextView
-                    android:id="@+id/ArawHouseManagerText"
-                    android:layout_width="159dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="2dp"
-                    android:fontFamily="@font/montserrat"
-                    android:text=" November 15, 2023"
-                    android:textColor="#000000"
-                    android:textSize="10sp" />
+            <TextView
+                android:id="@+id/ArawHouseManagerText"
+                android:layout_width="159dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/montserrat"
+                android:text=" November 15, 2023"
+                android:textColor="#000000"
+                android:textSize="20sp" />
 
 
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
 
     </LinearLayout>
 

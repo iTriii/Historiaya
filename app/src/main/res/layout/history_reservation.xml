@@ -79,7 +79,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/bookebyNameHMHistory"
+                    android:id="@+id/bookebyNameHM_History"
                     android:layout_width="190dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
@@ -103,7 +103,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/TotalNumberHMHistory"
+                    android:id="@+id/TotalNumberHM_History"
                     android:layout_width="121dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
