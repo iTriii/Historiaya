@@ -135,6 +135,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="-180dp"
                 android:layout_marginTop="30dp"
+                android:layout_gravity="center"
                 android:background="@drawable/bgcalendar"
                 android:clickable="true"
                 android:labelFor="@id/SDate"
@@ -332,7 +333,7 @@
     <ScrollView
         android:id="@+id/Pending_ScrollView"
         android:layout_width="match_parent"
-        android:visibility="visible"
+        android:visibility="gone"
         android:layout_height="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

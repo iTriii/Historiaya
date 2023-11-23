@@ -246,15 +246,21 @@ public class TourismHeadAdmin extends AppCompatActivity {
 
         }
     public void ReadDatabase() {
-        String query = "Select Event from EventCalendar where Date" + selectedDate;
+        String query = "SELECT Event FROM EventCalendar WHERE Date = '" + selectedDate + "'";
         try {
             Cursor cursor = sqLiteDatabase.rawQuery(query, null);
-            SaveSchedule.setText(cursor.getString(0)); // Update the appropriate view here
+            if (cursor.moveToFirst()) {
+                SaveSchedule.setText(cursor.getString(0)); // Update the appropriate view here
+            } else {
+                SaveSchedule.setText("");
+            }
+            cursor.close();
         } catch (Exception e) {
             e.printStackTrace();
             SaveSchedule.setText("");
         }
     }
+
 
     private void setUpRecyclerView() {
             // RecyclerView setup
