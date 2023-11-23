@@ -2,17 +2,22 @@ package com.example.log_in;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -54,10 +59,14 @@ public class TourismHeadAdmin extends AppCompatActivity {
     private ProgressDialog progressDialog;
 
     private CalendarView calendarTourismHead;
-    private Button editbtnTH;
+    private Button SaveTH;
     private Object Email;
     private ListenerRegistration userDataListener;
 
+    private customizedCalendar customizedCalendar;
+    private String selectedDate;
+    EditText SaveSchedule;
+    private SQLiteDatabase sqLiteDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,8 +76,27 @@ public class TourismHeadAdmin extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
+        SaveSchedule = findViewById(R.id.SaveSchedule);
+
         calendarTourismHead = findViewById(R.id.CalendarTourismHead);
-        editbtnTH = findViewById(R.id.EditbtnTH);
+        calendarTourismHead.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayofMonth) {
+
+                selectedDate = Integer.toString(year) + Integer.toString(month) + Integer.toString(dayofMonth);
+                ReadDatabase();
+            }
+        });
+        try{
+            customizedCalendar = new customizedCalendar(this, "CalendarDatabase", null ,1);
+            sqLiteDatabase = customizedCalendar.getWritableDatabase();
+            sqLiteDatabase.execSQL("CREATE TABLE EventCalendar (Date TEXT, Event TEXT)");
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+        SaveTH = findViewById(R.id.SaveTH);
 
         // Initialize Firebase Authentication and Firestore
         wan = findViewById(R.id.wan);
@@ -93,6 +121,7 @@ public class TourismHeadAdmin extends AppCompatActivity {
         myAdapter = new MyAdapter(this, userArrayList, db);
         UpcomingAdapter = new UpcomingAdapter(this, userArrayList, db);
         HistoryAdapter = new HistoryAdapter(this, userArrayList, db);
+
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
@@ -218,7 +247,23 @@ public class TourismHeadAdmin extends AppCompatActivity {
             });
         }
 
+        public void InsertDatabase (View view){
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("Date", selectedDate);
+            contentValues.put("Event", SaveSchedule.getText().toString());
+            sqLiteDatabase.insert("EventCalendar", null, contentValues);
 
+        }
+    public void ReadDatabase() {
+        String query = "Select Event from EventCalendar where Date" + selectedDate;
+        try {
+            Cursor cursor = sqLiteDatabase.rawQuery(query, null);
+            SaveSchedule.setText(cursor.getString(0)); // Update the appropriate view here
+        } catch (Exception e) {
+            e.printStackTrace();
+            SaveSchedule.setText("");
+        }
+    }
 
     private void setUpRecyclerView() {
             // RecyclerView setup
@@ -335,7 +380,7 @@ public class TourismHeadAdmin extends AppCompatActivity {
 
 
         // Set a click listener for the edit button
-        editbtnTH.setOnClickListener(v -> {
+        SaveTH.setOnClickListener(v -> {
             // Handle edit button click (implement your edit/update/delete logic here)
             Toast.makeText(TourismHeadAdmin.this, "Edit button clicked", Toast.LENGTH_SHORT).show();
         });

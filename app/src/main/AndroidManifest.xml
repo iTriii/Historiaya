@@ -164,10 +164,6 @@
             android:name=".Reset_Password"
             android:exported="true" />
         <activity
-            android:name=".chat"
-            android:exported="true"
-            android:label="Chat Activity" />
-        <activity
             android:name=".MainActivity"
             android:exported="true" />
 

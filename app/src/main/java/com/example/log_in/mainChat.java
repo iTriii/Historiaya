@@ -1,26 +1,20 @@
 package com.example.log_in;
 
-import static com.google.android.gms.auth.zzl.getToken;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.util.Base64;
-import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.log_in.databinding.ActivityMainChatBinding;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.log_in.utilities.Constants;
 import com.example.log_in.utilities.PreferenceManager;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.messaging.FirebaseMessaging;
+
+import im.crisp.client.ChatActivity;
 
 public class mainChat extends AppCompatActivity {
 
@@ -72,7 +66,7 @@ public class mainChat extends AppCompatActivity {
     private void setListeners() {
         fabNewChatbtn.setOnClickListener(v -> {
             if (preferenceManager.getBoolean(Constants.KEY_IS_SIGNED_IN)) {
-                Intent intent = new Intent(mainChat.this, chat.class);
+                Intent intent = new Intent(mainChat.this, ChatActivity.class);
                 startActivity(intent);
             } else {
                 showToast("Please log in to chat");

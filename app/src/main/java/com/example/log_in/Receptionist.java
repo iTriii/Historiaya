@@ -218,7 +218,7 @@ public class Receptionist extends AppCompatActivity {
     }
 
 
-        private void HistoryRecep_tab() {
+    private void HistoryRecep_tab() {
         UpcomingRecep_Tab.setChecked(true);
         UpcomingRecep_Tab.setTextColor(ContextCompat.getColor(this, R.color.green));
         UpcomingRecep_ScrollView.setVisibility(View.VISIBLE);
@@ -283,10 +283,3 @@ public class Receptionist extends AppCompatActivity {
         });
     }
 }
-
-
-
-
-
-
-
