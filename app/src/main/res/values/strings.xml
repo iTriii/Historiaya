@@ -187,8 +187,8 @@
     <!--house-->
     <string-array name="HeritageHouses">
         <item> Select Tour </item>
-        <item> Don Catalino Rodriguez House</item>
-        <item> Gala Rogriguez House </item>
+        <item> Don Catalino Rodriguez </item>
+        <item> Gala Rogriguez  </item>
         <item> Both </item>
     </string-array>
 
