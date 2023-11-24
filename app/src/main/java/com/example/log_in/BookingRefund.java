@@ -52,13 +52,13 @@ public class BookingRefund extends AppCompatActivity {
 
         // Back button
         back.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingRefund.this, Main2.class);
+            Intent intent = new Intent(BookingRefund.this, BookingDetailMain.class);
             startActivity(intent);
         });
 
         // view button
         detailsclick.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingRefund.this, Profile.class);
+            Intent intent = new Intent(BookingRefund.this, BookingDetailMain.class);
             startActivity(intent);
         });
 

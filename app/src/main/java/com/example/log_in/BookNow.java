@@ -13,7 +13,7 @@ import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.Toast;    
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -34,8 +34,8 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
-import im.crisp.client.Crisp;
 import im.crisp.client.ChatActivity;
+import im.crisp.client.Crisp;
 
 
 public class BookNow extends AppCompatActivity {
@@ -176,11 +176,6 @@ btntime4 = findViewById(R.id.btntime4);
     @SuppressLint({"SetTextI18n", "DefaultLocale"})
     private void setupButtonClickListener( Button btntime1, Button btntime2, Button btntime3, Button btntime4) {
 
-
-
-
-
-
         // Chat button
         chatbtn.setOnClickListener(v -> {
             Intent intent = new Intent(BookNow.this, ChatActivity.class);
@@ -285,7 +280,7 @@ btntime4 = findViewById(R.id.btntime4);
         Crisp.setUserEmail(mAuth.getCurrentUser().getEmail());
 
         // Start Crisp chat
-        Intent chatIntent = new Intent(this, chat.class);
+        Intent chatIntent = new Intent(this, ChatActivity.class);
         startActivity(chatIntent);
     }
 

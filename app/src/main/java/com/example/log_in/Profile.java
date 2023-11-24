@@ -94,10 +94,6 @@ public class Profile extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         user = auth.getCurrentUser();
 
-
-
-
-
         upcomingbtn.setOnClickListener(view -> {
             Intent intent = new Intent(Profile.this, BookingDetailMain.class);
             startActivity(intent);

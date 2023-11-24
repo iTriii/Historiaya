@@ -413,6 +413,10 @@
     <string name="Heritagehouse">Heritage House</string>
     <string name="edit_calendar">EDIT CALENDAR</string>
     <string name="upcoming">Upcoming</string>
+    <string name="save">SAVE</string>
+    <string name="refund_for_reason">Refund for reason:</string>
+    <string name="proceed_to_cancellation">Proceed to Cancellation</string>
+    <string name="refund_amount">Refund Amount:</string>
 
     <!-- RESCHED  USER DETAILS ACTIVITY -->
 

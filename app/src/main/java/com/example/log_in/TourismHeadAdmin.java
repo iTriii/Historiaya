@@ -52,7 +52,7 @@ public class TourismHeadAdmin extends AppCompatActivity {
     private ProgressDialog progressDialog;
 
     private CalendarView calendarTourismHead;
-    private Button editbtnTH;
+    private Button uploadImageTH_btn;
     private Object Email;
     private ListenerRegistration userDataListener;
 
@@ -65,8 +65,8 @@ public class TourismHeadAdmin extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        calendarTourismHead = findViewById(R.id.CalendarTourismHead);
-        editbtnTH = findViewById(R.id.EditbtnTH);
+
+        uploadImageTH_btn = findViewById(R.id.uploadImageTH_btn);
 
         // Initialize Firebase Authentication and Firestore
         wan = findViewById(R.id.wan);
@@ -200,13 +200,6 @@ public class TourismHeadAdmin extends AppCompatActivity {
             Pending_RecyclerView.setVisibility(View.VISIBLE);
             Upcoming_RecyclerView.setVisibility(View.GONE);
             History_RecyclerView.setVisibility(View.GONE);
-
-            // Set a date change listener for the calendar view
-            calendarTourismHead.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
-                // Handle date selection here
-                String editDate = year + "-" + (month + 1) + "-" + dayOfMonth;
-                Toast.makeText(TourismHeadAdmin.this, "Selected Date: " + editDate, Toast.LENGTH_SHORT).show();
-            });
         }
 
 
@@ -225,7 +218,6 @@ public class TourismHeadAdmin extends AppCompatActivity {
             History_RecyclerView.setLayoutManager(new LinearLayoutManager(this));
             History_RecyclerView.setAdapter(HistoryAdapter);
         }
-
 
 
     // EventListener for data changes in Firestore
@@ -272,6 +264,7 @@ public class TourismHeadAdmin extends AppCompatActivity {
                                     }
                                     break;
                                 case REMOVED:
+
                                     User userRemoved = dc.getDocument().toObject(User.class);
                                     userHashMap.remove(userRemoved.getEmail());
                                     upcomingUserHashMap.remove(userRemoved.getUserId());
@@ -326,7 +319,7 @@ public class TourismHeadAdmin extends AppCompatActivity {
 
 
         // Set a click listener for the edit button
-        editbtnTH.setOnClickListener(v -> {
+        uploadImageTH_btn.setOnClickListener(v -> {
             // Handle edit button click (implement your edit/update/delete logic here)
             Toast.makeText(TourismHeadAdmin.this, "Edit button clicked", Toast.LENGTH_SHORT).show();
         });

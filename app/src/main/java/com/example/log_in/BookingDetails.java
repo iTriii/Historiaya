@@ -79,13 +79,13 @@ public class BookingDetails extends AppCompatActivity {
 
         // NAVIGATE TO PROFILE
         btncancel.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingDetails.this, Profile.class);
+            Intent intent = new Intent(BookingDetails.this, BookingDetailMain.class);
             startActivity(intent);
         });
 
         // Back button
         backkk.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingDetails.this, Profile.class);
+            Intent intent = new Intent(BookingDetails.this, BookingDetailMain.class);
             startActivity(intent);
         });
 
@@ -187,8 +187,7 @@ public class BookingDetails extends AppCompatActivity {
 
         // Check if the selected date and time are null
         if (selectedDate == null || selectedTime == null || TextUtils.isEmpty(selectedTime)) {
-            Toast.makeText(getApplicationContext(), "Please select a date and time.", Toast.LENGTH_SHORT).show();
-            return;
+//            return;
         }
 
         // Validate the selected date and time
