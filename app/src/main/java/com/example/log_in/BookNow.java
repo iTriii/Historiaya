@@ -304,10 +304,10 @@ btntime4 = findViewById(R.id.btntime4);
         double subtotal = 0.0;
         // subtotal based on the selected tour
         switch (selectedTour) {
-            case "Don Catalino Rodriguez House":
+            case "Don Catalino Rodriguez":
                 subtotal = 500.0;
                 break;
-            case "Gala Rogriguez House":
+            case "Gala Rogriguez ":
                 subtotal = 1000.0;
                 break;
             case "Both":
