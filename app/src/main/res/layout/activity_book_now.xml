@@ -402,7 +402,7 @@
                     android:layout_height="30dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="-150dp"
+                    android:layout_marginTop="-135dp"
                     android:fontFamily="@font/montserrat_alternates_extrabold"
                     android:text="Payment Summary"
                     android:textColor="#000000"
