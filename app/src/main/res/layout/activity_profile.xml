@@ -494,7 +494,7 @@
                         android:clickable="true"
                         android:background="@drawable/ongoing"
                         android:fontFamily="@font/montserrat_bold"
-                        android:text="@string/up_coming"
+                        android:text="upcoming"
                         android:textAlignment="center"
                         android:textColor="@color/GREEN"
                         android:textSize="10sp"
