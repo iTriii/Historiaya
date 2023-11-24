@@ -87,7 +87,7 @@ public class QR_Scanner extends AppCompatActivity {
         qr_scanner.pause();
     }
     public void Store() {
-        Intent intent = new Intent(this, Store.class);
+        Intent intent = new Intent(this, StoreManager.class);
         startActivity(intent);
     }
 }
