@@ -125,15 +125,15 @@ public class BookingDetails extends AppCompatActivity {
                         SimpleDateFormat sdfDate = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH);
                         selectedDate = sdfDate.format(selectedCalendar.getTime());
 
-                        Date.setText("Selected date: " + selectedDate);
+                        Date.setText("Selected Date: " + selectedDate);
 
                         // Check if the selected date is in the past
                         if (isDateInPast(year1, month1, dayOfMonth1)) {
                             // Show a message or handle the case where the date is in the past
-                            showToast("Selected date is not valid!");
+                            showToast("Selected date is not valid! Choose another Day");
                             selectedDate = null;
                         } else {
-                            showToast("Selected date is valid!");
+                         //   showToast("Selected date is valid!");
                         }
                     },
                     year,
@@ -236,24 +236,24 @@ public class BookingDetails extends AppCompatActivity {
         spinTour.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                showToast("Heritage House Selected: " + spinTour.getSelectedItem().toString());
+             //   showToast("Heritage House Selected: " + spinTour.getSelectedItem().toString());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-                showToast("No Heritage House Selected. Please, Select a Tour");
+            //    showToast("No Heritage House Selected. Please, Select a Tour");
             }
         });
 
         spinNum.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                showToast("Tourist Number Selected: " + spinNum.getSelectedItem().toString());
+              //  showToast("Tourist Number Selected: " + spinNum.getSelectedItem().toString());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                showToast("No Tourist Number Selected");
+             //  showToast("No Tourist Number Selected");
             }
         });
     }

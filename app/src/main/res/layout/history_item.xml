@@ -17,7 +17,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="217dp"
+            android:layout_height="200dp"
             android:layout_gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -30,7 +30,7 @@
                 android:layout_marginTop="-90dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:textColor="#000000"
-                android:textSize="19sp" />
+                android:textSize="20sp" />
 
 
             <ImageView
@@ -52,7 +52,7 @@
                 android:layout_marginTop="-50dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:textColor="#000000"
-                android:textSize="16sp" />
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/ArawHistoText"
@@ -69,7 +69,7 @@
                 android:id="@+id/done"
                 android:layout_width="105dp"
                 android:layout_height="33dp"
-                android:layout_marginStart="-30dp"
+                android:layout_marginStart="-20dp"
                 android:layout_marginTop="11dp"
                 android:background="@drawable/ongoing"
                 android:clickable="true"
@@ -84,9 +84,9 @@
             <TextView
                 android:id="@+id/bookeby"
                 android:layout_width="100dp"
-                android:layout_height="30dp"
+                android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="-230dp"
+                android:layout_marginStart="-250dp"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/montserrat"
                 android:text="Booked_by:"
@@ -96,7 +96,7 @@
 
             <TextView
                 android:id="@+id/bookebyNameHistory"
-                android:layout_width="130dp"
+                android:layout_width="140dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="5dp"
@@ -108,9 +108,9 @@
             <TextView
                 android:id="@+id/number"
                 android:layout_width="100dp"
-                android:layout_height="30dp"
+                android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="-240dp"
+                android:layout_marginStart="-250dp"
                 android:layout_marginTop="50dp"
                 android:fontFamily="@font/montserrat"
                 android:text="# of_tourists:"
@@ -120,8 +120,8 @@
 
             <TextView
                 android:id="@+id/TotalNumberHistory"
-                android:layout_width="121dp"
-                android:layout_height="30dp"
+                android:layout_width="140dp"
+                android:layout_height="20dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="50dp"
@@ -131,11 +131,11 @@
 
             <TextView
                 android:id="@+id/housePending"
-                android:layout_width="79dp"
-                android:layout_height="30dp"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="-230dp"
-                android:layout_marginTop="80dp"
+                android:layout_marginStart="-251dp"
+                android:layout_marginTop="70dp"
                 android:fontFamily="@font/montserrat"
                 android:text="House:"
                 android:textColor="#000000"
@@ -144,11 +144,11 @@
 
             <TextView
                 android:id="@+id/SelectedHouseHistory"
-                android:layout_width="124dp"
-                android:layout_height="30dp"
+                android:layout_width="140dp"
+                android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="80dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="70dp"
                 android:fontFamily="@font/montserrat"
                 android:textColor="#000000"
                 android:textSize="15sp" />

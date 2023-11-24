@@ -149,6 +149,7 @@ public class Profile extends AppCompatActivity {
                             String imageUrl = documentSnapshot.getString("ImageUrl");
                             String selectedTour = documentSnapshot.getString("selectedTour");// display data in texview
                             String reservedDate = documentSnapshot.getString("reservedDate");
+                            String status = documentSnapshot.getString("status");
                                 //TextViews with the retrieved data
                                 MonthText.setText(reservedDate);
                                 if (MonthText != null) {
@@ -168,7 +169,7 @@ public class Profile extends AppCompatActivity {
                             }
                                 // Update reservation status in the UI
                                 if (UpdatingtheTouristText != null) {
-                                    UpdatingtheTouristText.setText("Approved");
+                                    UpdatingtheTouristText.setText(status);
                                 }
                                 //ADD AS LONG AS MAY IAADD
 
