@@ -85,7 +85,7 @@ public class BookingDetails extends AppCompatActivity {
 
         // Back button
         backkk.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingDetails.this, Profile.class);
+            Intent intent = new Intent(BookingDetails.this, BookingDetailMain.class);
             startActivity(intent);
         });
 
