@@ -130,10 +130,10 @@ public class BookingDetails extends AppCompatActivity {
                         // Check if the selected date is in the past
                         if (isDateInPast(year1, month1, dayOfMonth1)) {
                             // Show a message or handle the case where the date is in the past
-                            showToast("Selected date is not valid!");
+                            showToast("Selected date is not valid! Choose another Day");
                             selectedDate = null;
                         } else {
-                            showToast("Selected date is valid!");
+                         //   showToast("Selected date is valid!");
                         }
                     },
                     year,
