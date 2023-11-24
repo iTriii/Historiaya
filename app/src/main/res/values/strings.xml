@@ -417,6 +417,7 @@
     <string name="refund_for_reason">Refund for reason:</string>
     <string name="proceed_to_cancellation">Proceed to Cancellation</string>
     <string name="refund_amount">Refund Amount:</string>
+    <string name="select_tourists">Select Tourists</string>
 
     <!-- RESCHED  USER DETAILS ACTIVITY -->
 
