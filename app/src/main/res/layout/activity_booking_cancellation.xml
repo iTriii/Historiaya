@@ -329,7 +329,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="0.336" />
-
                 <TextView
                     android:id="@+id/nameText"
                     android:layout_width="100dp"
