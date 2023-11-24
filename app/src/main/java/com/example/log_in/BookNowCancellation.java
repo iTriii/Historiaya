@@ -44,7 +44,7 @@ public class BookNowCancellation extends AppCompatActivity {
         notnowbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BookNowCancellation.this, Main2.class);
+                Intent intent = new Intent(BookNowCancellation.this, BookingDetailMain.class);
                 startActivity(intent);
                 Toast.makeText(BookNowCancellation.this,"Not Now", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
