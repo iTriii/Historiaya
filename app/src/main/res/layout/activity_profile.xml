@@ -578,14 +578,14 @@
 
                     <Button
                         android:id="@+id/doneitu"
-                        android:layout_width="90dp"
-                        android:layout_height="28dp"
+                        android:layout_width="95dp"
+                        android:layout_height="30dp"
                         android:layout_marginStart="250dp"
                         android:layout_marginTop="11dp"
                         android:clickable="true"
-                        android:background="@drawable/btntime"
+                        android:background="@drawable/btntime2"
                         android:fontFamily="@font/montserrat_bold"
-                        android:text="Upcoming..."
+                        android:text="Upcoming"
                         android:textAlignment="center"
                         android:textColor="@color/GREEN"
                         android:textSize="10sp"
