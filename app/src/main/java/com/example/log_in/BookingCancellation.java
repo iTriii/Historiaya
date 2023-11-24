@@ -47,6 +47,11 @@ public class BookingCancellation extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
+        backbutton.setOnClickListener(v -> {
+                    Intent backIntent = new Intent(BookingCancellation.this, Profile.class);
+                    startActivity(backIntent);
+                });
+
         // Click listener for viewing profile
         detailsclick.setOnClickListener(v -> {
             Intent intent = new Intent(BookingCancellation.this, Profile.class);
