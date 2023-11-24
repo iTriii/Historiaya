@@ -58,7 +58,7 @@ public class BookingRefund extends AppCompatActivity {
 
         // view button
         detailsclick.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingRefund.this, Profile.class);
+            Intent intent = new Intent(BookingRefund.this, BookingDetailMain.class);
             startActivity(intent);
         });
 
