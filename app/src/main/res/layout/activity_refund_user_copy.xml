@@ -93,8 +93,7 @@
         android:id="@+id/pay"
         android:layout_width="251dp"
         android:layout_height="42dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginEnd="60dp"
         android:fontFamily="@font/montserrat_alternates_extrabold"
         android:shadowColor="#FFFDFD"
         android:shadowDx="7"
@@ -110,6 +109,17 @@
         app:layout_constraintVertical_bias="0.294"
         tools:ignore="TextSizeCheck" />
 
+    <ScrollView
+        android:id="@+id/cancellationScrollView"
+        android:layout_width="392dp"
+        android:layout_height="710dp"
+        android:layout_marginBottom="4dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -117,10 +127,11 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView"
-                android:layout_width="350dp"
+                android:layout_width="wrap_content"
                 android:layout_height="272dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="150dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="10dp"
                 android:foregroundGravity="fill"
                 app:cardCornerRadius="@dimen/fab_margin"
                 app:cardMaxElevation="70dp"
@@ -159,7 +170,7 @@
                     android:layout_width="45dp"
                     android:layout_height="1dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="135dp"
+                    android:layout_marginLeft="127dp"
                     android:layout_marginTop="-100dp"
                     android:background="@android:color/holo_green_dark" />
 
@@ -193,15 +204,15 @@
 
                 <TextView
                     android:id="@+id/refund"
-                    android:layout_width="150dp"
+                    android:layout_width="179dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="130dp"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center_horizontal"
-                    android:text="@string/refund_amount"
+                    android:text=" Refund Amount: "
                     android:textColor="@color/green"
-                    android:textSize="14sp"
+                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.094"
@@ -213,12 +224,12 @@
                     android:id="@+id/AmountRefText"
                     android:layout_width="124dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="180dp"
+                    android:layout_marginLeft="210dp"
                     android:layout_marginTop="130dp"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center_horizontal"
                     android:textColor="@color/green"
-                    android:textSize="14sp"
+                    android:textSize="17sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.094"
@@ -228,15 +239,15 @@
 
                 <TextView
                     android:id="@+id/requestedby"
-                    android:layout_width="150dp"
+                    android:layout_width="164dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="165dp"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center_horizontal"
                     android:text="Requested By:  "
                     android:textColor="@color/green"
-                    android:textSize="14sp"
+                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.094"
@@ -246,9 +257,9 @@
 
                 <TextView
                     android:id="@+id/nameRefText"
-                    android:layout_width="175dp"
+                    android:layout_width="174dp"
                     android:layout_height="32dp"
-                    android:layout_marginLeft="160dp"
+                    android:layout_marginLeft="180dp"
                     android:layout_marginTop="165dp"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center_horizontal"
@@ -263,9 +274,9 @@
 
                 <TextView
                     android:id="@+id/ReasonRefText"
-                    android:layout_width="175dp"
+                    android:layout_width="174dp"
                     android:layout_height="32dp"
-                    android:layout_marginLeft="160dp"
+                    android:layout_marginLeft="180dp"
                     android:layout_marginTop="195dp"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center_horizontal"
@@ -279,15 +290,15 @@
                     app:layout_constraintVertical_bias="0.336" />
                 <TextView
                     android:id="@+id/TouristsReason"
-                    android:layout_width="150dp"
+                    android:layout_width="164dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="195dp"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center_horizontal"
                     android:text="Tourists Reason  "
                     android:textColor="@color/green"
-                    android:textSize="14sp"
+                    android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.094"

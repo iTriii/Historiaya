@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
     tools:context=".BookingRefund">
 
 
@@ -22,9 +21,9 @@
 
     <ImageView
         android:id="@+id/rizal"
-        android:layout_width="536dp"
-        android:layout_height="465dp"
-        android:layout_marginTop="200dp"
+        android:layout_width="408dp"
+        android:layout_height="390dp"
+        android:layout_marginTop="212dp"
         android:contentDescription="@string/rizal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.555"
@@ -36,7 +35,7 @@
         android:id="@+id/grass"
         android:layout_width="878dp"
         android:layout_height="612dp"
-        android:layout_marginTop="250dp"
+        android:layout_marginTop="300dp"
         android:contentDescription="@string/grass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -135,8 +134,8 @@
             android:text="@string/waiting_for_admin_to_respond"
             android:textAlignment="center"
             android:shadowColor="@color/black"
-            android:shadowDx="1"
-            android:shadowDy="-1"
+            android:shadowDx="4"
+            android:shadowDy="-2"
             android:shadowRadius="2"
             android:textColor="#FEC242"
             android:textSize="20sp"
@@ -165,6 +164,18 @@
             app:srcCompat="@drawable/baseline_sticky_note_2_24" />
     </androidx.cardview.widget.CardView>
 
+
+    <ScrollView
+        android:id="@+id/cancellationScrollView"
+        android:layout_width="392dp"
+        android:layout_height="532dp"
+        android:layout_marginBottom="4dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -174,9 +185,9 @@
                 android:id="@+id/cardView"
                 android:layout_width="wrap_content"
                 android:layout_height="243dp"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="270dp"
-                android:layout_marginEnd="10dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginRight="10dp"
                 android:foregroundGravity="fill"
                 app:cardCornerRadius="@dimen/fab_margin"
                 app:cardMaxElevation="70dp"
@@ -232,9 +243,9 @@
                     android:id="@+id/pickhouseRefundText"
                     android:layout_width="184dp"
                     android:layout_height="51dp"
-                    android:layout_marginStart="150dp"
-                    android:layout_marginTop="70dp"
-                    android:fontFamily="@font/montserrat_medium"
+                    android:layout_marginLeft="140dp"
+                    android:layout_marginTop="55dp"
+                    android:fontFamily="@font/montserrat"
                     android:gravity="center_horizontal"
                     android:textColor="@color/green"
                     android:textSize="15sp"
@@ -318,11 +329,13 @@
 
             <Button
                 android:id="@+id/btnsub"
-                android:layout_width="200dp"
-                android:layout_height="55dp"
-                android:layout_marginStart="-290dp"
-                android:layout_marginTop="610dp"
-                android:background="@drawable/store_price_button_ok"
+                android:layout_width="279dp"
+                android:layout_height="66dp"
+                android:layout_marginLeft="-333dp"
+                android:layout_marginTop="430dp"
+                android:width="226dp"
+                android:height="55dp"
+                android:background="@drawable/startbuttonbg"
                 android:clickable="true"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
@@ -342,11 +355,11 @@
                 android:id="@+id/Reason"
                 android:layout_width="204dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="-270dp"
-                android:layout_marginTop="500dp"
+                android:layout_marginLeft="-320dp"
+                android:layout_marginTop="220dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center_horizontal"
-                android:text="@string/refund_for_reason"
+                android:text="Refund for reason:"
                 android:textColor="@color/green"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -362,8 +375,8 @@
                 style="@style/Widget.AppCompat.Light.Spinner.DropDown.ActionBar"
                 android:layout_width="332dp"
                 android:layout_height="37dp"
-                android:layout_marginStart="-200dp"
-                android:layout_marginTop="550dp"
+                android:layout_marginStart="-185dp"
+                android:layout_marginTop="260dp"
                 android:autofillHints="Select you request reason"
                 android:background="@drawable/borderspinner"
                 android:dropDownWidth="wrap_content"
@@ -381,4 +394,7 @@
                 app:layout_constraintVertical_bias="0.0" />
 
         </LinearLayout>
+    </ScrollView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
