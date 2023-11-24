@@ -77,7 +77,7 @@ public class BookingDetailMain extends AppCompatActivity {
         });
 
         backbutton.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingDetailMain.this, BookingCancellation.class);
+            Intent intent = new Intent(BookingDetailMain.this, Profile.class);
             startActivity(intent);
         });
 
@@ -92,7 +92,7 @@ public class BookingDetailMain extends AppCompatActivity {
         });
 
         Donebut.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingDetailMain.this, Main2.class);
+            Intent intent = new Intent(BookingDetailMain.this, Profile.class);
             startActivity(intent);
         });
 

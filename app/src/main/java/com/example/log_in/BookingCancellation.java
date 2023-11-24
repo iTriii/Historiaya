@@ -17,10 +17,10 @@ import com.google.firebase.firestore.ListenerRegistration;
 
 public class BookingCancellation extends AppCompatActivity {
 
-    // Declaring variables
-    Button withdrawbtn, continuebtn;
+    Button withdrawbtn,continuebtn;
     Dialog dialog;
-    TextView TotalTouristsText, nameText, amountText, pickhouseText, detailsclick;
+
+    TextView TotalTouristsText,nameText,amountText, pickhouseText, detailsclick;
     ImageButton backbutton;
     Button notnowbtn, confirmbtn; // not confirm
 
@@ -48,7 +48,7 @@ public class BookingCancellation extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         backbutton.setOnClickListener(v -> {
-                    Intent backIntent = new Intent(BookingCancellation.this, Profile.class);
+                    Intent backIntent = new Intent(BookingCancellation.this, BookingDetailMain.class);
                     startActivity(backIntent);
                 });
 
