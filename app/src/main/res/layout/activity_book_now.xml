@@ -144,104 +144,11 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/chat" />
 
-    <TextView
-        android:id="@+id/selecttour"
-        android:layout_width="175dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="235dp"
-        android:ellipsize="end"
-        android:fontFamily="@font/montserrat"
-        android:maxLines="2"
-        android:text="@string/select_tour"
-        android:textAlignment="center"
-        android:textColor="@color/green"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="@+id/NumTourist"
-        app:layout_constraintTop_toTopOf="@+id/blurred"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="32dp" />
-
-    <TextView
-        android:id="@+id/NumTourist"
-        android:layout_width="175dp"
-        android:layout_height="39dp"
-        android:layout_marginTop="290dp"
-        android:contentDescription="@string/total_number_of_tourist"
-        android:ellipsize="end"
-        android:fontFamily="@font/montserrat"
-        android:maxLines="2"
-        android:text="No. of tourist"
-        android:textAlignment="center"
-        android:textColor="@color/green"
-        android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/blurred"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="32dp" />
-
-
-    <ImageView
-        android:id="@+id/houseImageView"
-        android:layout_width="40dp"
-        android:layout_height="39dp"
-        android:layout_marginLeft="-30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/spinTour"
-        app:layout_constraintEnd_toEndOf="@+id/spinTour"
-        app:layout_constraintHorizontal_bias="0.145"
-        app:layout_constraintStart_toEndOf="@+id/selecttour"
-        app:layout_constraintTop_toTopOf="@+id/spinTour"
-        app:layout_constraintVertical_bias="0.0"/>
-
-    <Spinner
-        android:id="@+id/spinTour"
-        style="@style/Widget.AppCompat.Light.Spinner.DropDown.ActionBar"
-        android:layout_width="200dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="228dp"
-        android:background="@drawable/borderspinner"
-        android:dropDownWidth="wrap_content"
-        android:fontFamily="@font/montserrat_thin"
-        android:foregroundTint="#009688"
-        android:gravity="center"
-        android:paddingRight="2dp"
-        android:spinnerMode="dropdown"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.931"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/bgbooknow"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints" />
-
-    <Spinner
-        android:id="@+id/touristnum"
-        style="@style/Widget.AppCompat.Light.Spinner.DropDown.ActionBar"
-        android:layout_width="200dp"
-        android:layout_height="43dp"
-        android:background="@drawable/borderspinner"
-        android:dropDownWidth="wrap_content"
-        android:fontFamily="@font/montserrat_thin"
-        android:foregroundTint="#009688"
-        android:gravity="center"
-        android:paddingEnd="2dp"
-        android:spinnerMode="dropdown"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.931"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinTour"
-        app:layout_constraintVertical_bias="0.014"
-        tools:ignore="MissingConstraints" />
-
 
     <ScrollView
         android:id="@+id/BookScrollView"
         android:layout_width="390dp"
-        android:layout_height="491dp"
+        android:layout_height="570dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -255,10 +162,110 @@
             android:gravity="center"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/selecttour"
+                android:layout_width="175dp"
+                android:layout_height="39dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="-100dp"
+                android:ellipsize="end"
+                android:fontFamily="@font/montserrat"
+                android:maxLines="2"
+                android:text="@string/select_tour"
+                android:textAlignment="center"
+                android:textColor="@color/green"
+                android:textSize="22sp"
+                app:layout_constraintBottom_toBottomOf="@+id/NumTourist"
+                app:layout_constraintTop_toTopOf="@+id/blurred"
+                app:layout_constraintVertical_bias="0.0"
+                tools:layout_editor_absoluteX="32dp" />
+
+            <TextView
+                android:id="@+id/NumTourist"
+                android:layout_width="175dp"
+                android:layout_height="39dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="-100dp"
+                android:contentDescription="@string/total_number_of_tourist"
+                android:ellipsize="end"
+                android:fontFamily="@font/montserrat"
+                android:maxLines="2"
+                android:text="No. of tourist"
+                android:textAlignment="center"
+                android:textColor="@color/green"
+                android:textSize="22sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/blurred"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="MissingConstraints"
+                tools:layout_editor_absoluteX="32dp" />
+
+
+            <ImageView
+                android:id="@+id/houseImageView"
+                android:layout_width="40dp"
+                android:layout_height="39dp"
+                android:layout_marginLeft="-30dp"
+                app:layout_constraintBottom_toBottomOf="@+id/spinTour"
+                app:layout_constraintEnd_toEndOf="@+id/spinTour"
+                app:layout_constraintHorizontal_bias="0.145"
+                app:layout_constraintStart_toEndOf="@+id/selecttour"
+                app:layout_constraintTop_toTopOf="@+id/spinTour"
+                app:layout_constraintVertical_bias="0.0"/>
+
+            <Spinner
+                android:id="@+id/spinTour"
+                style="@style/Widget.AppCompat.Light.Spinner.DropDown.ActionBar"
+                android:layout_width="200dp"
+                android:layout_height="43dp"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="-130dp"
+                android:background="@drawable/borderspinner"
+                android:dropDownWidth="wrap_content"
+                android:fontFamily="@font/montserrat_thin"
+                android:foregroundTint="#009688"
+                android:gravity="center"
+                android:paddingEnd="2dp"
+                android:spinnerMode="dropdown"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.931"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/bgbooknow"
+                app:layout_constraintVertical_bias="0.0"
+                tools:ignore="MissingConstraints" />
+
+            <Spinner
+                android:id="@+id/touristnum"
+                style="@style/Widget.AppCompat.Light.Spinner.DropDown.ActionBar"
+                android:layout_width="200dp"
+                android:layout_height="43dp"
+                android:layout_marginStart="80dp"
+                android:background="@drawable/borderspinner"
+                android:dropDownWidth="wrap_content"
+                android:fontFamily="@font/montserrat_thin"
+                android:foregroundTint="#009688"
+                android:gravity="center"
+                android:paddingEnd="2dp"
+                android:spinnerMode="dropdown"
+                android:textAlignment="center"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.931"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/spinTour"
+                app:layout_constraintVertical_bias="0.014"
+                tools:ignore="MissingConstraints" />
+
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="446dp"
                 android:orientation="horizontal">
+
+
 
                 <CalendarView
                     android:id="@+id/Calendar"
