@@ -148,9 +148,13 @@ public class LogIn extends AppCompatActivity {
     }
 
     private void signIn() {
-        Intent signInIntent = gsc.getSignInIntent();
-        startActivityForResult(signInIntent, 1000);
+        // Sign out any existing Google account to ensure account selection on button click
+        gsc.signOut().addOnCompleteListener(this, task -> {
+            Intent signInIntent = gsc.getSignInIntent();
+            startActivityForResult(signInIntent, 1000);
+        });
     }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -200,7 +204,7 @@ public class LogIn extends AppCompatActivity {
     private boolean isStoreManagerEmail(String email) {
         return "historiaya.acc@gmail.com".equals(email);
     }
-//HOUSE MANAGER
+    //HOUSE MANAGER
     private boolean isHouseManagerEmail(String email) {
         return "itri.acc@gmail.com".equals(email);
     }
@@ -214,7 +218,6 @@ public class LogIn extends AppCompatActivity {
     private boolean isReceptionistEmail(String email) {
         return "touristarya@gmail.com".equals(email);
     }
-
 
     private void navigateToStoreManagerActivity() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -388,7 +391,7 @@ public class LogIn extends AppCompatActivity {
         }
     }
 
-
+    //navigate to main2 activity
     private void navigateToSecondActivity() {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null && user.isEmailVerified()) {

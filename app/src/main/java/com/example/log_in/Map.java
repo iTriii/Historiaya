@@ -45,4 +45,7 @@ public class Map extends AppCompatActivity {
             viewToExpand.setVisibility(View.VISIBLE);
         }
     }
+
+    public void put(String selectedRefundOption, String selectedOption) {
+    }
 }
