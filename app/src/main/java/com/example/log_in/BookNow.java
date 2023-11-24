@@ -13,7 +13,7 @@ import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.Toast;    
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -36,7 +36,6 @@ import java.util.Set;
 
 import im.crisp.client.ChatActivity;
 import im.crisp.client.Crisp;
-import im.crisp.client.ChatActivity;
 
 
 public class BookNow extends AppCompatActivity {
@@ -176,11 +175,6 @@ btntime4 = findViewById(R.id.btntime4);
 
     @SuppressLint({"SetTextI18n", "DefaultLocale"})
     private void setupButtonClickListener( Button btntime1, Button btntime2, Button btntime3, Button btntime4) {
-
-
-
-
-
 
         // Chat button
         chatbtn.setOnClickListener(v -> {

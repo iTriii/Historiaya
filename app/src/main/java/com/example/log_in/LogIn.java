@@ -204,7 +204,7 @@ public class LogIn extends AppCompatActivity {
     private boolean isStoreManagerEmail(String email) {
         return "historiaya.acc@gmail.com".equals(email);
     }
-//HOUSE MANAGER
+    //HOUSE MANAGER
     private boolean isHouseManagerEmail(String email) {
         return "itri.acc@gmail.com".equals(email);
     }
@@ -218,7 +218,6 @@ public class LogIn extends AppCompatActivity {
     private boolean isReceptionistEmail(String email) {
         return "touristarya@gmail.com".equals(email);
     }
-
 
     private void navigateToStoreManagerActivity() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -392,7 +391,7 @@ public class LogIn extends AppCompatActivity {
         }
     }
 
-
+    //navigate to main2 activity
     private void navigateToSecondActivity() {
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null && user.isEmailVerified()) {

@@ -2,11 +2,13 @@ package com.example.log_in;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.Toast;
@@ -34,14 +36,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import im.crisp.client.ChatActivity;
+import im.crisp.client.Crisp;
+
 public class HouseManager extends AppCompatActivity {
 
+
+    private ImageButton chatbtn;
     RadioButton UpcomingHouseManager_Tab, HistoryHouseManager_tab;
     ScrollView UpcomingHouse_ScrollView, HistoryHouse_ScrollView;
     View wanHouse, toHouse;
     Button EditHousebtn, done;
     FirebaseUser user;
-    FirebaseAuth auth;
+    private FirebaseAuth mAuth;
     FirebaseFirestore db;
     RecyclerView UpcomingHouseMager_RecyclerView, HistoryHouseManager_RecyclerView;
 
@@ -62,12 +69,31 @@ public class HouseManager extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_house_manager);
 
+        // Configure Crisp
+        Crisp.configure(getApplicationContext(), "2a53b3b9-d275-4fb1-81b6-efad59022426");
+
+        // Chat button
+        chatbtn = findViewById(R.id.chatbtn);
+        chatbtn.setOnClickListener(v -> {
+            Intent intent = new Intent(HouseManager.this, ChatActivity.class);
+            startActivity(intent);
+        });
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+// Check if currentUser is not null before setting Crisp user email
+        if (currentUser != null) {
+            String userEmail = currentUser.getEmail();
+
+            // Set user attributes in Crisp
+            Crisp.setUserEmail(userEmail);
+        }
 
         EditHousebtn = findViewById(R.id.EditHousebtn);
         CalendarHouseManager = findViewById(R.id.CalendarHouseManager);
         wanHouse = findViewById(R.id.wanHouse);
         toHouse = findViewById(R.id.toHouse);
-// Inside onCreate or wherever you initialize your FirebaseFirestore
+        // Inside onCreate or wherever you initialize your FirebaseFirestore
         db = FirebaseFirestore.getInstance();
 
 
@@ -81,7 +107,7 @@ public class HouseManager extends AppCompatActivity {
         historyAdapterHM = new historyAdapterHM(this, userArrayList, db);
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = auth.getCurrentUser();
+
 
         if (currentUser != null) {
             String userId = currentUser.getUid();
@@ -123,6 +149,23 @@ public class HouseManager extends AppCompatActivity {
         EventChangeListener();// Add data listener to load data from Firestore
         setUpRecyclerView(); // Set up RecyclerView and Adapter
         setUpTabsAndViews(); // Set up tabs and views
+    }
+
+
+    //CRISP
+    private void startCrispChat() {
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        if (user != null) {
+            String userEmail = user.getEmail();
+
+            // Set user attributes in Crisp
+            Crisp.setUserEmail(userEmail);
+        }
+
+        // Start Crisp chat
+        Intent chatIntent = new Intent(this, ChatActivity.class);
+        startActivity(chatIntent);
     }
 
     private void setUpTabsAndViews() {
@@ -173,8 +216,6 @@ public class HouseManager extends AppCompatActivity {
         toHouse.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
 
 }
-
-
 
     // Add data listener to load data from Firestore
     public void EventChangeListener() {
@@ -258,8 +299,6 @@ public class HouseManager extends AppCompatActivity {
                     }
                 });
     }
-
-
 
     @Override
     protected void onDestroy() {

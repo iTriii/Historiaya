@@ -57,14 +57,14 @@ public class Receptionist extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receptionist);
-// Inside onCreate or wherever you initialize your FirebaseFirestore
+    // Inside onCreate or wherever you initialize your FirebaseFirestore
         db = FirebaseFirestore.getInstance();
 
         //VIEW
         wanRecep = findViewById(R.id.wanRecep);
         toRecep = findViewById(R.id.toRecep);
 
-// Initialize Firebase Authentication
+    // Initialize Firebase Authentication
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         user = auth.getCurrentUser();

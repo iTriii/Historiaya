@@ -17,12 +17,12 @@ import com.google.firebase.firestore.ListenerRegistration;
 
 public class BookingCancellation extends AppCompatActivity {
 
-    Button withdrawbtn,continuebtn;
+    // Declaring variables
+    Button withdrawbtn, continuebtn;
     Dialog dialog;
-
-    TextView TotalTouristsText,nameText,amountText, pickhouseText, detailsclick;
+    TextView TotalTouristsText, nameText, amountText, pickhouseText, detailsclick;
     ImageButton backbutton;
-    Button notnowbtn,confirmbtn ; // not confirm
+    Button notnowbtn, confirmbtn; // not confirm
 
     FirebaseAuth auth;
     private FirebaseFirestore db;
@@ -33,6 +33,7 @@ public class BookingCancellation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_cancellation);
 
+        // Initializing views
         backbutton = findViewById(R.id.backbutton);
         withdrawbtn = findViewById(R.id.withdrawbtn);
         TotalTouristsText = findViewById(R.id.TotalTouristsText);
@@ -42,18 +43,17 @@ public class BookingCancellation extends AppCompatActivity {
         detailsclick = findViewById(R.id.detailsclick);
         continuebtn = findViewById(R.id.continuebtn);
 
-
+        // Initializing Firebase instances
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        // view button
+        // Click listener for viewing profile
         detailsclick.setOnClickListener(v -> {
             Intent intent = new Intent(BookingCancellation.this, Profile.class);
             startActivity(intent);
         });
 
-
-        // Initialize the dialog for btn withdraw
+        // Initialization and actions for withdrawal dialog
         dialog = new Dialog(BookingCancellation.this);
         dialog.setContentView(R.layout.dialog_cancellation);
         dialog.setCancelable(false);
@@ -79,7 +79,7 @@ public class BookingCancellation extends AppCompatActivity {
             dialog.show();
         });
 
-        // Initialize the dialog for continue btn
+        // Initialization and actions for continue dialog
         dialog = new Dialog(BookingCancellation.this);
         dialog.setContentView(R.layout.dialog_cancellation_continue);
         dialog.setCancelable(false);
@@ -105,7 +105,7 @@ public class BookingCancellation extends AppCompatActivity {
             dialog.show();
         });
 
-
+        // Fetching user data from Firestore
         retrieveDataFromFirestore();
     }
 
@@ -116,10 +116,14 @@ public class BookingCancellation extends AppCompatActivity {
             userDataListener.remove();
         }
     }
+
+    // Method to retrieve data from Firestore
     private void retrieveDataFromFirestore() {
+        // Fetching data from Firestore
         userDataListener = db.collection("users")
                 .document(auth.getCurrentUser().getUid())
                 .addSnapshotListener((documentSnapshot, error) -> {
+                    // Handling data retrieval and updating UI
                     if (error != null) {
                         Log.e("BookingCancellationActivity", "Error fetching user data: " + error.getMessage());
                         return;
@@ -148,7 +152,7 @@ public class BookingCancellation extends AppCompatActivity {
                 });
     }
 
-
+    // Method to display toast messages
     private void showToast(String message) {
         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
     }
