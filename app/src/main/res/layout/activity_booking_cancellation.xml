@@ -163,18 +163,6 @@
             app:srcCompat="@drawable/baseline_sticky_note_2_24" />
     </androidx.cardview.widget.CardView>
 
-
-    <ScrollView
-        android:id="@+id/cancellationScrollView"
-        android:layout_width="392dp"
-        android:layout_height="532dp"
-        android:layout_marginBottom="4dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -375,7 +363,7 @@
                 android:text="@string/withdraw_request"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
-                android:textSize="15sp"
+                android:textSize="12sp"
                 app:cardMaxElevation="70dp"
                 app:layout_constraintBottom_toBottomOf="@+id/blurred"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -395,7 +383,7 @@
                 android:longClickable="true"
                 android:text="@string/proceed_to_cancellation"
                 android:textColor="#FFFFFF"
-                android:textSize="15sp"
+                android:textSize="12sp"
                 app:cardMaxElevation="70dp"
                 app:layout_constraintBottom_toBottomOf="@+id/blurred"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -406,5 +394,4 @@
 
 
         </LinearLayout>
-    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

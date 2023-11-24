@@ -1,21 +1,21 @@
-package com.example.log_in;
+ package com.example.log_in;
 
-import android.annotation.SuppressLint;
-import android.app.Dialog;
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
+ import android.annotation.SuppressLint;
+ import android.app.Dialog;
+ import android.content.ClipData;
+ import android.content.ClipboardManager;
+ import android.content.Context;
+ import android.content.Intent;
+ import android.os.Bundle;
+ import android.view.View;
+ import android.widget.Button;
+ import android.widget.ImageView;
+ import android.widget.LinearLayout;
+ import android.widget.TextView;
+ import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
+ import androidx.appcompat.app.AppCompatActivity;
+ import androidx.constraintlayout.widget.ConstraintLayout;
 
 public class Main2 extends AppCompatActivity {
 
