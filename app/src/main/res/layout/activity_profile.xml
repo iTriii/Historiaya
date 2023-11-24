@@ -583,7 +583,7 @@
                         android:layout_marginStart="250dp"
                         android:layout_marginTop="11dp"
                         android:clickable="true"
-                        android:background="@drawable/btntime2"
+                        android:background="@drawable/ongoing"
                         android:fontFamily="@font/montserrat_bold"
                         android:text="Upcoming"
                         android:textAlignment="center"
