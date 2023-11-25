@@ -149,7 +149,7 @@
                 android:layout_marginStart="-200dp">
 
                 <ImageView
-                    android:id="@+id/imageViewCalendarTourHead"
+                    android:id="@+id/imageViewCalendar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_launcher_foreground"

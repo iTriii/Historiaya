@@ -132,7 +132,7 @@
                 android:layout_marginStart="-200dp">
 
                 <ImageView
-                    android:id="@+id/imageViewCalendarRecep"
+                    android:id="@+id/imageViewCalendar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_launcher_foreground"
@@ -141,7 +141,7 @@
 
             </RelativeLayout>
             <Button
-                android:id="@+id/UploadReceptionist"
+                android:id="@+id/uploadImageTH_btn"
                 android:layout_width="168dp"
                 android:layout_height="45dp"
                 android:layout_marginLeft="-270dp"
