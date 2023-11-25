@@ -1,4 +1,4 @@
-package com.example.log_in;
+ package com.example.log_in;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -75,3 +75,4 @@ public class CreateNewPassword extends AppCompatActivity {
     }
 
 }
+

@@ -69,7 +69,7 @@ public class Receptionist extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         user = auth.getCurrentUser();
 
-        Editbtn = findViewById(R.id.Editbtn);
+        Editbtn = findViewById(R.id.uploadImageTH_btn);
         // Initialize RecyclerViews and Adapters
         ReceptionistUpcoming_RecyclerView = findViewById(R.id.ReceptionistUpcoming_RecyclerView);
         ReceptionistHistory_RecyclerView = findViewById(R.id.ReceptionistHistory_RecyclerView);
@@ -219,18 +219,7 @@ public class Receptionist extends AppCompatActivity {
 
 
     private void HistoryRecep_tab() {
-        UpcomingRecep_Tab.setChecked(true);
-        UpcomingRecep_Tab.setTextColor(ContextCompat.getColor(this, R.color.green));
-        UpcomingRecep_ScrollView.setVisibility(View.VISIBLE);
-        HistoryRecep_tab.setChecked(false);
-        HistoryRecep_tab.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
-        HistoryRecep_ScrollView.setVisibility(View.GONE);
-        wanRecep.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
-        toRecep.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
-    }
-
-    private void UpcomingRecep_Tab() {
-        UpcomingRecep_Tab.setChecked(true);
+        UpcomingRecep_Tab.setChecked(false);
         UpcomingRecep_Tab.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
         UpcomingRecep_ScrollView.setVisibility(View.GONE);
         HistoryRecep_tab.setChecked(false);
@@ -238,6 +227,17 @@ public class Receptionist extends AppCompatActivity {
         HistoryRecep_ScrollView.setVisibility(View.VISIBLE);
         wanRecep.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
         toRecep.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
+    }
+
+    private void UpcomingRecep_Tab() {
+        UpcomingRecep_Tab.setChecked(true);
+        UpcomingRecep_Tab.setTextColor(ContextCompat.getColor(this, R.color.green));
+        UpcomingRecep_ScrollView.setVisibility(View.VISIBLE);
+        HistoryRecep_tab.setChecked(true);
+        HistoryRecep_tab.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
+        HistoryRecep_ScrollView.setVisibility(View.GONE);
+        wanRecep.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
+        toRecep.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
 
     }
 
