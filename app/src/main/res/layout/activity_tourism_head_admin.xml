@@ -74,6 +74,7 @@
         android:id="@+id/TITLEBOOKING"
         android:layout_width="260dp"
         android:layout_height="46dp"
+        android:layout_marginTop="32dp"
         android:fontFamily="@font/montserrat_alternates_extrabold"
         android:shadowColor="#FFFDFD"
         android:shadowDx="7"
@@ -81,36 +82,17 @@
         android:shadowRadius="2"
         android:text="Booking"
         android:textAlignment="center"
-        android:layout_marginTop="10dp"
         android:textColor="#FEC242"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.042"/>
+        app:layout_constraintTop_toTopOf="@+id/clouds" />
 
-    <ImageButton
-        android:id="@+id/backbutton"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="52dp"
-        android:background="@drawable/shadow"
-        android:clickable="true"
-        android:contentDescription="@string/BookNow"
-        android:contextClickable="true"
-        android:elevation="10dp"
-        android:longClickable="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/arrow_back" />
-
-
-
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -127,15 +109,15 @@
                 android:id="@+id/SDateTourism"
                 android:layout_width="175dp"
                 android:layout_height="30dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="95dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
                 android:contentDescription="@string/txtview_for_select_date"
-                android:fontFamily="@font/inter_bold"
+                android:fontFamily="@font/montserrat"
                 android:maxLines="2"
                 android:text="Upload Image"
                 android:textAlignment="center"
                 android:textColor="@color/green"
-                android:textSize="23sp"
+                android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.11"
@@ -152,9 +134,9 @@
                     android:id="@+id/imageViewCalendar"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_launcher_foreground"
                     android:layout_centerInParent="true"
                     android:layout_margin="16dp"/>
+
 
             </RelativeLayout>
 
@@ -163,9 +145,7 @@
                 android:layout_width="168dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="-270dp"
-                android:layout_marginTop="480dp"
-                android:width="226dp"
-                android:height="55dp"
+                android:layout_marginTop="350dp"
                 android:backgroundTint="#00A197"
                 android:clickable="true"
                 android:fontFamily="@font/montserrat_bold"
@@ -184,14 +164,11 @@
                 app:layout_constraintVertical_bias="1.0" />
 
         </LinearLayout>
-    </LinearLayout>
-
 
     <RadioGroup
         android:id="@+id/radioGroup2"
         android:layout_width="412dp"
         android:layout_height="45dp"
-        android:layout_marginTop="530dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -204,13 +181,12 @@
             android:id="@+id/Upcoming_Tab"
             android:layout_width="125dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="15dp"
             android:layout_marginEnd="-5dp"
             android:background="@color/transparent"
             android:button="@color/transparent"
             android:checked="true"
             android:fontFamily="@font/montserrat_bold"
-            android:gravity="center"
             android:text="Upcoming"
             android:textAlignment="center"
             android:clickable="true"
@@ -230,7 +206,6 @@
             android:button="@color/transparent"
             android:checked="false"
             android:fontFamily="@font/montserrat_bold"
-            android:gravity="center"
             android:text="History"
             android:clickable="true"
             android:textAlignment="center"
@@ -248,7 +223,6 @@
             android:button="@color/transparent"
             android:checked="true"
             android:fontFamily="@font/montserrat_bold"
-            android:gravity="center"
             android:clickable="true"
             android:text="@string/pending"
             android:textAlignment="center"
@@ -262,8 +236,7 @@
         android:id="@+id/wan"
         android:layout_width="120dp"
         android:layout_height="3dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="565dp"
+        android:layout_marginStart="-130dp"
         android:background="@color/green"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -272,10 +245,9 @@
         android:id="@+id/to"
         android:layout_width="120dp"
         android:layout_height="3dp"
-        android:layout_marginTop="565dp"
         android:background="@color/green"
-        android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
+        android:layout_marginTop="-3dp"
         app:layout_constraintEnd_toStartOf="@+id/tre"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toEndOf="@+id/wan"
@@ -285,9 +257,8 @@
         android:id="@+id/tre"
         android:layout_width="120dp"
         android:layout_height="3dp"
-        android:layout_marginTop="565dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginStart="5dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="-3dp"
         android:background="@color/green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -296,8 +267,7 @@
     <ScrollView
         android:id="@+id/Upcoming_ScrollView"
         android:layout_width="match_parent"
-        android:layout_height="292dp"
-        android:layout_marginTop="-60dp"
+        android:layout_height="match_parent"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -317,8 +287,7 @@
     <ScrollView
         android:id="@+id/History_ScrollView"
         android:layout_width="match_parent"
-        android:layout_height="292dp"
-        android:layout_marginTop="-20dp"
+        android:layout_height="match_parent"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -336,8 +305,7 @@
     <ScrollView
         android:id="@+id/Pending_ScrollView"
         android:layout_width="match_parent"
-        android:layout_height="292dp"
-        android:layout_marginTop="20dp"
+        android:layout_height="match_parent"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -351,5 +319,8 @@
             android:layout_height="wrap_content" />
 
 
+    </ScrollView>
+
+    </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.Toast;
@@ -51,7 +50,6 @@ public class TourismHeadAdmin extends AppCompatActivity {
 
     private ProgressDialog progressDialog;
 
-    private CalendarView calendarTourismHead;
     private Button uploadImageTH_btn;
     private Object Email;
     private ListenerRegistration userDataListener;
@@ -157,9 +155,9 @@ public class TourismHeadAdmin extends AppCompatActivity {
             to.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
             tre.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
             // Show only Upcoming RecyclerView
-            Pending_RecyclerView.setVisibility(View.GONE);
             Upcoming_RecyclerView.setVisibility(View.VISIBLE);
             History_RecyclerView.setVisibility(View.GONE);
+            Pending_RecyclerView.setVisibility(View.GONE);
         }
 
 
@@ -177,9 +175,9 @@ public class TourismHeadAdmin extends AppCompatActivity {
             to.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
             tre.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
             // Show only History RecyclerView
-            Pending_RecyclerView.setVisibility(View.GONE);
             Upcoming_RecyclerView.setVisibility(View.GONE);
             History_RecyclerView.setVisibility(View.VISIBLE);
+            Pending_RecyclerView.setVisibility(View.GONE);
         }
 
 
@@ -197,9 +195,9 @@ public class TourismHeadAdmin extends AppCompatActivity {
             to.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
             tre.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
             // Show only Pending RecyclerView
-            Pending_RecyclerView.setVisibility(View.VISIBLE);
             Upcoming_RecyclerView.setVisibility(View.GONE);
             History_RecyclerView.setVisibility(View.GONE);
+            Pending_RecyclerView.setVisibility(View.VISIBLE);
         }
 
 

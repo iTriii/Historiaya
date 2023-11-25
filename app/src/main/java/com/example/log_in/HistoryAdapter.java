@@ -42,7 +42,6 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
 
         holder.MontHistoText.setText(HistoryUsers.getReservedDate());
         holder.BahayHistoText.setText(HistoryUsers.getSelectedTour());
-        holder.ArawHistoText.setText(HistoryUsers.getReservedDate());
         holder.bookebyNameHistory.setText(HistoryUsers.getEmail());
         holder.TotalNumberHistory.setText(HistoryUsers.getSelectedTouristNum());
         holder.SelectedHouseHistory.setText(HistoryUsers.getSelectedTour());
@@ -54,14 +53,13 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView MontHistoText, BahayHistoText, ArawHistoText,bookebyNameHistory,TotalNumberHistory,SelectedHouseHistory;
+        TextView MontHistoText, BahayHistoText,bookebyNameHistory,TotalNumberHistory,SelectedHouseHistory;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             MontHistoText = itemView.findViewById(R.id.MontHistoText);
             BahayHistoText= itemView.findViewById(R.id.BahayHistoText);
-            ArawHistoText= itemView.findViewById(R.id.ArawHistoText);
             bookebyNameHistory = itemView.findViewById(R.id.bookebyNameHistory);
             TotalNumberHistory= itemView.findViewById(R.id.TotalNumberHistory);
             SelectedHouseHistory= itemView.findViewById(R.id.SelectedHouseHistory);
