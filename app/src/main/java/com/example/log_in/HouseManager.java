@@ -89,8 +89,6 @@ public class HouseManager extends AppCompatActivity {
             Crisp.setUserEmail(userEmail);
         }
 
-        EditHousebtn = findViewById(R.id.EditHousebtn);
-        CalendarHouseManager = findViewById(R.id.CalendarHouseManager);
         wanHouse = findViewById(R.id.wanHouse);
         toHouse = findViewById(R.id.toHouse);
         // Inside onCreate or wherever you initialize your FirebaseFirestore

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="200dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     app:cardElevation="8dp"
@@ -10,25 +10,16 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginVertical="6dp"
-        android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_gravity="center_vertical"
-            android:orientation="horizontal">
+        android:layout_height="200dp">
 
             <TextView
                 android:id="@+id/MontHistoText"
-                android:layout_width="170dp"
+                android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="-90dp"
-                android:fontFamily="@font/montserrat_bold"
+                android:layout_marginTop="10dp"
+                android:text=""
+                android:fontFamily="@font/montserrat"
                 android:textColor="#000000"
                 android:textSize="20sp" />
 
@@ -37,8 +28,8 @@
                 android:id="@+id/imageView5"
                 android:layout_width="100dp"
                 android:layout_height="107dp"
-                android:layout_marginStart="-180dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginStart="-150dp"
+                android:layout_marginTop="70dp"
                 android:background="@drawable/shadow"
                 android:padding="5dp"
                 android:src="@drawable/don_catalino1" />
@@ -46,31 +37,19 @@
             <TextView
                 android:id="@+id/BahayHistoText"
                 android:layout_width="152dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="3dp"
-                android:layout_marginTop="-50dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="50dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:textColor="#000000"
                 android:textSize="13sp" />
-
-            <TextView
-                android:id="@+id/ArawHistoText"
-                android:layout_width="159dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="-150dp"
-                android:layout_marginTop="-10dp"
-                android:fontFamily="@font/montserrat"
-                android:textColor="#000000"
-                android:textSize="15sp" />
 
             <Button
                 android:id="@+id/done"
                 android:layout_width="105dp"
                 android:layout_height="33dp"
-                android:layout_marginStart="-20dp"
-                android:layout_marginTop="11dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="-40dp"
                 android:background="@drawable/ongoing"
                 android:clickable="true"
                 android:fontFamily="@font/montserrat_bold"
@@ -86,8 +65,8 @@
                 android:layout_width="100dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="-250dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginStart="-260dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/montserrat"
                 android:text="Booked_by:"
                 android:textColor="#000000"
@@ -97,23 +76,23 @@
             <TextView
                 android:id="@+id/bookebyNameHistory"
                 android:layout_width="140dp"
-                android:layout_height="30dp"
+                android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/montserrat"
                 android:textColor="#000000"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/number"
                 android:layout_width="100dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="-250dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginStart="-260dp"
+                android:layout_marginTop="25dp"
                 android:fontFamily="@font/montserrat"
-                android:text="# of_tourists:"
+                android:text="No of Tourists:"
                 android:textColor="#000000"
                 android:textSize="15sp"
                 android:textStyle="bold" />
@@ -123,8 +102,8 @@
                 android:layout_width="140dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="25dp"
                 android:fontFamily="@font/montserrat"
                 android:textColor="#000000"
                 android:textSize="15sp" />
@@ -134,8 +113,8 @@
                 android:layout_width="100dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="-251dp"
-                android:layout_marginTop="70dp"
+                android:layout_marginStart="-260dp"
+                android:layout_marginTop="45dp"
                 android:fontFamily="@font/montserrat"
                 android:text="House:"
                 android:textColor="#000000"
@@ -147,15 +126,11 @@
                 android:layout_width="140dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="70dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="45dp"
                 android:fontFamily="@font/montserrat"
                 android:textColor="#000000"
                 android:textSize="15sp" />
 
-
         </LinearLayout>
-    </LinearLayout>
-
-
 </androidx.cardview.widget.CardView>

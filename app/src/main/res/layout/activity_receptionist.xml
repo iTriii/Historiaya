@@ -24,7 +24,7 @@
         android:id="@+id/rizal"
         android:layout_width="420dp"
         android:layout_height="452dp"
-        android:layout_marginTop="212dp"
+        android:layout_marginTop="120dp"
         android:contentDescription="@string/rizal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.555"
@@ -36,7 +36,7 @@
         android:id="@+id/grass"
         android:layout_width="878dp"
         android:layout_height="612dp"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="200dp"
         android:contentDescription="@string/grass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,7 @@
         android:id="@+id/twopips"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="316dp"
+        android:layout_marginTop="290dp"
         android:contentDescription="@string/twopips"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -86,22 +86,24 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.042"
+        app:layout_constraintVertical_bias="0.055"
         tools:ignore="TextSizeCheck" />
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="100dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="vertical"
-        tools:ignore="MissingConstraints">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="383dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
@@ -110,15 +112,14 @@
                 android:layout_width="175dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="20dp"
-
-                android:layout_marginTop="95dp"
+                android:layout_marginTop="10dp"
                 android:contentDescription="@string/txtview_for_select_date"
-                android:fontFamily="@font/inter_bold"
+                android:fontFamily="@font/montserrat_medium"
                 android:maxLines="2"
                 android:text="@string/select_date"
                 android:textAlignment="center"
                 android:textColor="@color/green"
-                android:textSize="23sp"
+                android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.11"
@@ -126,26 +127,12 @@
                 app:layout_constraintTop_toBottomOf="@+id/NumTourist"
                 app:layout_constraintVertical_bias="0.048" />
 
-            <RelativeLayout
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:layout_marginStart="-200dp">
-
-                <ImageView
-                    android:id="@+id/imageViewCalendar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_launcher_foreground"
-                    android:layout_centerInParent="true"
-                    android:layout_margin="16dp"/>
-
-            </RelativeLayout>
             <Button
                 android:id="@+id/uploadImageTH_btn"
                 android:layout_width="168dp"
                 android:layout_height="45dp"
-                android:layout_marginLeft="-270dp"
-                android:layout_marginTop="480dp"
+                android:layout_marginStart="-80dp"
+                android:layout_marginTop="350dp"
                 android:width="226dp"
                 android:backgroundTint="#00A197"
                 android:clickable="true"
@@ -165,15 +152,12 @@
                 app:layout_constraintVertical_bias="1.0" />
 
         </LinearLayout>
-    </LinearLayout>
-
-
 
     <RadioGroup
         android:id="@+id/radioGroup2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="530dp"
+        android:layout_marginTop="20dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -186,7 +170,7 @@
             android:id="@+id/UpcomingRecep_Tab"
             android:layout_width="148dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="-110dp"
+            android:layout_marginStart="-100dp"
             android:background="@color/transparent"
             android:button="@color/transparent"
             android:checked="true"
@@ -196,14 +180,14 @@
             android:layout_marginEnd="25dp"
             android:textAlignment="center"
             android:textColor="@color/green"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintTop_toBottomOf="@+id/ProfileName"
             tools:layout_editor_absoluteX="4dp" />
 
 
         <androidx.appcompat.widget.AppCompatRadioButton
             android:id="@+id/HistoryRecep_tab"
-            android:layout_width="145dp"
+            android:layout_width="142dp"
             android:layout_height="match_parent"
             android:layout_marginStart="-10dp"
             android:layout_marginEnd="-100dp"
@@ -215,7 +199,7 @@
             android:text="History"
             android:textAlignment="center"
             android:textColor="@color/green"
-            android:textSize="20sp"
+            android:textSize="18sp"
             app:layout_constraintTop_toBottomOf="@+id/ProfileName"
             tools:layout_editor_absoluteX="4dp" />
 
@@ -224,10 +208,9 @@
     <View
 
         android:id="@+id/toRecep"
-        android:layout_width="100dp"
+        android:layout_width="120dp"
         android:layout_height="3dp"
         android:layout_marginStart="230dp"
-        android:layout_marginTop="565dp"
         android:background="@color/green"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -236,10 +219,8 @@
         android:id="@+id/wanRecep"
         android:layout_width="120dp"
         android:layout_height="3dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="565dp"
+        android:layout_marginStart="65dp"
         android:background="@color/green"
-        android:layout_marginEnd="5dp"
         app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
@@ -248,8 +229,7 @@
     <ScrollView
         android:id="@+id/Upcoming_ScrollView"
         android:layout_width="match_parent"
-        android:layout_height="239dp"
-        android:layout_marginTop="-40dp"
+        android:layout_height="match_parent"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -267,9 +247,8 @@
 
     <ScrollView
         android:id="@+id/History_ScrollView"
-        android:layout_width="391dp"
-        android:layout_height="276dp"
-        android:layout_marginTop="-20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -285,5 +264,6 @@
             android:layout_height="wrap_content" />
     </ScrollView>
 
-
+    </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
