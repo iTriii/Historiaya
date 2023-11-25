@@ -126,31 +126,25 @@
                 app:layout_constraintTop_toBottomOf="@+id/NumTourist"
                 app:layout_constraintVertical_bias="0.048" />
 
-            <CalendarView
-                android:id="@+id/CalendarRecep"
-                style="@android:style/Widget.DeviceDefault.CalendarView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="-180dp"
-                android:layout_marginTop="135dp"
-                android:background="@drawable/bgcalendar"
-                android:clickable="true"
-                android:labelFor="@id/SDate"
-                android:maxDate="01/01/2025"
-                android:minDate="15/11/2023"
-                android:weekDayTextAppearance="@style/TextAppearance.AppCompat.Body2"
-                app:layout_constraintBottom_toBottomOf="@+id/rizal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.488"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/twopips"
-                app:layout_constraintVertical_bias="0.687" />
+            <RelativeLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_marginStart="-200dp">
 
+                <ImageView
+                    android:id="@+id/imageViewCalendar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_launcher_foreground"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="16dp"/>
+
+            </RelativeLayout>
             <Button
-                android:id="@+id/Editbtn"
+                android:id="@+id/uploadImageTH_btn"
                 android:layout_width="168dp"
                 android:layout_height="45dp"
-                android:layout_marginLeft="-250dp"
+                android:layout_marginLeft="-270dp"
                 android:layout_marginTop="480dp"
                 android:width="226dp"
                 android:backgroundTint="#00A197"
@@ -158,7 +152,7 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:gravity="center"
                 android:longClickable="true"
-                android:text="EDIT CALENDAR"
+                android:text="Upload"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"
                 android:textSize="13sp"

@@ -120,70 +120,14 @@
             android:layout_width="383dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="120dp"
-            android:orientation="vertical">
+            android:orientation="vertical"/>
 
+        <ImageView
+            android:id="@+id/imageViewCalendar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"/>
 
-            <TextView
-                android:id="@+id/SDate"
-                android:layout_width="175dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="100dp"
-                android:layout_marginTop="10dp"
-                android:contentDescription="@string/txtview_for_select_date"
-                android:fontFamily="@font/inter_bold"
-                android:maxLines="2"
-                android:text="@string/select_date"
-                android:textAlignment="center"
-                android:textColor="@color/green"
-                android:textSize="21sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.11"
-                app:layout_constraintStart_toStartOf="@+id/blurred"
-                app:layout_constraintTop_toBottomOf="@+id/NumTourist"
-                app:layout_constraintVertical_bias="0.048" />
-
-            <CalendarView
-                android:id="@+id/CalendarHouseManager"
-                style="@android:style/Widget.DeviceDefault.CalendarView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/bgcalendar"
-                android:clickable="true"
-                android:labelFor="@id/SDate"
-                android:maxDate="01/01/2025"
-                android:minDate="15/11/2022"
-                android:weekDayTextAppearance="@style/TextAppearance.AppCompat.Body2"
-                app:layout_constraintBottom_toBottomOf="@+id/rizal"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.488"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/twopips"
-                app:layout_constraintVertical_bias="0.687" />
-
-            <Button
-                android:id="@+id/EditHousebtn"
-                android:layout_width="168dp"
-                android:layout_height="45dp"
-                android:layout_marginStart="115dp"
-                android:layout_marginTop="10dp"
-                android:width="226dp"
-                android:height="55dp"
-                android:background="@drawable/startbuttonbg"
-                android:clickable="true"
-                android:fontFamily="@font/montserrat_bold"
-                android:gravity="center"
-                android:longClickable="true"
-                android:text="EDIT CALENDAR"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="13sp"
-                app:cardMaxElevation="70dp" />
-
-
-        </LinearLayout>
     </LinearLayout>
 
 
@@ -192,7 +136,7 @@
         android:id="@+id/radioGroup2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="590dp"
+        android:layout_marginTop="500dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -245,7 +189,7 @@
         android:layout_width="125dp"
         android:layout_height="3dp"
         android:layout_marginEnd="70dp"
-        android:layout_marginTop="630dp"
+        android:layout_marginTop="540dp"
         android:background="@color/green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -254,7 +198,7 @@
         android:id="@+id/wanHouse"
         android:layout_width="125dp"
         android:layout_height="3dp"
-        android:layout_marginTop="630dp"
+        android:layout_marginTop="540dp"
         android:layout_marginStart="60dp"
         android:background="@color/green"
         app:layout_constraintStart_toStartOf="@+id/radioGroup2"
@@ -275,7 +219,6 @@
         android:foregroundGravity="fill"
         android:background="@android:color/transparent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup2">
-
 
 
         <androidx.recyclerview.widget.RecyclerView

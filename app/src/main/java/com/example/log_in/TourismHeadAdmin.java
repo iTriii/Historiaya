@@ -2,20 +2,15 @@ package com.example.log_in;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
-import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -57,14 +52,10 @@ public class TourismHeadAdmin extends AppCompatActivity {
     private ProgressDialog progressDialog;
 
     private CalendarView calendarTourismHead;
-    private Button SaveTH;
+    private Button uploadImageTH_btn;
     private Object Email;
     private ListenerRegistration userDataListener;
 
-    private customizedCalendar customizedCalendar;
-    private String selectedDate;
-    EditText Event;
-    private SQLiteDatabase sqLiteDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,27 +65,8 @@ public class TourismHeadAdmin extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        Event = findViewById(R.id.Event);
 
-        calendarTourismHead = findViewById(R.id.CalendarTourismHead);
-        calendarTourismHead.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayofMonth) {
-
-                selectedDate = Integer.toString(year) + Integer.toString(month) + Integer.toString(dayofMonth);
-                ReadDatabase();
-            }
-        });
-        try{
-            customizedCalendar = new customizedCalendar(this, "CalendarDatabase", null ,1);
-            sqLiteDatabase = customizedCalendar.getWritableDatabase();
-            sqLiteDatabase.execSQL("CREATE TABLE EventCalendar (Date TEXT, Event TEXT)");
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-
-        SaveTH = findViewById(R.id.SaveTH);
+        uploadImageTH_btn = findViewById(R.id.uploadImageTH_btn);
 
         // Initialize Firebase Authentication and Firestore
         wan = findViewById(R.id.wan);
@@ -112,7 +84,6 @@ public class TourismHeadAdmin extends AppCompatActivity {
         myAdapter = new MyAdapter(this, userArrayList, db);
         UpcomingAdapter = new UpcomingAdapter(this, userArrayList, db);
         HistoryAdapter = new HistoryAdapter(this, userArrayList, db);
-
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
@@ -229,44 +200,7 @@ public class TourismHeadAdmin extends AppCompatActivity {
             Pending_RecyclerView.setVisibility(View.VISIBLE);
             Upcoming_RecyclerView.setVisibility(View.GONE);
             History_RecyclerView.setVisibility(View.GONE);
-
-            // Set a date change listener for the calendar view
-            calendarTourismHead.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
-                // Handle date selection here
-                String editDate = year + "-" + (month + 1) + "-" + dayOfMonth;
-                Toast.makeText(TourismHeadAdmin.this, "Selected Date: " + editDate, Toast.LENGTH_SHORT).show();
-            });
         }
-    public void ReadDatabase() {
-        String query = "SELECT Event FROM EventCalendar WHERE Date = '" + selectedDate + "'";
-        try {
-            Cursor cursor = sqLiteDatabase.rawQuery(query, null);
-            if (cursor.moveToFirst()) {
-                Event.setText(cursor.getString(0)); // Update the appropriate view here
-            } else {
-                Event.setText("");
-            }
-            cursor.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            Event.setText("");
-        }
-    }
-    private void markSelectedDateUnavailable() {
-        CalendarView cv = findViewById(R.id.CalendarTourismHead);
-        cv.setDate(Long.parseLong(selectedDate), true, true); // Set the selected date
-
-        // Change the color of the selected date (example: to orange for unavailable)
-    }
-    public void InsertDatabase(View view) {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("Date", selectedDate);
-        contentValues.put("Event", Event.getText().toString());
-        sqLiteDatabase.insert("EventCalendar", null, contentValues);
-
-        // After inserting the event, mark the selected date as unavailable
-        markSelectedDateUnavailable();
-    }
 
 
 
@@ -284,7 +218,6 @@ public class TourismHeadAdmin extends AppCompatActivity {
             History_RecyclerView.setLayoutManager(new LinearLayoutManager(this));
             History_RecyclerView.setAdapter(HistoryAdapter);
         }
-
 
 
     // EventListener for data changes in Firestore
@@ -331,6 +264,7 @@ public class TourismHeadAdmin extends AppCompatActivity {
                                     }
                                     break;
                                 case REMOVED:
+
                                     User userRemoved = dc.getDocument().toObject(User.class);
                                     userHashMap.remove(userRemoved.getEmail());
                                     upcomingUserHashMap.remove(userRemoved.getUserId());
@@ -385,7 +319,7 @@ public class TourismHeadAdmin extends AppCompatActivity {
 
 
         // Set a click listener for the edit button
-        SaveTH.setOnClickListener(v -> {
+        uploadImageTH_btn.setOnClickListener(v -> {
             // Handle edit button click (implement your edit/update/delete logic here)
             Toast.makeText(TourismHeadAdmin.this, "Edit button clicked", Toast.LENGTH_SHORT).show();
         });

@@ -54,10 +54,14 @@ public class BookingCancellation extends AppCompatActivity {
 
         // Click listener for viewing profile
         detailsclick.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingCancellation.this, Profile.class);
+            Intent intent = new Intent(BookingCancellation.this, BookingDetailMain.class);
             startActivity(intent);
         });
-
+        // view button
+        backbutton.setOnClickListener(v -> {
+            Intent intent = new Intent(BookingCancellation.this, BookingDetailMain.class);
+            startActivity(intent);
+        });
         // Initialization and actions for withdrawal dialog
         dialog = new Dialog(BookingCancellation.this);
         dialog.setContentView(R.layout.dialog_cancellation);
@@ -67,14 +71,14 @@ public class BookingCancellation extends AppCompatActivity {
         Button confirmbtn = dialog.findViewById(R.id.confirmbtn);
 
         notnowbtn.setOnClickListener(v -> {
-            Intent backIntent = new Intent(BookingCancellation.this, Main2.class);
+            Intent backIntent = new Intent(BookingCancellation.this, BookingDetailMain.class);
             startActivity(backIntent);
             Toast.makeText(BookingCancellation.this, "Not now", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
         });
 
         confirmbtn.setOnClickListener(v -> {
-            Intent confirmIntent = new Intent(BookingCancellation.this, Main2.class);
+            Intent confirmIntent = new Intent(BookingCancellation.this, BookingDetailMain.class);
             startActivity(confirmIntent);
             Toast.makeText(BookingCancellation.this, "Confirm Cancellation, please wait for approval", Toast.LENGTH_SHORT).show();
             dialog.dismiss();

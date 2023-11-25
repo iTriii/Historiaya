@@ -91,7 +91,23 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.042"/>
 
-
+    <ImageButton
+        android:id="@+id/backbutton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/shadow"
+        android:clickable="true"
+        android:contentDescription="@string/BookNow"
+        android:contextClickable="true"
+        android:elevation="10dp"
+        android:longClickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/arrow_back" />
 
 
 
@@ -105,7 +121,6 @@
         <LinearLayout
             android:layout_width="383dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
             android:orientation="horizontal">
 
             <TextView
@@ -113,11 +128,11 @@
                 android:layout_width="175dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginTop="1dp"
+                android:layout_marginTop="95dp"
                 android:contentDescription="@string/txtview_for_select_date"
                 android:fontFamily="@font/inter_bold"
                 android:maxLines="2"
-                android:text="@string/select_date"
+                android:text="Upload Image"
                 android:textAlignment="center"
                 android:textColor="@color/green"
                 android:textSize="23sp"
@@ -128,72 +143,55 @@
                 app:layout_constraintTop_toBottomOf="@+id/NumTourist"
                 app:layout_constraintVertical_bias="0.048" />
 
-            <CalendarView
-                android:id="@+id/CalendarTourismHead"
-                style="@android:style/Widget.DeviceDefault.CalendarView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="-180dp"
-                android:layout_marginTop="30dp"
-                android:layout_gravity="center"
-                android:background="@drawable/bgcalendar"
+            <RelativeLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_marginStart="-200dp">
+
+                <ImageView
+                    android:id="@+id/imageViewCalendar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_launcher_foreground"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="16dp"/>
+
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/uploadImageTH_btn"
+                android:layout_width="168dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="-270dp"
+                android:layout_marginTop="480dp"
+                android:width="226dp"
+                android:height="55dp"
+                android:backgroundTint="#00A197"
                 android:clickable="true"
-                android:labelFor="@id/SDate"
-                android:maxDate="01/01/2025"
-                android:minDate="15/11/2022"
-                android:weekDayTextAppearance="@style/TextAppearance.AppCompat.Body2"
-                app:layout_constraintBottom_toBottomOf="@+id/rizal"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:longClickable="true"
+                android:text="Upload"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
+                app:cardMaxElevation="70dp"
+                app:layout_constraintBottom_toBottomOf="@+id/blurred"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.488"
+                app:layout_constraintHorizontal_bias="0.631"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/twopips"
-                app:layout_constraintVertical_bias="0.687" />
+                app:layout_constraintTop_toTopOf="@+id/cardView"
+                app:layout_constraintVertical_bias="1.0" />
 
         </LinearLayout>
-
     </LinearLayout>
 
-    <EditText
-        android:id="@+id/Event"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="468dp"
-        android:fontFamily="@font/montserrat"
-        android:textAlignment="center"
-        android:textSize="16sp"
-        android:hint="Enter Event"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-    <Button
-        android:id="@+id/SaveTH"
-        android:layout_width="168dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="-250dp"
-        android:width="226dp"
-        android:height="55dp"
-        android:backgroundTint="#00A197"
-        android:clickable="true"
-        android:fontFamily="@font/montserrat_bold"
-        android:gravity="center"
-        android:longClickable="true"
-        android:text="@string/save"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="13sp"
-        app:cardMaxElevation="70dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.774"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Event" />
 
     <RadioGroup
         android:id="@+id/radioGroup2"
         android:layout_width="412dp"
         android:layout_height="45dp"
-        android:layout_marginTop="560dp"
+        android:layout_marginTop="530dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -265,7 +263,7 @@
         android:layout_width="120dp"
         android:layout_height="3dp"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="600dp"
+        android:layout_marginTop="565dp"
         android:background="@color/green"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -274,7 +272,7 @@
         android:id="@+id/to"
         android:layout_width="120dp"
         android:layout_height="3dp"
-        android:layout_marginTop="600dp"
+        android:layout_marginTop="565dp"
         android:background="@color/green"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
@@ -287,7 +285,7 @@
         android:id="@+id/tre"
         android:layout_width="120dp"
         android:layout_height="3dp"
-        android:layout_marginTop="600dp"
+        android:layout_marginTop="565dp"
         android:layout_marginEnd="20dp"
         android:layout_marginStart="5dp"
         android:background="@color/green"
@@ -298,12 +296,15 @@
     <ScrollView
         android:id="@+id/Upcoming_ScrollView"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="292dp"
+        android:layout_marginTop="-60dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2"
+        app:layout_constraintVertical_bias="1.0">
 
 
         <androidx.recyclerview.widget.RecyclerView
@@ -316,12 +317,14 @@
     <ScrollView
         android:id="@+id/History_ScrollView"
         android:layout_width="match_parent"
+        android:layout_height="292dp"
+        android:layout_marginTop="-20dp"
         android:visibility="gone"
-        android:layout_height="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/History_RecyclerView"
@@ -333,12 +336,14 @@
     <ScrollView
         android:id="@+id/Pending_ScrollView"
         android:layout_width="match_parent"
+        android:layout_height="292dp"
+        android:layout_marginTop="20dp"
         android:visibility="gone"
-        android:layout_height="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/Pending_RecyclerView"
