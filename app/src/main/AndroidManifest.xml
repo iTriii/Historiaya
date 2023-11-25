@@ -31,10 +31,10 @@
         <activity
             android:name=".HouseManager"
             android:exported="false" />
-        <activity
+<!--         <activity
             android:name=".UserAdapter"
             android:exported="false" />
-        <activity
+        <activity -->
             android:name=".GalaRodriguezAdmin"
             android:exported="false" />
         <activity
