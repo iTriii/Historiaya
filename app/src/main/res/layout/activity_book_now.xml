@@ -165,7 +165,7 @@
 
 
             <ImageView
-                android:id="@+id/displayImageViewTourist"
+                android:id="@+id/DisplayImageViewTouristAndHouseManager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"/>
