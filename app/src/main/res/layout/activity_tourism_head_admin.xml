@@ -132,7 +132,7 @@
                 android:contentDescription="@string/txtview_for_select_date"
                 android:fontFamily="@font/inter_bold"
                 android:maxLines="2"
-                android:text="@string/select_date"
+                android:text="Upload Image"
                 android:textAlignment="center"
                 android:textColor="@color/green"
                 android:textSize="23sp"
@@ -143,11 +143,26 @@
                 app:layout_constraintTop_toBottomOf="@+id/NumTourist"
                 app:layout_constraintVertical_bias="0.048" />
 
+            <RelativeLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_marginStart="-200dp">
+
+                <ImageView
+                    android:id="@+id/imageViewCalendarTourHead"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_launcher_foreground"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="16dp"/>
+
+            </RelativeLayout>
+
             <Button
                 android:id="@+id/uploadImageTH_btn"
                 android:layout_width="168dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="-90dp"
+                android:layout_marginStart="-270dp"
                 android:layout_marginTop="480dp"
                 android:width="226dp"
                 android:height="55dp"
