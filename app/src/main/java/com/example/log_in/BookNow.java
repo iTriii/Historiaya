@@ -10,19 +10,23 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;    
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -48,6 +52,7 @@ public class BookNow extends AppCompatActivity {
     private ScrollView BookScrollView;
     private TextView selectedHouse, Subtotal, RFTourGuide, Total, SCharge, SDate;
     CalendarView calendarView;
+    ImageView Event_Sched, calendarV;
     String reservedDate = "";
     private String userId;
     String selectedTime = "";
@@ -64,6 +69,22 @@ public class BookNow extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         Calendar currentTime = Calendar.getInstance();
+
+        Event_Sched = findViewById(R.id.Event_Sched);
+        calendarV = findViewById(R.id.calendarV);
+
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("Calendar/calendar_image.jpg");
+        storageRef.getDownloadUrl().addOnSuccessListener(Calendar-> {
+            Glide.with(this)
+                    .load(Calendar) // Provide the actual download URL obtained from Firebase Storage
+                    .into(Event_Sched);
+
+            // Hide calendarV ImageView after loading the image into Event_Sched
+            calendarV.setVisibility(View.GONE);
+        }).addOnFailureListener(exception -> {
+            // Handle any errors that may occur while fetching the image
+            showToast("Failed to fetch image: " + exception.getMessage());
+        });
 
 
         // Initialize UI elements
@@ -214,8 +235,6 @@ btntime4 = findViewById(R.id.btntime4);
             selectedTime = "2:00 PM";
             //showToastAndStoreTime();
         });
-
-
 
 
 // Set up the date listener before the button click listener

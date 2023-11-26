@@ -2,10 +2,14 @@ package com.example.log_in;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.Toast;
@@ -16,6 +20,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -28,12 +33,17 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class TourismHeadAdmin extends AppCompatActivity {
+    private static final int GALLERY_REQUEST_CODE = 123;
+
     private RadioButton Upcoming_Tab, History_tab, Pending_Tab;
     private ScrollView Upcoming_ScrollView, History_ScrollView, Pending_ScrollView;
     private View wan, to, tre;
@@ -52,7 +62,9 @@ public class TourismHeadAdmin extends AppCompatActivity {
 
     private Button uploadImageTH_btn;
     private Object Email;
+    ImageView eventSched, addTM;
     private ListenerRegistration userDataListener;
+    ImageView Event_Sched, calendarV;
 
 
     @Override
@@ -63,8 +75,12 @@ public class TourismHeadAdmin extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-
+        addTM = findViewById(R.id.addTM);
+        eventSched = findViewById(R.id.eventSched);
         uploadImageTH_btn = findViewById(R.id.uploadImageTH_btn);
+        uploadImageTH_btn.setOnClickListener(v -> {
+            openGallery();
+        });
 
         // Initialize Firebase Authentication and Firestore
         wan = findViewById(R.id.wan);
@@ -85,6 +101,8 @@ public class TourismHeadAdmin extends AppCompatActivity {
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
+
+
 
         if (currentUser != null) {
             String userId = currentUser.getUid();
@@ -117,6 +135,7 @@ public class TourismHeadAdmin extends AppCompatActivity {
             });
         }
 
+        fetchImageFromStorage();
 
         // Initialize ProgressDialog
         progressDialog = new ProgressDialog(this);
@@ -127,6 +146,80 @@ public class TourismHeadAdmin extends AppCompatActivity {
         setUpRecyclerView(); // Set up RecyclerView and Adapter
         setUpTabsAndViews(); // Set up tabs and views
     }
+
+    private void fetchImageFromStorage() {
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("Calendar/calendar_image.jpg");
+
+        // Fetch the image and load it into the eventSched ImageView
+        storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+            // Load the retrieved image using Glide or set it directly to the ImageView
+            Glide.with(this)
+                    .load(uri)
+                    .into(eventSched);
+           addTM.setVisibility(View.GONE);
+        }).addOnFailureListener(exception -> {
+            // Handle any errors that may occur while fetching the image
+            showToast("Failed to fetch image: " + exception.getMessage());
+        });
+    }
+
+    private void showToast(String s) {
+    }
+
+    private void openGallery() {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            // Handle the selected image from the gallery
+            Uri selectedImageUri = data.getData();
+
+            // Set the selected image to the eventSched ImageView
+            eventSched.setImageURI(selectedImageUri);
+
+            // Hide the addTM ImageView
+            addTM.setVisibility(View.GONE);
+
+            // Upload the selected image to Firebase Storage under the "Calendar" document
+            uploadImageToStorage(selectedImageUri);
+        }
+    }
+    private void uploadImageToStorage(Uri imageUri) {
+        if (imageUri != null) {
+            FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+            if (currentUser != null) {
+                String imageName = "calendar_image.jpg"; // Set a name for the image in storage
+
+                // Get a reference to the Firebase Storage location
+                StorageReference storageReference = FirebaseStorage.getInstance().getReference()
+                        .child("Calendar")
+                        .child(imageName);
+
+                // Upload the image to Firebase Storage
+                UploadTask   uploadTask = storageReference.putFile(imageUri);
+                uploadTask.addOnSuccessListener(taskSnapshot -> {
+                    // Image uploaded successfully
+                    Toast.makeText(this, "Image uploaded to Firebase Storage", Toast.LENGTH_SHORT).show();
+                    // You can also retrieve the download URL of the uploaded image here if needed
+                    storageReference.getDownloadUrl().addOnSuccessListener(uri -> {
+                        String downloadUrl = uri.toString();
+                        // You can use the download URL for further operations if required
+                    });
+                }).addOnFailureListener(e -> {
+                    // Handle any errors during the upload process
+                    Log.e("FirebaseStorage", "Error uploading image: " + e.getMessage());
+                    Toast.makeText(this, "Failed to upload image", Toast.LENGTH_SHORT).show();
+                });
+            }
+        }
+    }
+
+
     private void setUpTabsAndViews() {
 
             // Set up tabs and views
@@ -298,10 +391,6 @@ public class TourismHeadAdmin extends AppCompatActivity {
                     if (documentSnapshot != null && documentSnapshot.exists()) {
                         // Extract data from the document snapshot
                         String status = documentSnapshot.getString("status");
-
-                        // Display the data or perform other actions
-                        // For example, you can update a TextView with the fetched data
-                        // textView.setText(userData);
                     }
                 });
     }

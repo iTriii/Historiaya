@@ -74,7 +74,7 @@
         android:id="@+id/TITLEBOOKING"
         android:layout_width="260dp"
         android:layout_height="46dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="52dp"
         android:fontFamily="@font/montserrat_alternates_extrabold"
         android:shadowColor="#FFFDFD"
         android:shadowDx="7"
@@ -105,46 +105,37 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/SDateTourism"
-                android:layout_width="175dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:contentDescription="@string/txtview_for_select_date"
-                android:fontFamily="@font/montserrat"
-                android:maxLines="2"
-                android:text="Upload Image"
-                android:textAlignment="center"
-                android:textColor="@color/green"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.11"
-                app:layout_constraintStart_toStartOf="@+id/blurred"
-                app:layout_constraintTop_toBottomOf="@+id/NumTourist"
-                app:layout_constraintVertical_bias="0.048" />
-
-            <RelativeLayout
+            <LinearLayout
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:layout_marginStart="-200dp">
 
+
                 <ImageView
-                    android:id="@+id/imageViewCalendar"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:layout_margin="16dp"/>
+                    android:id="@+id/eventSched"
+                    android:layout_width="300dp"
+                    android:layout_height="250dp"
+                    android:layout_marginStart="240dp"
+                    android:layout_marginTop="70dp"
+                    android:background="@color/white" />
+
+                <ImageView
+                    android:id="@+id/addTM"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginStart="-190dp"
+                    android:layout_marginTop="150dp"
+                    android:src="@drawable/add" />
+
+            </LinearLayout>
 
 
-            </RelativeLayout>
 
             <Button
                 android:id="@+id/uploadImageTH_btn"
                 android:layout_width="168dp"
                 android:layout_height="50dp"
-                android:layout_marginStart="-270dp"
+                android:layout_marginStart="-280dp"
                 android:layout_marginTop="350dp"
                 android:backgroundTint="#00A197"
                 android:clickable="true"
