@@ -76,10 +76,6 @@
         android:layout_width="260dp"
         android:layout_height="46dp"
         android:fontFamily="@font/montserrat_alternates_extrabold"
-        android:shadowColor="@color/black"
-        android:shadowDx="2"
-        android:shadowDy="-2"
-        android:shadowRadius="2"
         android:text="Booking"
         android:textAlignment="center"
         android:textColor="#FEC242"
@@ -89,7 +85,7 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.055"
+        app:layout_constraintVertical_bias="0.068"
         tools:ignore="TextSizeCheck" />
 
     <ScrollView
@@ -105,51 +101,25 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/SDate"
-                android:layout_width="175dp"
-                android:layout_height="30dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp"
-                android:contentDescription="@string/txtview_for_select_date"
-                android:fontFamily="@font/montserrat_medium"
-                android:maxLines="2"
-                android:text="@string/select_date"
-                android:textAlignment="center"
-                android:textColor="@color/green"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.11"
-                app:layout_constraintStart_toStartOf="@+id/blurred"
-                app:layout_constraintTop_toBottomOf="@+id/NumTourist"
-                app:layout_constraintVertical_bias="0.048" />
+            <ImageView
+                android:id="@+id/Event_Sched"
+                android:layout_width="300dp"
+                android:layout_height="250dp"
+                android:layout_marginStart="55dp"
+                android:layout_marginTop="50dp"
+                android:background="@color/white" />
 
-            <Button
-                android:id="@+id/uploadImageTH_btn"
-                android:layout_width="168dp"
-                android:layout_height="45dp"
-                android:layout_marginStart="-80dp"
-                android:layout_marginTop="350dp"
-                android:width="226dp"
-                android:backgroundTint="#00A197"
-                android:clickable="true"
-                android:fontFamily="@font/montserrat_bold"
-                android:gravity="center"
-                android:longClickable="true"
-                android:text="Upload"
-                android:textAlignment="center"
-                android:textColor="#FFFFFF"
-                android:textSize="13sp"
-                app:cardMaxElevation="70dp"
-                app:layout_constraintBottom_toBottomOf="@+id/blurred"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.631"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/cardView"
-                app:layout_constraintVertical_bias="1.0" />
+            <ImageView
+                android:id="@+id/calendarV"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_marginStart="190dp"
+                android:layout_marginTop="-150dp"
+                android:layout_marginEnd="92dp"
+                android:layout_marginBottom="80dp"
+                android:src="@drawable/event_sched" />
 
         </LinearLayout>
 

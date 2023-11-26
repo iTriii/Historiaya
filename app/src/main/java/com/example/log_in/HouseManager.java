@@ -9,9 +9,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -31,6 +32,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,6 +65,7 @@ public class HouseManager extends AppCompatActivity {
     private Button editbtnTH;
     private Object Email;
     private ListenerRegistration userDataListener;
+    ImageView Event_Sched, calendarV;
 
 
     @Override
@@ -81,7 +85,7 @@ public class HouseManager extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-// Check if currentUser is not null before setting Crisp user email
+        // Check if currentUser is not null before setting Crisp user email
         if (currentUser != null) {
             String userEmail = currentUser.getEmail();
 
@@ -93,6 +97,21 @@ public class HouseManager extends AppCompatActivity {
         toHouse = findViewById(R.id.toHouse);
         // Inside onCreate or wherever you initialize your FirebaseFirestore
         db = FirebaseFirestore.getInstance();
+
+        Event_Sched = findViewById(R.id.Event_Sched);
+        calendarV = findViewById(R.id.calendarV);
+
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("Calendar/calendar_image.jpg");
+        storageRef.getDownloadUrl().addOnSuccessListener(Calendar-> {
+            Glide.with(this)
+                    .load(Calendar) // Provide the actual download URL obtained from Firebase Storage
+                    .into(Event_Sched);
+
+            calendarV.setVisibility(View.GONE);
+        }).addOnFailureListener(exception -> {
+            showToast("Failed to fetch image: " + exception.getMessage());
+        });
+
 
 
         // Initialize RecyclerViews and Adapters
@@ -147,6 +166,9 @@ public class HouseManager extends AppCompatActivity {
         EventChangeListener();// Add data listener to load data from Firestore
         setUpRecyclerView(); // Set up RecyclerView and Adapter
         setUpTabsAndViews(); // Set up tabs and views
+    }
+
+    private void showToast(String s) {
     }
 
 
@@ -290,29 +312,9 @@ public class HouseManager extends AppCompatActivity {
                         if (documentSnapshot.contains("status")) {
                             String status = documentSnapshot.getString("status");
 
-                            // Display the data or perform other actions
-                            // For example, you can update a TextView with the fetched data
-                            // textView.setText(userData);
                         }
                     }
                 });
-    }
-
-    @Override
-    protected void onDestroy() {
-        // Remove the snapshot listener when the activity is destroyed
-        if (userDataListener != null) {
-            userDataListener.remove();
-        }
-
-        super.onDestroy();
-
-
-        // Set a click listener for the edit button
-        editbtnTH.setOnClickListener(v -> {
-            // Handle edit button click (implement your edit/update/delete logic here)
-            Toast.makeText(HouseManager.this, "Edit button clicked", Toast.LENGTH_SHORT).show();
-        });
     }
 }
 
