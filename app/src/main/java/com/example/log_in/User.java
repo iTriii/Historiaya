@@ -4,13 +4,16 @@ public class User {
     public static final String FIELD_USER_ID = "userId";
     public static final String FIELD_EMAIL = "Email";
     public static final String FIELD_STATUS = "status";
+    public String String;
 
     private String Email, reservedDate, selectedTour, selectedTouristNum, status, userId;
 
     public User() {
     }
 
-    public User(String Email, String reservedDate, String selectedTour, String selectedTouristNum, String status, String userId) {
+
+
+    public User(String Email, String reservedDate, String selectedTour, String selectedTouristNum, String status, String userId, Long totalAmount) {
         this.Email = Email;
         this.reservedDate = reservedDate;
         this.selectedTour = selectedTour;

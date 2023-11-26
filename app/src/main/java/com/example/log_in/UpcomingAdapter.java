@@ -51,7 +51,7 @@ public class UpcomingAdapter  extends RecyclerView.Adapter<UpcomingAdapter.MyVie
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView MonthTourHeadText, BahayTourHeadText, ArawTourHeadText;
+        TextView MonthTourHeadText, BahayTourHeadText, ArawTourHeadText,TotalTourHeadText;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -59,6 +59,7 @@ public class UpcomingAdapter  extends RecyclerView.Adapter<UpcomingAdapter.MyVie
             MonthTourHeadText = itemView.findViewById(R.id.MonthTourHeadText);
             BahayTourHeadText = itemView.findViewById(R.id.BahayTourHeadText);
             ArawTourHeadText= itemView.findViewById(R.id.ArawTourHeadText);
+
 
         }
     }
