@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.Toast;
@@ -50,15 +49,14 @@ public class Receptionist extends AppCompatActivity {
     private ArrayList<User> userArrayList;
     Receptionist_Adapter_History Receptionist_Adapter_History;
     Receptionist_Upcoming_Adapter Receptionist_Upcoming_Adapter;
-    private CalendarView CalendarHouseManager;
+
     private Button Editbtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receptionist);
-    // Inside onCreate or wherever you initialize your FirebaseFirestore
-        db = FirebaseFirestore.getInstance();
+
 
         //VIEW
         wanRecep = findViewById(R.id.wanRecep);

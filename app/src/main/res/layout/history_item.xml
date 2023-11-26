@@ -131,6 +131,27 @@
                 android:fontFamily="@font/montserrat"
                 android:textColor="#000000"
                 android:textSize="15sp" />
-
+            <TextView
+                android:id="@+id/Amount"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="-260dp"
+                android:layout_marginTop="65dp"
+                android:fontFamily="@font/montserrat"
+                android:text="Amount:"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/AmountHistory"
+                android:layout_width="140dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="65dp"
+                android:fontFamily="@font/montserrat"
+                android:textColor="#000000"
+                android:textSize="15sp" />
         </LinearLayout>
 </androidx.cardview.widget.CardView>

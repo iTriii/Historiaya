@@ -43,6 +43,7 @@ public class Receptionist_Adapter_History extends RecyclerView.Adapter<Reception
         holder.bookebyNameReceptionist_History.setText(HistoryUsers.getEmail());
         holder.TotalNumberReceptionist_History.setText(HistoryUsers.getSelectedTouristNum());
         holder.SelectedHouseReceptionist_History.setText(HistoryUsers.getSelectedTour());
+        holder.AmountText.setText(String.valueOf(HistoryUsers.getTotalAmount()));
 
 
     }
@@ -54,7 +55,7 @@ public class Receptionist_Adapter_History extends RecyclerView.Adapter<Reception
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView MontHistoRecepText, BahayHistoRecepText, ArawHistoRecepText,bookebyNameReceptionist_History,TotalNumberReceptionist_History,SelectedHouseReceptionist_History;
+        TextView MontHistoRecepText, BahayHistoRecepText, ArawHistoRecepText,bookebyNameReceptionist_History,TotalNumberReceptionist_History,SelectedHouseReceptionist_History,AmountText;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -64,6 +65,7 @@ public class Receptionist_Adapter_History extends RecyclerView.Adapter<Reception
             bookebyNameReceptionist_History = itemView.findViewById(R.id.bookebyNameReceptionist_History);
             TotalNumberReceptionist_History = itemView.findViewById(R.id.TotalNumberReceptionist_History);
             SelectedHouseReceptionist_History = itemView.findViewById(R.id.SelectedHouseReceptionist_History);
+            AmountText = itemView.findViewById(R.id.AmountText);
         }
     }
 }

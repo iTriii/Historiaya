@@ -45,6 +45,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
         holder.bookebyNameHistory.setText(HistoryUsers.getEmail());
         holder.TotalNumberHistory.setText(HistoryUsers.getSelectedTouristNum());
         holder.SelectedHouseHistory.setText(HistoryUsers.getSelectedTour());
+        holder.AmountHistory.setText(String.valueOf(HistoryUsers.getTotalAmount()));
     }
 
     @Override
@@ -53,7 +54,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView MontHistoText, BahayHistoText,bookebyNameHistory,TotalNumberHistory,SelectedHouseHistory;
+        TextView MontHistoText, BahayHistoText,bookebyNameHistory,TotalNumberHistory,SelectedHouseHistory,AmountHistory;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -63,6 +64,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
             bookebyNameHistory = itemView.findViewById(R.id.bookebyNameHistory);
             TotalNumberHistory= itemView.findViewById(R.id.TotalNumberHistory);
             SelectedHouseHistory= itemView.findViewById(R.id.SelectedHouseHistory);
+            AmountHistory = itemView.findViewById(R.id.AmountHistory);
 
 
         }
