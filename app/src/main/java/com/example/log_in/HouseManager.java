@@ -11,7 +11,6 @@ import android.widget.CalendarView;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -46,7 +45,7 @@ public class HouseManager extends AppCompatActivity {
     RadioButton UpcomingHouseManager_Tab, HistoryHouseManager_tab;
     ScrollView UpcomingHouse_ScrollView, HistoryHouse_ScrollView;
     View wanHouse, toHouse;
-    Button EditHousebtn, done;
+
     FirebaseUser user;
     private FirebaseAuth mAuth;
     FirebaseFirestore db;
@@ -60,7 +59,7 @@ public class HouseManager extends AppCompatActivity {
 
     private CalendarView CalendarHouseManager;
     private Button editbtnTH;
-    private Object Email;
+
     private ListenerRegistration userDataListener;
 
 
@@ -81,13 +80,7 @@ public class HouseManager extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-// Check if currentUser is not null before setting Crisp user email
-        if (currentUser != null) {
-            String userEmail = currentUser.getEmail();
 
-            // Set user attributes in Crisp
-            Crisp.setUserEmail(userEmail);
-        }
 
         wanHouse = findViewById(R.id.wanHouse);
         toHouse = findViewById(R.id.toHouse);
@@ -148,7 +141,6 @@ public class HouseManager extends AppCompatActivity {
         setUpRecyclerView(); // Set up RecyclerView and Adapter
         setUpTabsAndViews(); // Set up tabs and views
     }
-
 
     //CRISP
     private void startCrispChat() {
@@ -303,16 +295,8 @@ public class HouseManager extends AppCompatActivity {
         // Remove the snapshot listener when the activity is destroyed
         if (userDataListener != null) {
             userDataListener.remove();
-        }
+        }super.onDestroy();
 
-        super.onDestroy();
-
-
-        // Set a click listener for the edit button
-        editbtnTH.setOnClickListener(v -> {
-            // Handle edit button click (implement your edit/update/delete logic here)
-            Toast.makeText(HouseManager.this, "Edit button clicked", Toast.LENGTH_SHORT).show();
-        });
     }
 }
 
