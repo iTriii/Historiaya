@@ -12,7 +12,7 @@
     <ImageView
         android:id="@+id/rizal_Start"
         android:layout_width="match_parent"
-        android:layout_height="1024dp"
+        android:layout_height="900dp"
         android:layout_marginStart="4dp"
         android:layout_marginBottom="4dp"
         app:srcCompat="@drawable/newproject"
@@ -22,7 +22,7 @@
         android:id="@+id/grass_start"
         android:layout_width="match_parent"
         android:layout_height="1024dp"
-        android:layout_marginTop="184dp"
+        android:layout_marginTop="30dp"
         android:alpha=".95"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
@@ -34,13 +34,13 @@
         android:id="@+id/twoppl"
         android:layout_width="match_parent"
         android:layout_height="1024dp"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="50dp"
         android:alpha=".89"
         app:layout_constraintEnd_toEndOf="@+id/grass_start"
         app:layout_constraintHorizontal_bias="0.688"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/backdrop" />
+        app:srcCompat="@drawable/twopips" />
 
 
     <!-- Payment Items -->
@@ -93,7 +93,7 @@
         app:layout_constraintHorizontal_bias="0.089"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/grass_start"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.25" />
 
     <TextView
         android:id="@+id/DonCatalino"
@@ -101,15 +101,15 @@
         android:layout_height="43dp"
         android:fontFamily="@font/montserrat"
         android:gravity="center_horizontal"
-        android:text="@string/don_catalino_house"
+        android:text="Don Catalino House"
         android:textColor="@color/green"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.101"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.248" />
+        app:layout_constraintVertical_bias="0.268" />
 
     <View
         android:layout_width="365dp"
@@ -179,7 +179,7 @@
         android:layout_height="36dp"
         android:fontFamily="@font/montserrat"
         android:gravity="center_horizontal"
-        android:text="@string/service_charge"
+        android:text="service_charge"
         android:textColor="@color/green"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -213,7 +213,7 @@
         android:shadowDx="2"
         android:shadowDy="-4"
         android:shadowRadius="2"
-        android:text="@string/total"
+        android:text="total"
         android:textColor="#FEC242"
         android:textSize="25sp"
         app:layout_constraintBottom_toBottomOf="parent"

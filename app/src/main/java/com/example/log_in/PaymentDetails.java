@@ -14,6 +14,9 @@ import androidx.core.content.ContextCompat;
 
 import com.google.firebase.FirebaseApp;
 
+import im.crisp.client.ChatActivity;
+import im.crisp.client.Crisp;
+
 //FOR UPDATE ONLY
 public class PaymentDetails extends AppCompatActivity {
 
@@ -21,7 +24,7 @@ public class PaymentDetails extends AppCompatActivity {
     ScrollView ScrollViewDonCata, ScrollViewGalaRod;
     View lineone, linetwo;
 
-    ImageButton backbtn, chatbtn;
+    ImageButton backbtnpaymentdetails, chatbtn;
     Button donebtn, donebtn2;
 
 
@@ -36,7 +39,7 @@ public class PaymentDetails extends AppCompatActivity {
 
         // Initialize Firebase
         FirebaseApp.initializeApp(this);
-        backbtn = findViewById(R.id.backbtn);
+        backbtnpaymentdetails = findViewById(R.id.backbtnpaymentdetails);
 
         donebtn = findViewById(R.id.donebtn);
         donebtn2 = findViewById(R.id.donebtn2);
@@ -68,7 +71,7 @@ public class PaymentDetails extends AppCompatActivity {
         });
 
         // Back button
-        backbtn.setOnClickListener(view -> {
+        backbtnpaymentdetails.setOnClickListener(view -> {
             Intent intent = new Intent(PaymentDetails.this, BookNow.class);
             startActivity(intent);
         });

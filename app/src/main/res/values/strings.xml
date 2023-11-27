@@ -406,47 +406,71 @@
 
     //Terms and conditions
     <string name="historiaya_terms_and_conditions">Historiaya Terms and Conditions</string>
-    <string name="welcome">Welcome</string>
-    <string name="greetings">Welcome! Thank you for your interest in our application.</string>
-    <string name="greetings2">We, developers, together with our affiliates, provide a variety of features that you can enjoy with our Historiaya application, and these Terms and Conditions will cover your use of the application.</string>
+    <string name="welcome">
+<b> Welcome</b>\n\n
 
-    <string name="userguidelines">USER GUIDELINES</string>
-    <string name="youAgree">We strive to make our application proteted and available without inetrruption. To help us meet these goals, you agree that:</string>
-    <string name="terms1">1. You will not modify or disable any features of our application.</string>
-    <string name="terms2">2. You will not use our application in any fraudulent or malicious way.</string>
-    <string name="terms3">3. You will not collect any information or data from our system or attempt to decipher any transmission to or from the database.</string>
-    <string name="terms4">4. we reserve the right to terminate or suspend your access to our services at any time.</string>
+Welcome! Thank you for your interest in our application.\n\n
 
-    <string name="userreg">User Registration:</string>
-    <string name="userreg1">1. You agree to provide complete and accurate information in creating an account.</string>
-    <string name="userreg2">2. You are responsible for maintaining the confidentiality of your account credentials including your username and password.</string>
+    We, developers, together with our affiliates, provide a variety of features that you can enjoy with our Historiaya application, and these Terms and Conditions will cover your use of the application.\n\n
 
-    <string name="ReservationandPayment">Reservation and Payment:</string>
-    <string name="reserve1">1. The App serves as a reservation system for tours offered by the Sariaya Tourism Office. You may book tours, make payments using GCASH, and communicate to the Receptionist through the App.</string>
-    <string name="reserve2">2. Reservation fees and payment details are specified within the App, and you agree to comply with the stated terms.</string>
-    <string name="reserve3">3. In cases of transaction errors, the app cannot be held responsible for any financial losses incurred.</string>
+        <b>USER GUIDELINES:</b>\n\n
 
-    <string name="HeritageHouse">Heritage House:</string>
-    <string name="GalaRodriguez">Gala Rodriguez Heritage House</string>
-    <string name="HH1">1. Management will not be liable for damage/loss of any valuables or other personal property left in the Heritage house.</string>
-    <string name="HH2">2. For documentation and advertisement purposes, Staffs of Gala Rodriguez Heritage House will take pictures and videos during the actual event subject to the approval of the guests. Rest assured the videos and pictures taken remain exclusive property of PlAZA DE SHALOM (where the heritage house is located) subject to copyright and applicable laws and regulations.</string>
-    <string name="HH3">3. Guests can utilize the venue up to Four (4) hours maximum time. Excess rate per hour will charge regarding the contract.</string>
+    We strive to make our application proteted and available without inetrruption. To help us meet these goals, you agree that:\n\n
 
-    <string name="PointsandDiscount">Points and Discount:</string>
-    <string name="PP1">1. Historiaya points can be only redeemed for discounts at collaborated stores.</string>
-    <string name="PP2">2. Points are subject to the rules and conditions specified within the App.</string>
-    <string name="PP3">3. Discounts offered through vouchers are subject to the terms set by the store managers.</string>
+    1. You will not modify or disable any features of our application.\n
 
-    <string name="ContactUs">Contact Us:</string>
-    <string name="CU">If you have any questions or concerns about these Terms or the App, kindly contact us at itri.acc@gmail.com</string>
+    2. You will not use our application in any fraudulent or malicious way.\n
 
-    <string name="usingOurServices">You acknowledge and agree that our application belongs to us and our partners. These terms and conditions do not grant your any ownership interest in or to our services.</string>
-    <string name="usingOurServices2">The availability and features may vary depending on the device you are using or which Android version you have.</string>
+    3. You will not collect any information or data from our system or attempt to decipher any transmission to or from the database.\n
+
+    4. we reserve the right to terminate or suspend your access to our services at any time.\n\n
+
+        <b>USER REGISTRATION:</b>\n\n
+
+    1. You agree to provide complete and accurate information in creating an account.\n
+    2. You are responsible for maintaining the confidentiality of your account credentials including your username and password.\n\n
+
+        <b>RESERVATION AND PAYMENT:</b>\n\n
+
+    1. The App serves as a reservation system for tours offered by the Sariaya Tourism Office. You may book tours, make payments using GCASH, and communicate to the Receptionist through the App.\n
+
+    2. Reservation fees and payment details are specified within the App, and you agree to comply with the stated terms.\n
+
+    3. In cases of transaction errors, the app cannot be held responsible for any financial losses incurred.\n\n
+
+        <b>HERITAGE HOUSE</b>\n
+        <b>GALA RODRIGUEZ ANCESTRAL HOUSE</b>\n\n
+
+    1. Management will not be liable for damage/loss of any valuables or other personal property left in the Heritage house.\n
+
+    2. For documentation and advertisement purposes, Staffs of Gala Rodriguez Heritage House will take pictures and videos
+        during the actual event subject to the approval of the guests. Rest assured the videos and pictures taken remain
+        exclusive property of PlAZA DE SHALOM (where the heritage house is located) subject to copyright and applicable laws and regulations.\n
+
+    3. Guests can utilize the venue up to Four (4) hours maximum time. Excess rate per hour will charge regarding the contract.\n\n
+
+        <b>POINTS AND DISCOUNTS:</b>\n\n
+
+    1. Historiaya points can be only redeemed for discounts at collaborated stores.\n
+
+    2. Points are subject to the rules and conditions specified within the App.\n
+
+    3. Discounts offered through vouchers are subject to the terms set by the store managers.\n\n
+
+
+        <b>CONTACT US:</b>\n\n
+    If you have any questions or concerns about these Terms or the App, kindly contact us at <u>itri.acc@gmail.com</u>\n\n
+
+    You acknowledge and agree that our application belongs to us and our partners. These terms and conditions do not grant your any ownership interest in or to our services.\n\n
+
+    The availability and features may vary depending on the device you are using or which Android version you have.\n\n</string>
     <string name="check">By checking this box, you agree to the terms and conditions outlined above and acknowledge that you have read and understood our policies.</string>
     <string name="your_refund_details" />
     <string name="logout_po">Are you sure you want to Log Out?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
+    <string name="about">About Our App</string>
+    <string name="AboutOurApp">Discover Sariaya\'s history in a unique way! Our app uses cool technology to explore heritage sites, play fun quizzes, and plan your visit easily. Created with the Sariaya Tourism Office, it\'s your ticket to an exciting heritage adventure!</string>
 
     <!-- RESCHED  USER DETAILS ACTIVITY -->
 

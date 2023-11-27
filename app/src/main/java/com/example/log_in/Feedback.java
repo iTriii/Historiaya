@@ -20,9 +20,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Feedback extends AppCompatActivity {
-    private EditText feedbackEditText;
+    private EditText Feedback;
     private Button submitButton;
-    ImageButton backbtn, exitbtn;
+    ImageButton backbtn;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
     private String userId;
@@ -35,9 +35,8 @@ public class Feedback extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         backbtn = findViewById(R.id.backbtnFeedback);
-        exitbtn = findViewById(R.id.exitbtn);
 
-        feedbackEditText = findViewById(R.id.editTextFeedback);
+        Feedback = findViewById(R.id.Feedback);
         submitButton = findViewById(R.id.Submitbtn);
 
         submitButton.setOnClickListener(new View.OnClickListener() {
@@ -53,11 +52,6 @@ public class Feedback extends AppCompatActivity {
             startActivity(intent);
         });
 
-        exitbtn.setOnClickListener(v -> {
-            Intent intent = new Intent(Feedback.this, Main2.class);
-            startActivity(intent);
-        });
-
         // Get the current user's UID
         if (mAuth.getCurrentUser() != null) {
             userId = mAuth.getCurrentUser().getUid();
@@ -65,7 +59,7 @@ public class Feedback extends AppCompatActivity {
     }
 
     private void submitFeedback() {
-        String feedback = feedbackEditText.getText().toString().trim();
+        String feedback = Feedback.getText().toString().trim();
 
         if (!feedback.isEmpty()) {
             // Save feedback to Firestore

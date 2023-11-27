@@ -45,6 +45,25 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/about"
+                    android:textAlignment="center"
+                    android:textSize="22sp"
+                    android:textColor="@color/green"
+                    android:fontFamily="@font/montserrat_medium"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/AboutOurApp"
+                    android:fontFamily="@font/montserrat"
+                    android:layout_marginTop="10dp"
+                    android:padding="30dp"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:textAlignment="center"/>
+                <TextView
                     android:id="@+id/textView2"
                     android:layout_width="match_parent"
                     android:layout_height="31dp"
@@ -57,7 +76,8 @@
                     android:shadowRadius="2"
                     android:text="Meet the Team"
                     android:textAlignment="center"
-                    android:textSize="25dp"
+                    android:textSize="22sp"
+                    android:layout_marginTop="50dp"
                     app:layout_constraintBottom_toTopOf="@+id/CreditsScrollView"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.498"
@@ -70,7 +90,8 @@
                     android:id="@+id/unis"
                     android:layout_width="133dp"
                     android:layout_height="129dp"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="50dp"
+                    android:layout_marginStart=""
                     android:layout_weight="1"
                     android:padding="10dp"
                     android:src="@drawable/unis" />
@@ -128,7 +149,7 @@
                 android:ellipsize="end"
                 android:fontFamily="@font/montserrat"
                 android:maxLines="2"
-                android:text="Ian Jefferzon Sales"
+                android:text="Ian Jefferson Sales"
                 android:textAlignment="center"
                 android:textColor="@color/green"
                 android:textSize="12sp"
