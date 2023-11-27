@@ -6,10 +6,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+
 import android.widget.Button;
+
 import android.widget.RadioButton;
 import android.widget.ScrollView;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -59,7 +60,8 @@ public class Receptionist extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receptionist);
-
+    // Inside onCreate or wherever you initialize your FirebaseFirestore
+        db = FirebaseFirestore.getInstance();
 
         //VIEW
         wanRecep = findViewById(R.id.wanRecep);

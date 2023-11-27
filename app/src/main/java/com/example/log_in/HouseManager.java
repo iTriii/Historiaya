@@ -63,7 +63,7 @@ public class HouseManager extends AppCompatActivity {
 
     private CalendarView CalendarHouseManager;
     private Button editbtnTH;
-
+    private Object Email;
     private ListenerRegistration userDataListener;
     ImageView Event_Sched, calendarV;
 
@@ -315,15 +315,6 @@ public class HouseManager extends AppCompatActivity {
                         }
                     }
                 });
-    }
-
-    @Override
-    protected void onDestroy() {
-        // Remove the snapshot listener when the activity is destroyed
-        if (userDataListener != null) {
-            userDataListener.remove();
-        }super.onDestroy();
-
     }
 }
 

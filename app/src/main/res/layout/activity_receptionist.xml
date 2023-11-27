@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Receptionist">
-
+    tools:context=".TourismHeadAdmin">
 
 
     <ImageView
@@ -24,7 +23,7 @@
         android:id="@+id/rizal"
         android:layout_width="420dp"
         android:layout_height="452dp"
-        android:layout_marginTop="120dp"
+        android:layout_marginTop="212dp"
         android:contentDescription="@string/rizal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.555"
@@ -36,7 +35,7 @@
         android:id="@+id/grass"
         android:layout_width="878dp"
         android:layout_height="612dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="300dp"
         android:contentDescription="@string/grass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +47,7 @@
         android:id="@+id/twopips"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="290dp"
+        android:layout_marginTop="316dp"
         android:contentDescription="@string/twopips"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -72,34 +71,43 @@
 
 
     <TextView
-        android:id="@+id/pay"
+        android:id="@+id/TITLEBOOKING"
         android:layout_width="260dp"
         android:layout_height="46dp"
+        android:layout_marginTop="52dp"
         android:fontFamily="@font/montserrat_alternates_extrabold"
+
+        android:shadowColor="#FFFDFD"
+        android:shadowDx="7"
+        android:shadowDy="-9"
+        android:shadowRadius="2"
+
         android:text="Booking"
         android:textAlignment="center"
         android:textColor="#FEC242"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
+
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.068"
         tools:ignore="TextSizeCheck" />
+        app:layout_constraintTop_toTopOf="@+id/clouds" />
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="100dp">
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="383dp"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
@@ -120,14 +128,63 @@
                 android:layout_marginEnd="92dp"
                 android:layout_marginBottom="80dp"
                 android:src="@drawable/event_sched" />
+            
+
+            <LinearLayout
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:layout_marginStart="-200dp">
+
+
+                <ImageView
+                    android:id="@+id/eventSched"
+                    android:layout_width="300dp"
+                    android:layout_height="250dp"
+                    android:layout_marginStart="240dp"
+                    android:layout_marginTop="70dp"
+                    android:background="@color/white" />
+
+                <ImageView
+                    android:id="@+id/addTM"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_marginStart="-190dp"
+                    android:layout_marginTop="150dp"
+                    android:src="@drawable/add" />
+
+            </LinearLayout>
+
+
+
+            <Button
+                android:id="@+id/uploadImageTH_btn"
+                android:layout_width="168dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="-280dp"
+                android:layout_marginTop="350dp"
+                android:backgroundTint="#00A197"
+                android:clickable="true"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:longClickable="true"
+                android:text="Upload"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
+                app:cardMaxElevation="70dp"
+                app:layout_constraintBottom_toBottomOf="@+id/blurred"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.631"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/cardView"
+                app:layout_constraintVertical_bias="1.0" />
 
         </LinearLayout>
 
     <RadioGroup
         android:id="@+id/radioGroup2"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="412dp"
+        android:layout_height="45dp"
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
@@ -137,63 +194,90 @@
 
 
         <androidx.appcompat.widget.AppCompatRadioButton
-            android:id="@+id/UpcomingRecep_Tab"
-            android:layout_width="148dp"
+            android:id="@+id/Upcoming_Tab"
+            android:layout_width="125dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="-100dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="-5dp"
             android:background="@color/transparent"
             android:button="@color/transparent"
             android:checked="true"
             android:fontFamily="@font/montserrat_bold"
-            android:gravity="center"
             android:text="Upcoming"
-            android:layout_marginEnd="25dp"
             android:textAlignment="center"
+            android:clickable="true"
             android:textColor="@color/green"
-            android:textSize="18sp"
+            android:textSize="15sp"
             app:layout_constraintTop_toBottomOf="@+id/ProfileName"
             tools:layout_editor_absoluteX="4dp" />
 
 
         <androidx.appcompat.widget.AppCompatRadioButton
-            android:id="@+id/HistoryRecep_tab"
-            android:layout_width="142dp"
+            android:id="@+id/History_tab"
+            android:layout_width="125dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="-10dp"
-            android:layout_marginEnd="-100dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="-10dp"
             android:background="@color/transparent"
             android:button="@color/transparent"
             android:checked="false"
             android:fontFamily="@font/montserrat_bold"
-            android:gravity="center"
             android:text="History"
+            android:clickable="true"
             android:textAlignment="center"
             android:textColor="@color/green"
-            android:textSize="18sp"
+            android:textSize="15sp"
             app:layout_constraintTop_toBottomOf="@+id/ProfileName"
             tools:layout_editor_absoluteX="4dp" />
 
+        <androidx.appcompat.widget.AppCompatRadioButton
+            android:id="@+id/Pending_Tab"
+            android:layout_width="125dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="30dp"
+            android:background="@color/transparent"
+            android:button="@color/transparent"
+            android:checked="true"
+            android:fontFamily="@font/montserrat_bold"
+            android:clickable="true"
+            android:text="@string/pending"
+            android:textAlignment="center"
+            android:textColor="@color/green"
+            android:textSize="15sp"
+            app:layout_constraintTop_toBottomOf="@+id/ProfileName"
+            tools:layout_editor_absoluteX="4dp" />
     </RadioGroup>
 
     <View
-
-        android:id="@+id/toRecep"
+        android:id="@+id/wan"
         android:layout_width="120dp"
         android:layout_height="3dp"
-        android:layout_marginStart="230dp"
+        android:layout_marginStart="-130dp"
         android:background="@color/green"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <View
-        android:id="@+id/wanRecep"
+        android:id="@+id/to"
         android:layout_width="120dp"
         android:layout_height="3dp"
-        android:layout_marginStart="65dp"
         android:background="@color/green"
+        android:layout_marginEnd="5dp"
+        android:layout_marginTop="-3dp"
+        app:layout_constraintEnd_toStartOf="@+id/tre"
         app:layout_constraintHorizontal_bias="0.492"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toEndOf="@+id/wan"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/tre"
+        android:layout_width="120dp"
+        android:layout_height="3dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="-3dp"
+        android:background="@color/green"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <ScrollView
@@ -203,13 +287,14 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup2"
         app:layout_constraintVertical_bias="1.0">
 
+
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/ReceptionistUpcoming_RecyclerView"
+            android:id="@+id/Upcoming_RecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
@@ -222,16 +307,34 @@
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.076"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup2"
-        app:layout_constraintVertical_bias="1.0">
-
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/ReceptionistHistory_RecyclerView"
+            android:id="@+id/History_RecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+    </ScrollView>
+
+    <ScrollView
+        android:id="@+id/Pending_ScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radioGroup2">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/Pending_RecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
     </ScrollView>
 
     </LinearLayout>
