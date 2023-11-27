@@ -6,6 +6,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+
+import android.widget.Button;
+
 import android.widget.RadioButton;
 import android.widget.ScrollView;
 
@@ -68,7 +71,7 @@ public class Receptionist extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         user = auth.getCurrentUser();
-        
+
         // Initialize RecyclerViews and Adapters
         ReceptionistUpcoming_RecyclerView = findViewById(R.id.ReceptionistUpcoming_RecyclerView);
         ReceptionistHistory_RecyclerView = findViewById(R.id.ReceptionistHistory_RecyclerView);

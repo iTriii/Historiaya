@@ -16,6 +16,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 
 import java.util.ArrayList;
 
+
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     Context context;
@@ -59,7 +60,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         updateStatusInDatabase(user, "Cancelled");
     }
 
-    // Method to handle updating the status in the database
+    // Method to handle updating the status in the database and removing from the list
     private void updateStatusInDatabase(User user, String status) {
         if (user != null && user.getUid() != null) {
             db.collection("users")
@@ -89,7 +90,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         Button approvedbtn, rejectdbtn;
-        TextView pendingMonthText, bahayPendingText, arawPendingText, bookedByPending, totalNumberPending, selectedHousePending,AmountTextTH;
+        TextView pendingMonthText, bahayPendingText, arawPendingText, bookedByPending, totalNumberPending, selectedHousePending, AmountTextTH;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);

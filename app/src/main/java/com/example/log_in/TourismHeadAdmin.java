@@ -355,7 +355,6 @@ public class TourismHeadAdmin extends AppCompatActivity {
                                     }
                                     break;
                                 case REMOVED:
-
                                     User userRemoved = dc.getDocument().toObject(User.class);
                                     userHashMap.remove(userRemoved.getEmail());
                                     upcomingUserHashMap.remove(userRemoved.getUserId());
