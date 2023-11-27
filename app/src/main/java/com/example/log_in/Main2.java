@@ -128,9 +128,7 @@ public class Main2 extends AppCompatActivity {
         Profile = findViewById(R.id.Profile);
         Profile.setOnClickListener(v -> Profile());
 
-
         ConstraintLayout main2 = findViewById(R.id.main2);
-
         main2.setOnTouchListener((view, motionEvent) -> {
             if (SettingsAreVisible() && isTouchOutsideSettings(motionEvent)) {
                 hideSettings();
@@ -175,7 +173,11 @@ public class Main2 extends AppCompatActivity {
      }
 
     private void ShareApp() {
-    ShareApp.setVisibility(View.VISIBLE);
+        ShareApp.setVisibility(View.VISIBLE);
+    }
+    private void no() {
+        Intent intent = new Intent(this, Main2.class);
+        startActivity(intent);
     }
     public void StartScreen() {
         Intent intent = new Intent(this, StartScreen.class);

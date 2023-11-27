@@ -55,7 +55,7 @@ public class Profile extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        back = findViewById(R.id.back);
+        back = findViewById(R.id.backbtnprofile);
         back.setOnClickListener(v -> main2());
         upcomingbtn = findViewById(R.id.upcomingbtn);
 
@@ -66,7 +66,6 @@ public class Profile extends AppCompatActivity {
         selectedTourTextt = findViewById(R.id.selectedTourTextt);
         DateHisto = findViewById(R.id.DateHisto);
         UpdatingtheTouristText = findViewById(R.id.UpdatingtheTouristText);
-
 
 
         prog();

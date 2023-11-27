@@ -24,7 +24,7 @@
         android:id="@+id/grass_start"
         android:layout_width="match_parent"
         android:layout_height="1024dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="184dp"
         android:alpha=".95"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
@@ -62,7 +62,7 @@
         app:srcCompat="@drawable/rectangle" />
 
     <ImageButton
-        android:id="@+id/backbtn"
+        android:id="@+id/backbtnpaymentdetails"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="30dp"

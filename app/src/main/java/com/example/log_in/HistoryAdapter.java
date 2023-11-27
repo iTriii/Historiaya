@@ -15,7 +15,7 @@ import org.checkerframework.checker.nullness.qual.NonNull;
 import java.util.ArrayList;
 
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHolder> {
-    //FOR UPDATE ONLY
+
     Context context;
     ArrayList<User> HistoryUsersArrayList;
     private final FirebaseFirestore db;

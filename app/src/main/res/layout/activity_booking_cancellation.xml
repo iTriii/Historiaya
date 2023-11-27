@@ -70,7 +70,7 @@
         app:srcCompat="@drawable/rectangle" />
 
     <ImageButton
-        android:id="@+id/backbutton"
+        android:id="@+id/backbtncancellation"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="30dp"
@@ -103,7 +103,7 @@
         app:layout_constraintBottom_toTopOf="@+id/rizal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.073"
-        app:layout_constraintStart_toEndOf="@+id/backbutton"
+        app:layout_constraintStart_toEndOf="@+id/backbtncancellation"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.306"
         tools:ignore="TextSizeCheck" />
@@ -171,9 +171,9 @@
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView"
-                android:layout_width="wrap_content"
+                android:layout_width="376dp"
                 android:layout_height="267dp"
-                android:layout_marginStart="25dp"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="270dp"
                 android:foregroundGravity="fill"
                 app:cardCornerRadius="@dimen/fab_margin"
@@ -234,7 +234,7 @@
                     android:layout_marginTop="70dp"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center_horizontal"
-                    android:text="Don Catalino Heritage House "
+                    android:text="Don Catalino Heritage"
                     android:textColor="@color/green"
                     android:textSize="15sp"
                     android:textStyle="bold"
@@ -355,7 +355,7 @@
                 android:layout_width="175dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="-360dp"
-                android:layout_marginTop="555dp"
+                android:layout_marginTop="565dp"
                 android:background="@drawable/cancelbg"
                 android:clickable="true"
                 android:fontFamily="@font/montserrat_bold"

@@ -34,7 +34,7 @@ public class BookNowCancellation extends AppCompatActivity {
 
 
 
-        backbutton = findViewById(R.id.backbutton);
+        backbutton = findViewById(R.id.backbtncancellation);
         detailsclick = findViewById(R.id.detailsclick);
 
         notnowbtn = dialog.findViewById(R.id.notnowbtn);

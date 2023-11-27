@@ -13,9 +13,6 @@ import androidx.core.content.ContextCompat;
 
 import com.google.firebase.FirebaseApp;
 
-import im.crisp.client.ChatActivity;
-import im.crisp.client.Crisp;
-
 //FOR UPDATE ONLY
 public class PaymentDetails extends AppCompatActivity {
 

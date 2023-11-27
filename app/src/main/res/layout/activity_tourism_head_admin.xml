@@ -130,7 +130,6 @@
                 </LinearLayout>
 
 
-
                 <Button
                     android:id="@+id/uploadImageTH_btn"
                     android:layout_width="168dp"

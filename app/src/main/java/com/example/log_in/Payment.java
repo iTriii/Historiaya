@@ -37,7 +37,6 @@ public class Payment extends AppCompatActivity {
     Toolbar supportActionBar;
     FirebaseFirestore db;
     private Uri selectedImageUri;
-    private String imageUrl = "";
     int SELECT_PICTURE = 1;
     FirebaseAuth mAuth;
 
@@ -46,21 +45,26 @@ public class Payment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
+
+        // initialize the firebase
         FirebaseApp.initializeApp(this);
         storageRef = FirebaseStorage.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
+
+        // initialize the ui
         supportActionBar = findViewById(R.id.toolbar);
         progress = findViewById(R.id.progress);
         imageView = findViewById(R.id.imgviewpayment);
         okbtn = findViewById(R.id.okbtn);
         selectbtn = findViewById(R.id.select);
-        back = findViewById(R.id.back);
+        back = findViewById(R.id.backbtnpayment);
 
 
-        // Back button
+// Back button
         back.setOnClickListener(v -> {
             Intent intent = new Intent(Payment.this, PaymentDetails.class);
+            startActivity(intent);  // Add this line to start the activity
             finish();
         });
 
@@ -88,7 +92,6 @@ public class Payment extends AppCompatActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         if (resultCode == RESULT_OK) {
             if (requestCode == SELECT_PICTURE) {
                 selectedImageUri = data.getData();
@@ -123,7 +126,6 @@ public class Payment extends AppCompatActivity {
     private void saveUserDataToFirestore(String imageUrl) {
         String userId = mAuth.getCurrentUser().getUid();
         DocumentReference userDocRef = db.collection("users").document(userId).collection("proofOfPayment").document(); //CREATE A SUB COLLECTION FOR USER
-
         userDocRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Map<String, Object> user = new HashMap<>();

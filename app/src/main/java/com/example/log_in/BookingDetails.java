@@ -42,7 +42,7 @@ public class BookingDetails extends AppCompatActivity {
     private ImageButton reschedcalendarbtn, reschedtimebtn, backkk;
     public Object selectedDate;
     private String selectedTime;
-    public Object selectedOption;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +69,7 @@ public class BookingDetails extends AppCompatActivity {
 
         // Find buttons in the dialog layout
         confirmbtn = dialog.findViewById(R.id.confirmbtn);
+        //NAVIGATE TO REFUND USER COPY ONCE THE USER CONFIRM IT
         confirmbtn.setOnClickListener(v -> {
             Intent backIntent = new Intent(BookingDetails.this, RefundUserCopy.class);
             startActivity(backIntent);
@@ -184,10 +185,9 @@ public class BookingDetails extends AppCompatActivity {
 
         // Create a new document in the "rescheduleBooking" collection
         DocumentReference newBookingDocRef = rescheduleBookingCollectionRef.document();
-
         // Check if the selected date and time are null
         if (selectedDate == null || selectedTime == null || TextUtils.isEmpty(selectedTime)) {
-//            return;
+       // return;
         }
 
         // Validate the selected date and time
@@ -261,7 +261,7 @@ public class BookingDetails extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
     }
 
-    // btn next.
+    // INITIALIZE THE BUTTON NEXT
     private void setupButtonClickListener() {
         btnnext.setOnClickListener(view -> {
             dialog.dismiss(); // show the dialogreschedule

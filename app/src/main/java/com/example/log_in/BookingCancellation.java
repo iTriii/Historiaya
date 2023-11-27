@@ -32,7 +32,7 @@ public class BookingCancellation extends AppCompatActivity {
         setContentView(R.layout.activity_booking_cancellation);
 
         // Initializing views
-        backbutton = findViewById(R.id.backbutton);
+        backbutton = findViewById(R.id.backbtncancellation);
         withdrawbtn = findViewById(R.id.withdrawbtn);
         TotalTouristsText = findViewById(R.id.TotalTouristsText);
         nameText = findViewById(R.id.nameText);
@@ -45,26 +45,23 @@ public class BookingCancellation extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        backbutton.setOnClickListener(v -> {
-                    Intent backIntent = new Intent(BookingCancellation.this, BookingDetailMain.class);
-                    startActivity(backIntent);
-                });
 
         // Click listener for viewing profile
         detailsclick.setOnClickListener(v -> {
             Intent intent = new Intent(BookingCancellation.this, BookingDetailMain.class);
             startActivity(intent);
         });
+
         // view button
         backbutton.setOnClickListener(v -> {
             Intent intent = new Intent(BookingCancellation.this, BookingDetailMain.class);
             startActivity(intent);
         });
+
         // Initialization and actions for withdrawal dialog
         dialog = new Dialog(BookingCancellation.this);
         dialog.setContentView(R.layout.dialog_cancellation);
         dialog.setCancelable(false);
-
         Button notnowbtn = dialog.findViewById(R.id.notnowbtn);
         Button confirmbtn = dialog.findViewById(R.id.confirmbtn);
 
@@ -75,6 +72,7 @@ public class BookingCancellation extends AppCompatActivity {
             dialog.dismiss();
         });
 
+        //CONFIRMATION BUTTON, NAVIGATE TO THE BOOKING DETAIL MAIN
         confirmbtn.setOnClickListener(v -> {
             Intent confirmIntent = new Intent(BookingCancellation.this, BookingDetailMain.class);
             startActivity(confirmIntent);
@@ -82,9 +80,12 @@ public class BookingCancellation extends AppCompatActivity {
             dialog.dismiss();
         });
 
+        //SHOW THE DIALOG OF WITHDRAWAL
         withdrawbtn.setOnClickListener(v -> {
             dialog.show();
         });
+
+
 
         // Initialization and actions for continue dialog
         dialog = new Dialog(BookingCancellation.this);
@@ -94,9 +95,14 @@ public class BookingCancellation extends AppCompatActivity {
         Button btnNotnow = dialog.findViewById(R.id.btnNotnow);
         Button btnConfirm = dialog.findViewById(R.id.btnConfirm);
 
+        continuebtn.setOnClickListener(v -> {
+            dialog.show();
+        });
+
+
         btnNotnow.setOnClickListener(v -> {
-            Intent backIntent = new Intent(BookingCancellation.this, BookingDetailMain.class);
-            startActivity(backIntent);
+            Intent notnowIntent = new Intent(BookingCancellation.this, BookingDetailMain.class);
+            startActivity(notnowIntent);
             Toast.makeText(BookingCancellation.this, "Not Now", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
         });
@@ -106,10 +112,6 @@ public class BookingCancellation extends AppCompatActivity {
             startActivity(confirmIntent);
             Toast.makeText(BookingCancellation.this, "Confirm Cancellation, please wait for approval", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
-        });
-
-        continuebtn.setOnClickListener(v -> {
-            dialog.show();
         });
 
         // Fetching user data from Firestore

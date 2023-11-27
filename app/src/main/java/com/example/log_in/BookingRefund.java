@@ -29,9 +29,9 @@ public class BookingRefund extends AppCompatActivity {
     TextView detailsclick, amountRefundText, pickhouseRefundText, nameRefundText;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
-    FirebaseUser user;
     private String selectedOption;
     private Object userDataListener;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,12 +39,13 @@ public class BookingRefund extends AppCompatActivity {
         setContentView(R.layout.activity_booking_refund);
 
         spinRefund = findViewById(R.id.spinRefund);
-        back = findViewById(R.id.backbutton);
+        back = findViewById(R.id.backbtnRefund);
         btnsub = findViewById(R.id.btnsub);
         detailsclick = findViewById(R.id.detailsclick);
         amountRefundText = findViewById(R.id.amountRefundText);
         pickhouseRefundText = findViewById(R.id.pickhouseRefundText);
         nameRefundText = findViewById(R.id.nameRefundText);
+
 
         // Initialize Firebase
         mAuth = FirebaseAuth.getInstance();
@@ -68,6 +69,7 @@ public class BookingRefund extends AppCompatActivity {
         dialog.setCancelable(false);
 
         Button confirmDialogbtn = dialog.findViewById(R.id.confirmDialogbtn);
+
         confirmDialogbtn.setOnClickListener(v -> {
             Intent confirmIntent = new Intent(BookingRefund.this, RefundUserCopy.class); // NAVIGATE TO REFUND USER COPY ACTIVITY
             startActivity(confirmIntent);
