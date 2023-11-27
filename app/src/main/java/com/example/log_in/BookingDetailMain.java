@@ -39,7 +39,7 @@ public class BookingDetailMain extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
         // Initializing TextViews and Buttons
-        backbutton = findViewById(R.id.backbutton);
+        backbutton = findViewById(R.id.backbtnDetailMain);
         selectedTourText = findViewById(R.id.selectedTourText);
         totalText = findViewById(R.id.totalText);
         selectedtouristsText = findViewById(R.id.selectedtouristsText);
@@ -49,7 +49,7 @@ public class BookingDetailMain extends AppCompatActivity {
         cancelbtn = findViewById(R.id.cancelbtn);
         Donebut = findViewById(R.id.Donebut);
 
-        // Initializing the dialog
+   // Initializing the dialog
         dialog = new Dialog(BookingDetailMain.this);
         dialog.setContentView(R.layout.dialog_cancellation);
         dialog.setCancelable(false);
@@ -64,6 +64,7 @@ public class BookingDetailMain extends AppCompatActivity {
             Toast.makeText(BookingDetailMain.this, "Not Now", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
         });
+
 
         confirmbtn.setOnClickListener(v -> {
             Intent backIntent = new Intent(BookingDetailMain.this, Main2.class);

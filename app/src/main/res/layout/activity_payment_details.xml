@@ -30,17 +30,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/grass_1" />
 
+
     <ImageView
-        android:id="@+id/twoppl"
-        android:layout_width="match_parent"
-        android:layout_height="1024dp"
-        android:layout_marginTop="180dp"
-        android:alpha=".89"
-        app:layout_constraintEnd_toEndOf="@+id/grass_start"
-        app:layout_constraintHorizontal_bias="0.688"
+        android:id="@+id/twopips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="316dp"
+        android:contentDescription="@string/twopips"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/backdrop" />
+        app:srcCompat="@drawable/twopips" />
 
 
     <!-- Payment Items -->
@@ -60,7 +61,7 @@
         app:srcCompat="@drawable/rectangle" />
 
     <ImageButton
-        android:id="@+id/backbtn"
+        android:id="@+id/backbtnpaymentdetails"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="30dp"
@@ -215,10 +216,11 @@
 
                 <TextView
                     android:id="@+id/Note"
-                    android:layout_width="388dp"
-                    android:layout_height="78dp"
-                    android:layout_marginStart="14dp"
+                    android:layout_width="313dp"
+                    android:layout_height="80dp"
+                    android:layout_marginStart="35dp"
                     android:layout_marginTop="360dp"
+                    android:background="@color/GREEN"
                     android:fontFamily="@font/montserrat_alternates_extrabold"
                     android:shadowColor="@color/black"
                     android:shadowDx="2"
@@ -310,14 +312,15 @@
             <TextView
                 android:id="@+id/Note2"
                 android:layout_width="326dp"
-                android:layout_height="88dp"
-                android:layout_marginStart="14dp"
-                android:layout_marginTop="360dp"
+                android:layout_marginTop="380dp"
                 android:fontFamily="@font/montserrat_alternates_extrabold"
                 android:shadowColor="@color/black"
                 android:shadowDx="2"
                 android:shadowDy="-2"
                 android:shadowRadius="2"
+                android:background="@color/GREEN"
+                android:layout_height="80dp"
+                android:layout_marginStart="35dp"
                 android:text="Dear Tourists: Scan this QR for payment in Gala Rodriguez House "
                 android:textColor="#FEC242"
                 android:textSize="20sp" />

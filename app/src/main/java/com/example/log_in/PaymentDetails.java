@@ -31,7 +31,7 @@ public class PaymentDetails extends AppCompatActivity {
 
         // Initialize Firebase
         FirebaseApp.initializeApp(this);
-        backbtn = findViewById(R.id.backbtn);
+        backbtn = findViewById(R.id.backbtnpaymentdetails);
         chatbtn = findViewById(R.id.chatbtn);
         donebtn = findViewById(R.id.donebtn);
         donebtn2 = findViewById(R.id.donebtn2);

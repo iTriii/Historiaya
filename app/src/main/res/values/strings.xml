@@ -188,7 +188,7 @@
     <string-array name="HeritageHouses">
         <item> Select Tour </item>
         <item> Don Catalino Rodriguez </item>
-        <item> Gala Rogriguez  </item>
+        <item> Gala Rodriguez House </item>
         <item> Both </item>
     </string-array>
 
@@ -243,35 +243,20 @@
     <string name="done">Done</string>
     <string name="title_activity_user">userActivity</string>
     <string name="title_activity_booking">Booking</string>
-    <string name="gala_rogriguez">Gala Rogriguez</string>
-    <string name="don_catalino_rodriguez">Don Catalino Rodriguez</string>
     <string name="_0936_857_7949">0936–857-7949</string>
     <string name="achievements">Achievements</string>
     <string name="history">History</string>
 
-    <string name="reservation_fee_heritage_house">Reservation Fee (Heritage House</string>
-    <string name="reservation_fee_tour_guide">Reservation Fee (Tour Guide)</string>
-    <string name="subtotal">Subtotal</string>
-    <string name="heritage_house">HERITAGE HOUSE</string>
-    <string name="heritagehouse">HeritageHouse</string>
-    <string name="select_user"> Select User</string>
-    <string name="sign_in">Sign In</string>
-    <string name="type_a_message">Type a message…</string>
 
 
     <!-- BOOKING -->
     <string name="mybooking">mybooking</string>
-    <string name="don_catalino_house">Don Catalino House</string>
-    <string name="service_charge">Service Charge</string>
-    <string name="total">Total</string>
     <string name="gcash_qr_code">GCASH QR CODE</string>
     <string name="review_the_mobile_number_and_amount_carefully_before_sending_confirmed_transactions_will_not_be_refunded">Review the mobile number and amount carefully before sending. Confirmed transactions will not be refunded.</string>
     <string name="note">NOTE:</string>
     <string name="review_the_name_and_amount_carefully_before_sending">Review the name and amount carefully before sending.</string>
     <string name="send_the_proof_of_payment_trough_chat">Send the proof of payment trough chat.</string>
-    <string name="servicecharge">Service Charge</string>
-    <string name="galarodriguez">Gala Rodriguez</string>
-    <string name="doncatalino">Don Catalino</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -418,6 +403,50 @@
     <string name="proceed_to_cancellation">Proceed to Cancellation</string>
     <string name="refund_amount">Refund Amount:</string>
     <string name="select_tourists">Select Tourists</string>
+
+    //Terms and conditions
+    <string name="historiaya_terms_and_conditions">Historiaya Terms and Conditions</string>
+    <string name="welcome">Welcome</string>
+    <string name="greetings">Welcome! Thank you for your interest in our application.</string>
+    <string name="greetings2">We, developers, together with our affiliates, provide a variety of features that you can enjoy with our Historiaya application, and these Terms and Conditions will cover your use of the application.</string>
+
+    <string name="userguidelines">USER GUIDELINES</string>
+    <string name="youAgree">We strive to make our application proteted and available without inetrruption. To help us meet these goals, you agree that:</string>
+    <string name="terms1">1. You will not modify or disable any features of our application.</string>
+    <string name="terms2">2. You will not use our application in any fraudulent or malicious way.</string>
+    <string name="terms3">3. You will not collect any information or data from our system or attempt to decipher any transmission to or from the database.</string>
+    <string name="terms4">4. we reserve the right to terminate or suspend your access to our services at any time.</string>
+
+    <string name="userreg">User Registration:</string>
+    <string name="userreg1">1. You agree to provide complete and accurate information in creating an account.</string>
+    <string name="userreg2">2. You are responsible for maintaining the confidentiality of your account credentials including your username and password.</string>
+
+    <string name="ReservationandPayment">Reservation and Payment:</string>
+    <string name="reserve1">1. The App serves as a reservation system for tours offered by the Sariaya Tourism Office. You may book tours, make payments using GCASH, and communicate to the Receptionist through the App.</string>
+    <string name="reserve2">2. Reservation fees and payment details are specified within the App, and you agree to comply with the stated terms.</string>
+    <string name="reserve3">3. In cases of transaction errors, the app cannot be held responsible for any financial losses incurred.</string>
+
+    <string name="HeritageHouse">Heritage House:</string>
+    <string name="GalaRodriguez">Gala Rodriguez Heritage House</string>
+    <string name="HH1">1. Management will not be liable for damage/loss of any valuables or other personal property left in the Heritage house.</string>
+    <string name="HH2">2. For documentation and advertisement purposes, Staffs of Gala Rodriguez Heritage House will take pictures and videos during the actual event subject to the approval of the guests. Rest assured the videos and pictures taken remain exclusive property of PlAZA DE SHALOM (where the heritage house is located) subject to copyright and applicable laws and regulations.</string>
+    <string name="HH3">3. Guests can utilize the venue up to Four (4) hours maximum time. Excess rate per hour will charge regarding the contract.</string>
+
+    <string name="PointsandDiscount">Points and Discount:</string>
+    <string name="PP1">1. Historiaya points can be only redeemed for discounts at collaborated stores.</string>
+    <string name="PP2">2. Points are subject to the rules and conditions specified within the App.</string>
+    <string name="PP3">3. Discounts offered through vouchers are subject to the terms set by the store managers.</string>
+
+    <string name="ContactUs">Contact Us:</string>
+    <string name="CU">If you have any questions or concerns about these Terms or the App, kindly contact us at itri.acc@gmail.com</string>
+
+    <string name="usingOurServices">You acknowledge and agree that our application belongs to us and our partners. These terms and conditions do not grant your any ownership interest in or to our services.</string>
+    <string name="usingOurServices2">The availability and features may vary depending on the device you are using or which Android version you have.</string>
+    <string name="check">By checking this box, you agree to the terms and conditions outlined above and acknowledge that you have read and understood our policies.</string>
+    <string name="your_refund_details" />
+    <string name="logout_po">Are you sure you want to Log Out?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
     <!-- RESCHED  USER DETAILS ACTIVITY -->
 
