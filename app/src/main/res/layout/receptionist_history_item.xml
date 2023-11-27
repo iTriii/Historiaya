@@ -6,6 +6,7 @@
     app:cardElevation="8dp"
     app:cardCornerRadius="8dp"
     android:layout_margin="10dp">
+    <!--    For Update only-->
 
 
     <LinearLayout
@@ -14,7 +15,7 @@
         android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="250dp"
+            android:layout_height="260dp"
             android:orientation="horizontal">
 
             <TextView
@@ -80,6 +81,7 @@
                 android:id="@+id/bookebyNameReceptionist_History"
                 android:layout_width="200dp"
                 android:layout_height="21dp"
+                android:text="Leah Sulongsawa"
                 android:layout_gravity="center"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="45dp"
@@ -92,7 +94,7 @@
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="-330dp"
+                android:layout_marginStart="-333dp"
                 android:layout_marginTop="70dp"
                 android:fontFamily="@font/montserrat"
                 android:text="House:"
@@ -115,7 +117,7 @@
                 android:layout_width="115dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="-330dp"
+                android:layout_marginStart="-333dp"
                 android:layout_marginTop="95dp"
                 android:fontFamily="@font/montserrat"
                 android:text="No of Tourists:"
@@ -125,10 +127,32 @@
 
             <TextView
                 android:id="@+id/TotalNumberReceptionist_History"
-                android:layout_width="100dp"
+                android:layout_width="200dp"
                 android:layout_height="21dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="95dp"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/montserrat"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+            <TextView
+                android:id="@+id/Amount"
+                android:layout_width="115dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="-335dp"
+                android:layout_marginTop="115dp"
+                android:fontFamily="@font/montserrat"
+                android:text="Amount:"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/AmountText"
+                android:layout_width="200dp"
+                android:layout_height="21dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="115dp"
                 android:layout_marginStart="20dp"
                 android:fontFamily="@font/montserrat"
                 android:textColor="#000000"

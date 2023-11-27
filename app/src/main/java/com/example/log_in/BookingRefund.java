@@ -21,7 +21,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class BookingRefund extends AppCompatActivity {
-
+    //FOR UPDATE ONLY
     Spinner spinRefund;
     Button btnsub;
     ImageButton back;
@@ -69,7 +69,7 @@ public class BookingRefund extends AppCompatActivity {
 
         Button confirmDialogbtn = dialog.findViewById(R.id.confirmDialogbtn);
         confirmDialogbtn.setOnClickListener(v -> {
-            Intent confirmIntent = new Intent(BookingRefund.this, RefundUserCopy.class);
+            Intent confirmIntent = new Intent(BookingRefund.this, RefundUserCopy.class); // NAVIGATE TO REFUND USER COPY ACTIVITY
             startActivity(confirmIntent);
             Toast.makeText(BookingRefund.this, "Confirm Refund, please wait for approval", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
@@ -92,7 +92,7 @@ public class BookingRefund extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // Handle the selected refund option
                 selectedOption = parentView.getItemAtPosition(position).toString();
-                Toast.makeText(BookingRefund.this, "Selected Refund Option: " + selectedOption, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(BookingRefund.this, "Selected Refund Option: " + selectedOption, Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -146,7 +146,7 @@ public class BookingRefund extends AppCompatActivity {
             userDocRef
                     .update("selectedRefundOption", selectedOption)  // Update the selected refund option in Firestore
                     .addOnSuccessListener(aVoid -> {
-                        Toast.makeText(BookingRefund.this, "Selected refund option saved successfully", Toast.LENGTH_SHORT).show();
+                        //   Toast.makeText(BookingRefund.this, "Selected refund option saved successfully", Toast.LENGTH_SHORT).show();
                     })
                     .addOnFailureListener(e -> {
                         Toast.makeText(BookingRefund.this, "Error saving refund option: " + e.getMessage(), Toast.LENGTH_SHORT).show();

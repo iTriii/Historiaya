@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+<!--    For Update only-->
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"

@@ -36,7 +36,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Receptionist extends AppCompatActivity {
-
+    //FOR UPDATE ONLY
 
     RadioButton UpcomingRecep_Tab, HistoryRecep_tab;
     ScrollView UpcomingRecep_ScrollView, HistoryRecep_ScrollView;
@@ -68,7 +68,7 @@ public class Receptionist extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
         user = auth.getCurrentUser();
-        
+
         // Initialize RecyclerViews and Adapters
         ReceptionistUpcoming_RecyclerView = findViewById(R.id.ReceptionistUpcoming_RecyclerView);
         ReceptionistHistory_RecyclerView = findViewById(R.id.ReceptionistHistory_RecyclerView);

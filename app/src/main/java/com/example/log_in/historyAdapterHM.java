@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-
+//FOR UPDATE ONLY
 public class historyAdapterHM extends RecyclerView.Adapter<historyAdapterHM.MyViewHolder> {
     Context context;
     ArrayList<User> userArrayList;
@@ -42,6 +42,9 @@ public class historyAdapterHM extends RecyclerView.Adapter<historyAdapterHM.MyVi
         holder.bookebyNameHMHistory.setText(HistoryUsers.getEmail());
         holder.TotalNumberHMHistory.setText(HistoryUsers.getSelectedTouristNum());
         holder.SelectedHouseHMHistory.setText(HistoryUsers.getSelectedTour());
+        // totalAmount is an integer.
+        holder.AmountHouseManagerText.setText(String.valueOf(HistoryUsers.getTotalAmount()));
+
 
     }
 
@@ -52,7 +55,7 @@ public class historyAdapterHM extends RecyclerView.Adapter<historyAdapterHM.MyVi
 
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView MonthHouseManagerText, BahayHouseManagerText, ArawHouseManagerText,bookebyNameHMHistory,TotalNumberHMHistory,SelectedHouseHMHistory;
+        TextView MonthHouseManagerText, BahayHouseManagerText, ArawHouseManagerText,bookebyNameHMHistory,TotalNumberHMHistory,SelectedHouseHMHistory,AmountHouseManagerText;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -62,7 +65,7 @@ public class historyAdapterHM extends RecyclerView.Adapter<historyAdapterHM.MyVi
             bookebyNameHMHistory = itemView.findViewById(R.id.bookebyNameHM_History);
             TotalNumberHMHistory = itemView.findViewById(R.id.TotalNumberHM_History);
             SelectedHouseHMHistory = itemView.findViewById(R.id.SelectedHouseHMHistory);
-
+            AmountHouseManagerText = itemView.findViewById(R.id.AmountHouseManagerText);
 
 
         }

@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+//FOR UPDATE ONLY
 
 public class Reset_Password extends AppCompatActivity {
     Button Reset;

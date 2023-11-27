@@ -7,6 +7,7 @@
     app:cardElevation="8dp"
     app:cardCornerRadius="8dp"
     android:layout_margin="10dp">
+    <!--    For Update only-->
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -17,7 +18,7 @@
 
         <LinearLayout
             android:layout_width="340dp"
-            android:layout_height="230dp"
+            android:layout_height="250dp"
             android:layout_gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -114,6 +115,7 @@
                 android:id="@+id/bookebyNamePending"
                 android:layout_width="180dp"
                 android:layout_height="20dp"
+                android:text="Leah Sulongsawa"
                 android:textAlignment="textStart"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="150dp"
@@ -165,6 +167,29 @@
               android:textAlignment="textStart"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="190dp"
+                android:fontFamily="@font/montserrat"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+            <TextView
+                android:id="@+id/AmountText"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:textAlignment="textStart"
+                android:layout_marginStart="-310dp"
+                android:layout_marginTop="210dp"
+                android:fontFamily="@font/montserrat"
+                android:text="Amount"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/AmountTextTH"
+                android:layout_width="180dp"
+                android:layout_height="20dp"
+                android:textAlignment="textStart"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="210dp"
                 android:fontFamily="@font/montserrat"
                 android:textColor="#000000"
                 android:textSize="15sp" />

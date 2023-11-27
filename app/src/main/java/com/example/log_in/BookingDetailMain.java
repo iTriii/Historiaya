@@ -1,5 +1,6 @@
 package com.example.log_in;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import com.google.firebase.firestore.ListenerRegistration;
 
 public class BookingDetailMain extends AppCompatActivity {
 
+    //FOR UPDATE ONLY
     // Declaring variables
     Button notnowbtn, confirmbtn, Nextbtn, Donebut;
     ImageButton backbutton, reschedbtn, cancelbtn, refundbtn;
@@ -92,7 +94,7 @@ public class BookingDetailMain extends AppCompatActivity {
         });
 
         Donebut.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingDetailMain.this, Profile.class);
+            Intent intent = new Intent(BookingDetailMain.this, Main2.class);
             startActivity(intent);
         });
 
@@ -101,6 +103,7 @@ public class BookingDetailMain extends AppCompatActivity {
     }
 
     // Method to retrieve data from Firestore
+    @SuppressLint("DefaultLocale")
     private void retrieveDataFromFirestore() {
         userDataListener = db.collection("users")
                 .document(auth.getCurrentUser().getUid())

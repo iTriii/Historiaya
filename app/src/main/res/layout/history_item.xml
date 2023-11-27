@@ -7,6 +7,7 @@
     app:cardElevation="8dp"
     app:cardCornerRadius="8dp"
     android:layout_margin="10dp">
+        <!--    For Update only-->
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -79,6 +80,7 @@
                 android:layout_height="20dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="20dp"
+                android:text="Leah Sulongsawa"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/montserrat"
                 android:textColor="#000000"
@@ -131,6 +133,27 @@
                 android:fontFamily="@font/montserrat"
                 android:textColor="#000000"
                 android:textSize="15sp" />
-
+            <TextView
+                android:id="@+id/Amount"
+                android:layout_width="100dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="-260dp"
+                android:layout_marginTop="65dp"
+                android:fontFamily="@font/montserrat"
+                android:text="Amount:"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/AmountHistory"
+                android:layout_width="140dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="65dp"
+                android:fontFamily="@font/montserrat"
+                android:textColor="#000000"
+                android:textSize="15sp" />
         </LinearLayout>
 </androidx.cardview.widget.CardView>

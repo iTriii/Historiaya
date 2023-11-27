@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+//FOR UPDATE ONLY
 
 public class Receptionist_Upcoming_Adapter extends RecyclerView.Adapter< Receptionist_Upcoming_Adapter.MyViewHolder> {
     Context context;

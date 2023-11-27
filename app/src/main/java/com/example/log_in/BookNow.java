@@ -40,7 +40,7 @@ import java.util.Set;
 
 import im.crisp.client.ChatActivity;
 import im.crisp.client.Crisp;
-
+//FOR UPDATE ONLY
 
 public class BookNow extends AppCompatActivity {
     private ImageButton chatbtn, backbtn;
@@ -108,10 +108,10 @@ public class BookNow extends AppCompatActivity {
 
         // Set up spinner adapters
 
-btntime1 = findViewById(R.id.btntime1);
-btntime2 = findViewById(R.id.btntime2);
-btntime3 = findViewById(R.id.btntime3);
-btntime4 = findViewById(R.id.btntime4);
+        btntime1 = findViewById(R.id.btntime1);
+        btntime2 = findViewById(R.id.btntime2);
+        btntime3 = findViewById(R.id.btntime3);
+        btntime4 = findViewById(R.id.btntime4);
 
 
 
@@ -156,12 +156,12 @@ btntime4 = findViewById(R.id.btntime4);
 
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-              //  showToast("Heritage House Selected: " + spinTour.getSelectedItem().toString());
+                //  showToast("Heritage House Selected: " + spinTour.getSelectedItem().toString());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-            //    showToast("No Heritage House Selected. Please, Select a Tour");
+                //    showToast("No Heritage House Selected. Please, Select a Tour");
             }
         });
 
@@ -294,7 +294,7 @@ btntime4 = findViewById(R.id.btntime4);
     }
 
 
-//CRISP
+    //CRISP
     private void startCrispChat() {
         Crisp.setUserEmail(mAuth.getCurrentUser().getEmail());
 
@@ -361,10 +361,10 @@ btntime4 = findViewById(R.id.btntime4);
     private double calculateTourPrice(String selectedTour) {
         double tourPrice = 0.0;
         switch (selectedTour) {
-            case "Don Catalino Rodriguez House":
+            case "Don Catalino Rodriguez":
                 tourPrice = 500.0;
                 break;
-            case "Gala Rogriguez House":
+            case "Gala Rogriguez":
                 tourPrice = 1000.0;
                 break;
             case "Both":
@@ -382,10 +382,10 @@ btntime4 = findViewById(R.id.btntime4);
         int delayMillis = 60000; //1min delay
         new Handler()
                 .postDelayed(() -> addDataToFirestore(userId, selectedTour, selectedTouristNum, reservedDate, totalAmount, selectedTime)
-                , delayMillis);
+                        , delayMillis);
 
 
-    DocumentReference userDocRef = db.collection("users").document(userId);
+        DocumentReference userDocRef = db.collection("users").document(userId);
         userDocRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Map<String, Object> bookingData = new HashMap<>();
@@ -399,7 +399,7 @@ btntime4 = findViewById(R.id.btntime4);
                 bookingData.put("selectedTime", selectedTime);
 
                 userDocRef.update(bookingData).addOnSuccessListener(documentReference -> {
-                  //  Toast.makeText(getApplicationContext(), "Booking updated", Toast.LENGTH_SHORT).show();
+                    //  Toast.makeText(getApplicationContext(), "Booking updated", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(), PaymentDetails.class));
                     if (isTourDone(selectedTour)) {
                         moveToHistory(userId, selectedTour, reservedDate);
@@ -460,14 +460,14 @@ btntime4 = findViewById(R.id.btntime4);
                     db.collection("history").document(userId)
                             .delete()
                             .addOnSuccessListener(aVoid -> {
-                       //         Toast.makeText(getApplicationContext(), "Booking moved to history", Toast.LENGTH_SHORT).show();
+                                //         Toast.makeText(getApplicationContext(), "Booking moved to history", Toast.LENGTH_SHORT).show();
                             })
                             .addOnFailureListener(exception -> {
-                         //       Toast.makeText(getApplicationContext(), "Failed to delete booking: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                                //       Toast.makeText(getApplicationContext(), "Failed to delete booking: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
                             });
                 })
                 .addOnFailureListener(exception -> {
-                //    Toast.makeText(getApplicationContext(), "Failed to move booking to history: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                    //    Toast.makeText(getApplicationContext(), "Failed to move booking to history: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 

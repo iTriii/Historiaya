@@ -26,6 +26,7 @@ import com.google.firebase.storage.StorageReference;
 import java.util.HashMap;
 import java.util.Map;
 public class StoreManager extends AppCompatActivity {
+    //FOR UPDATE ONLY
 
     private final ImageView[] phArray = new ImageView[7];
     private final Button[] editButtons = new Button[7];

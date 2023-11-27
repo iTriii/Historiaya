@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+//FOR UPDATE ONLY
 
 public class upcoming_reservation_adapter extends RecyclerView.Adapter<upcoming_reservation_adapter.MyViewHolder> {
 
@@ -41,6 +42,7 @@ public class upcoming_reservation_adapter extends RecyclerView.Adapter<upcoming_
         holder. MonthHouseManagerText.setText(upcoming_reservation_of_user.getReservedDate());
         holder.BahayHouseManagerText.setText(upcoming_reservation_of_user.getSelectedTour());
         holder.ArawHouseManagerText.setText(upcoming_reservation_of_user.getReservedDate());
+//        holder.AmountHouseManagerText.setText(String.valueOf(upcoming_reservation_of_user.getTotalAmount()));
     }
 
     @Override
@@ -50,13 +52,14 @@ public class upcoming_reservation_adapter extends RecyclerView.Adapter<upcoming_
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView MonthHouseManagerText, BahayHouseManagerText, ArawHouseManagerText;
+        TextView MonthHouseManagerText, BahayHouseManagerText, ArawHouseManagerText,AmountHouseManagerText;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             MonthHouseManagerText = itemView.findViewById(R.id.MonthHouseManagerText);
             BahayHouseManagerText = itemView.findViewById(R.id.BahayHouseManagerText);
             ArawHouseManagerText = itemView.findViewById(R.id.ArawHouseManagerText);
+//            AmountHouseManagerText = itemView.findViewById(R.id.AmountHouseManagerText);
         }
     }
 }

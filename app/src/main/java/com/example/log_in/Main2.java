@@ -16,7 +16,7 @@
 
  import androidx.appcompat.app.AppCompatActivity;
  import androidx.constraintlayout.widget.ConstraintLayout;
-
+ //FOR UPDATE ONLY
 public class Main2 extends AppCompatActivity {
 
     TextView Start, BookNow, Store, Map, AppLink;

@@ -8,10 +8,11 @@
     app:cardCornerRadius="8dp"
     android:layout_margin="10dp">
 
+    <!--    For Update only-->
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="220dp"
         android:layout_marginTop="10dp"
         android:orientation="vertical">
 
@@ -29,7 +30,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="170dp"
+                android:layout_height="195dp"
                 android:orientation="vertical">
 
                 <ImageView
@@ -84,6 +85,7 @@
                     android:layout_height="20dp"
                     android:layout_gravity="center"
                     android:layout_marginStart="70dp"
+                    android:text="Leah Sulongsawa"
                     android:layout_marginTop="-20dp"
                     android:fontFamily="@font/montserrat"
                     android:textColor="#000000"
@@ -127,6 +129,28 @@
 
                 <TextView
                     android:id="@+id/TotalNumberHM_History"
+                    android:layout_width="200dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="70dp"
+                    android:layout_marginTop="-20dp"
+                    android:fontFamily="@font/montserrat"
+                    android:textColor="#000000"
+                    android:textSize="15sp" />
+                <TextView
+                    android:id="@+id/AmountHouseManager"
+                    android:layout_width="100dp"
+                    android:layout_height="20dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="-110dp"
+                    android:layout_marginTop="2dp"
+                    android:fontFamily="@font/montserrat"
+                    android:text="Amount:"
+                    android:textColor="#000000"
+                    android:textSize="15sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/AmountHouseManagerText"
                     android:layout_width="200dp"
                     android:layout_height="20dp"
                     android:layout_gravity="center"

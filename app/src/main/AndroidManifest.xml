@@ -33,15 +33,15 @@
         <activity
             android:name=".HouseManager"
             android:exported="false" />
-        <activity
-            android:name=".GalaRodriguezAdmin"
-            android:exported="false" />
-        <activity
-            android:name=".DonCatalinoAdmin"
-            android:exported="false" />
-        <activity
-            android:name=".Admin"
-            android:exported="false" />
+<!--        <activity-->
+<!--            android:name=".GalaRodriguezAdmin"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".DonCatalinoAdmin"-->
+<!--            android:exported="false" />-->
+<!--        <activity-->
+<!--            android:name=".Admin"-->
+<!--            android:exported="false" />-->
         <activity
             android:name=".Receptionist"
             android:exported="false" />

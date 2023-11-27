@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Store">
-
+    <!--for update-->
     <ImageView
         android:id="@+id/rizal_Start"
         android:layout_width="667dp"

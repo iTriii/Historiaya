@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class BookNowCancellation extends AppCompatActivity {
 
-
+    //FOR UPDATE ONLY
     Button  withdrawbtn,notnowbtn,confirmbtn;
     ImageButton backbutton;
     TextView detailsclick;
