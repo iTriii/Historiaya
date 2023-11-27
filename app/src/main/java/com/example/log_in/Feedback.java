@@ -1,9 +1,11 @@
 package com.example.log_in;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +19,7 @@ import java.util.Map;
 public class Feedback extends AppCompatActivity {
     private EditText feedbackEditText;
     private Button submitButton;
+    ImageButton backbtn,exitbtn;
     private FirebaseFirestore db;
     private FirebaseAuth mAuth;
     private String userId;
@@ -28,6 +31,9 @@ public class Feedback extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
+        backbtn= findViewById(R.id.backbtn);
+        exitbtn = findViewById(R.id.exitbtn);
+
 
         feedbackEditText = findViewById(R.id.editTextFeedback);
         submitButton = findViewById(R.id.Submitbtn);
@@ -37,6 +43,17 @@ public class Feedback extends AppCompatActivity {
             public void onClick(View view) {
                 submitFeedback();
             }
+        });
+
+        // Back button
+        backbtn.setOnClickListener(v -> {
+            Intent intent = new Intent(Feedback.this, Settings.class);
+            startActivity(intent);
+        });
+
+        exitbtn.setOnClickListener(v -> {
+            Intent intent = new Intent(Feedback.this, Main2.class);
+            startActivity(intent);
         });
 
         // Get the current user's UID
