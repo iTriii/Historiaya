@@ -113,14 +113,15 @@
 
     <ImageView
         android:id="@+id/bgFeedback"
-        android:layout_width="358dp"
-        android:layout_height="307dp"
+        android:layout_width="352dp"
+        android:layout_height="209dp"
         android:background="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/Submitbtn"
         app:layout_constraintEnd_toEndOf="@+id/blurred"
+        app:layout_constraintHorizontal_bias="0.508"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/clouds"
-        app:layout_constraintVertical_bias="0.917"
+        app:layout_constraintVertical_bias="0.863"
         tools:ignore="MissingConstraints" />
 
     <TextView
@@ -136,7 +137,7 @@
         app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/clouds"
-        app:layout_constraintVertical_bias="0.216"
+        app:layout_constraintVertical_bias="0.374"
         app:srcCompat="@drawable/cloud"
         tools:ignore="MissingConstraints" />
 
@@ -145,7 +146,7 @@
         android:layout_width="354dp"
         android:layout_height="59dp"
         android:layout_marginTop="448dp"
-        android:hint="Enter your feedback here..."
+        android:hint="Enter your feedback..."
         android:textColor="@color/GREEN"
         app:layout_constraintBottom_toTopOf="@+id/Submitbtn"
         app:layout_constraintEnd_toEndOf="parent"
