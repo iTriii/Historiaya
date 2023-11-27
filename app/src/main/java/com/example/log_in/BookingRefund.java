@@ -146,7 +146,7 @@ public class BookingRefund extends AppCompatActivity {
             userDocRef
                     .update("selectedRefundOption", selectedOption)  // Update the selected refund option in Firestore
                     .addOnSuccessListener(aVoid -> {
-                        Toast.makeText(BookingRefund.this, "Selected refund option saved successfully", Toast.LENGTH_SHORT).show();
+                        //   Toast.makeText(BookingRefund.this, "Selected refund option saved successfully", Toast.LENGTH_SHORT).show();
                     })
                     .addOnFailureListener(e -> {
                         Toast.makeText(BookingRefund.this, "Error saving refund option: " + e.getMessage(), Toast.LENGTH_SHORT).show();

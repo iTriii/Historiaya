@@ -104,7 +104,7 @@ public class BookNow extends AppCompatActivity {
         backbtn = findViewById(R.id.backbtn);
         SDate = findViewById(R.id.SDate);
         calendarView = findViewById(R.id.Calendar);
-        displayImageView = findViewById(R.id.displayImageView);
+
 
         // Configure Crisp
         Crisp.configure(getApplicationContext(), "2a53b3b9-d275-4fb1-81b6-efad59022426");
@@ -122,48 +122,7 @@ public class BookNow extends AppCompatActivity {
         setupSpinners();
 
     }
-//
-//        // Load the image URL from Firestore based on the document ID
-//        String documentId = getIntent().getStringExtra("documentId");
-//        if (documentId != null) {
-//            loadImageUrlFromFirestore(documentId);
-//        }
-//    }
-//
-//    private void loadImageUrlFromFirestore(String documentId) {
-//        FirebaseFirestore.getInstance().collection("Schedule")
-//                .document(documentId)  // Use the received
-//                .get()
-//                .addOnSuccessListener(documentSnapshot -> {
-//                    if (documentSnapshot.exists()) {
-//                        // Get the image URL from Firestore
-//                        String imageUrl = documentSnapshot.getString("imageUrl");
-//                        Log.d("BookNow", "Image URL: " + imageUrl);
-//
-//                        // Load and display the image
-//                        if (imageUrl != null && !imageUrl.isEmpty()) {
-//                            loadAndDisplayImage(imageUrl);
-//                        } else {
-//                            // Handle the case where imageUrl is null or empty
-//                            Log.e("BookNow", "Image URL is null or empty");
-//                        }
-//                    } else {
-//                        // Handle the case where the document does not exist
-//                        Log.e("BookNow", "Document does not exist");
-//                    }
-//                })
-//                .addOnFailureListener(e -> {
-//                    // Handle the failure of fetching the image URL from Firestore
-//                    Log.e("BookNow", "Error fetching image URL from Firestore", e);
-//                });
-//    }
-//
-//    private void loadAndDisplayImage(String imageUrl) {
-//        // Load image using Glide or any other image-loading library
-//        ImageView displayImageView = findViewById(R.id.displayImageView); // Replace with your ImageView ID
-//        Glide.with(BookNow.this).load(imageUrl).into(displayImageView);
-//    }
-//
+
 
     private void setupSpinners() {
         ArrayAdapter<CharSequence> heritageHouseAdapter = ArrayAdapter.createFromResource(
@@ -403,10 +362,10 @@ public class BookNow extends AppCompatActivity {
     private double calculateTourPrice(String selectedTour) {
         double tourPrice = 0.0;
         switch (selectedTour) {
-            case "Don Catalino Rodriguez House":
+            case "Don Catalino Rodriguez":
                 tourPrice = 500.0;
                 break;
-            case "Gala Rogriguez House":
+            case "Gala Rogriguez":
                 tourPrice = 1000.0;
                 break;
             case "Both":
