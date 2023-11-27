@@ -83,10 +83,12 @@
         android:contextClickable="true"
         android:elevation="10dp"
         android:longClickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/bgFeedback"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.02"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/arrow_back" />
 
     <ImageButton
@@ -101,10 +103,12 @@
         android:contextClickable="true"
         android:elevation="10dp"
         android:longClickable="true"
+        app:layout_constraintBottom_toTopOf="@+id/rizal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.292"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/baseline_exit_to_app_24" />
 
     <ImageView
@@ -112,52 +116,61 @@
         android:layout_width="358dp"
         android:layout_height="307dp"
         android:background="@color/white"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="25dp"
-        tools:layout_editor_absoluteY="202dp" />
+        app:layout_constraintBottom_toTopOf="@+id/Submitbtn"
+        app:layout_constraintEnd_toEndOf="@+id/blurred"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/clouds"
+        app:layout_constraintVertical_bias="0.917"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Provide Feedback"
+        android:textColor="@color/GREEN"
         android:textSize="20sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.144"
+        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/clouds"
+        app:layout_constraintVertical_bias="0.216"
         app:srcCompat="@drawable/cloud"
-        tools:ignore="MissingConstraints"
-        android:textColor="@color/GREEN"
-        tools:layout_editor_absoluteY="164dp" />
+        tools:ignore="MissingConstraints" />
 
     <EditText
         android:id="@+id/editTextFeedback"
         android:layout_width="354dp"
         android:layout_height="59dp"
+        android:layout_marginTop="448dp"
         android:hint="Enter your feedback here..."
         android:textColor="@color/GREEN"
+        app:layout_constraintBottom_toTopOf="@+id/Submitbtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.438"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/clouds"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/cloud"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="450dp" />
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/Submitbtn"
         android:layout_width="201dp"
         android:layout_height="52dp"
-        android:text="Submit Feedback"
-        android:textStyle="bold"
-        android:textColor="@color/white"
         android:background="@drawable/startbuttonbg"
         android:fontFamily="@font/montserrat_bold"
+        android:text="Submit Feedback"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/blurred"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clouds"
         app:srcCompat="@drawable/cloud"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="527dp" />
+        tools:ignore="MissingConstraints" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
