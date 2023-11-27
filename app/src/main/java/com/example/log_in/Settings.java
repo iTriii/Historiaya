@@ -29,6 +29,7 @@ public class Settings extends AppCompatActivity {
     Switch audio;
     Dialog dialog;
     FirebaseAuth mAuth;
+
     AudioManager audioManager;
     private int savedVolume = 0;
     private static final String PREFS_NAME = "MyPrefs";
@@ -74,89 +75,54 @@ public class Settings extends AppCompatActivity {
 
 
         Credits = findViewById(R.id.Credits);
-        Credits.setOnClickListener(v -> Credits());
+        Credits.setOnClickListener(view -> openCredits());
 
         Feedback = findViewById(R.id.Feedback);
-        Feedback.setOnClickListener(v -> Feedback());
+        Feedback.setOnClickListener(v -> openFeedback());
 
         PrivacyandTerms = findViewById(R.id.PrivacyandTerms);
-        PrivacyandTerms.setOnClickListener(v -> PrivacyandTerms());
+        PrivacyandTerms.setOnClickListener(v -> openPrivacyAndTerms());
 
         LogOut = findViewById(R.id.Logout);
-        LogOut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                try {
-                    // Clear user data or preferences
-                    clearUserData();
+        LogOut.setOnClickListener(view -> logOut());
+    }
+        public void openCredits() {
+            Intent intent = new Intent(this, Credits.class);
+            startActivity(intent);
+        }
 
-                    mAuth.signOut();
+        public void openFeedback() {
+            Intent intent = new Intent(this, Feedback.class);
+            startActivity(intent);
+        }
 
-                    // Show a success message with a Toast
-                    Toast.makeText(Settings.this, "Logged out successfully", Toast.LENGTH_SHORT).show();
+        public void openPrivacyAndTerms() {
+            Intent intent = new Intent(this, PrivacyandTerms.class);
+            startActivity(intent);
+        }
 
-                    Intent StartScreen = new Intent(Settings.this, StartScreen.class);
-                    StartScreen.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                    startActivity(StartScreen);
-                    finish();
-                } catch (Exception e) {
-                    // An error occurred, show an error message with a Toast
-                    Toast.makeText(Settings.this, "Error logging out: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                }
+        public void logOut() {
+            try {
+                // Clear user data or preferences
+                clearUserData();
+                mAuth.signOut();
+
+                // Show a success message with a Toast
+                Toast.makeText(Settings.this, "Logged out successfully", Toast.LENGTH_SHORT).show();
+
+                Intent startScreen = new Intent(Settings.this, StartScreen.class);
+                startScreen.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(startScreen);
+                finish();
+            } catch (Exception e) {
+                // An error occurred, show an error message with a Toast
+                Toast.makeText(Settings.this, "Error logging out: " + e.getMessage(), Toast.LENGTH_SHORT).show();
             }
-
-            private void clearUserData() {
-                SharedPreferences sharedPreferences = getSharedPreferences("user_data", MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.clear();
-                editor.apply();
-            }
-        });
-
-        Tutorial = findViewById(R.id.Tutorial);
-        Tutorial.setOnClickListener(v -> Tutorial());
-
-        Tutorial1 = findViewById(R.id.Tutorial1);
-        Tutorial1.setOnClickListener(v -> Tutorial1());
-
-        dialog = new Dialog(this);
-        dialog.setContentView(R.layout.activity_settings);
-        dialog.setContentView(R.layout.activity_notifications);
-        dialog.getWindow().setBackgroundDrawableResource(R.drawable.popup_background);
-    }
-
-    public void Credits() {
-        Intent intent = new Intent(this, Credits.class);
-        startActivity(intent);
-    }
-
-    public void Feedback() {
-        Intent intent = new Intent(this, Feedback.class);
-        startActivity(intent);
-    }
-
-    public void PrivacyandTerms() {
-        Intent intent = new Intent(this, PrivacyandTerms.class);
-        startActivity(intent);
-    }
-
-    public void Tutorial() {
-        Intent intent = new Intent(this, Tutorial.class);
-        startActivity(intent);
-    }
-
-    public void Tutorial1() {
-        Intent intent = new Intent(this, Tutorial.class);
-        startActivity(intent);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putBoolean(AUDIO_STATE_KEY, audio.isChecked());
+        }
+    private void clearUserData() {
+        SharedPreferences sharedPreferences = getSharedPreferences("user_data", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
         editor.apply();
     }
 }

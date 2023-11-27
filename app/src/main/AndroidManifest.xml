@@ -12,13 +12,17 @@
     <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission
+        android:name="android.permission.WRITE_SETTINGS"
+        tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
         android:maxSdkVersion="32" />
-
 
     <application
         android:allowBackup="true"
@@ -31,17 +35,20 @@
         android:theme="@style/Theme.Design.Light.NoActionBar"
         tools:targetApi="31">
         <activity
+            android:name=".LogOut_PO"
+            android:exported="false"
+            android:theme="@style/AppTheme.popMe"/>
+        <activity
             android:name=".HouseManager"
-            android:exported="false" />
-<!--        <activity-->
-<!--            android:name=".GalaRodriguezAdmin"-->
-<!--            android:exported="false" />-->
-<!--        <activity-->
-<!--            android:name=".DonCatalinoAdmin"-->
-<!--            android:exported="false" />-->
-<!--        <activity-->
-<!--            android:name=".Admin"-->
-<!--            android:exported="false" />-->
+            android:exported="false" /> <!-- <activity -->
+        <!-- android:name=".GalaRodriguezAdmin" -->
+        <!-- android:exported="false" /> -->
+        <!-- <activity -->
+        <!-- android:name=".DonCatalinoAdmin" -->
+        <!-- android:exported="false" /> -->
+        <!-- <activity -->
+        <!-- android:name=".Admin" -->
+        <!-- android:exported="false" /> -->
         <activity
             android:name=".Receptionist"
             android:exported="false" />
@@ -114,9 +121,9 @@
         <activity
             android:name=".LogOut"
             android:exported="false" />
-
-        <activity android:name=".PrivacyandTerms"
-            android:exported="false"/>
+        <activity
+            android:name=".PrivacyandTerms"
+            android:exported="false" />
         <activity
             android:name=".Feedback"
             android:exported="false" />
@@ -168,8 +175,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true" />
-
-        <meta-data
+       <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>

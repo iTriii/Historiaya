@@ -7,4 +7,374 @@
     tools:context=".PrivacyandTerms">
     <!--    For Update only-->
 
+    <ImageButton
+        android:id="@+id/back"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/shadow"
+        android:contentDescription="@string/ResetPass"
+        android:elevation="10dp"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/arrow_back" />
+
+    <TextView
+        android:id="@+id/privacyandterms"
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:background="@color/white"
+        android:fontFamily="@font/montserrat_medium"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:text="@string/historiaya_terms_and_conditions"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/back"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="30dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/welcome"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/montserrat"
+                android:layout_marginStart="-80dp"
+                android:text="@string/greetings"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginEnd="10dp"
+                android:text="@string/greetings2"
+                android:layout_marginStart="-400dp"
+                android:fontFamily="@font/montserrat"
+                android:textColor="@color/black"
+                android:layout_marginTop="75dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/userguidelines"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/montserrat_medium"
+                android:textColor="@color/black"
+                android:layout_marginTop="160dp"
+                android:layout_marginStart="-400dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:text="@string/youAgree"
+                android:textColor="@color/black"
+                android:fontFamily="@font/montserrat"
+                android:layout_marginTop="180dp"
+                android:layout_marginStart="-400dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="250dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="-400dp"
+                android:fontFamily="@font/montserrat"
+                android:textColor="@color/black"
+                android:text="@string/terms1" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="285dp"
+                android:layout_marginStart="-400dp"
+                android:fontFamily="@font/montserrat"
+                android:textColor="@color/black"
+                android:text="@string/terms2" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="325dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="-400dp"
+                android:fontFamily="@font/montserrat"
+                android:textColor="@color/black"
+                android:text="@string/terms3" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="380dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="-400dp"
+                android:fontFamily="@font/montserrat"
+                android:textColor="@color/black"
+                android:text="@string/terms4" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="-400dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="450dp"
+                android:text="@string/userreg"
+                android:fontFamily="@font/montserrat_medium"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="-400dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="480dp"
+                android:text="@string/userreg1"
+                android:fontFamily="@font/montserrat"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="-400dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="520dp"
+                android:text="@string/userreg2"
+                android:fontFamily="@font/montserrat"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="-400dp"
+                android:layout_marginTop="580dp"
+                android:text="@string/ReservationandPayment"
+                android:fontFamily="@font/montserrat_medium"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="-400dp"
+                android:layout_marginTop="610dp"
+                android:text="@string/reserve1"
+                android:fontFamily="@font/montserrat"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="-400dp"
+                android:layout_marginTop="690dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/reserve2"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="-400dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="750dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/reserve3"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="-400dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="800dp"
+                android:text="@string/HeritageHouse"
+                android:fontFamily="@font/montserrat_medium"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="-400dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="830dp"
+                android:text="@string/GalaRodriguez"
+                android:fontFamily="@font/montserrat_medium"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="-400dp"
+                android:layout_marginTop="850dp"
+                android:text="@string/HH1"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/montserrat"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="-400dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="910dp"
+                android:text="@string/HH2"
+                android:fontFamily="@font/montserrat"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="-400dp"
+                android:layout_marginTop="1035dp"
+                android:text="@string/HH3"
+                android:fontFamily="@font/montserrat"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="-400dp"
+                android:layout_marginTop="1100dp"
+                android:text="@string/PointsandDiscount"
+                android:fontFamily="@font/montserrat_medium"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="-400dp"
+                android:layout_marginTop="1125dp"
+                android:text="@string/PP1"
+                android:fontFamily="@font/montserrat"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="-400dp"
+                android:layout_marginTop="1170dp"
+                android:layout_marginEnd="10dp"
+                android:text="@string/PP2"
+                android:fontFamily="@font/montserrat"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="-400dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="1210dp"
+                android:text="@string/PP3"
+                android:fontFamily="@font/montserrat"
+                android:textColor="@color/black"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="-400dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="1280dp"
+                android:text="@string/usingOurServices"
+                android:fontFamily="@font/montserrat"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="-400dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="1370dp"
+                android:text="@string/usingOurServices2"
+                android:fontFamily="@font/montserrat"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="10dp"
+                android:layout_marginStart="-400dp"
+                android:layout_marginTop="1420dp"
+                android:text="@string/ContactUs"
+                android:fontFamily="@font/montserrat_medium"
+                android:textColor="@color/black"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="-400dp"
+                android:layout_marginTop="1440dp"
+                android:layout_marginEnd="10dp"
+                android:text="@string/CU"
+                android:fontFamily="@font/montserrat"
+                android:textColor="@color/black"/>
+
+            <CheckBox
+                android:id="@+id/checkboxTnC"
+                android:layout_width="30dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="-400dp"
+                android:layout_marginTop="1500dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="1490dp"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/black"
+                android:text="@string/check"
+                android:fontFamily="@font/montserrat"
+                />
+            <Button
+                android:id="@+id/ConfirmTnC"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="1580dp"
+                android:layout_marginBottom="40dp"
+                android:layout_marginStart="-280dp"
+                android:text="@string/ConfirmButton"
+                android:textColor="@color/white"
+                android:fontFamily="@font/montserrat"
+                android:background="@drawable/store_price_button_ok"/>
+
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
