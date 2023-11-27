@@ -34,7 +34,7 @@ public class Feedback extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
-        backbtn = findViewById(R.id.backbtn);
+        backbtn = findViewById(R.id.backbtnFeedback);
         exitbtn = findViewById(R.id.exitbtn);
 
         feedbackEditText = findViewById(R.id.editTextFeedback);
