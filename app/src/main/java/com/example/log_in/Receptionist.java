@@ -5,6 +5,7 @@ import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
@@ -16,6 +17,7 @@ import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -28,6 +30,8 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -49,8 +53,7 @@ public class Receptionist extends AppCompatActivity {
     private ArrayList<User> userArrayList;
     Receptionist_Adapter_History Receptionist_Adapter_History;
     Receptionist_Upcoming_Adapter Receptionist_Upcoming_Adapter;
-
-    private Button Editbtn;
+    ImageView Event_Sched, calendarV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +70,6 @@ public class Receptionist extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         user = auth.getCurrentUser();
 
-        Editbtn = findViewById(R.id.uploadImageTH_btn);
         // Initialize RecyclerViews and Adapters
         ReceptionistUpcoming_RecyclerView = findViewById(R.id.ReceptionistUpcoming_RecyclerView);
         ReceptionistHistory_RecyclerView = findViewById(R.id.ReceptionistHistory_RecyclerView);
@@ -76,6 +78,23 @@ public class Receptionist extends AppCompatActivity {
 
         Receptionist_Adapter_History = new Receptionist_Adapter_History(this, userArrayList, db);
         Receptionist_Upcoming_Adapter = new Receptionist_Upcoming_Adapter(this, userArrayList, db);
+
+        Event_Sched = findViewById(R.id.Event_Sched);
+        calendarV = findViewById(R.id.calendarV);
+
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("Calendar/calendar_image.jpg");
+        storageRef.getDownloadUrl().addOnSuccessListener(Calendar-> {
+            Glide.with(this)
+                    .load(Calendar) // Provide the actual download URL obtained from Firebase Storage
+                    .into(Event_Sched);
+
+            // Hide calendarV ImageView after loading the image into Event_Sched
+            calendarV.setVisibility(View.GONE);
+        }).addOnFailureListener(exception -> {
+            // Handle any errors that may occur while fetching the image
+            showToast("Failed to fetch image: " + exception.getMessage());
+        });
+
 
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -122,6 +141,9 @@ public class Receptionist extends AppCompatActivity {
         EventChangeListener();// Add data listener to load data from Firestore
         setUpRecyclerView(); // Set up RecyclerView and Adapter
         setUpTabsAndViews(); // Set up tabs and views
+    }
+
+    private void showToast(String s) {
     }
 
     private void setUpTabsAndViews() {
@@ -273,11 +295,5 @@ public class Receptionist extends AppCompatActivity {
 
         super.onDestroy();
 
-
-        // Set a click listener for the edit button
-        Editbtn.setOnClickListener(v -> {
-            // Handle edit button click (implement your edit/update/delete logic here)
-            Toast.makeText(Receptionist.this, "Edit button clicked", Toast.LENGTH_SHORT).show();
-        });
     }
 }
