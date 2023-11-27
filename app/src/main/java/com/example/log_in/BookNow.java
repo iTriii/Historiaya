@@ -40,7 +40,7 @@ import java.util.Set;
 
 import im.crisp.client.ChatActivity;
 import im.crisp.client.Crisp;
-
+//FOR UPDATE ONLY
 
 public class BookNow extends AppCompatActivity {
     private ImageButton chatbtn, backbtn;
@@ -58,8 +58,6 @@ public class BookNow extends AppCompatActivity {
     String selectedTime = "";
     String selectedTour;
     private String time;
-    ImageView displayImageView;
-    private String imageUrl;
 
 
     @Override
@@ -105,7 +103,6 @@ public class BookNow extends AppCompatActivity {
         SDate = findViewById(R.id.SDate);
         calendarView = findViewById(R.id.Calendar);
 
-
         // Configure Crisp
         Crisp.configure(getApplicationContext(), "2a53b3b9-d275-4fb1-81b6-efad59022426");
 
@@ -117,11 +114,13 @@ public class BookNow extends AppCompatActivity {
         btntime4 = findViewById(R.id.btntime4);
 
 
-        setListeners();
-        setupButtonClickListener(btntime1, btntime2, btntime3, btntime4);
-        setupSpinners();
 
+
+        setupSpinners();
+        setListeners();
+        setupButtonClickListener(btntime1, btntime2,  btntime3, btntime4);
     }
+
 
 
     private void setupSpinners() {

@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.google.firebase.FirebaseApp;
-
+//FOR UPDATE ONLY
 public class PaymentDetails extends AppCompatActivity {
 
     RadioButton DonCat_Radio, Gala_Radio;

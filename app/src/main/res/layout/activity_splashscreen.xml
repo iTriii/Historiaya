@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".Splashscreen"
     android:background="@color/background">
+    <!--    For Update only-->
 
     <pl.droidsonroids.gif.GifImageView
         android:id="@+id/backpack_gif"

@@ -21,7 +21,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class BookingRefund extends AppCompatActivity {
-
+    //FOR UPDATE ONLY
     Spinner spinRefund;
     Button btnsub;
     ImageButton back;

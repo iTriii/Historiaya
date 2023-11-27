@@ -9,6 +9,7 @@
     android:textAlignment="center"
     tools:context=".BookNow">
 
+<!-- For update lang-->
 
     <ImageView
         android:id="@+id/clouds"

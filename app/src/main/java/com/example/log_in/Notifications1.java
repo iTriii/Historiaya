@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.ImageButton;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+//FOR UPDATE ONLY
 public class Notifications1 extends AppCompatActivity {
     ImageButton backbutt;
     @Override

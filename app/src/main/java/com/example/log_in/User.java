@@ -1,4 +1,5 @@
 package com.example.log_in;
+//FOR UPDATE ONLY
 
 public class User {
     public static final String FIELD_USER_ID = "userId";

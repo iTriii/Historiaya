@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="#E1FAFF"
     tools:context=".TutorialMain">
+    <!--    For Update only-->
 
     <ImageView
         android:id="@+id/rizal_Start"

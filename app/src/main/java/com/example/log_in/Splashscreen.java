@@ -6,6 +6,7 @@ import android.os.Handler;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
+//FOR UPDATE ONLY
 
 public class Splashscreen extends AppCompatActivity {
 

@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+//FOR UPDATE ONLY
 
 public class Settings extends AppCompatActivity {
     Button Credits, Feedback, PrivacyandTerms, LogOut;
@@ -120,7 +121,7 @@ public class Settings extends AppCompatActivity {
 
         dialog = new Dialog(this);
         dialog.setContentView(R.layout.activity_settings);
-        dialog.setContentView(R.layout.activity_notifications);
+       dialog.setContentView(R.layout.activity_notifications);
         dialog.getWindow().setBackgroundDrawableResource(R.drawable.popup_background);
     }
 

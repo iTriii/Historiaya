@@ -40,6 +40,7 @@ import com.google.firebase.storage.UploadTask;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+//FOR UPDATE ONLY
 
 public class TourismHeadAdmin extends AppCompatActivity {
     private static final int GALLERY_REQUEST_CODE = 123;
@@ -64,7 +65,7 @@ public class TourismHeadAdmin extends AppCompatActivity {
     private Object Email;
     ImageView eventSched, addTM;
     private ListenerRegistration userDataListener;
-    ImageView Event_Sched, calendarV;
+
 
 
     @Override
@@ -156,7 +157,7 @@ public class TourismHeadAdmin extends AppCompatActivity {
             Glide.with(this)
                     .load(uri)
                     .into(eventSched);
-           addTM.setVisibility(View.GONE);
+            addTM.setVisibility(View.GONE);
         }).addOnFailureListener(exception -> {
             // Handle any errors that may occur while fetching the image
             showToast("Failed to fetch image: " + exception.getMessage());
@@ -222,93 +223,93 @@ public class TourismHeadAdmin extends AppCompatActivity {
 
     private void setUpTabsAndViews() {
 
-            // Set up tabs and views
-            Upcoming_ScrollView = findViewById(R.id.Upcoming_ScrollView);
-            Upcoming_Tab = findViewById(R.id.Upcoming_Tab);
-            Upcoming_Tab.setOnClickListener(v -> Upcoming_Tab());
-            History_ScrollView = findViewById(R.id.History_ScrollView);
-            History_tab = findViewById(R.id.History_tab);
-            History_tab.setOnClickListener(v -> History_tab());
-            Pending_ScrollView = findViewById(R.id.Pending_ScrollView);
-            Pending_Tab = findViewById(R.id.Pending_Tab);
-            Pending_Tab.setOnClickListener(v -> Pending_Tab());
-        }
+        // Set up tabs and views
+        Upcoming_ScrollView = findViewById(R.id.Upcoming_ScrollView);
+        Upcoming_Tab = findViewById(R.id.Upcoming_Tab);
+        Upcoming_Tab.setOnClickListener(v -> Upcoming_Tab());
+        History_ScrollView = findViewById(R.id.History_ScrollView);
+        History_tab = findViewById(R.id.History_tab);
+        History_tab.setOnClickListener(v -> History_tab());
+        Pending_ScrollView = findViewById(R.id.Pending_ScrollView);
+        Pending_Tab = findViewById(R.id.Pending_Tab);
+        Pending_Tab.setOnClickListener(v -> Pending_Tab());
+    }
 
     private void Upcoming_Tab() {
-            Upcoming_Tab.setChecked(true);
-            Upcoming_Tab.setTextColor(ContextCompat.getColor(this, R.color.green));
-            Upcoming_ScrollView.setVisibility(View.VISIBLE);
-            History_tab.setChecked(false);
-            History_tab.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
-            History_ScrollView.setVisibility(View.GONE);
-            Pending_Tab.setChecked(false);
-            Pending_Tab.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
-            Pending_ScrollView.setVisibility(View.GONE);
-            wan.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
-            to.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
-            tre.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
-            // Show only Upcoming RecyclerView
-            Upcoming_RecyclerView.setVisibility(View.VISIBLE);
-            History_RecyclerView.setVisibility(View.GONE);
-            Pending_RecyclerView.setVisibility(View.GONE);
-        }
+        Upcoming_Tab.setChecked(true);
+        Upcoming_Tab.setTextColor(ContextCompat.getColor(this, R.color.green));
+        Upcoming_ScrollView.setVisibility(View.VISIBLE);
+        History_tab.setChecked(false);
+        History_tab.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
+        History_ScrollView.setVisibility(View.GONE);
+        Pending_Tab.setChecked(false);
+        Pending_Tab.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
+        Pending_ScrollView.setVisibility(View.GONE);
+        wan.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
+        to.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
+        tre.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
+        // Show only Upcoming RecyclerView
+        Upcoming_RecyclerView.setVisibility(View.VISIBLE);
+        History_RecyclerView.setVisibility(View.GONE);
+        Pending_RecyclerView.setVisibility(View.GONE);
+    }
 
 
     private void History_tab() {
-            Upcoming_Tab.setChecked(false);
-            Upcoming_Tab.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
-            Upcoming_ScrollView.setVisibility(View.GONE);
-            History_tab.setChecked(true);
-            History_tab.setTextColor(ContextCompat.getColor(this, R.color.green));
-            History_ScrollView.setVisibility(View.VISIBLE);
-            Pending_Tab.setChecked(false);
-            Pending_Tab.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
-            Pending_ScrollView.setVisibility(View.GONE);
-            wan.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
-            to.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
-            tre.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
-            // Show only History RecyclerView
-            Upcoming_RecyclerView.setVisibility(View.GONE);
-            History_RecyclerView.setVisibility(View.VISIBLE);
-            Pending_RecyclerView.setVisibility(View.GONE);
-        }
+        Upcoming_Tab.setChecked(false);
+        Upcoming_Tab.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
+        Upcoming_ScrollView.setVisibility(View.GONE);
+        History_tab.setChecked(true);
+        History_tab.setTextColor(ContextCompat.getColor(this, R.color.green));
+        History_ScrollView.setVisibility(View.VISIBLE);
+        Pending_Tab.setChecked(false);
+        Pending_Tab.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
+        Pending_ScrollView.setVisibility(View.GONE);
+        wan.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
+        to.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
+        tre.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
+        // Show only History RecyclerView
+        Upcoming_RecyclerView.setVisibility(View.GONE);
+        History_RecyclerView.setVisibility(View.VISIBLE);
+        Pending_RecyclerView.setVisibility(View.GONE);
+    }
 
 
     private void Pending_Tab() {
-            Upcoming_Tab.setChecked(false);
-            Upcoming_Tab.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
-            Upcoming_ScrollView.setVisibility(View.GONE);
-            History_tab.setChecked(false);
-            History_tab.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
-            History_ScrollView.setVisibility(View.GONE);
-            Pending_Tab.setChecked(true);
-            Pending_Tab.setTextColor(ContextCompat.getColor(this, R.color.green));
-            Pending_ScrollView.setVisibility(View.VISIBLE);
-            wan.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
-            to.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
-            tre.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
-            // Show only Pending RecyclerView
-            Upcoming_RecyclerView.setVisibility(View.GONE);
-            History_RecyclerView.setVisibility(View.GONE);
-            Pending_RecyclerView.setVisibility(View.VISIBLE);
-        }
+        Upcoming_Tab.setChecked(false);
+        Upcoming_Tab.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
+        Upcoming_ScrollView.setVisibility(View.GONE);
+        History_tab.setChecked(false);
+        History_tab.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
+        History_ScrollView.setVisibility(View.GONE);
+        Pending_Tab.setChecked(true);
+        Pending_Tab.setTextColor(ContextCompat.getColor(this, R.color.green));
+        Pending_ScrollView.setVisibility(View.VISIBLE);
+        wan.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
+        to.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
+        tre.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
+        // Show only Pending RecyclerView
+        Upcoming_RecyclerView.setVisibility(View.GONE);
+        History_RecyclerView.setVisibility(View.GONE);
+        Pending_RecyclerView.setVisibility(View.VISIBLE);
+    }
 
 
 
     private void setUpRecyclerView() {
-            // RecyclerView setup
-            Pending_RecyclerView.setHasFixedSize(true);
-            Pending_RecyclerView.setLayoutManager(new LinearLayoutManager(this));
-            Pending_RecyclerView.setAdapter(myAdapter);
+        // RecyclerView setup
+        Pending_RecyclerView.setHasFixedSize(true);
+        Pending_RecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Pending_RecyclerView.setAdapter(myAdapter);
 
-            Upcoming_RecyclerView.setHasFixedSize(true);
-            Upcoming_RecyclerView.setLayoutManager(new LinearLayoutManager(this));
-            Upcoming_RecyclerView.setAdapter(UpcomingAdapter);
+        Upcoming_RecyclerView.setHasFixedSize(true);
+        Upcoming_RecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        Upcoming_RecyclerView.setAdapter(UpcomingAdapter);
 
-            History_RecyclerView.setHasFixedSize(true);
-            History_RecyclerView.setLayoutManager(new LinearLayoutManager(this));
-            History_RecyclerView.setAdapter(HistoryAdapter);
-        }
+        History_RecyclerView.setHasFixedSize(true);
+        History_RecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        History_RecyclerView.setAdapter(HistoryAdapter);
+    }
 
 
     // EventListener for data changes in Firestore

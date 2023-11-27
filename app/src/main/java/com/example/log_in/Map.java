@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
+//FOR UPDATE ONLY
 public class Map extends AppCompatActivity {
     ImageButton backbutt;
     ConstraintLayout doncat1, gala1, doncatExpanded, galaExpanded;
