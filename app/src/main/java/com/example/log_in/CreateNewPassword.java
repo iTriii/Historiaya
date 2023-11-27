@@ -16,7 +16,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class CreateNewPassword extends AppCompatActivity {
-
+    //FOR UPDATE ONLY
     Button resetButton;
     EditText newPasswordEditText, confirmPasswordEditText;
     FirebaseAuth mAuth;

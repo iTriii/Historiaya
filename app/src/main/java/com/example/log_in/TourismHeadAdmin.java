@@ -40,6 +40,7 @@ import com.google.firebase.storage.UploadTask;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+//FOR UPDATE ONLY
 
 public class TourismHeadAdmin extends AppCompatActivity {
     private static final int GALLERY_REQUEST_CODE = 123;
@@ -64,7 +65,7 @@ public class TourismHeadAdmin extends AppCompatActivity {
     private Object Email;
     ImageView eventSched, addTM;
     private ListenerRegistration userDataListener;
-    ImageView Event_Sched, calendarV;
+
 
 
     @Override

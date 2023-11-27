@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+//FOR UPDATE ONLY
 
 public class upcoming_reservation_adapter extends RecyclerView.Adapter<upcoming_reservation_adapter.MyViewHolder> {
 

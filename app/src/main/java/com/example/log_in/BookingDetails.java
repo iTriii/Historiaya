@@ -31,7 +31,7 @@ import java.util.Locale;
 import java.util.Map;
 
 public class BookingDetails extends AppCompatActivity {
-
+    //FOR UPDATE ONLY
     private Spinner spinTour, spinNum;
     private Dialog dialog;
     private Button btnnext, btncancel, confirmbtn;

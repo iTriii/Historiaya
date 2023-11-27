@@ -9,6 +9,7 @@
     android:background="#E1FAFF"
     android:visibility="visible"
     tools:context=".StartScreen">
+    <!--    For Update only-->
 
     <ImageView
         android:id="@+id/rizal_Start"

@@ -9,6 +9,7 @@
     tools:context=".SignUp"
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="122dp">
+    <!--    For Update only-->
 
     <ImageView
         android:id="@+id/clouds"

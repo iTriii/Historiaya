@@ -18,6 +18,7 @@ import com.google.firebase.firestore.ListenerRegistration;
 
 public class BookingDetailMain extends AppCompatActivity {
 
+    //FOR UPDATE ONLY
     // Declaring variables
     Button notnowbtn, confirmbtn, Nextbtn, Donebut;
     ImageButton backbutton, reschedbtn, cancelbtn, refundbtn;

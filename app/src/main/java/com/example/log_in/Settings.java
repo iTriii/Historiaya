@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+//FOR UPDATE ONLY
 
 public class Settings extends AppCompatActivity {
     Button Credits, Feedback, PrivacyandTerms, LogOut;

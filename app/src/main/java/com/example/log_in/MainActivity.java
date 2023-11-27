@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-
+//FOR UPDATE ONLY
 public class MainActivity extends AppCompatActivity {
     private Button GetStarted;
 

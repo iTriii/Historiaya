@@ -6,9 +6,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-
-import android.widget.Button;
-
 import android.widget.RadioButton;
 import android.widget.ScrollView;
 
@@ -39,7 +36,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Receptionist extends AppCompatActivity {
-
+    //FOR UPDATE ONLY
 
     RadioButton UpcomingRecep_Tab, HistoryRecep_tab;
     ScrollView UpcomingRecep_ScrollView, HistoryRecep_ScrollView;

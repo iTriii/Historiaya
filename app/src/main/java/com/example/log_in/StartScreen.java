@@ -6,6 +6,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+//FOR UPDATE ONLY
 
 public class StartScreen extends AppCompatActivity {
     ImageButton backbutt, Profile;

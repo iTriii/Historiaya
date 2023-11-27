@@ -41,7 +41,7 @@ import java.util.Map;
 
 import im.crisp.client.ChatActivity;
 import im.crisp.client.Crisp;
-
+//FOR UPDATE ONLY
 public class HouseManager extends AppCompatActivity {
 
 

@@ -8,7 +8,7 @@
     android:textAlignment="center"
     android:orientation="vertical"
     tools:context=".MainActivity">
-
+    <!-- For update lang-->
 
     <ImageView
         android:id="@+id/clouds"

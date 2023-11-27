@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:background="#E1FAFF"
     tools:context=".Profile_Edit">
+    <!--    For Update only-->
 
     <ImageView
         android:id="@+id/rizal_Start"
