@@ -8,7 +8,7 @@
     android:orientation="vertical"
     tools:context=".PaymentDetails">
 
-
+    <!--for update-->
     <ImageView
         android:id="@+id/rizal_Start"
         android:layout_width="match_parent"

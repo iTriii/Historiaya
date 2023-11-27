@@ -8,6 +8,7 @@
     app:cardCornerRadius="8dp"
     android:layout_margin="10dp">
 
+    <!--    For Update only-->
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -65,7 +65,7 @@ public class TourismHeadAdmin extends AppCompatActivity {
     private Object Email;
     ImageView eventSched, addTM;
     private ListenerRegistration userDataListener;
-    ImageView Event_Sched, calendarV;
+
 
 
     @Override

@@ -10,6 +10,7 @@
     android:orientation="vertical"
     android:visibility="visible"
     tools:context=".StorySelection">
+    <!--    For Update only-->
 
     <ImageView
         android:id="@+id/rizal_Start"

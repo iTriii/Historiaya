@@ -8,7 +8,7 @@
     android:textAlignment="center"
     android:background="#E1FAFF"
     tools:context=".BookingDetailMain">
-
+    <!-- For update lang-->
     <ImageView
         android:id="@+id/clouds"
         android:layout_width="536dp"

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     tools:context=".BookingDetails">
-
+    <!-- For update lang-->
     <ImageView
         android:id="@+id/clouds"
         android:layout_width="536dp"

@@ -6,5 +6,5 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Chap1_dropdown">
-
+    <!-- For update lang-->
 </RelativeLayout>

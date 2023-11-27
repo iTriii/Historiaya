@@ -9,6 +9,7 @@
     android:layout_gravity="center"
     android:orientation="vertical"
     tools:ignore="Deprecated">
+    <!--    For Update only-->
 
     <TextView
         android:id="@+id/settings"

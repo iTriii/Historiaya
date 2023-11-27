@@ -7,7 +7,7 @@
     android:background="@color/background"
     tools:context=".BookingRefund">
 
-
+    <!-- For update lang-->
     <ImageView
         android:id="@+id/clouds"
         android:layout_width="536dp"

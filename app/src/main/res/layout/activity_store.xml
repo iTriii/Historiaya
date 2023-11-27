@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Store">
+    <!--    For Update only-->
 
     <ImageView
         android:id="@+id/rizal_Start"
