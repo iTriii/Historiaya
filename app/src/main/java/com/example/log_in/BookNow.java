@@ -40,7 +40,7 @@ import java.util.Set;
 
 import im.crisp.client.ChatActivity;
 import im.crisp.client.Crisp;
-
+//FOR UPDATE ONLY
 
 public class BookNow extends AppCompatActivity {
     private ImageButton chatbtn, backbtn;

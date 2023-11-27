@@ -40,6 +40,7 @@ import com.google.firebase.storage.UploadTask;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+//FOR UPDATE ONLY
 
 public class TourismHeadAdmin extends AppCompatActivity {
     private static final int GALLERY_REQUEST_CODE = 123;

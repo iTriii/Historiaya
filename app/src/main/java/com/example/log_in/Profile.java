@@ -29,7 +29,7 @@ import com.google.firebase.firestore.ListenerRegistration;
 
 import java.util.Timer;
 import java.util.TimerTask;
-
+//FOR UPDATE ONLY
 public class Profile extends AppCompatActivity {
     ImageButton back, EditProfile;
     ShapeableImageView icon;

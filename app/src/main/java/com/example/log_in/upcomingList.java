@@ -1,6 +1,7 @@
 package com.example.log_in;
 
 public class upcomingList extends User {
+    //FOR UPDATE ONLY
 
     private String reservedDate;
     private String selectedTour;

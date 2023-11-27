@@ -27,7 +27,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
 import java.util.Map;
-
+//FOR UPDATE ONLY
 public class Payment extends AppCompatActivity {
     Button okbtn;
     ImageButton back, selectbtn; // Change to ImageButton

@@ -18,7 +18,7 @@ import com.journeyapps.barcodescanner.DefaultDecoderFactory;
 
 import java.util.Arrays;
 import java.util.List;
-
+//FOR UPDATE ONLY
 public class QR_Scanner extends AppCompatActivity {
     private static final int CAMERA_PERMISSION_REQUEST_CODE = 200;
     ImageButton back;

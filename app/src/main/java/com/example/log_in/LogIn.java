@@ -22,7 +22,7 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
+//FOR UPDATE ONLY
 public class LogIn extends AppCompatActivity {
     TextView forgotpass, inputemail, inputpass, regnow;
     Button li;
