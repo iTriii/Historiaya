@@ -92,7 +92,7 @@ public class BookingRefund extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // Handle the selected refund option
                 selectedOption = parentView.getItemAtPosition(position).toString();
-                Toast.makeText(BookingRefund.this, "Selected Refund Option: " + selectedOption, Toast.LENGTH_SHORT).show();
+               // Toast.makeText(BookingRefund.this, "Selected Refund Option: " + selectedOption, Toast.LENGTH_SHORT).show();
             }
 
             @Override

@@ -91,4 +91,8 @@ public class User {
     public void setTotalAmount(int totalAmount) {
         this.totalAmount = totalAmount;
     }
+
+    public boolean isPending() {
+        return "Pending".equals(status);
+    }
 }
