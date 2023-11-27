@@ -22,8 +22,6 @@ public class BookingCancellation extends AppCompatActivity {
 
     TextView TotalTouristsText,nameText,amountText, pickhouseText, detailsclick;
     ImageButton backbutton;
-    Button notnowbtn, confirmbtn; // not confirm
-
     FirebaseAuth auth;
     private FirebaseFirestore db;
     public ListenerRegistration userDataListener;
@@ -97,14 +95,14 @@ public class BookingCancellation extends AppCompatActivity {
         Button btnConfirm = dialog.findViewById(R.id.btnConfirm);
 
         btnNotnow.setOnClickListener(v -> {
-            Intent backIntent = new Intent(BookingCancellation.this, Main2.class);
+            Intent backIntent = new Intent(BookingCancellation.this, BookingDetailMain.class);
             startActivity(backIntent);
             Toast.makeText(BookingCancellation.this, "Not Now", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
         });
 
         btnConfirm.setOnClickListener(v -> {
-            Intent confirmIntent = new Intent(BookingCancellation.this, Main2.class);
+            Intent confirmIntent = new Intent(BookingCancellation.this, BookingDetailMain.class);
             startActivity(confirmIntent);
             Toast.makeText(BookingCancellation.this, "Confirm Cancellation, please wait for approval", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
