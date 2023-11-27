@@ -133,7 +133,7 @@ public class BookingDetails extends AppCompatActivity {
                             showToast("Selected date is not valid! Choose another Day");
                             selectedDate = null;
                         } else {
-                         //   showToast("Selected date is valid!");
+                            //   showToast("Selected date is valid!");
                         }
                     },
                     year,
@@ -158,7 +158,7 @@ public class BookingDetails extends AppCompatActivity {
                         SimpleDateFormat sdfTime = new SimpleDateFormat("hh:mm a", Locale.ENGLISH);
                         selectedTime = sdfTime.format(selectedTimeCalendar.getTime());
 
-                        Time.setText("Selected Time: " + selectedTime);
+                        Time.setText("Resched Time: " + selectedTime);
                     },
                     calendar.get(Calendar.HOUR_OF_DAY),
                     calendar.get(Calendar.MINUTE),
@@ -235,24 +235,24 @@ public class BookingDetails extends AppCompatActivity {
         spinTour.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-             //   showToast("Heritage House Selected: " + spinTour.getSelectedItem().toString());
+                //   showToast("Heritage House Selected: " + spinTour.getSelectedItem().toString());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-            //    showToast("No Heritage House Selected. Please, Select a Tour");
+                //    showToast("No Heritage House Selected. Please, Select a Tour");
             }
         });
 
         spinNum.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-              //  showToast("Tourist Number Selected: " + spinNum.getSelectedItem().toString());
+                //  showToast("Tourist Number Selected: " + spinNum.getSelectedItem().toString());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-             //  showToast("No Tourist Number Selected");
+                //  showToast("No Tourist Number Selected");
             }
         });
     }

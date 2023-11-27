@@ -95,9 +95,9 @@
         android:layout_width="265dp"
         android:layout_height="36dp"
         android:fontFamily="@font/montserrat_alternates_extrabold"
-        android:shadowColor="#FFFDFD"
-        android:shadowDx="7"
-        android:shadowDy="-9"
+        android:shadowColor="@color/black"
+        android:shadowDx="2"
+        android:shadowDy="-2"
         android:shadowRadius="2"
         android:text="Booking Details"
         android:textAlignment="center"
@@ -108,26 +108,18 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/backbutton"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.312"
+        app:layout_constraintVertical_bias="0.491"
         tools:ignore="TextSizeCheck" />
 
-
-    <ScrollView
-        android:id="@+id/cancellationScrollView"
-        android:layout_width="393dp"
-        android:layout_height="705dp"
-        android:layout_marginBottom="4dp"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="500dp"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="@+id/blurred"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="500dp"
-            android:layout_marginTop="-25dp"
-            android:orientation="horizontal">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.422">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardView"
@@ -148,13 +140,13 @@
                 app:strokeWidth="4dp">
 
 
-                <ImageView
-                    android:id="@+id/itineraryHouseView"
-                    android:layout_width="284dp"
-                    android:layout_height="185dp"
-                    android:layout_marginLeft="36dp"
-                    android:layout_marginTop="25dp"
-                    android:src="@drawable/don_catalino" />
+            <ImageView
+                android:id="@+id/itineraryHouseView"
+                android:layout_width="284dp"
+                android:layout_height="185dp"
+                android:layout_marginLeft="36dp"
+                android:layout_marginTop="25dp"
+                android:src="@drawable/don_catalino" />
 
                 <TextView
                     android:id="@+id/pickhousetxt"
@@ -297,112 +289,113 @@
                     app:layout_constraintVertical_bias="0.336" />
 
 
-                <ImageButton
-                    android:id="@+id/cancelbtn"
-                    android:layout_width="33dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="80dp"
-                    android:layout_marginTop="352dp"
-                    android:background="@drawable/shadow"
-                    android:clickable="true"
-                    android:contextClickable="true"
-                    android:elevation="10dp"
-                    android:longClickable="true"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/cancel" />
+            <ImageButton
+                android:id="@+id/cancelbtn"
+                android:layout_width="33dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="352dp"
+                android:background="@drawable/shadow"
+                android:clickable="true"
+                android:contextClickable="true"
+                android:elevation="10dp"
+                android:longClickable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/cancel" />
 
-                <TextView
-                    android:id="@+id/cancel"
-                    android:layout_width="251dp"
-                    android:layout_height="33dp"
-                    android:layout_marginLeft="70dp"
-                    android:layout_marginTop="350dp"
-                    android:fontFamily="@font/montserrat"
-                    android:gravity="center_horizontal"
-                    android:text="Cancel Booking"
-                    android:textColor="@color/green"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.094"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.336" />
+            <TextView
+                android:id="@+id/cancel"
+                android:layout_width="251dp"
+                android:layout_height="33dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="350dp"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center_horizontal"
+                android:text="Cancel Booking"
+                android:textColor="@color/green"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.094"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.336" />
 
-                <ImageButton
-                    android:id="@+id/reschedbtn"
-                    android:layout_width="33dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="80dp"
-                    android:layout_marginTop="390dp"
-                    android:background="@drawable/shadow"
-                    android:clickable="true"
-                    android:contextClickable="true"
-                    android:elevation="10dp"
-                    android:longClickable="true"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/calendar" />
+            <ImageButton
+                android:id="@+id/reschedbtn"
+                android:layout_width="33dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="390dp"
+                android:background="@drawable/shadow"
+                android:clickable="true"
+                android:contextClickable="true"
+                android:elevation="10dp"
+                android:longClickable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/calendar" />
 
-                <TextView
-                    android:id="@+id/Rescheduletxt"
-                    android:layout_width="251dp"
-                    android:layout_height="33dp"
-                    android:layout_marginLeft="70dp"
-                    android:layout_marginTop="390dp"
-                    android:fontFamily="@font/montserrat"
-                    android:gravity="center_horizontal"
-                    android:text="Reschedule"
-                    android:textColor="@color/green"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.094"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.336" />
+            <TextView
+                android:id="@+id/Rescheduletxt"
+                android:layout_width="251dp"
+                android:layout_height="33dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="390dp"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center_horizontal"
+                android:text="Reschedule"
+                android:textColor="@color/green"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.094"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.336" />
 
-                <ImageButton
-                    android:id="@+id/refundbtn"
-                    android:layout_width="33dp"
-                    android:layout_height="30dp"
-                    android:layout_marginStart="80dp"
-                    android:layout_marginTop="430dp"
-                    android:background="@drawable/shadow"
-                    android:clickable="true"
-                    android:contextClickable="true"
-                    android:elevation="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/dollar" />
+            <ImageButton
+                android:id="@+id/refundbtn"
+                android:layout_width="33dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="80dp"
+                android:layout_marginTop="430dp"
+                android:background="@drawable/shadow"
+                android:clickable="true"
+                android:contextClickable="true"
+                android:elevation="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/dollar" />
 
-                <TextView
-                    android:id="@+id/refundtxt"
-                    android:layout_width="251dp"
-                    android:layout_height="33dp"
-                    android:layout_marginLeft="70dp"
-                    android:layout_marginTop="430dp"
-                    android:fontFamily="@font/montserrat"
-                    android:gravity="center_horizontal"
-                    android:text="Make a Refund"
-                    android:textColor="@color/green"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.094"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.336" />
+            <TextView
+                android:id="@+id/refundtxt"
+                android:layout_width="251dp"
+                android:layout_height="33dp"
+                android:layout_marginLeft="70dp"
+                android:layout_marginTop="430dp"
+                android:fontFamily="@font/montserrat"
+                android:gravity="center_horizontal"
+                android:text="Make a Refund"
+                android:textColor="@color/green"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.094"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.336" />
 
 
-            </androidx.cardview.widget.CardView>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
 
     <Button
         android:id="@+id/Donebut"
@@ -425,8 +418,5 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
 
-
-        </LinearLayout>
-    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

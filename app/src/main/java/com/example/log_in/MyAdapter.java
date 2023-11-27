@@ -48,6 +48,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         holder.bookedByPending.setText(user.getEmail());
         holder.totalNumberPending.setText(user.getSelectedTouristNum());
         holder.selectedHousePending.setText(user.getSelectedTour());
+        holder.AmountTextTH.setText(String.valueOf(user.getTotalAmount()));
     }
 
     private void onAcceptButtonClick(User user) {
@@ -88,7 +89,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         Button approvedbtn, rejectdbtn;
-        TextView pendingMonthText, bahayPendingText, arawPendingText, bookedByPending, totalNumberPending, selectedHousePending;
+        TextView pendingMonthText, bahayPendingText, arawPendingText, bookedByPending, totalNumberPending, selectedHousePending,AmountTextTH;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -101,6 +102,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             selectedHousePending = itemView.findViewById(R.id.SelectedHousePending);
             approvedbtn = itemView.findViewById(R.id.approvedbtn);
             rejectdbtn = itemView.findViewById(R.id.rejectdbtn);
+            AmountTextTH = itemView.findViewById(R.id.AmountTextTH);
         }
     }
 }

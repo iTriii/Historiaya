@@ -95,9 +95,9 @@
         android:layout_height="42dp"
         android:layout_marginEnd="60dp"
         android:fontFamily="@font/montserrat_alternates_extrabold"
-        android:shadowColor="#FFFDFD"
-        android:shadowDx="7"
-        android:shadowDy="-9"
+        android:shadowColor="@color/black"
+        android:shadowDx="2"
+        android:shadowDy="-2"
         android:shadowRadius="2"
         android:text="Your Refund Details"
         android:textAlignment="center"
@@ -168,7 +168,7 @@
 
                 <View
                     android:layout_width="45dp"
-                    android:layout_height="1dp"
+                    android:layout_height="2dp"
                     android:layout_gravity="center"
                     android:layout_marginLeft="127dp"
                     android:layout_marginTop="-100dp"
@@ -196,9 +196,9 @@
 
                 <View
                     android:layout_width="wrap_content"
-                    android:layout_height="1dp"
+                    android:layout_height="2dp"
                     android:layout_gravity="center"
-                    android:layout_marginTop="-40dp"
+                    android:layout_marginTop="-10dp"
                     android:background="@android:color/black" />
 
 
@@ -208,6 +208,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="130dp"
+                    android:textAlignment="textStart"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center_horizontal"
                     android:text=" Refund Amount: "
@@ -244,7 +245,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="165dp"
                     android:fontFamily="@font/montserrat"
-                    android:gravity="center_horizontal"
+                    android:textAlignment="textStart"
                     android:text="Requested By:  "
                     android:textColor="@color/green"
                     android:textSize="20sp"
@@ -295,7 +296,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="195dp"
                     android:fontFamily="@font/montserrat"
-                    android:gravity="center_horizontal"
+                    android:textAlignment="textStart"
                     android:text="Tourists Reason  "
                     android:textColor="@color/green"
                     android:textSize="20sp"

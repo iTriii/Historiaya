@@ -58,6 +58,8 @@ public class BookNow extends AppCompatActivity {
     String selectedTime = "";
     String selectedTour;
     private String time;
+    ImageView displayImageView;
+    private String imageUrl;
 
 
     @Override
@@ -102,26 +104,66 @@ public class BookNow extends AppCompatActivity {
         backbtn = findViewById(R.id.backbtn);
         SDate = findViewById(R.id.SDate);
         calendarView = findViewById(R.id.Calendar);
+        displayImageView = findViewById(R.id.displayImageView);
 
         // Configure Crisp
         Crisp.configure(getApplicationContext(), "2a53b3b9-d275-4fb1-81b6-efad59022426");
 
         // Set up spinner adapters
 
-btntime1 = findViewById(R.id.btntime1);
-btntime2 = findViewById(R.id.btntime2);
-btntime3 = findViewById(R.id.btntime3);
-btntime4 = findViewById(R.id.btntime4);
+        btntime1 = findViewById(R.id.btntime1);
+        btntime2 = findViewById(R.id.btntime2);
+        btntime3 = findViewById(R.id.btntime3);
+        btntime4 = findViewById(R.id.btntime4);
 
 
-
-
-        setupSpinners();
         setListeners();
-        setupButtonClickListener(btntime1, btntime2,  btntime3, btntime4);
+        setupButtonClickListener(btntime1, btntime2, btntime3, btntime4);
+        setupSpinners();
+
     }
-
-
+//
+//        // Load the image URL from Firestore based on the document ID
+//        String documentId = getIntent().getStringExtra("documentId");
+//        if (documentId != null) {
+//            loadImageUrlFromFirestore(documentId);
+//        }
+//    }
+//
+//    private void loadImageUrlFromFirestore(String documentId) {
+//        FirebaseFirestore.getInstance().collection("Schedule")
+//                .document(documentId)  // Use the received
+//                .get()
+//                .addOnSuccessListener(documentSnapshot -> {
+//                    if (documentSnapshot.exists()) {
+//                        // Get the image URL from Firestore
+//                        String imageUrl = documentSnapshot.getString("imageUrl");
+//                        Log.d("BookNow", "Image URL: " + imageUrl);
+//
+//                        // Load and display the image
+//                        if (imageUrl != null && !imageUrl.isEmpty()) {
+//                            loadAndDisplayImage(imageUrl);
+//                        } else {
+//                            // Handle the case where imageUrl is null or empty
+//                            Log.e("BookNow", "Image URL is null or empty");
+//                        }
+//                    } else {
+//                        // Handle the case where the document does not exist
+//                        Log.e("BookNow", "Document does not exist");
+//                    }
+//                })
+//                .addOnFailureListener(e -> {
+//                    // Handle the failure of fetching the image URL from Firestore
+//                    Log.e("BookNow", "Error fetching image URL from Firestore", e);
+//                });
+//    }
+//
+//    private void loadAndDisplayImage(String imageUrl) {
+//        // Load image using Glide or any other image-loading library
+//        ImageView displayImageView = findViewById(R.id.displayImageView); // Replace with your ImageView ID
+//        Glide.with(BookNow.this).load(imageUrl).into(displayImageView);
+//    }
+//
 
     private void setupSpinners() {
         ArrayAdapter<CharSequence> heritageHouseAdapter = ArrayAdapter.createFromResource(
@@ -156,12 +198,12 @@ btntime4 = findViewById(R.id.btntime4);
 
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-              //  showToast("Heritage House Selected: " + spinTour.getSelectedItem().toString());
+                //  showToast("Heritage House Selected: " + spinTour.getSelectedItem().toString());
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parentView) {
-            //    showToast("No Heritage House Selected. Please, Select a Tour");
+                //    showToast("No Heritage House Selected. Please, Select a Tour");
             }
         });
 
@@ -294,7 +336,7 @@ btntime4 = findViewById(R.id.btntime4);
     }
 
 
-//CRISP
+    //CRISP
     private void startCrispChat() {
         Crisp.setUserEmail(mAuth.getCurrentUser().getEmail());
 
@@ -382,10 +424,10 @@ btntime4 = findViewById(R.id.btntime4);
         int delayMillis = 60000; //1min delay
         new Handler()
                 .postDelayed(() -> addDataToFirestore(userId, selectedTour, selectedTouristNum, reservedDate, totalAmount, selectedTime)
-                , delayMillis);
+                        , delayMillis);
 
 
-    DocumentReference userDocRef = db.collection("users").document(userId);
+        DocumentReference userDocRef = db.collection("users").document(userId);
         userDocRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Map<String, Object> bookingData = new HashMap<>();
@@ -399,7 +441,7 @@ btntime4 = findViewById(R.id.btntime4);
                 bookingData.put("selectedTime", selectedTime);
 
                 userDocRef.update(bookingData).addOnSuccessListener(documentReference -> {
-                  //  Toast.makeText(getApplicationContext(), "Booking updated", Toast.LENGTH_SHORT).show();
+                    //  Toast.makeText(getApplicationContext(), "Booking updated", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(), PaymentDetails.class));
                     if (isTourDone(selectedTour)) {
                         moveToHistory(userId, selectedTour, reservedDate);
@@ -460,14 +502,14 @@ btntime4 = findViewById(R.id.btntime4);
                     db.collection("history").document(userId)
                             .delete()
                             .addOnSuccessListener(aVoid -> {
-                       //         Toast.makeText(getApplicationContext(), "Booking moved to history", Toast.LENGTH_SHORT).show();
+                                //         Toast.makeText(getApplicationContext(), "Booking moved to history", Toast.LENGTH_SHORT).show();
                             })
                             .addOnFailureListener(exception -> {
-                         //       Toast.makeText(getApplicationContext(), "Failed to delete booking: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                                //       Toast.makeText(getApplicationContext(), "Failed to delete booking: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
                             });
                 })
                 .addOnFailureListener(exception -> {
-                //    Toast.makeText(getApplicationContext(), "Failed to move booking to history: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                    //    Toast.makeText(getApplicationContext(), "Failed to move booking to history: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
 

@@ -2,26 +2,25 @@ package com.example.log_in;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
-import android.content.ContentValues;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CalendarView;
-import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -34,12 +33,17 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class TourismHeadAdmin extends AppCompatActivity {
+    private static final int GALLERY_REQUEST_CODE = 123;
+
     private RadioButton Upcoming_Tab, History_tab, Pending_Tab;
     private ScrollView Upcoming_ScrollView, History_ScrollView, Pending_ScrollView;
     private View wan, to, tre;
@@ -56,15 +60,12 @@ public class TourismHeadAdmin extends AppCompatActivity {
 
     private ProgressDialog progressDialog;
 
-    private CalendarView calendarTourismHead;
-    private Button SaveTH;
+    private Button uploadImageTH_btn;
     private Object Email;
+    ImageView eventSched, addTM;
     private ListenerRegistration userDataListener;
+    ImageView Event_Sched, calendarV;
 
-    private customizedCalendar customizedCalendar;
-    private String selectedDate;
-    EditText Event;
-    private SQLiteDatabase sqLiteDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,27 +75,12 @@ public class TourismHeadAdmin extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        Event = findViewById(R.id.Event);
-
-        calendarTourismHead = findViewById(R.id.CalendarTourismHead);
-        calendarTourismHead.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
-            @Override
-            public void onSelectedDayChange(@NonNull CalendarView calendarView, int year, int month, int dayofMonth) {
-
-                selectedDate = Integer.toString(year) + Integer.toString(month) + Integer.toString(dayofMonth);
-                ReadDatabase();
-            }
+        addTM = findViewById(R.id.addTM);
+        eventSched = findViewById(R.id.eventSched);
+        uploadImageTH_btn = findViewById(R.id.uploadImageTH_btn);
+        uploadImageTH_btn.setOnClickListener(v -> {
+            openGallery();
         });
-        try{
-            customizedCalendar = new customizedCalendar(this, "CalendarDatabase", null ,1);
-            sqLiteDatabase = customizedCalendar.getWritableDatabase();
-            sqLiteDatabase.execSQL("CREATE TABLE EventCalendar (Date TEXT, Event TEXT)");
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-
-        SaveTH = findViewById(R.id.SaveTH);
 
         // Initialize Firebase Authentication and Firestore
         wan = findViewById(R.id.wan);
@@ -113,9 +99,10 @@ public class TourismHeadAdmin extends AppCompatActivity {
         UpcomingAdapter = new UpcomingAdapter(this, userArrayList, db);
         HistoryAdapter = new HistoryAdapter(this, userArrayList, db);
 
-
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
+
+
 
         if (currentUser != null) {
             String userId = currentUser.getUid();
@@ -148,6 +135,7 @@ public class TourismHeadAdmin extends AppCompatActivity {
             });
         }
 
+        fetchImageFromStorage();
 
         // Initialize ProgressDialog
         progressDialog = new ProgressDialog(this);
@@ -158,6 +146,80 @@ public class TourismHeadAdmin extends AppCompatActivity {
         setUpRecyclerView(); // Set up RecyclerView and Adapter
         setUpTabsAndViews(); // Set up tabs and views
     }
+
+    private void fetchImageFromStorage() {
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("Calendar/calendar_image.jpg");
+
+        // Fetch the image and load it into the eventSched ImageView
+        storageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+            // Load the retrieved image using Glide or set it directly to the ImageView
+            Glide.with(this)
+                    .load(uri)
+                    .into(eventSched);
+           addTM.setVisibility(View.GONE);
+        }).addOnFailureListener(exception -> {
+            // Handle any errors that may occur while fetching the image
+            showToast("Failed to fetch image: " + exception.getMessage());
+        });
+    }
+
+    private void showToast(String s) {
+    }
+
+    private void openGallery() {
+        Intent galleryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        startActivityForResult(galleryIntent, GALLERY_REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            // Handle the selected image from the gallery
+            Uri selectedImageUri = data.getData();
+
+            // Set the selected image to the eventSched ImageView
+            eventSched.setImageURI(selectedImageUri);
+
+            // Hide the addTM ImageView
+            addTM.setVisibility(View.GONE);
+
+            // Upload the selected image to Firebase Storage under the "Calendar" document
+            uploadImageToStorage(selectedImageUri);
+        }
+    }
+    private void uploadImageToStorage(Uri imageUri) {
+        if (imageUri != null) {
+            FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+            if (currentUser != null) {
+                String imageName = "calendar_image.jpg"; // Set a name for the image in storage
+
+                // Get a reference to the Firebase Storage location
+                StorageReference storageReference = FirebaseStorage.getInstance().getReference()
+                        .child("Calendar")
+                        .child(imageName);
+
+                // Upload the image to Firebase Storage
+                UploadTask   uploadTask = storageReference.putFile(imageUri);
+                uploadTask.addOnSuccessListener(taskSnapshot -> {
+                    // Image uploaded successfully
+                    Toast.makeText(this, "Image uploaded to Firebase Storage", Toast.LENGTH_SHORT).show();
+                    // You can also retrieve the download URL of the uploaded image here if needed
+                    storageReference.getDownloadUrl().addOnSuccessListener(uri -> {
+                        String downloadUrl = uri.toString();
+                        // You can use the download URL for further operations if required
+                    });
+                }).addOnFailureListener(e -> {
+                    // Handle any errors during the upload process
+                    Log.e("FirebaseStorage", "Error uploading image: " + e.getMessage());
+                    Toast.makeText(this, "Failed to upload image", Toast.LENGTH_SHORT).show();
+                });
+            }
+        }
+    }
+
+
     private void setUpTabsAndViews() {
 
             // Set up tabs and views
@@ -186,9 +248,9 @@ public class TourismHeadAdmin extends AppCompatActivity {
             to.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
             tre.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
             // Show only Upcoming RecyclerView
-            Pending_RecyclerView.setVisibility(View.GONE);
             Upcoming_RecyclerView.setVisibility(View.VISIBLE);
             History_RecyclerView.setVisibility(View.GONE);
+            Pending_RecyclerView.setVisibility(View.GONE);
         }
 
 
@@ -206,9 +268,9 @@ public class TourismHeadAdmin extends AppCompatActivity {
             to.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
             tre.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
             // Show only History RecyclerView
-            Pending_RecyclerView.setVisibility(View.GONE);
             Upcoming_RecyclerView.setVisibility(View.GONE);
             History_RecyclerView.setVisibility(View.VISIBLE);
+            Pending_RecyclerView.setVisibility(View.GONE);
         }
 
 
@@ -226,47 +288,10 @@ public class TourismHeadAdmin extends AppCompatActivity {
             to.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
             tre.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
             // Show only Pending RecyclerView
-            Pending_RecyclerView.setVisibility(View.VISIBLE);
             Upcoming_RecyclerView.setVisibility(View.GONE);
             History_RecyclerView.setVisibility(View.GONE);
-
-            // Set a date change listener for the calendar view
-            calendarTourismHead.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
-                // Handle date selection here
-                String editDate = year + "-" + (month + 1) + "-" + dayOfMonth;
-                Toast.makeText(TourismHeadAdmin.this, "Selected Date: " + editDate, Toast.LENGTH_SHORT).show();
-            });
+            Pending_RecyclerView.setVisibility(View.VISIBLE);
         }
-    public void ReadDatabase() {
-        String query = "SELECT Event FROM EventCalendar WHERE Date = '" + selectedDate + "'";
-        try {
-            Cursor cursor = sqLiteDatabase.rawQuery(query, null);
-            if (cursor.moveToFirst()) {
-                Event.setText(cursor.getString(0)); // Update the appropriate view here
-            } else {
-                Event.setText("");
-            }
-            cursor.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-            Event.setText("");
-        }
-    }
-    private void markSelectedDateUnavailable() {
-        CalendarView cv = findViewById(R.id.CalendarTourismHead);
-        cv.setDate(Long.parseLong(selectedDate), true, true); // Set the selected date
-
-        // Change the color of the selected date (example: to orange for unavailable)
-    }
-    public void InsertDatabase(View view) {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("Date", selectedDate);
-        contentValues.put("Event", Event.getText().toString());
-        sqLiteDatabase.insert("EventCalendar", null, contentValues);
-
-        // After inserting the event, mark the selected date as unavailable
-        markSelectedDateUnavailable();
-    }
 
 
 
@@ -284,7 +309,6 @@ public class TourismHeadAdmin extends AppCompatActivity {
             History_RecyclerView.setLayoutManager(new LinearLayoutManager(this));
             History_RecyclerView.setAdapter(HistoryAdapter);
         }
-
 
 
     // EventListener for data changes in Firestore
@@ -331,6 +355,7 @@ public class TourismHeadAdmin extends AppCompatActivity {
                                     }
                                     break;
                                 case REMOVED:
+
                                     User userRemoved = dc.getDocument().toObject(User.class);
                                     userHashMap.remove(userRemoved.getEmail());
                                     upcomingUserHashMap.remove(userRemoved.getUserId());
@@ -366,10 +391,6 @@ public class TourismHeadAdmin extends AppCompatActivity {
                     if (documentSnapshot != null && documentSnapshot.exists()) {
                         // Extract data from the document snapshot
                         String status = documentSnapshot.getString("status");
-
-                        // Display the data or perform other actions
-                        // For example, you can update a TextView with the fetched data
-                        // textView.setText(userData);
                     }
                 });
     }
@@ -385,7 +406,7 @@ public class TourismHeadAdmin extends AppCompatActivity {
 
 
         // Set a click listener for the edit button
-        SaveTH.setOnClickListener(v -> {
+        uploadImageTH_btn.setOnClickListener(v -> {
             // Handle edit button click (implement your edit/update/delete logic here)
             Toast.makeText(TourismHeadAdmin.this, "Edit button clicked", Toast.LENGTH_SHORT).show();
         });

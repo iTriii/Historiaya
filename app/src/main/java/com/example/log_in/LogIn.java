@@ -128,6 +128,7 @@ public class LogIn extends AppCompatActivity {
                                     startActivity(intent);
                                     finish();
                                 }
+                                //
                             }
                         } else {
                             Toast.makeText(LogIn.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
