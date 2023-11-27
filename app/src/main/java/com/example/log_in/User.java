@@ -92,7 +92,4 @@ public class User {
         this.totalAmount = totalAmount;
     }
 
-    public boolean isPending() {
-        return "Pending".equals(status);
-    }
 }
