@@ -134,6 +134,8 @@ public class Main2 extends AppCompatActivity {
         });
     }
 
+
+    //dialog for log out
     private void showLogoutDialog() {
         // Show the custom logout dialog
         dialog.setContentView(R.layout.dialog_logout);
@@ -156,6 +158,8 @@ public class Main2 extends AppCompatActivity {
 
         dialog.show();
     }
+
+
     private boolean SettingsAreVisible() {
         return settings_popup.getVisibility() == View.VISIBLE;
     }

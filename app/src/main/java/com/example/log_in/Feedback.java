@@ -49,7 +49,7 @@ public class Feedback extends AppCompatActivity {
 
         // Back button
         backbtn.setOnClickListener(v -> {
-            Intent intent = new Intent(Feedback.this, Settings.class);
+            Intent intent = new Intent(Feedback.this, Main2.class);
             startActivity(intent);
         });
 

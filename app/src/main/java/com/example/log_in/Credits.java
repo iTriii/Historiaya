@@ -20,7 +20,7 @@ public class Credits extends AppCompatActivity {
 
         // Back button
         backbtn.setOnClickListener(v -> {
-            Intent intent = new Intent(Credits.this, Settings.class);
+            Intent intent = new Intent(Credits.this, Main2.class);
             startActivity(intent);
         });
     }
