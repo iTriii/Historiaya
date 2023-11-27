@@ -316,7 +316,7 @@ public class LogIn extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "TourismHead Login Successful", Toast.LENGTH_LONG).show();
                     Log.d("Navigate", "Navigating to Admin.class");
                     finish();
-                    Intent intent = new Intent(LogIn.this, Admin.class);
+                    Intent intent = new Intent(LogIn.this, TourismHeadAdmin.class);
                     startActivity(intent);
                 } else {
                     // Non-admin email, navigate to Main2

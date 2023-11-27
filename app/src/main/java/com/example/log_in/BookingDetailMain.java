@@ -1,5 +1,6 @@
 package com.example.log_in;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -101,6 +102,7 @@ public class BookingDetailMain extends AppCompatActivity {
     }
 
     // Method to retrieve data from Firestore
+    @SuppressLint("DefaultLocale")
     private void retrieveDataFromFirestore() {
         userDataListener = db.collection("users")
                 .document(auth.getCurrentUser().getUid())

@@ -77,7 +77,7 @@ public class BookingDetails extends AppCompatActivity {
         });
 
 
-        // NAVIGATE TO PROFILE
+        // NAVIGATE TO BOOKING DETAILS MAIN
         btncancel.setOnClickListener(v -> {
             Intent intent = new Intent(BookingDetails.this, BookingDetailMain.class);
             startActivity(intent);
@@ -206,7 +206,7 @@ public class BookingDetails extends AppCompatActivity {
         newBookingDocRef.set(bookingData)
                 .addOnSuccessListener(documentReference -> {
                     Toast.makeText(getApplicationContext(), "Reschedule uploaded. Please wait for the admin", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(), Main2.class));
+                    startActivity(new Intent(getApplicationContext(), BookingDetailMain.class));
                 })
                 .addOnFailureListener(exception -> {
                     Toast.makeText(getApplicationContext(), "Error creating a new booking document: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
