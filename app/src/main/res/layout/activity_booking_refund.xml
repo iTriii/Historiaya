@@ -224,9 +224,9 @@
                     android:layout_width="45dp"
                     android:layout_height="2dp"
                     android:layout_gravity="center"
-                    android:layout_marginLeft="147dp"
+                    android:layout_marginLeft="150dp"
                     android:layout_marginTop="-86dp"
-                    android:background="@android:color/holo_green_dark" />
+                    android:background="@color/GREEN" />
 
                 <TextView
                     android:id="@+id/pickhouseRefundText"

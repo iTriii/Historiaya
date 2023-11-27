@@ -114,6 +114,7 @@
                 android:id="@+id/bookebyNamePending"
                 android:layout_width="180dp"
                 android:layout_height="20dp"
+                android:text="Leah Sulongsawa"
                 android:textAlignment="textStart"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="150dp"
