@@ -25,17 +25,17 @@ public class Feedback extends AppCompatActivity {
 
 
         backbtn = findViewById(R.id.backbtnFeedback);
-        done = findViewById(R.id.done);
+//        done = findViewById(R.id.done);
 
         feedbackEditText = findViewById(R.id.editTextFeedback);
         sendEmailbtn = findViewById(R.id.sendEmailbtn);
 
 
-// Back button
-        done.setOnClickListener(v -> {
-            Intent intent = new Intent(Feedback.this, Main2.class);
-            startActivity(intent);  // Add this line to start the activity
-        });
+//// Back button
+//        done.setOnClickListener(v -> {
+//            Intent intent = new Intent(Feedback.this, Main2.class);
+//            startActivity(intent);  // Add this line to start the activity
+//        });
 
 
         sendEmailbtn.setOnClickListener(new View.OnClickListener() {

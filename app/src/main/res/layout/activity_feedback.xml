@@ -91,7 +91,7 @@
         app:srcCompat="@drawable/arrow_back" />
 
     <EditText
-        android:id="@+id/Feedback"
+        android:id="@+id/editTextFeedback"
         android:layout_width="352dp"
         android:layout_height="209dp"
         android:layout_marginTop="196dp"
@@ -120,41 +120,10 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.554"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/clouds"
-        app:layout_constraintVertical_bias="0.353"
-        app:srcCompat="@drawable/cloud"
-        tools:ignore="MissingConstraints" />
-
-    <EditText
-        android:id="@+id/editTextFeedback"
-        android:layout_width="354dp"
-        android:layout_height="59dp"
-        android:layout_marginTop="448dp"
-        android:hint="Enter your Email:"
-        android:textColor="@color/GREEN"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/clouds"
-        app:layout_constraintVertical_bias="0.09"
-        app:srcCompat="@drawable/cloud"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:layout_width="289dp"
-        android:layout_height="54dp"
-        android:layout_gravity="center"
-        android:text="Mabuhay Tourists, Click the button to submit your Feedback. Thank you!"
-        android:textColor="@color/GREEN"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/clouds"
-        app:layout_constraintVertical_bias="0.497"
+        app:layout_constraintVertical_bias="0.213"
         app:srcCompat="@drawable/cloud"
         tools:ignore="MissingConstraints" />
 
@@ -162,7 +131,7 @@
         android:id="@+id/sendEmailbtn"
         android:layout_width="201dp"
         android:layout_height="52dp"
-        android:layout_marginBottom="136dp"
+        android:layout_marginBottom="224dp"
         android:background="@drawable/startbuttonbg"
         android:fontFamily="@font/montserrat_bold"
         android:text="Send Feedback"
@@ -170,24 +139,26 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.552"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 
-    <Button
-        android:id="@+id/done"
-        android:layout_width="201dp"
-        android:layout_height="52dp"
-        android:layout_marginBottom="56dp"
-        android:background="@drawable/startbuttonbg"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="Done"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clouds"
-        app:layout_constraintVertical_bias="0.299"
-        app:srcCompat="@drawable/cloud"
-        tools:ignore="MissingConstraints" />
+<!--    <Button-->
+<!--        android:id="@+id/done"-->
+<!--        android:layout_width="201dp"-->
+<!--        android:layout_height="52dp"-->
+<!--        android:layout_marginBottom="56dp"-->
+<!--        android:background="@drawable/startbuttonbg"-->
+<!--        android:fontFamily="@font/montserrat_bold"-->
+<!--        android:text="Done"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.552"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/clouds"-->
+<!--        app:layout_constraintVertical_bias="0.481"-->
+<!--        app:srcCompat="@drawable/cloud"-->
+<!--        tools:ignore="MissingConstraints" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>
