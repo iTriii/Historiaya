@@ -8,7 +8,6 @@
  import android.content.Intent;
  import android.os.Bundle;
  import android.provider.Settings;
- import android.view.MotionEvent;
  import android.view.View;
  import android.widget.Button;
  import android.widget.ImageView;
@@ -130,27 +129,18 @@ public class Main2 extends AppCompatActivity {
 
         ConstraintLayout main2 = findViewById(R.id.main2);
         main2.setOnTouchListener((view, motionEvent) -> {
-            if (SettingsAreVisible() && isTouchOutsideSettings(motionEvent)) {
-                hideSettings();
+            if (ShareApp.getVisibility() == View.VISIBLE) {
+                float x = motionEvent.getX();
+                float y = motionEvent.getY();
+
+                if (x < ShareApp.getLeft() || x > ShareApp.getRight() ||
+                        y < ShareApp.getTop() || y > ShareApp.getBottom()) {
+                    ShareApp.setVisibility(View.GONE);
+                }
             }
             return false;
         });
     }
-
-        private boolean SettingsAreVisible() {
-            return settings_popup.getVisibility() == View.VISIBLE;
-        }
-
-        private boolean isTouchOutsideSettings(MotionEvent motionEvent) {
-            float x = motionEvent.getX();
-            float y = motionEvent.getY();
-            return x < settings_popup.getLeft() || x > settings_popup.getRight() ||
-                    y < settings_popup.getTop() || y > settings_popup.getBottom();
-        }
-
-        private void hideSettings() {
-            settings_popup.setVisibility(View.GONE);
-        }
 
         private void openPopUpWindow() {
         Intent intent = new Intent(this, LogOut_PO.class);
