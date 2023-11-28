@@ -1,4 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="game_view_content_description">Game view</string>
     <!--Splashscreen-->
     <string name="AppName">Historiaya</string>
     <string name="TagLine">A Journey to the Past at Your Fingertips</string>
