@@ -4,6 +4,261 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#E1FAFF"
+    android:textAlignment="center"
     tools:context=".Credits">
-    <!-- For update lang-->
+
+
+    <TextView
+        android:id="@+id/AppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:fontFamily="@font/montserrat_alternates_extrabold"
+        android:text="@string/AppName"
+        android:textAlignment="center"
+        android:textColor="@color/appname"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/backbtn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/shadow"
+        android:clickable="true"
+        android:contentDescription="@string/BookNow"
+        android:contextClickable="true"
+        android:elevation="10dp"
+        android:longClickable="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/arrow_back" />
+
+
+    <ScrollView
+        android:id="@+id/CreditsScrollView"
+        android:layout_width="409dp"
+        android:layout_height="600dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AppName">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:layout_marginTop="10dp"
+                android:padding="30dp"
+                android:text="@string/AboutOurApp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/about"
+                android:textAlignment="center"
+                android:textColor="@color/green"
+                android:textSize="22sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat"
+                android:padding="30dp"
+                android:text="@string/about1"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="31dp"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:shadowColor="#FFFDFD"
+                android:shadowDx="7"
+                android:shadowDy="-9"
+                android:shadowRadius="2"
+                android:text="Meet the Team"
+                android:textAlignment="center"
+                android:textColor="@color/GREEN"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/CreditsScrollView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.743" />
+
+
+            <ImageView
+                android:id="@+id/unis"
+                android:layout_width="133dp"
+                android:layout_height="129dp"
+                android:layout_marginTop="30dp"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:src="@drawable/unis" />
+
+            <ImageView
+                android:id="@+id/eon"
+                android:layout_width="133dp"
+                android:layout_height="129dp"
+                android:layout_marginStart="130dp"
+                android:layout_marginTop="-130dp"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:src="@drawable/eon" />
+
+            <ImageView
+                android:id="@+id/lei"
+                android:layout_width="133dp"
+                android:layout_height="129dp"
+                android:layout_marginStart="260dp"
+                android:layout_marginTop="-130dp"
+                android:layout_weight="1"
+                android:padding="10dp"
+                android:src="@drawable/leiqtie" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/unisTxet"
+                    android:layout_width="127dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="1dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/montserrat"
+                    android:maxLines="2"
+                    android:text="Eunice Ordillano"
+                    android:textAlignment="center"
+                    android:textColor="@color/green"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/NumTourist"
+                    app:layout_constraintTop_toTopOf="@+id/blurred"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:layout_editor_absoluteX="32dp" />
+
+                <TextView
+                    android:id="@+id/eonText"
+                    android:layout_width="127dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="1dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/montserrat"
+                    android:maxLines="2"
+                    android:text="Ian Jefferson Sales"
+                    android:textAlignment="center"
+                    android:textColor="@color/green"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/NumTourist"
+                    app:layout_constraintTop_toTopOf="@+id/blurred"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:layout_editor_absoluteX="32dp" />
+
+                <TextView
+                    android:id="@+id/leiText"
+                    android:layout_width="127dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="1dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/montserrat"
+                    android:maxLines="2"
+                    android:text="Leah Sulongsawa"
+                    android:textAlignment="center"
+                    android:textColor="@color/green"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="@+id/NumTourist"
+                    app:layout_constraintTop_toTopOf="@+id/blurred"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:layout_editor_absoluteX="32dp" />
+
+                <TextView
+                    android:id="@+id/Dev1"
+                    android:layout_width="127dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="-400dp"
+                    android:layout_marginTop="17dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/montserrat"
+                    android:maxLines="2"
+                    android:text="Developer"
+                    android:textAlignment="center"
+                    android:textColor="@color/green"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/NumTourist"
+                    app:layout_constraintTop_toTopOf="@+id/blurred"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:layout_editor_absoluteX="32dp" />
+
+                <TextView
+                    android:id="@+id/Dev2"
+                    android:layout_width="127dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="17dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/montserrat"
+                    android:maxLines="2"
+                    android:text="Developer"
+                    android:textAlignment="center"
+                    android:textColor="@color/green"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/NumTourist"
+                    app:layout_constraintTop_toTopOf="@+id/blurred"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:layout_editor_absoluteX="32dp" />
+
+                <TextView
+                    android:id="@+id/Dev3"
+                    android:layout_width="127dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="17dp"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/montserrat"
+                    android:maxLines="2"
+                    android:text="Developer"
+                    android:textAlignment="center"
+                    android:textColor="@color/green"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/NumTourist"
+                    app:layout_constraintTop_toTopOf="@+id/blurred"
+                    app:layout_constraintVertical_bias="0.0"
+                    tools:layout_editor_absoluteX="32dp" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

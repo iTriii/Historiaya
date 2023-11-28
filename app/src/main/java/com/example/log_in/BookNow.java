@@ -326,7 +326,7 @@ public class BookNow extends AppCompatActivity {
             case "Don Catalino Rodriguez":
                 subtotal = 500.0;
                 break;
-            case "Gala Rogriguez ":
+            case "Gala Rodriguez House":
                 subtotal = 1000.0;
                 break;
             case "Both":
@@ -364,7 +364,7 @@ public class BookNow extends AppCompatActivity {
             case "Don Catalino Rodriguez":
                 tourPrice = 500.0;
                 break;
-            case "Gala Rogriguez":
+            case "Gala Rodriguez House ":
                 tourPrice = 1000.0;
                 break;
             case "Both":

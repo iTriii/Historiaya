@@ -48,7 +48,7 @@ public class Profile_Edit extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         user = auth.getCurrentUser();
 
-        back = findViewById(R.id.back);
+        back = findViewById(R.id.backbtneditprofile);
         back.setOnClickListener(v -> Profile());
 
         Save = findViewById(R.id.Save);

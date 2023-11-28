@@ -7,4 +7,90 @@
     tools:context=".PrivacyandTerms">
     <!--    For Update only-->
 
+    <ImageButton
+        android:id="@+id/back"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/shadow"
+        android:contentDescription="@string/ResetPass"
+        android:elevation="10dp"
+        android:padding="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/arrow_back" />
+
+    <TextView
+        android:id="@+id/privacyandterms"
+        android:layout_width="match_parent"
+        android:layout_height="95dp"
+        android:background="@color/white"
+        android:fontFamily="@font/montserrat_medium"
+        android:textSize="15sp"
+        android:gravity="center"
+        android:textAlignment="center"
+        android:text="@string/historiaya_terms_and_conditions"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/back"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="30dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:fontFamily="@font/montserrat"
+                android:text="@string/welcome"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <CheckBox
+                android:id="@+id/checkboxTnC"
+                android:layout_width="30dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="-400dp"
+                android:layout_marginTop="1320dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="1300dp"
+                android:layout_marginEnd="10dp"
+                android:textColor="@color/black"
+                android:text="@string/check"
+                android:fontFamily="@font/montserrat"
+                />
+            <Button
+                android:id="@+id/ConfirmTnC"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="1400dp"
+                android:layout_marginBottom="40dp"
+                android:layout_marginStart="-280dp"
+                android:text="@string/ConfirmButton"
+                android:textColor="@color/white"
+                android:fontFamily="@font/montserrat"
+                android:background="@drawable/store_price_button_ok"/>
+
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
