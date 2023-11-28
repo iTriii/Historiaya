@@ -31,7 +31,7 @@ public class Main2 extends AppCompatActivity {
     private Switch audio;
     private Button copylink, Credits, PrivacyandTerms, Feedback;
     private LinearLayout ShareApp;
-    private CardView settings_popup;
+    private CardView settings_popup, Notifications;
     private Dialog dialog;
     private FirebaseAuth mAuth;
 
@@ -109,13 +109,13 @@ public class Main2 extends AppCompatActivity {
             Toast.makeText(Main2.this, "Link copied to clipboard", Toast.LENGTH_SHORT).show();
         });
 
+        Notifications = findViewById(R.id.Notifications);
+        notif = findViewById(R.id.notif);
         notif = findViewById(R.id.notif);
         notif.setOnClickListener(v -> {
-            dialog.setContentView(R.layout.activity_notifications);
-            dialog.getWindow().setBackgroundDrawableResource(R.drawable.popup_background);
-            dialog.show();
+            // Make the Notifications CardView visible when the notif ImageView is clicked
+            Notifications.setVisibility(View.VISIBLE);
         });
-
         settings_popup = findViewById(R.id.settings_popup);
         settings_popup.setVisibility(View.GONE);
         EditProfile = findViewById(R.id.EditProfile);
@@ -134,9 +134,23 @@ public class Main2 extends AppCompatActivity {
             } else if (ShareVisible() && isTouchOutsideShare(motionEvent)) {
                 hideShare();
                 return true; // Consume the touch event
+            } else if (notifVisible() && isTouchOutsidenotif(motionEvent)) {
+                hidenotif();
             }
             return false; // Allow the touch event to propagate
         });
+    }
+    private void hidenotif(){
+        Notifications.setVisibility(View.GONE);
+    }
+    private boolean notifVisible(){
+        return Notifications.getVisibility() == View.VISIBLE;
+    }
+    private boolean isTouchOutsidenotif(MotionEvent motionEvent) {
+        float x = motionEvent.getX();
+        float y = motionEvent.getY();
+        return x < Notifications.getLeft() || x > Notifications.getRight() ||
+                y < Notifications.getTop() || y > Notifications.getBottom();
     }
 
     private void hideShare() {

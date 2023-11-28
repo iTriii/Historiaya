@@ -392,5 +392,57 @@
             android:textSize="15sp" />
     </androidx.cardview.widget.CardView>
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Notifications"
+        android:layout_width="338dp"
+        android:layout_height="289dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.383"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.242">
+
+        <TextView
+            android:id="@+id/Notif"
+            android:layout_width="338dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="1dp"
+            android:background="@drawable/notif"
+            android:fontFamily="@font/montserrat_bold"
+            android:paddingStart="15dp"
+            android:paddingTop="10dp"
+            android:text="@string/Notifications"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/MarkAllAsRead"
+            android:layout_width="125dp"
+            android:layout_height="30dp"
+            android:layout_marginLeft="200dp"
+            android:fontFamily="@font/montserrat_bold"
+            android:paddingTop="10dp"
+            android:text="@string/Mark"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/ViewNotif"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="90dp"
+            android:layout_marginTop="250dp"
+            android:clickable="true"
+            android:fontFamily="@font/montserrat"
+            android:linksClickable="true"
+            android:longClickable="true"
+            android:text="@string/View"
+            android:textAlignment="center"
+            android:textSize="12sp" />
+
+    </androidx.cardview.widget.CardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
