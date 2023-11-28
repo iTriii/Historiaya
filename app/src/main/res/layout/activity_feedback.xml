@@ -120,10 +120,9 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.554"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/clouds"
-        app:layout_constraintVertical_bias="0.213"
+        app:layout_constraintVertical_bias="0.197"
         app:srcCompat="@drawable/cloud"
         tools:ignore="MissingConstraints" />
 

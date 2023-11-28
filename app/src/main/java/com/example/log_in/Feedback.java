@@ -31,12 +31,17 @@ public class Feedback extends AppCompatActivity {
         sendEmailbtn = findViewById(R.id.sendEmailbtn);
 
 
-//// Back button
+////done button
 //        done.setOnClickListener(v -> {
 //            Intent intent = new Intent(Feedback.this, Main2.class);
 //            startActivity(intent);  // Add this line to start the activity
 //        });
 
+
+        backbtn.setOnClickListener(v -> {
+            Intent intent = new Intent(Feedback.this, Main2.class);
+            startActivity(intent);  // Add this line to start the activity
+        });
 
         sendEmailbtn.setOnClickListener(new View.OnClickListener() {
             @Override
