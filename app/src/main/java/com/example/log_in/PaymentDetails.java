@@ -1,3 +1,4 @@
+//PaymentDetails
 package com.example.log_in;
 
 import android.content.Intent;
@@ -12,6 +13,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import com.google.firebase.FirebaseApp;
+
+import im.crisp.client.ChatActivity;
+import im.crisp.client.Crisp;
+
 //FOR UPDATE ONLY
 public class PaymentDetails extends AppCompatActivity {
 
@@ -19,7 +24,7 @@ public class PaymentDetails extends AppCompatActivity {
     ScrollView ScrollViewDonCata, ScrollViewGalaRod;
     View lineone, linetwo;
 
-    ImageButton backbtn, chatbtn;
+    ImageButton backbtnpaymentdetails, chatbtn;
     Button donebtn, donebtn2;
 
 
@@ -29,10 +34,13 @@ public class PaymentDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_details);
 
+        // Configure Crisp
+        Crisp.configure(getApplicationContext(), "2a53b3b9-d275-4fb1-81b6-efad59022426");
+
         // Initialize Firebase
         FirebaseApp.initializeApp(this);
-        backbtn = findViewById(R.id.backbtnpaymentdetails);
-        chatbtn = findViewById(R.id.chatbtn);
+        backbtnpaymentdetails = findViewById(R.id.backbtnpaymentdetails);
+
         donebtn = findViewById(R.id.donebtn);
         donebtn2 = findViewById(R.id.donebtn2);
         ScrollViewDonCata = findViewById(R.id.ScrollViewDonCata); //scrollview
@@ -45,7 +53,11 @@ public class PaymentDetails extends AppCompatActivity {
         lineone = findViewById(R.id.lineone);
         linetwo = findViewById(R.id.linetwo);
 
-
+        chatbtn = findViewById(R.id.chatbtn);
+        chatbtn.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ChatActivity.class);
+            startActivity(intent);
+        });
         //doncatbutton
         donebtn.setOnClickListener(v -> {
             Intent intent = new Intent(PaymentDetails.this, Payment.class);
@@ -59,7 +71,7 @@ public class PaymentDetails extends AppCompatActivity {
         });
 
         // Back button
-        backbtn.setOnClickListener(view -> {
+        backbtnpaymentdetails.setOnClickListener(view -> {
             Intent intent = new Intent(PaymentDetails.this, BookNow.class);
             startActivity(intent);
         });

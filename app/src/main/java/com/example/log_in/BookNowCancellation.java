@@ -47,7 +47,6 @@ public class BookNowCancellation extends AppCompatActivity {
                 Intent intent = new Intent(BookNowCancellation.this, BookingDetailMain.class);
                 startActivity(intent);
                 Toast.makeText(BookNowCancellation.this,"Not Now", Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
 
             }
         });
@@ -58,7 +57,6 @@ public class BookNowCancellation extends AppCompatActivity {
                 Intent intent = new Intent(BookNowCancellation.this, Main2.class);
                 startActivity(intent);
                 Toast.makeText(BookNowCancellation.this,"Confirm  Cancellation please wait for approval", Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
             }
         });
 

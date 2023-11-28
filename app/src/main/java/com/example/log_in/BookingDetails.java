@@ -49,6 +49,7 @@ public class BookingDetails extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_details);
 
+
         spinTour = findViewById(R.id.spinTour);
         spinNum = findViewById(R.id.spinNum);
         btnnext = findViewById(R.id.btnnext);
@@ -58,6 +59,7 @@ public class BookingDetails extends AppCompatActivity {
         Date = findViewById(R.id.Date);
         Time = findViewById(R.id.Time);
         backkk = findViewById(R.id.backkk);
+
 
         // Initialize the dialog
         dialog = new Dialog(BookingDetails.this);
@@ -100,6 +102,7 @@ public class BookingDetails extends AppCompatActivity {
         setupButtonClickListener();
         setupDatePicker();
     }
+
 
     // DATE PICKER
     private void setupDatePicker() {

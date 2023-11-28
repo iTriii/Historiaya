@@ -83,7 +83,6 @@
         android:contextClickable="true"
         android:elevation="10dp"
         android:longClickable="true"
-        app:layout_constraintBottom_toTopOf="@+id/bgFeedback"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.02"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,16 +90,20 @@
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/arrow_back" />
 
-
-
-    <ImageView
-        android:id="@+id/bgFeedback"
+    <EditText
+        android:id="@+id/Feedback"
         android:layout_width="352dp"
         android:layout_height="209dp"
-        android:layout_marginTop="304dp"
+        android:layout_marginTop="196dp"
         android:background="@color/white"
+        android:fontFamily="@font/montserrat"
+        android:gravity="start"
+        android:textSize="18sp"
+        android:hint="Enter your feedback"
+        android:padding="15dp"
+        android:textAlignment="viewStart"
         app:layout_constraintEnd_toEndOf="@+id/blurred"
-        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/clouds"
         tools:ignore="MissingConstraints" />
@@ -110,13 +113,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Provide Feedback"
-        android:textColor="@color/GREEN"
-        android:textSize="20sp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Feedback"
+        android:textColor="@color/appname"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.12"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/clouds"
         app:layout_constraintVertical_bias="0.353"
@@ -135,7 +138,7 @@
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/clouds"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.09"
         app:srcCompat="@drawable/cloud"
         tools:ignore="MissingConstraints" />
 
@@ -183,5 +186,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/clouds"
+        app:layout_constraintVertical_bias="0.299"
+        app:srcCompat="@drawable/cloud"
         tools:ignore="MissingConstraints" />
 </androidx.constraintlayout.widget.ConstraintLayout>
