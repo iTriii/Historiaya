@@ -91,7 +91,7 @@
         app:srcCompat="@drawable/arrow_back" />
 
     <EditText
-        android:id="@+id/Feedback"
+        android:id="@+id/editTextFeedback"
         android:layout_width="352dp"
         android:layout_height="209dp"
         android:layout_marginTop="196dp"
@@ -108,6 +108,7 @@
         app:layout_constraintTop_toTopOf="@+id/clouds"
         tools:ignore="MissingConstraints" />
 
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -119,29 +120,44 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/clouds"
-        app:layout_constraintVertical_bias="0.09"
+        app:layout_constraintVertical_bias="0.197"
         app:srcCompat="@drawable/cloud"
         tools:ignore="MissingConstraints" />
 
     <Button
-        android:id="@+id/Submitbtn"
+        android:id="@+id/sendEmailbtn"
         android:layout_width="201dp"
         android:layout_height="52dp"
+        android:layout_marginBottom="224dp"
         android:background="@drawable/startbuttonbg"
         android:fontFamily="@font/montserrat_bold"
-        android:text="Submit Feedback"
+        android:text="Send Feedback"
         android:textColor="@color/white"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.552"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clouds"
-        app:layout_constraintVertical_bias="0.299"
-        app:srcCompat="@drawable/cloud"
         tools:ignore="MissingConstraints" />
 
-
+<!--    <Button-->
+<!--        android:id="@+id/done"-->
+<!--        android:layout_width="201dp"-->
+<!--        android:layout_height="52dp"-->
+<!--        android:layout_marginBottom="56dp"-->
+<!--        android:background="@drawable/startbuttonbg"-->
+<!--        android:fontFamily="@font/montserrat_bold"-->
+<!--        android:text="Done"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textStyle="bold"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.552"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/clouds"-->
+<!--        app:layout_constraintVertical_bias="0.481"-->
+<!--        app:srcCompat="@drawable/cloud"-->
+<!--        tools:ignore="MissingConstraints" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>
