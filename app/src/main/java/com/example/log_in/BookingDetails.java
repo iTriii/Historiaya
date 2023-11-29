@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,11 +38,12 @@ public class BookingDetails extends AppCompatActivity {
     private Button btnnext, btncancel, confirmbtn;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
-    private TextView Date, Time;
+    private TextView Date, Time,calendartextview,Timetextview;
     private Calendar calendar;
     private ImageButton reschedcalendarbtn, reschedtimebtn, backkk;
     public Object selectedDate;
     private String selectedTime;
+    ImageView timeview, calendarviewww;
 
 
     @Override
@@ -59,7 +61,10 @@ public class BookingDetails extends AppCompatActivity {
         Date = findViewById(R.id.Date);
         Time = findViewById(R.id.Time);
         backkk = findViewById(R.id.backkk);
-
+        timeview = findViewById(R.id.timeview);
+        calendarviewww = findViewById(R.id.calendar);
+        Timetextview = findViewById(R.id.Timetextview);
+        calendartextview = findViewById(R.id.calendartextview);
 
         // Initialize the dialog
         dialog = new Dialog(BookingDetails.this);
@@ -98,6 +103,8 @@ public class BookingDetails extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         calendar = Calendar.getInstance();
+
+        //listeners
         setupSpinners();
         setupButtonClickListener();
         setupDatePicker();
@@ -105,6 +112,7 @@ public class BookingDetails extends AppCompatActivity {
 
 
     // DATE PICKER
+// DATE PICKER
     private void setupDatePicker() {
         // Initialize DatePickerDialog
         reschedcalendarbtn.setOnClickListener(v -> {
@@ -129,7 +137,7 @@ public class BookingDetails extends AppCompatActivity {
                         SimpleDateFormat sdfDate = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH);
                         selectedDate = sdfDate.format(selectedCalendar.getTime());
 
-                        Date.setText("Selected Date: " + selectedDate);
+                        calendartextview.setText(selectedDate.toString());
 
                         // Check if the selected date is in the past
                         if (isDateInPast(year1, month1, dayOfMonth1)) {
@@ -137,7 +145,8 @@ public class BookingDetails extends AppCompatActivity {
                             showToast("Selected date is not valid! Choose another Day");
                             selectedDate = null;
                         } else {
-                            //   showToast("Selected date is valid!");
+                            // Hide the ImageView
+                            calendarviewww.setVisibility(View.GONE);
                         }
                     },
                     year,
@@ -161,8 +170,10 @@ public class BookingDetails extends AppCompatActivity {
 
                         SimpleDateFormat sdfTime = new SimpleDateFormat("hh:mm a", Locale.ENGLISH);
                         selectedTime = sdfTime.format(selectedTimeCalendar.getTime());
+                        Timetextview.setText(selectedTime);
 
-                        Time.setText("Resched Time: " + selectedTime);
+                        // Hide the ImageView
+                        timeview.setVisibility(View.GONE);
                     },
                     calendar.get(Calendar.HOUR_OF_DAY),
                     calendar.get(Calendar.MINUTE),

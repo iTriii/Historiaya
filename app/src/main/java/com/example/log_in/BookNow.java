@@ -3,7 +3,6 @@ package com.example.log_in;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -51,7 +50,7 @@ public class BookNow extends AppCompatActivity {
     private String userId;
     String selectedTime = "";
     String selectedTour;
-    private String time;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -351,12 +350,6 @@ public class BookNow extends AppCompatActivity {
 
 
     private void addDataToFirestore(String userId, String selectedTour, String selectedTouristNum, String reservedDate, double totalAmount, String selectedTime) {
-        // TO DELAY THE EXECUTION IN PAYMENT ACTIVITY
-        int delayMillis = 60000; // 1min delay
-        new Handler()
-                .postDelayed(() -> addDataToFirestore(userId, selectedTour, selectedTouristNum, reservedDate, totalAmount, selectedTime),
-                        delayMillis);
-
         DocumentReference userDocRef = db.collection("users").document(userId);
         userDocRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
@@ -371,10 +364,12 @@ public class BookNow extends AppCompatActivity {
                 bookingData.put("selectedTime", selectedTime);
 
                 userDocRef.update(bookingData).addOnSuccessListener(documentReference -> {
-                    //  Toast.makeText(getApplicationContext(), "Booking updated", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(getApplicationContext(), "Booking updated", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(), PaymentDetails.class));
+                    finish();
                 }).addOnFailureListener(exception -> {
                     Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
+                    finish();
                 });
             } else {
                 Map<String, Object> user = new HashMap<>();
@@ -386,8 +381,12 @@ public class BookNow extends AppCompatActivity {
 
                 userDocRef.set(user).addOnSuccessListener(documentReference -> {
                     Toast.makeText(getApplicationContext(), "Booking created", Toast.LENGTH_SHORT).show();
+                    // Start the PaymentDetails activity immediately after creating the booking
+                    startActivity(new Intent(getApplicationContext(), PaymentDetails.class));
+                    finish();
                 }).addOnFailureListener(exception -> {
                     Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
+                    finish();
                 });
             }
         });
