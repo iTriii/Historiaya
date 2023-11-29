@@ -1,12 +1,9 @@
 package com.example.log_in;
 
-import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -39,6 +36,7 @@ public class Payment extends AppCompatActivity {
     private Uri selectedImageUri;
     int SELECT_PICTURE = 1;
     FirebaseAuth mAuth;
+    private static final String TAG = "Payment";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,9 +61,8 @@ public class Payment extends AppCompatActivity {
 
 // Back button
         back.setOnClickListener(v -> {
-            Intent intent = new Intent(Payment.this, PaymentDetails.class);
+            Intent intent = new Intent(Payment.this, BookNow.class);
             startActivity(intent);  // Add this line to start the activity
-            finish();
         });
 
 
@@ -81,9 +78,8 @@ public class Payment extends AppCompatActivity {
                 Toast.makeText(Payment.this, "Please upload your proof of payment. Thank You!", Toast.LENGTH_LONG).show();
             } else {
                 uploadImageToFirebaseStorage(selectedImageUri);
-                // Image uploaded successfully, show a message
-             //   Toast.makeText(Payment.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
-                progress.setVisibility(View.VISIBLE);
+              // Toast.makeText(Payment.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
+//                progress.setVisibility(View.VISIBLE);
                 startActivity(new Intent(getApplicationContext(), Main2.class));
             }
         });
@@ -139,6 +135,7 @@ public class Payment extends AppCompatActivity {
                 userDocRef.set(user).addOnSuccessListener(documentReference -> {
                   //  Toast.makeText(getApplicationContext(), "Successfully Uploaded!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(), Main2.class));
+                    finish();
                 }).addOnFailureListener(exception -> {
                     Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
                 });

@@ -1,5 +1,6 @@
 package com.example.log_in;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -62,6 +63,8 @@ public class BookingCancellation extends AppCompatActivity {
         dialog = new Dialog(BookingCancellation.this);
         dialog.setContentView(R.layout.dialog_cancellation);
         dialog.setCancelable(false);
+
+        //buttons for dialog
         Button notnowbtn = dialog.findViewById(R.id.notnowbtn);
         Button confirmbtn = dialog.findViewById(R.id.confirmbtn);
 
@@ -127,6 +130,7 @@ public class BookingCancellation extends AppCompatActivity {
     }
 
     // Method to retrieve data from Firestore
+    @SuppressLint("DefaultLocale")
     private void retrieveDataFromFirestore() {
         // Fetching data from Firestore
         userDataListener = db.collection("users")
@@ -139,21 +143,24 @@ public class BookingCancellation extends AppCompatActivity {
                     }
                     if (documentSnapshot != null && documentSnapshot.exists()) {
                         String selectedTour = documentSnapshot.getString("selectedTour");
-                        // Use getDouble for numeric values
+                        String E_mail = documentSnapshot.getString("Email");
                         double total = documentSnapshot.getDouble("totalAmount");
+                        // Use getDouble for numeric values
                         String selectedTouristNum = documentSnapshot.getString("selectedTouristNum");
 
                         // Check if the views are not null before setting values
                         if (TotalTouristsText != null) {
                             TotalTouristsText.setText(selectedTouristNum);
                         }
-
                         if (amountText != null) {
                             amountText.setText(String.format("₱%.2f", total));
                         }
 
                         if (pickhouseText != null) {
                             pickhouseText.setText(selectedTour);
+                        }
+                        if (nameText != null) {
+                            nameText.setText(E_mail);
                         }
                     } else {
                         showToast("No booking data found in Firestore.");

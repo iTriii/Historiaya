@@ -224,7 +224,7 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="147dp"
                     android:layout_marginTop="-99dp"
-                    android:background="@android:color/holo_green_dark" />
+                    android:background="@color/GREEN" />
 
                 <TextView
                     android:id="@+id/pickhouseText"
@@ -377,7 +377,7 @@
                 android:layout_width="175dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="13dp"
-                android:layout_marginTop="555dp"
+                android:layout_marginTop="560dp"
                 android:background="@drawable/store_price_button_ok"
                 android:clickable="true"
                 android:fontFamily="@font/montserrat_bold"

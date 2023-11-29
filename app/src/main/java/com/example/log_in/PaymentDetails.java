@@ -43,6 +43,8 @@ public class PaymentDetails extends AppCompatActivity {
 
         donebtn = findViewById(R.id.donebtn);
         donebtn2 = findViewById(R.id.donebtn2);
+
+        //Initialize the Tabs and scrollview also he radio if Don Catalino at GAla Rodriguez
         ScrollViewDonCata = findViewById(R.id.ScrollViewDonCata); //scrollview
         DonCat_Radio = findViewById(R.id.DonCat_Radio);
         DonCat_Radio.setOnClickListener(v -> DonCat_Radio());
@@ -54,26 +56,34 @@ public class PaymentDetails extends AppCompatActivity {
         linetwo = findViewById(R.id.linetwo);
 
         chatbtn = findViewById(R.id.chatbtn);
+
+
+        //INITIALIZE THE CRISP
         chatbtn.setOnClickListener(v -> {
             Intent intent = new Intent(this, ChatActivity.class);
             startActivity(intent);
         });
+
+
         //doncatbutton
         donebtn.setOnClickListener(v -> {
             Intent intent = new Intent(PaymentDetails.this, Payment.class);
             startActivity(intent);
+            finish();
         });
 
         //galabutton
         donebtn2.setOnClickListener(v -> {
             Intent intent = new Intent(PaymentDetails.this, Payment.class);
             startActivity(intent);
+            finish();
         });
 
         // Back button
         backbtnpaymentdetails.setOnClickListener(view -> {
             Intent intent = new Intent(PaymentDetails.this, BookNow.class);
             startActivity(intent);
+            finish();
         });
 
     }
