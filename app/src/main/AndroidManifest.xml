@@ -17,12 +17,10 @@
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission
-        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
-        android:maxSdkVersion="32" />
-    <uses-permission
-        android:name="android.permission.READ_EXTERNAL_STORAGE"
-        android:maxSdkVersion="32" />
+
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 
     <application
@@ -30,6 +28,7 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
+
         android:label="@string/AppName"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -62,12 +61,14 @@
         <activity
             android:name=".Splashscreen"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
         <activity
             android:name=".v5"
             android:exported="false" />
@@ -142,40 +143,40 @@
             android:exported="false" />
         <activity
             android:name=".Profile"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".Payment"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".BookNow"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".Main2"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".TutorialMain"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".StorySelection"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".LogIn"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".StartScreen"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".SignUp"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".CreateNewPassword"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".Reset_Password"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" />
+            android:exported="false" />
        <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
