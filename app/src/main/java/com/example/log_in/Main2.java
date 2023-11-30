@@ -18,6 +18,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -31,15 +33,24 @@ public class Main2 extends AppCompatActivity {
     private Switch audio;
     private Button copylink, Credits, PrivacyandTerms, Feedback;
     private LinearLayout ShareApp;
-    private CardView settings_popup;
+    private CardView settings_popup, Notifications;
     private Dialog dialog;
     private FirebaseAuth mAuth;
+
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
+        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                goBack();
+            }
+        };
+        onBackPressedDispatcher.addCallback(this, callback);
 
         mAuth = FirebaseAuth.getInstance();
         dialog = new Dialog(this);
@@ -109,11 +120,12 @@ public class Main2 extends AppCompatActivity {
             Toast.makeText(Main2.this, "Link copied to clipboard", Toast.LENGTH_SHORT).show();
         });
 
+        Notifications = findViewById(R.id.Notifications);
+        notif = findViewById(R.id.notif);
         notif = findViewById(R.id.notif);
         notif.setOnClickListener(v -> {
-            dialog.setContentView(R.layout.activity_notifications);
-            dialog.getWindow().setBackgroundDrawableResource(R.drawable.popup_background);
-            dialog.show();
+            // Make the Notifications CardView visible when the notif ImageView is clicked
+            Notifications.setVisibility(View.VISIBLE);
         });
 
         settings_popup = findViewById(R.id.settings_popup);
@@ -134,9 +146,23 @@ public class Main2 extends AppCompatActivity {
             } else if (ShareVisible() && isTouchOutsideShare(motionEvent)) {
                 hideShare();
                 return true; // Consume the touch event
+            } else if (notifVisible() && isTouchOutsidenotif(motionEvent)) {
+                hidenotif();
             }
             return false; // Allow the touch event to propagate
         });
+    }
+    private void hidenotif(){
+        Notifications.setVisibility(View.GONE);
+    }
+    private boolean notifVisible(){
+        return Notifications.getVisibility() == View.VISIBLE;
+    }
+    private boolean isTouchOutsidenotif(MotionEvent motionEvent) {
+        float x = motionEvent.getX();
+        float y = motionEvent.getY();
+        return x < Notifications.getLeft() || x > Notifications.getRight() ||
+                y < Notifications.getTop() || y > Notifications.getBottom();
     }
 
     private void hideShare() {
@@ -265,6 +291,12 @@ public class Main2 extends AppCompatActivity {
     public void Profile(){
         Intent intent= new Intent(this, Profile.class);
         startActivity(intent);
+    }
+    private void goBack() {
+        // For instance, you can navigate to another activity or finish the current one
+        Intent intent = new Intent(this, LogIn.class);
+        startActivity(intent);
+        finish();
     }
 
 }

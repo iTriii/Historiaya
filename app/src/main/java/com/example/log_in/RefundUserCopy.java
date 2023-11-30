@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,10 +28,21 @@ public class RefundUserCopy extends AppCompatActivity {
     private FirebaseUser user;
     private FirebaseAuth auth;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_refund_user_copy);
+
+        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                goBack();
+            }
+        };
+        onBackPressedDispatcher.addCallback(this, callback);
+
 
         pickhouseRefText = findViewById(R.id.pickhouseRefText);
         nameRefText = findViewById(R.id.nameRefText);
@@ -109,4 +122,11 @@ public class RefundUserCopy extends AppCompatActivity {
             userDataListener.remove();
         }
     }
+    private void goBack() {
+        // For instance, you can navigate to another activity or finish the current one
+        Intent intent = new Intent(this, BookingDetailMain.class);
+        startActivity(intent);
+        finish();
+    }
+
 }

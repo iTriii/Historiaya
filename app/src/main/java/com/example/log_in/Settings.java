@@ -15,6 +15,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,10 +36,19 @@ public class Settings extends AppCompatActivity {
     private static final String PREFS_NAME = "MyPrefs";
     private static final String AUDIO_STATE_KEY = "audioState";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                goBack();
+            }
+        };
+        onBackPressedDispatcher.addCallback(this, callback);
 
         audio = findViewById(R.id.audio);
         Speaker = findViewById(R.id.Speaker);
@@ -159,4 +170,11 @@ public class Settings extends AppCompatActivity {
         editor.putBoolean(AUDIO_STATE_KEY, audio.isChecked());
         editor.apply();
     }
+    private void goBack() {
+        // For instance, you can navigate to another activity or finish the current one
+        Intent intent = new Intent(this, Main2.class);
+        startActivity(intent);
+        finish();
+    }
+
 }

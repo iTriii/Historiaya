@@ -13,6 +13,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,6 +39,15 @@ public class BookingRefund extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_refund);
+        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                goBack();
+            }
+        };
+        onBackPressedDispatcher.addCallback(this, callback);
+
 
         spinRefund = findViewById(R.id.spinRefund);
         back = findViewById(R.id.backbtnRefund);
@@ -154,5 +165,11 @@ public class BookingRefund extends AppCompatActivity {
                         Toast.makeText(BookingRefund.this, "Error saving refund option: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     });
         }
+    }
+    private void goBack() {
+        // For instance, you can navigate to another activity or finish the current one
+        Intent intent = new Intent(this, BookingDetailMain.class);
+        startActivity(intent);
+        finish();
     }
 }

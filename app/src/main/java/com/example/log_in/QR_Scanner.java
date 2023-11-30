@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -24,11 +26,19 @@ public class QR_Scanner extends AppCompatActivity {
     ImageButton back;
     private CompoundBarcodeView qr_scanner;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qr_scanner);
-
+        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                goBack();
+            }
+        };
+        onBackPressedDispatcher.addCallback(this, callback);
         qr_scanner = findViewById(R.id.qr_scanner);
         checkCameraPermission();
 
@@ -89,5 +99,11 @@ public class QR_Scanner extends AppCompatActivity {
     private void openStoreManager() {
         Intent intent = new Intent(this, StoreManager.class);
         startActivity(intent);
+    }
+    private void goBack() {
+        // For instance, you can navigate to another activity or finish the current one
+        Intent intent = new Intent(this, LogIn.class);
+        startActivity(intent);
+        finish();
     }
 }

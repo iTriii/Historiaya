@@ -2,6 +2,7 @@ package com.example.log_in;
 
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -53,13 +56,23 @@ public class Receptionist extends AppCompatActivity {
     Receptionist_Upcoming_Adapter Receptionist_Upcoming_Adapter;
     ImageView Event_Sched, calendarV;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receptionist);
+
+        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                goBack();
+            }
+        };
+        onBackPressedDispatcher.addCallback(this, callback);
+
     // Inside onCreate or wherever you initialize your FirebaseFirestore
         db = FirebaseFirestore.getInstance();
-
         //VIEW
         wanRecep = findViewById(R.id.wanRecep);
         toRecep = findViewById(R.id.toRecep);
@@ -294,5 +307,11 @@ public class Receptionist extends AppCompatActivity {
 
         super.onDestroy();
 
+    }
+    private void goBack() {
+        // For instance, you can navigate to another activity or finish the current one
+        Intent intent = new Intent(this, LogIn.class);
+        startActivity(intent);
+        finish();
     }
 }

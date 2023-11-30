@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -42,6 +44,7 @@ import java.util.Map;
 import im.crisp.client.ChatActivity;
 import im.crisp.client.Crisp;
 //FOR UPDATE ONLY
+
 public class HouseManager extends AppCompatActivity {
 
 
@@ -67,11 +70,18 @@ public class HouseManager extends AppCompatActivity {
     private ListenerRegistration userDataListener;
     ImageView Event_Sched, calendarV;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_house_manager);
+        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                goBack();
+            }
+        };
+        onBackPressedDispatcher.addCallback(this, callback);
 
         // Configure Crisp
         Crisp.configure(getApplicationContext(), "2a53b3b9-d275-4fb1-81b6-efad59022426");
@@ -315,6 +325,12 @@ public class HouseManager extends AppCompatActivity {
                         }
                     }
                 });
+    }
+    private void goBack() {
+        // For instance, you can navigate to another activity or finish the current one
+        Intent intent = new Intent(this, LogIn.class);
+        startActivity(intent);
+        finish();
     }
 }
 

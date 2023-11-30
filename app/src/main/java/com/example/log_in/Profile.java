@@ -12,6 +12,8 @@ import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,10 +49,19 @@ public class Profile extends AppCompatActivity {
 
     Button upcomingbtn,adminView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                goBack();
+            }
+        };
+        onBackPressedDispatcher.addCallback(this, callback);
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -299,6 +310,12 @@ public class Profile extends AppCompatActivity {
         uno.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
         dos.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
         tres.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
+    }
+    private void goBack() {
+        // For instance, you can navigate to another activity or finish the current one
+        Intent intent = new Intent(Profile.this, Main2.class);
+        startActivity(intent);
+        finish();
     }
 
 }

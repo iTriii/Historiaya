@@ -21,6 +21,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
@@ -51,23 +53,21 @@ public class SignUp extends AppCompatActivity {
     private Uri selectedImageUri;
     private SharedPreferences sharedPreferences;
     private static final String CHECKBOX_PREF = "checkbox_preference";
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-        if (hasFocus) {
-            // Hide both the navigation bar and the status bar
-            View decorView = getWindow().getDecorView();
-            int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                    | View.SYSTEM_UI_FLAG_FULLSCREEN
-                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-            decorView.setSystemUiVisibility(uiOptions);
-        }
-    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
+        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                goBack();
+            }
+        };
+        onBackPressedDispatcher.addCallback(this, callback);
 
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
 
@@ -190,23 +190,7 @@ public class SignUp extends AppCompatActivity {
         }
     }
 
-    private void uploadImageToFirebaseStorage(Uri imageUri, FirebaseUser user, String firstName, String lastName, String userEmail, String userContact, int points) {
-        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("images");
 
-        String imageName = "image_" + System.currentTimeMillis() + ".jpg";
-        StorageReference imageRef = storageRef.child(imageName);
-
-        imageRef.putFile(imageUri)
-                .addOnSuccessListener(taskSnapshot -> {
-                    imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                        String imageUrl = uri.toString();
-                        saveUserDataToFirestore(user.getUid(), firstName, lastName, userEmail, userContact, imageUrl, points);
-                    });
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(this, "Image upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                });
-    }
     private void signUp() {
         if (!checkBox.isChecked()) {
             Toast.makeText(this, "Please agree to the terms and conditions", Toast.LENGTH_LONG).show();
@@ -255,20 +239,21 @@ public class SignUp extends AppCompatActivity {
                         FirebaseUser user = mAuth.getCurrentUser();
 
                         if (user != null) {
-                            // Send verification email
-                            user.sendEmailVerification().addOnCompleteListener(emailVerificationTask -> {
-                                if (emailVerificationTask.isSuccessful()) {
-                                    // Verification email sent successfully
-                                    Toast.makeText(SignUp.this, "Verification email sent. Please check your email.", Toast.LENGTH_LONG).show();
-                                    // Prompt the user to log in after email verification
-                                    startActivity(new Intent(SignUp.this, LogIn.class));
-                                    finish(); // Finish the current activity
-                                } else {
-                                    // Email verification sending failed
-                                    Toast.makeText(SignUp.this, "Failed to send verification email: " + emailVerificationTask.getException().getMessage(), Toast.LENGTH_LONG).show();
-                                }
-                            });
+                            sendEmailVerificationAndSaveData(user, fName, lName, email, contactNo, 20);
                         }
+                        user.sendEmailVerification().addOnCompleteListener(emailVerificationTask -> {
+                            if (emailVerificationTask.isSuccessful()) {
+                                // Verification email sent successfully
+                                Toast.makeText(SignUp.this, "Verification email sent. Please check your email.", Toast.LENGTH_LONG).show();
+                                // Prompt the user to log in after email verification
+                                startActivity(new Intent(SignUp.this, LogIn.class));
+                                finish(); // Finish the current activity
+                            } else {
+                                // Email verification sending failed
+                                Toast.makeText(SignUp.this, "Failed to send verification email: " + emailVerificationTask.getException().getMessage(), Toast.LENGTH_LONG).show();
+                            }
+                        });
+
 
                     } else {
                         String errorMessage = task.getException().getMessage();
@@ -293,7 +278,23 @@ public class SignUp extends AppCompatActivity {
             }
         });
     }
+    private void uploadImageToFirebaseStorage(Uri imageUri, FirebaseUser user, String firstName, String lastName, String userEmail, String userContact, int points) {
+        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("images");
 
+        String imageName = "image_" + System.currentTimeMillis() + ".jpg";
+        StorageReference imageRef = storageRef.child(imageName);
+
+        imageRef.putFile(imageUri)
+                .addOnSuccessListener(taskSnapshot -> {
+                    imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
+                        String imageUrl = uri.toString();
+                        saveUserDataToFirestore(user.getUid(), firstName, lastName, userEmail, userContact, imageUrl, points);
+                    });
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(this, "Image upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+    }
 
     // Save user data to Firestore, including the image URL
     private void saveUserDataToFirestore(String userId, String firstName, String lastName, String userEmail, String userContact, String imageUrl, int points) {
@@ -345,5 +346,11 @@ public class SignUp extends AppCompatActivity {
         contact.setText(sharedPreferences.getString("contactNo", ""));
         pass.setText(sharedPreferences.getString("password", ""));
         reenter.setText(sharedPreferences.getString("reenterPassword", ""));
+    }
+    private void goBack() {
+        // For instance, you can navigate to another activity or finish the current one
+        Intent intent = new Intent(this, LogIn.class);
+        startActivity(intent);
+        finish();
     }
 }

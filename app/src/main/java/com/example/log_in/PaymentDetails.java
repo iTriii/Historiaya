@@ -9,6 +9,8 @@ import android.widget.ImageButton;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -28,11 +30,18 @@ public class PaymentDetails extends AppCompatActivity {
     Button donebtn, donebtn2;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_details);
+        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                goBack();
+            }
+        };
+        onBackPressedDispatcher.addCallback(this, callback);
 
         // Configure Crisp
         Crisp.configure(getApplicationContext(), "2a53b3b9-d275-4fb1-81b6-efad59022426");
@@ -110,5 +119,11 @@ public class PaymentDetails extends AppCompatActivity {
         ScrollViewGalaRod.setVisibility(View.VISIBLE);
         lineone.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
         linetwo.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
+    }
+    private void goBack() {
+        // For instance, you can navigate to another activity or finish the current one
+        Intent intent = new Intent(this, BookNow.class);
+        startActivity(intent);
+        finish();
     }
 }

@@ -3,13 +3,19 @@ package com.example.log_in;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.InputFilter;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
@@ -25,6 +31,7 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.ListenerRegistration;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
 //FOR UPDATE ONLY
 public class Profile_Edit extends AppCompatActivity {
     ImageButton back;
@@ -39,10 +46,20 @@ public class Profile_Edit extends AppCompatActivity {
     private FirebaseUser user;
     private ListenerRegistration userDataListener;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_edit);
+        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                goBack();
+            }
+        };
+        onBackPressedDispatcher.addCallback(this, callback);
+
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -55,16 +72,62 @@ public class Profile_Edit extends AppCompatActivity {
         Save.setOnClickListener(v -> saveChanges());
 
         firstname = findViewById(R.id.firstname);
+        firstname.setFilters(new InputFilter[]{
+                (source, start, end, dest, dstart, dend) -> {
+                    for (int i = start; i < end; i++) {
+                        if (!Character.isLetter(source.charAt(i))) {
+                            return "";
+                        }
+                    }
+                    return null;
+                }
+        });
+
         lastname = findViewById(R.id.lastname);
+        lastname.setFilters(new InputFilter[]{
+                (source, start, end, dest, dstart, dend) -> {
+                    for (int i = start; i < end; i++) {
+                        if (!Character.isLetter(source.charAt(i))) {
+                            return "";
+                        }
+                    }
+                    return null;
+                }
+        });
         E_mail = findViewById(R.id.E_mail);
         contact = findViewById(R.id.contact);
+        contact.setInputType(InputType.TYPE_CLASS_NUMBER); // Set input type to accept only numbers
+
+// Listen for text changes to maintain the "+639" prefix
+        contact.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!s.toString().startsWith("+639")) {
+                    // Ensure the prefix remains at the beginning
+                    contact.setText("+639");
+                    contact.setSelection(contact.getText().length()); // Set cursor position to the end
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
+// Set maximum length and restrict modification of the prefix
+        contact.setFilters(new InputFilter[]{
+                new InputFilter.LengthFilter(13) // Restrict input to length 13
+        });
 
         profile_icon = findViewById(R.id.profile_icon);
         profile_icon.setOnClickListener(v -> Profile_icon());
 
-        // Check if the user is authenticated
+        // Fetch user data from Firestore and display it
         if (user != null) {
-            // Fetch and display user data from Firestore
             fetchAndDisplayUserData();
         } else {
             // If the user is not authenticated, redirect to the login activity
@@ -74,35 +137,35 @@ public class Profile_Edit extends AppCompatActivity {
     }
 
     private void fetchAndDisplayUserData() {
+        // Listen for changes in the user's document in Firestore
         userDataListener = db.collection("users")
                 .document(user.getUid())
                 .addSnapshotListener(new com.google.firebase.firestore.EventListener<DocumentSnapshot>() {
                     @Override
-                    public void onEvent(@NonNull DocumentSnapshot documentSnapshot, @NonNull FirebaseFirestoreException error) {
+                    public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
                         if (error != null) {
                             Toast.makeText(Profile_Edit.this, "Error fetching user data: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                             return;
                         }
 
-                        if (documentSnapshot.exists()) {
+                        if (documentSnapshot != null && documentSnapshot.exists()) {
                             // Retrieve user data from Firestore
                             String firstName = documentSnapshot.getString("FirstName");
                             String lastName = documentSnapshot.getString("LastName");
                             String email = documentSnapshot.getString("Email");
                             String userContact = documentSnapshot.getString("ContactNo");
+                            String imageUrl = documentSnapshot.getString("ImageUrl");
 
-                            // Display user data in the EditText fields
+                            // Display user data in the EditText fields or wherever needed
                             firstname.setText(firstName);
                             lastname.setText(lastName);
                             E_mail.setText(email);
                             contact.setText(userContact);
 
-                            // Load and display the profile image using Glide
-                            String imageUrl = documentSnapshot.getString("ImageUrl");
-                            Log.d("Profile_Edit", "Image URL: " + imageUrl);
+                            // Load and display the profile image using Glide or any other image loading library
                             if (imageUrl != null && !imageUrl.isEmpty()) {
                                 RequestOptions requestOptions = new RequestOptions()
-                                        .transform(new CenterCrop(), new CircleCrop()); // Apply circular crop
+                                        .transform(new CenterCrop(), new CircleCrop()); // Apply circular crop if needed
                                 Glide.with(Profile_Edit.this)
                                         .load(imageUrl)
                                         .apply(requestOptions)
@@ -112,7 +175,6 @@ public class Profile_Edit extends AppCompatActivity {
                     }
                 });
     }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -269,6 +331,11 @@ public class Profile_Edit extends AppCompatActivity {
                     });
         }
     }
-
+    private void goBack() {
+        // For instance, you can navigate to another activity or finish the current one
+        Intent intent = new Intent(this, Profile.class);
+        startActivity(intent);
+        finish(); // Optional, if you want to finish the current activity
+    }
 }
 

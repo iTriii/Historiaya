@@ -9,6 +9,8 @@
     import android.widget.Button;
     import android.widget.Toast;
 
+    import androidx.activity.OnBackPressedCallback;
+    import androidx.activity.OnBackPressedDispatcher;
     import androidx.appcompat.app.AppCompatActivity;
 
     import com.google.firebase.auth.FirebaseAuth;
@@ -16,10 +18,19 @@
     public class LogOut_PO extends AppCompatActivity {
         private FirebaseAuth mAuth;
         Button yes, no;
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_log_out_po);
+            OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+            OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+                @Override
+                public void handleOnBackPressed() {
+                    goBack();
+                }
+            };
+            onBackPressedDispatcher.addCallback(this, callback);
 
             mAuth = FirebaseAuth.getInstance();
 
@@ -74,5 +85,11 @@
         private void no() {
             Intent intent = new Intent(this, Main2.class);
             startActivity(intent);
+        }
+        private void goBack() {
+            // For instance, you can navigate to another activity or finish the current one
+            Intent intent = new Intent(this, Main2.class);
+            startActivity(intent);
+            finish();
         }
     }
