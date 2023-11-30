@@ -33,7 +33,7 @@ public class QR_Scanner extends AppCompatActivity {
         checkCameraPermission();
 
         back =findViewById(R.id.back);
-        back.setOnClickListener(v -> Store());
+        back.setOnClickListener(v -> openStoreManager());
     }
 
     private void checkCameraPermission() {
@@ -86,7 +86,7 @@ public class QR_Scanner extends AppCompatActivity {
         super.onPause();
         qr_scanner.pause();
     }
-    public void Store() {
+    private void openStoreManager() {
         Intent intent = new Intent(this, StoreManager.class);
         startActivity(intent);
     }

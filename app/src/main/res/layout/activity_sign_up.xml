@@ -49,25 +49,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pass" />
 
-    <Button
-        android:id="@+id/signUpButton"
-        android:layout_width="215dp"
-        android:layout_height="47dp"
-        android:background="@drawable/signupbutton"
-        android:clickable="true"
-        android:contentDescription="@string/SignUp"
-        android:contextClickable="true"
-        android:elevation="3dp"
-        android:fontFamily="@font/montserrat_bold"
-        android:text="@string/SignUp"
-        android:textAllCaps="false"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.77" />
 
     <ProgressBar
         android:id="@+id/progressbar"
@@ -80,22 +61,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.465" />
-
-    <TextView
-        android:id="@+id/SiUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:layout_marginBottom="38dp"
-        android:fontFamily="@font/montserrat"
-        android:text="@string/BySU"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpButton"
-        app:layout_constraintVertical_bias="0.207" />
 
 
     <TextView
@@ -239,6 +204,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="28dp"
         android:ems="10"
+        android:hint="+639"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/E_mail" />
@@ -258,5 +224,56 @@
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/circular"
         app:srcCompat="@drawable/human_icon" />
+
+    <Button
+        android:id="@+id/signUpButton"
+        android:layout_width="215dp"
+        android:layout_height="47dp"
+        android:background="@drawable/store_price_button_ok"
+        android:clickable="true"
+        android:contentDescription="@string/SignUp"
+        android:contextClickable="true"
+        android:elevation="3dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/SignUp"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.77" />
+
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="130dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginBottom="20dp"
+        android:textColor="@color/green"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/SiUp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpButton" />
+
+    <TextView
+        android:id="@+id/SiUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="136dp"
+        android:layout_marginBottom="25dp"
+        android:clickable="true"
+        android:fontFamily="@font/montserrat"
+        android:text="@string/PrivacyandTerms"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpButton"
+        app:layout_constraintVertical_bias="0.612" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

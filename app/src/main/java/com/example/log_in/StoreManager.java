@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
@@ -93,20 +92,6 @@ public class StoreManager extends AppCompatActivity {
             }
             return false;
         });
-        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
-            @Override
-            public void handleOnBackPressed() {
-                // Handle the back button press
-                Intent intent = new Intent(StoreManager.this, LogIn.class);
-                startActivity(intent);
-                finish();
-            }
-        };
-
-        // Add the callback to the OnBackPressedDispatcher
-        getOnBackPressedDispatcher().addCallback(this, callback);
-
-
 
         for (int i = 0; i < 7; i++) {
             int editButtonId = getResources().getIdentifier("edit" + (i + 1), "id", getPackageName());
