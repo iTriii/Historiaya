@@ -240,7 +240,7 @@
 
                 <TextView
                     android:id="@+id/selectedtouristsText"
-                    android:layout_width="160dp"
+                    android:layout_width="190dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="160dp"
                     android:layout_marginTop="280dp"

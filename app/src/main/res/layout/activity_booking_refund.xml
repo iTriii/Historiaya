@@ -248,7 +248,7 @@
 
                 <TextView
                     android:id="@+id/refund"
-                    android:layout_width="179dp"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="155dp"
                     android:fontFamily="@font/montserrat"
@@ -265,9 +265,9 @@
 
                 <TextView
                     android:id="@+id/amountRefundText"
-                    android:layout_width="169dp"
+                    android:layout_width="180dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="180dp"
+                    android:layout_marginStart="150dp"
                     android:layout_marginTop="155dp"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center_horizontal"
@@ -282,12 +282,13 @@
 
                 <TextView
                     android:id="@+id/requestedby"
-                    android:layout_width="179dp"
+                    android:layout_width="144dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="180dp"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center_horizontal"
                     android:text="Requested By:  "
+
                     android:textColor="@color/green"
                     android:textSize="15sp"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -299,9 +300,9 @@
 
                 <TextView
                     android:id="@+id/nameRefundText"
-                    android:layout_width="169dp"
-                    android:layout_height="30dp"
-                    android:layout_marginLeft="180dp"
+                    android:layout_width="186dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="150dp"
                     android:layout_marginTop="180dp"
                     android:fontFamily="@font/montserrat"
                     android:gravity="center_horizontal"

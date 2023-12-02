@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -73,13 +74,15 @@ public class Payment extends AppCompatActivity {
 
         });
 
+
+
         okbtn.setOnClickListener(v -> {
             if (selectedImageUri == null) {
                 Toast.makeText(Payment.this, "Please upload your proof of payment. Thank You!", Toast.LENGTH_LONG).show();
             } else {
                 uploadImageToFirebaseStorage(selectedImageUri);
               // Toast.makeText(Payment.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
-//                progress.setVisibility(View.VISIBLE);
+                 progress.setVisibility(View.VISIBLE);
                 startActivity(new Intent(getApplicationContext(), Main2.class));
             }
         });

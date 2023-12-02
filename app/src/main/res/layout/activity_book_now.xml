@@ -246,6 +246,7 @@
                 android:dropDownWidth="wrap_content"
                 android:fontFamily="@font/montserrat_thin"
                 android:foregroundTint="#009688"
+
                 android:gravity="center"
                 android:paddingEnd="2dp"
                 android:spinnerMode="dropdown"

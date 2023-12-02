@@ -80,8 +80,7 @@ public class BookingRefund extends AppCompatActivity {
         // SUBMIT BUTTON
         btnsub.setOnClickListener(v -> {
             dialog.show();
-            //SAVE TO THE FIRESTORE
-            saveOptionToFirestore();
+            saveOptionToFirestore(); //SAVE TO THE FIRESTORE
         });
 
         // spinner adapter for refund

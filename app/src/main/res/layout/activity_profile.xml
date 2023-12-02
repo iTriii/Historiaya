@@ -466,7 +466,7 @@
 
                     <TextView
                         android:id="@+id/MonthText"
-                        android:layout_width="93dp"
+                        android:layout_width="180dp"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="110dp"
                         android:layout_marginTop="55dp"
