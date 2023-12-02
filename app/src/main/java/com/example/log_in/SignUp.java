@@ -2,6 +2,7 @@ package com.example.log_in;
 
 import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -33,8 +34,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -55,6 +54,7 @@ public class SignUp extends AppCompatActivity {
     private static final String CHECKBOX_PREF = "checkbox_preference";
 
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +81,9 @@ public class SignUp extends AppCompatActivity {
         firstname.setFilters(new InputFilter[]{
                 (source, start, end, dest, dstart, dend) -> {
                     for (int i = start; i < end; i++) {
-                        if (!Character.isLetter(source.charAt(i))) {
+                        char character = source.charAt(i);
+                        // Allowing letters or spaces
+                        if (!Character.isLetter(character) && character != ' ') {
                             return "";
                         }
                     }
@@ -130,9 +132,13 @@ public class SignUp extends AppCompatActivity {
                 new InputFilter.LengthFilter(13) // Restrict input to length 13
         });
 
-
+        // Add an InputFilter to enforce password criteria
         pass = findViewById(R.id.pass);
         reenter = findViewById(R.id.reenter);
+
+        pass.setOnClickListener(view -> togglePasswordVisibility(pass));
+        reenter.setOnClickListener(view -> togglePasswordVisibility(reenter));
+
         progressbar = findViewById(R.id.progressbar);
 
         checkBox = findViewById(R.id.checkBox);
@@ -151,7 +157,6 @@ public class SignUp extends AppCompatActivity {
         });
 
 
-
         signUpButton = findViewById(R.id.signUpButton);
         signUpButton.setOnClickListener(v -> signUp());
 
@@ -160,10 +165,8 @@ public class SignUp extends AppCompatActivity {
             Intent intent = new Intent(this, PrivacyAndTerms_SignUp.class);
             startActivity(intent);
         });
-
-    }
-
-    void icon() {
+            }
+        void icon() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
@@ -190,6 +193,17 @@ public class SignUp extends AppCompatActivity {
         }
     }
 
+    private void togglePasswordVisibility(EditText editText) {
+        if (editText.getInputType() == InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD) {
+            // If the password is visible, change it back to a password field
+            editText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        } else {
+            // If the password is hidden, make it visible
+            editText.setInputType(InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+        }
+        // Move cursor to the end of the text
+        editText.setSelection(editText.getText().length());
+    }
 
     private void signUp() {
         if (!checkBox.isChecked()) {
@@ -210,16 +224,9 @@ public class SignUp extends AppCompatActivity {
             Toast.makeText(this, "All fields are required", Toast.LENGTH_LONG).show();
             return;
         }
-
         // Check if passwords match
         if (!password.equals(reenterPass)) {
             Toast.makeText(this, "Passwords do not match", Toast.LENGTH_LONG).show();
-            return;
-        }
-
-        // Check if an image is selected
-        if (selectedImageUri == null) {
-            Toast.makeText(this, "Please select an image", Toast.LENGTH_LONG).show();
             return;
         }
 
@@ -254,7 +261,6 @@ public class SignUp extends AppCompatActivity {
                             }
                         });
 
-
                     } else {
                         String errorMessage = task.getException().getMessage();
                         if (errorMessage != null && errorMessage.contains("already in use")) {
@@ -269,7 +275,8 @@ public class SignUp extends AppCompatActivity {
     private void sendEmailVerificationAndSaveData(FirebaseUser user, String firstName, String lastName, String userEmail, String userContact, int points) {
         user.sendEmailVerification().addOnCompleteListener(this, emailVerificationTask -> {
             if (emailVerificationTask.isSuccessful()) {
-                uploadImageToFirebaseStorage(selectedImageUri, user, firstName, lastName, userEmail, userContact, points);
+                // Call saveUserDataToFirestore directly without uploading an image
+                saveUserDataToFirestore(user.getUid(), firstName, lastName, userEmail, userContact, null, points);
                 Toast.makeText(SignUp.this, "Please check your email for verification link", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(SignUp.this, LogIn.class));
                 finish();
@@ -278,25 +285,7 @@ public class SignUp extends AppCompatActivity {
             }
         });
     }
-    private void uploadImageToFirebaseStorage(Uri imageUri, FirebaseUser user, String firstName, String lastName, String userEmail, String userContact, int points) {
-        StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("images");
 
-        String imageName = "image_" + System.currentTimeMillis() + ".jpg";
-        StorageReference imageRef = storageRef.child(imageName);
-
-        imageRef.putFile(imageUri)
-                .addOnSuccessListener(taskSnapshot -> {
-                    imageRef.getDownloadUrl().addOnSuccessListener(uri -> {
-                        String imageUrl = uri.toString();
-                        saveUserDataToFirestore(user.getUid(), firstName, lastName, userEmail, userContact, imageUrl, points);
-                    });
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(this, "Image upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
-                });
-    }
-
-    // Save user data to Firestore, including the image URL
     private void saveUserDataToFirestore(String userId, String firstName, String lastName, String userEmail, String userContact, String imageUrl, int points) {
         DocumentReference userDocRef = db.collection("users").document(userId);
 
@@ -305,12 +294,9 @@ public class SignUp extends AppCompatActivity {
         user.put("LastName", lastName);
         user.put("Email", userEmail);
         user.put("ContactNo", userContact);
-        user.put("ImageUrl", imageUrl);
         user.put("HistoriaPoints", points);
 
-        Log.d(TAG, "Image URL: " + imageUrl);
-
-        if (!TextUtils.isEmpty(imageUrl)) {
+        if (imageUrl != null) {
             user.put("ImageUrl", imageUrl);
         }
 

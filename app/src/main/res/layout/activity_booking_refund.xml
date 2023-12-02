@@ -7,68 +7,28 @@
     android:background="@color/background"
     tools:context=".BookingRefund">
 
-    <!-- For update lang-->
     <ImageView
-        android:id="@+id/clouds"
-        android:layout_width="536dp"
-        android:layout_height="430dp"
-        android:layout_marginBottom="232dp"
-        android:contentDescription="@string/clouds"
-        app:layout_constraintBottom_toBottomOf="@+id/rizal"
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="900dp"
+        android:src="@drawable/back"
+        app:layout_constraintDimensionRatio="18:10"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
+        app:layout_constraintHorizontal_bias="0.365"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/cloud" />
-
-    <ImageView
-        android:id="@+id/rizal"
-        android:layout_width="536dp"
-        android:layout_height="465dp"
-        android:layout_marginTop="200dp"
-        android:contentDescription="@string/rizal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/newproject" />
-
-    <ImageView
-        android:id="@+id/grass"
-        android:layout_width="878dp"
-        android:layout_height="612dp"
-        android:layout_marginTop="250dp"
-        android:contentDescription="@string/grass"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/grass_1" />
-
-
-    <ImageView
-        android:id="@+id/twopips"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="316dp"
-        android:contentDescription="@string/twopips"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/twopips" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/blurred"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="900dp"
         android:alpha=".5"
-        android:contentDescription="TODO"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/rectangle" />
+
+
 
     <ImageButton
         android:id="@+id/backbtnRefund"
@@ -92,6 +52,7 @@
         android:id="@+id/pay"
         android:layout_width="241dp"
         android:layout_height="39dp"
+        android:layout_marginTop="50dp"
         android:fontFamily="@font/montserrat_alternates_extrabold"
         android:shadowColor="#FFFDFD"
         android:shadowDx="7"
@@ -101,12 +62,10 @@
         android:textAlignment="center"
         android:textColor="#FEC242"
         android:textSize="23sp"
-        app:layout_constraintBottom_toTopOf="@+id/rizal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.073"
         app:layout_constraintStart_toEndOf="@+id/backbtnRefund"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.306"
         tools:ignore="TextSizeCheck" />
 
     <androidx.cardview.widget.CardView

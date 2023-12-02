@@ -8,44 +8,24 @@
     <!--    For Update only-->
 
     <ImageView
-        android:id="@+id/rizal_Start"
-        android:layout_width="667dp"
-        android:layout_height="494dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="100dp"
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="900dp"
+        android:src="@drawable/back"
+        app:layout_constraintDimensionRatio="18:10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.365"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/blurred"
+        android:layout_width="0dp"
+        android:layout_height="900dp"
+        android:alpha=".5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/newproject" />
-
-    <ImageView
-        android:id="@+id/grass_start"
-        android:layout_width="match_parent"
-        android:layout_height="621dp"
-        android:layout_marginBottom="-20dp"
-        android:alpha=".95"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/grass_1" />
-
-    <ImageView
-        android:id="@+id/twoppl"
-        android:layout_width="match_parent"
-        android:layout_height="550dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/twopips" />
-    <ImageView
-        android:id="@+id/blurred"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:alpha=".5"
         app:srcCompat="@drawable/rectangle" />
 
     <ImageButton

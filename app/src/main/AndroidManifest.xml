@@ -40,6 +40,9 @@
             android:name=".PrivacyAndTerms_SignUp"
             android:exported="false" />
         <activity
+            android:name=".PrivacyAndTerms_login"
+            android:exported="false" />
+        <activity
             android:name=".LogOut_PO"
             android:exported="false"
             android:theme="@style/AppTheme.popMe" />
@@ -62,7 +65,8 @@
             android:exported="false" />
         <activity
             android:name=".StoreManager"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".Splashscreen"
             android:exported="true">
@@ -122,9 +126,6 @@
             android:exported="false" />
         <activity
             android:name=".Tutorial"
-            android:exported="false" />
-        <activity
-            android:name=".LogOut"
             android:exported="false" />
         <activity
             android:name=".PrivacyandTerms"

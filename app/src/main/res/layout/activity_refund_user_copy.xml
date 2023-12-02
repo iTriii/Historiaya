@@ -6,71 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".RefundUserCopy">
 
-    <!--for update-->
-        <ImageView
-            android:id="@+id/clouds"
-            android:layout_width="536dp"
-            android:layout_height="430dp"
-            android:layout_marginBottom="232dp"
-            android:contentDescription="@string/clouds"
-            app:layout_constraintBottom_toBottomOf="@+id/rizal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.504"
-            app:layout_constraintStart_toStartOf="parent"
-            app:srcCompat="@drawable/cloud" />
-
-
     <ImageView
-        android:id="@+id/rizal"
-        android:layout_width="539dp"
-        android:layout_height="486dp"
-        android:layout_marginTop="100dp"
-        android:contentDescription="@string/rizal"
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="900dp"
+        android:src="@drawable/back"
+        app:layout_constraintDimensionRatio="18:10"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintHorizontal_bias="0.365"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/newproject" />
-
+        app:layout_constraintTop_toTopOf="parent" />
     <ImageView
-        android:id="@+id/grass"
-        android:layout_width="878dp"
-        android:layout_height="612dp"
-        android:layout_marginTop="200dp"
-        android:contentDescription="@string/grass"
+        android:id="@+id/blurred"
+        android:layout_width="0dp"
+        android:layout_height="900dp"
+        android:alpha=".5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/grass_1" />
+        app:srcCompat="@drawable/rectangle" />
 
-
-        <ImageView
-            android:id="@+id/twopips"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="316dp"
-            android:contentDescription="@string/twopips"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/twopips" />
-
-        <ImageView
-            android:id="@+id/blurred"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:alpha=".5"
-            android:contentDescription="TODO"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/rectangle" />
-
-        <ImageButton
+    <ImageButton
             android:id="@+id/backbuttonRef"
             android:layout_width="40dp"
             android:layout_height="40dp"

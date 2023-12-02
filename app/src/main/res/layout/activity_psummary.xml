@@ -10,55 +10,24 @@
 
 
     <ImageView
-        android:id="@+id/rizal_Start"
+        android:id="@+id/background"
         android:layout_width="match_parent"
         android:layout_height="900dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="4dp"
-        app:srcCompat="@drawable/newproject"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/grass_start"
-        android:layout_width="match_parent"
-        android:layout_height="1024dp"
-        android:layout_marginTop="30dp"
-        android:alpha=".95"
+        android:src="@drawable/back"
+        app:layout_constraintDimensionRatio="18:10"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintHorizontal_bias="0.365"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/grass_1" />
-
-    <ImageView
-        android:id="@+id/twoppl"
-        android:layout_width="match_parent"
-        android:layout_height="1024dp"
-        android:layout_marginTop="50dp"
-        android:alpha=".89"
-        app:layout_constraintEnd_toEndOf="@+id/grass_start"
-        app:layout_constraintHorizontal_bias="0.688"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/twopips" />
-
-
-    <!-- Payment Items -->
-
-
+        app:layout_constraintTop_toTopOf="parent" />
     <ImageView
         android:id="@+id/blurred"
-        android:layout_width="match_parent"
-        android:layout_height="1024dp"
+        android:layout_width="0dp"
+        android:layout_height="900dp"
         android:alpha=".5"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.92"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/rectangle" />
-
     <TextView
         android:layout_width="314dp"
         android:layout_height="50dp"
@@ -82,7 +51,6 @@
         android:id="@+id/GalaRodriguez"
         android:layout_width="232dp"
         android:layout_height="39dp"
-        android:layout_marginTop="42dp"
         android:fontFamily="@font/montserrat"
         android:gravity="center_horizontal"
         android:text="Gala Rodriguez House"
@@ -92,24 +60,23 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.089"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/grass_start"
-        app:layout_constraintVertical_bias="0.25" />
+        app:layout_constraintTop_toBottomOf="@+id/DonCatalino"
+        app:layout_constraintVertical_bias="0.015" />
 
     <TextView
         android:id="@+id/DonCatalino"
         android:layout_width="223dp"
         android:layout_height="43dp"
+        android:layout_marginTop="164dp"
         android:fontFamily="@font/montserrat"
         android:gravity="center_horizontal"
         android:text="Don Catalino House"
         android:textColor="@color/green"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.101"
+        app:layout_constraintHorizontal_bias="0.085"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.268" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:layout_width="365dp"

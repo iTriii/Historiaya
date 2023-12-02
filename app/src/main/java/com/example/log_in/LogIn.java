@@ -1,5 +1,8 @@
 package com.example.log_in;
 
+import static android.content.ContentValues.TAG;
+
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -13,6 +16,8 @@ import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.activity.OnBackPressedDispatcher;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -27,7 +32,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 //FOR UPDATE ONLY
 public class LogIn extends AppCompatActivity {
-    TextView forgotpass, inputemail, inputpass, regnow, login_pnt;
+    TextView forgotpass, inputemail, inputpass, regnow, loginPNT;
     Button li;
     FirebaseAuth mAuth;
     ImageView googleBtn;
@@ -67,12 +72,12 @@ public class LogIn extends AppCompatActivity {
 
         gsc = GoogleSignIn.getClient(this, gso);
 
-        login_pnt = findViewById(R.id.login_pnt);
-        login_pnt.setOnClickListener(view -> {
-            Intent login = new Intent(this, PrivacyandTerms.class);
-            startActivity(login);
-            finish();
+        loginPNT = findViewById(R.id.loginPNT);
+        loginPNT.setOnClickListener(view -> {
+            Intent intent = new Intent(LogIn.this, PrivacyAndTerms_login.class);
+            startActivity(intent);
         });
+
 
         googleBtn.setOnClickListener(view -> {
             // Check if the user is already signed in with Google
@@ -160,14 +165,56 @@ public class LogIn extends AppCompatActivity {
             navigateToSecondActivity();
         }
     }
+
+
+    //using google login
+    //using google login
     private void signIn() {
-        // Sign out any existing Google account to ensure account selection on button click
-        gsc.signOut().addOnCompleteListener(this, task -> {
-            Intent signInIntent = gsc.getSignInIntent();
-            startActivityForResult(signInIntent, 1000);
-        });
+        // Start the Google Sign-In Intent
+        Intent signInIntent = gsc.getSignInIntent();
+        googleSignInLauncher.launch(signInIntent);
     }
 
+    //google login
+    private final ActivityResultLauncher<Intent> googleSignInLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    Intent data = result.getData();
+                    if (data != null) {
+                        Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+                        handleSignInResult(task);
+                    }
+                }
+            });
+
+    //method for google login
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            // Signed in successfully, show authenticated UI.
+            if (account != null) {
+                // Handle the sign-in success
+                FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                if (firebaseUser != null && firebaseUser.getEmail().equals(account.getEmail())) {
+                    if (firebaseUser.isEmailVerified()) {
+                        navigateToSecondActivity();
+                    } else {
+                        // Email is not verified, handle accordingly
+                        Toast.makeText(this, "Email is not verified. Please sign up.", Toast.LENGTH_LONG).show();
+                        signOutGoogle();
+                    }
+                } else {
+                    // The Google account is not linked to Firebase
+                    Toast.makeText(this, "Email is not verified. Please sign up", Toast.LENGTH_LONG).show();
+                }
+            }
+        } catch (ApiException e) {
+            // The ApiException status code indicates the detailed failure reason.
+            Log.w(TAG, "signInResult:failed code=" + e.getStatusCode());
+            Toast.makeText(this, "Sign in failed. Please try again.", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -188,10 +235,10 @@ public class LogIn extends AppCompatActivity {
                                 // itri.acc@gmail.com, navigate to HouseManager class
                                 navigateToHouseManagerActivity();
                             } else if (isTourismHeadEmail(account.getEmail())) {
-                                // alcantaraleah914@gmail.com, navigate to Tourism HeadHouse class
+                                // alcantaraleah914@gmail.com, navigate to TourismHeadAdmin class
                                 navigateToTourismHeadActivity();
-                            }else if (isReceptionistEmail(account.getEmail())) {
-                                // touristarya@gmail.com, navigate to RECEPTIONIST class
+                            } else if (isReceptionistEmail(account.getEmail())) {
+                                // touristarya@gmail.com, navigate to Receptionist class
                                 navigateToReceptionistActivity();
                             } else {
                                 // Non-admin email, navigate to Main2
@@ -212,6 +259,7 @@ public class LogIn extends AppCompatActivity {
             }
         }
     }
+
 
 
     private boolean isStoreManagerEmail(String email) {

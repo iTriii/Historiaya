@@ -2,9 +2,9 @@
     <string name="game_view_content_description">Game view</string>
     <!--Splashscreen-->
     <string name="AppName">Historiaya</string>
-    <string name="TagLine">A Journey to the Past at Your Fingertips</string>
+    <string name="TagLine">A Journey to the Past\n at Your Fingertips</string>
     <string name="Augmented_Reality">Augmented Reality</string>
-    <string name="Tag_tag_line">Explore historical landmarks and cultural heritage sites through virtual tours with Augmented Reality technology.</string>
+    <string name="Tag_tag_line">Explore historical landmarks and\n cultural heritage sites through virtual tours\n with Augmented Reality technology.</string>
     <string name="GetStarted">Get Started</string>
     <string name="twopips">image</string>
     <string name="rizal">image</string>

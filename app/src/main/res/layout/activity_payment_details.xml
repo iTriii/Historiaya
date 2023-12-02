@@ -8,58 +8,27 @@
     android:orientation="vertical"
     tools:context=".PaymentDetails">
 
-    <!--for update-->
     <ImageView
-        android:id="@+id/rizal_Start"
+        android:id="@+id/background"
         android:layout_width="match_parent"
-        android:layout_height="1024dp"
-        android:layout_marginStart="4dp"
+        android:layout_height="900dp"
+        android:src="@drawable/back"
+        app:layout_constraintDimensionRatio="18:10"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/grass_start"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/newproject"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/grass_start"
-        android:layout_width="match_parent"
-        android:layout_height="1024dp"
-        android:layout_marginTop="184dp"
-        android:alpha=".95"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintHorizontal_bias="0.365"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/grass_1" />
-
-    <ImageView
-        android:id="@+id/twopips"
-        android:layout_width="match_parent"
-        android:layout_height="1024dp"
-        android:layout_marginTop="120dp"
-        android:alpha=".89"
-        app:layout_constraintEnd_toEndOf="@+id/grass_start"
-        app:layout_constraintHorizontal_bias="0.688"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/twopips" />
-
-
-    <!-- Payment Items -->
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/blurred"
-        android:layout_width="match_parent"
-        android:layout_height="1024dp"
+        android:layout_width="0dp"
+        android:layout_height="900dp"
         android:alpha=".5"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.92"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
         app:srcCompat="@drawable/rectangle" />
+
 
     <ImageButton
         android:id="@+id/backbtnpaymentdetails"

@@ -8,54 +8,23 @@
 <!--for update-->
 
     <ImageView
-        android:id="@+id/rizal_Start"
+        android:id="@+id/background"
         android:layout_width="match_parent"
-        android:layout_height="1024dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="4dp"
-        app:srcCompat="@drawable/newproject"
-        tools:ignore="MissingConstraints" />
-
-    <ImageView
-        android:id="@+id/grass_start"
-        android:layout_width="match_parent"
-        android:layout_height="1024dp"
-        android:layout_marginTop="184dp"
-        android:alpha=".95"
+        android:layout_height="900dp"
+        android:src="@drawable/back"
+        app:layout_constraintDimensionRatio="18:10"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintHorizontal_bias="0.365"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/grass_1" />
-
-
-    <ImageView
-        android:id="@+id/twopips"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="316dp"
-        android:contentDescription="@string/twopips"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/twopips" />
-
-
-    <!-- Payment Items -->
-
-
+        app:layout_constraintTop_toTopOf="parent" />
     <ImageView
         android:id="@+id/blurred"
-        android:layout_width="match_parent"
-        android:layout_height="1024dp"
+        android:layout_width="0dp"
+        android:layout_height="900dp"
         android:alpha=".5"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/rectangle" />
 
     <TextView
