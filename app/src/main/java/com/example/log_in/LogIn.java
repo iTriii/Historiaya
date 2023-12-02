@@ -11,6 +11,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,9 +24,10 @@ import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
 //FOR UPDATE ONLY
 public class LogIn extends AppCompatActivity {
-    TextView forgotpass, inputemail, inputpass, regnow;
+    TextView forgotpass, inputemail, inputpass, regnow, login_pnt;
     Button li;
     FirebaseAuth mAuth;
     ImageView googleBtn;
@@ -36,6 +39,15 @@ public class LogIn extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_log_in);
+
+        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                goBack();
+            }
+        };
+        onBackPressedDispatcher.addCallback(this, callback);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -54,6 +66,13 @@ public class LogIn extends AppCompatActivity {
                 .build();
 
         gsc = GoogleSignIn.getClient(this, gso);
+
+      //  login_pnt = findViewById(R.id.login_pnt);
+        login_pnt.setOnClickListener(view -> {
+            Intent login = new Intent(this, PrivacyandTerms.class);
+            startActivity(login);
+            finish();
+        });
 
         googleBtn.setOnClickListener(view -> {
             // Check if the user is already signed in with Google
@@ -87,48 +106,22 @@ public class LogIn extends AppCompatActivity {
                 return;
             }
 
-            // Authenticate with Firebase using email and password
             mAuth.signInWithEmailAndPassword(inputEmail, inputPass)
                     .addOnCompleteListener(task -> {
-                        progressbar.setVisibility(View.GONE); // Hide progress bar
-                        li.setVisibility(View.VISIBLE); // Show login button
+                        progressbar.setVisibility(View.GONE);
+                        li.setVisibility(View.VISIBLE);
 
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
                             if (user != null) {
-                                // Check if the email is the specified admin email
-                                if ("historiaya.acc@gmail.com".equals(user.getEmail())) {
-                                    // Redirect to Admin class
-                                    Toast.makeText(getApplicationContext(), "Store Manager Login Successful", Toast.LENGTH_LONG).show();
-                                    Intent intent = new Intent(getApplicationContext(), StoreManager.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else if ("itri.acc@gmail.com".equals(user.getEmail())) {
-                                    // Handle the case for the additional email
-                                    Toast.makeText(getApplicationContext(), "House ManagerLogin Successful", Toast.LENGTH_LONG).show();
-                                    Intent intent = new Intent(getApplicationContext(), HouseManager.class);
-                                    startActivity(intent);
-                                    finish();
-                                } else if ("alcantaraleah914@gmail.com".equals(user.getEmail())) {
-                                    // Handle the case for the additional email
-                                    Toast.makeText(getApplicationContext(), "TourismHead Login Successful", Toast.LENGTH_LONG).show();
-                                    Intent intent = new Intent(getApplicationContext(), TourismHeadAdmin.class);
-                                    startActivity(intent);
-                                    finish();
-                                }else if ("touristarya@gmail.com".equals(user.getEmail())) {
-                                    // Handle the case for the additional email
-                                    Toast.makeText(getApplicationContext(), "Receptionist Login Successful", Toast.LENGTH_LONG).show();
-                                    Intent intent = new Intent(getApplicationContext(), Receptionist.class);
-                                    startActivity(intent);
-                                    finish();
+                                if (user.isEmailVerified()) {
+                                    // Proceed with login
+                                    handleLogin(user);
                                 } else {
-                                    // Proceed with the login process for non-admin users
-                                    Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getApplicationContext(), Main2.class);
-                                    startActivity(intent);
-                                    finish();
+                                    // Email is not verified
+                                    Toast.makeText(LogIn.this, "Email is not verified. Please verify your email.", Toast.LENGTH_LONG).show();
+                                    mAuth.signOut();
                                 }
-                                //
                             }
                         } else {
                             Toast.makeText(LogIn.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
@@ -136,18 +129,37 @@ public class LogIn extends AppCompatActivity {
                     });
         });
 
+
         regnow.setOnClickListener(v -> {
             // If the user wants to register, navigate to the signup activity
-            Intent intent = new Intent(LogIn.this, SignUp.class);
-            startActivity(intent);
+            Intent regnow = new Intent(LogIn.this, SignUp.class);
+            startActivity(regnow);
         });
 
         forgotpass.setOnClickListener(v -> {
-            Intent intent = new Intent(LogIn.this, Reset_Password.class);
-            startActivity(intent);
+            Intent forgotpass = new Intent(LogIn.this, Reset_Password.class);
+            startActivity(forgotpass);
         });
     }
 
+    private void handleLogin(FirebaseUser user) {
+        if (isStoreManagerEmail(user.getEmail())) {
+            // Navigate to StoreManager class
+            navigateToStoreManagerActivity();
+        } else if (isHouseManagerEmail(user.getEmail())) {
+            // Navigate to HouseManager class
+            navigateToHouseManagerActivity();
+        } else if (isTourismHeadEmail(user.getEmail())) {
+            // Navigate to TourismHeadAdmin class
+            navigateToTourismHeadActivity();
+        } else if (isReceptionistEmail(user.getEmail())) {
+            // Navigate to Receptionist class
+            navigateToReceptionistActivity();
+        } else {
+            // Non-admin email, navigate to Main2
+            navigateToSecondActivity();
+        }
+    }
     private void signIn() {
         // Sign out any existing Google account to ensure account selection on button click
         gsc.signOut().addOnCompleteListener(this, task -> {
@@ -423,5 +435,11 @@ public class LogIn extends AppCompatActivity {
                 .addOnCompleteListener(this, task -> {
                     // Google sign out successful
                 });
+    }
+    private void goBack() {
+        // For instance, you can navigate to another activity or finish the current one
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

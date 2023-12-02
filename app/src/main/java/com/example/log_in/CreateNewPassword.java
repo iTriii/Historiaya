@@ -1,4 +1,4 @@
- package com.example.log_in;
+package com.example.log_in;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,10 +24,19 @@ public class CreateNewPassword extends AppCompatActivity {
     FirebaseAuth mAuth;
     ProgressBar progressBar;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_password);
+        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                goBack();
+            }
+        };
+        onBackPressedDispatcher.addCallback(this, callback);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -73,6 +84,10 @@ public class CreateNewPassword extends AppCompatActivity {
                     }
                 });
     }
-
+    private void goBack() {
+        // For instance, you can navigate to another activity or finish the current one
+        Intent intent = new Intent(this, Reset_Password.class);
+        startActivity(intent);
+        finish();
+    }
 }
-

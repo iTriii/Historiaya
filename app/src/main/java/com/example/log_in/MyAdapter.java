@@ -1,5 +1,6 @@
 package com.example.log_in;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,7 +22,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     Context context;
     ArrayList<User> userArrayList;
-    private FirebaseFirestore db;
+    private final FirebaseFirestore db;
 
     public MyAdapter(Context context, ArrayList<User> userArrayList, FirebaseFirestore firestore) {
         this.context = context;
@@ -61,6 +62,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     // Method to handle updating the status in the database and removing from the list
+    @SuppressLint("NotifyDataSetChanged")
     private void updateStatusInDatabase(User user, String status) {
         if (user != null && user.getUid() != null) {
             db.collection("users")

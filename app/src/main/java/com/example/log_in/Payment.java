@@ -4,12 +4,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -44,6 +45,14 @@ public class Payment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
 
+        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                goBack();
+            }
+        };
+        onBackPressedDispatcher.addCallback(this, callback);
 
         // initialize the firebase
         FirebaseApp.initializeApp(this);
@@ -74,15 +83,13 @@ public class Payment extends AppCompatActivity {
 
         });
 
-
-
         okbtn.setOnClickListener(v -> {
             if (selectedImageUri == null) {
                 Toast.makeText(Payment.this, "Please upload your proof of payment. Thank You!", Toast.LENGTH_LONG).show();
             } else {
                 uploadImageToFirebaseStorage(selectedImageUri);
-              // Toast.makeText(Payment.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
-                 progress.setVisibility(View.VISIBLE);
+                // Toast.makeText(Payment.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
+//                progress.setVisibility(View.VISIBLE);
                 startActivity(new Intent(getApplicationContext(), Main2.class));
             }
         });
@@ -136,7 +143,7 @@ public class Payment extends AppCompatActivity {
                 user.put("ImageUrl", imageUrl);
 
                 userDocRef.set(user).addOnSuccessListener(documentReference -> {
-                  //  Toast.makeText(getApplicationContext(), "Successfully Uploaded!", Toast.LENGTH_SHORT).show();
+                    //  Toast.makeText(getApplicationContext(), "Successfully Uploaded!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(), Main2.class));
                     finish();
                 }).addOnFailureListener(exception -> {
@@ -147,5 +154,11 @@ public class Payment extends AppCompatActivity {
 
         // Add a Log statement to check the imageUrl
         Log.d(TAG, "Image URL: " + imageUrl);
+    }
+    private void goBack() {
+        // For instance, you can navigate to another activity or finish the current one
+        Intent intent = new Intent(this, PaymentDetails.class);
+        startActivity(intent);
+        finish();
     }
 }
