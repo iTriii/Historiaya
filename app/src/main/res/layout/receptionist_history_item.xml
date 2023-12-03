@@ -28,7 +28,7 @@
                 android:fontFamily="@font/montserrat_bold"
                 android:text="@string/november"
                 android:textColor="#000000"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
 
 
             <ImageView
