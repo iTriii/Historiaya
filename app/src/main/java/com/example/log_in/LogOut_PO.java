@@ -1,19 +1,19 @@
-    package com.example.log_in;
+package com.example.log_in;
 
-    import android.content.Intent;
-    import android.content.SharedPreferences;
-    import android.os.Bundle;
-    import android.util.DisplayMetrics;
-    import android.view.Gravity;
-    import android.view.WindowManager;
-    import android.widget.Button;
-    import android.widget.Toast;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
+import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.Toast;
 
     import androidx.activity.OnBackPressedCallback;
     import androidx.activity.OnBackPressedDispatcher;
     import androidx.appcompat.app.AppCompatActivity;
 
-    import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuth;
 
     public class LogOut_PO extends AppCompatActivity {
         private FirebaseAuth mAuth;
@@ -32,33 +32,33 @@
             };
             onBackPressedDispatcher.addCallback(this, callback);
 
-            mAuth = FirebaseAuth.getInstance();
+        mAuth = FirebaseAuth.getInstance();
 
-            yes = findViewById(R.id.yes);
-            if (yes != null) {
-                yes.setOnClickListener(view -> yes());
-            }
-            no = findViewById(R.id.no);
-            no.setOnClickListener(view -> no());
-
-
-            DisplayMetrics dm = new DisplayMetrics();
-            getWindowManager().getDefaultDisplay().getMetrics(dm);
-
-            int width = dm.widthPixels;
-            int height = dm.heightPixels;
-
-            getWindow().setLayout((int) (width*.7), (int) (height*.5));
-
-            WindowManager.LayoutParams params = getWindow().getAttributes();
-            params.gravity = Gravity.CENTER;
-            params.x = 0;
-            params.y = -20;
-
-            getWindow().setAttributes(params);
+        yes = findViewById(R.id.yes);
+        if (yes != null) {
+            yes.setOnClickListener(view -> yes());
         }
+        no = findViewById(R.id.no);
+        no.setOnClickListener(view -> no());
 
-        private void yes() {
+
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+
+        int width = dm.widthPixels;
+        int height = dm.heightPixels;
+
+        getWindow().setLayout((int) (width*.7), (int) (height*.5));
+
+        WindowManager.LayoutParams params = getWindow().getAttributes();
+        params.gravity = Gravity.CENTER;
+        params.x = 0;
+        params.y = -20;
+
+        getWindow().setAttributes(params);
+    }
+
+    private void yes() {
         try {
             // Clear user data or preferences
             clearUserData();

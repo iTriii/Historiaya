@@ -296,7 +296,7 @@ public class BookingDetails extends AppCompatActivity {
             }
 
             // Get the selected date
-            Object selectedDate = Date.getText().toString();
+            Object selectedDate = calendartextview.getText().toString();
 
             // Check if the selected date is null or empty
             if (TextUtils.isEmpty(selectedDate.toString())) {

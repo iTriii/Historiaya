@@ -70,12 +70,14 @@
         <activity
             android:name=".Splashscreen"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
         <activity
             android:name=".v5"
             android:exported="false" />
@@ -147,42 +149,41 @@
             android:exported="false" />
         <activity
             android:name=".Profile"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".Payment"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".BookNow"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".Main2"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".TutorialMain"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".StorySelection"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".LogIn"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".StartScreen"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".SignUp"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".CreateNewPassword"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".Reset_Password"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".MainActivity"
-            android:exported="true" />
-
-        <meta-data
+            android:exported="false" />
+       <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>

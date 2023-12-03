@@ -88,7 +88,7 @@ public class Payment extends AppCompatActivity {
                 Toast.makeText(Payment.this, "Please upload your proof of payment. Thank You!", Toast.LENGTH_LONG).show();
             } else {
                 uploadImageToFirebaseStorage(selectedImageUri);
-              // Toast.makeText(Payment.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
+                // Toast.makeText(Payment.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
 //                progress.setVisibility(View.VISIBLE);
                 startActivity(new Intent(getApplicationContext(), Main2.class));
             }
@@ -143,7 +143,7 @@ public class Payment extends AppCompatActivity {
                 user.put("ImageUrl", imageUrl);
 
                 userDocRef.set(user).addOnSuccessListener(documentReference -> {
-                  //  Toast.makeText(getApplicationContext(), "Successfully Uploaded!", Toast.LENGTH_SHORT).show();
+                    //  Toast.makeText(getApplicationContext(), "Successfully Uploaded!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(), Main2.class));
                     finish();
                 }).addOnFailureListener(exception -> {

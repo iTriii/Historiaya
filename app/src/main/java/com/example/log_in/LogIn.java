@@ -1,8 +1,5 @@
 package com.example.log_in;
 
-import static android.content.ContentValues.TAG;
-
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,8 +13,6 @@ import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.activity.OnBackPressedDispatcher;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -111,6 +106,7 @@ public class LogIn extends AppCompatActivity {
                 return;
             }
 
+            // Authenticate with Firebase using email and password
             mAuth.signInWithEmailAndPassword(inputEmail, inputPass)
                     .addOnCompleteListener(task -> {
                         progressbar.setVisibility(View.GONE);
@@ -127,6 +123,7 @@ public class LogIn extends AppCompatActivity {
                                     Toast.makeText(LogIn.this, "Email is not verified. Please verify your email.", Toast.LENGTH_LONG).show();
                                     mAuth.signOut();
                                 }
+                                //
                             }
                         } else {
                             Toast.makeText(LogIn.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
@@ -166,8 +163,6 @@ public class LogIn extends AppCompatActivity {
         }
     }
 
-
-    //using google login
     //using google login
     private void signIn() {
         // Start the Google Sign-In Intent
@@ -259,7 +254,6 @@ public class LogIn extends AppCompatActivity {
             }
         }
     }
-
 
 
     private boolean isStoreManagerEmail(String email) {

@@ -2,6 +2,7 @@ package com.example.log_in;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,9 +29,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -51,7 +54,7 @@ public class BookNow extends AppCompatActivity {
     String reservedDate = "";
     private String userId;
     String selectedTime = "";
-    String selectedTour;
+    private Button lastClickedButton;
 
 
     @Override
@@ -67,6 +70,7 @@ public class BookNow extends AppCompatActivity {
             }
         };
         onBackPressedDispatcher.addCallback(this, callback);
+
 
 
         db = FirebaseFirestore.getInstance();
@@ -207,35 +211,40 @@ public class BookNow extends AppCompatActivity {
             Intent intent = new Intent(BookNow.this, Main2.class);
             startActivity(intent);
         });
-
-        //IMPLEMENT A BUTTON TIME
+// IMPLEMENT A BUTTON TIME
         btntime1.setOnClickListener(v -> {
             selectedTime = "10:00 AM";
-            // showToastAndStoreTime();
+            //   showToastAndStoreTime();
+            updateButtonColors((Button) v);
         });
 
         btntime2.setOnClickListener(v -> {
             selectedTime = "11:00 AM";
-            // showToastAndStoreTime();
+            //  showToastAndStoreTime();
+            updateButtonColors((Button) v);
         });
 
         btntime3.setOnClickListener(v -> {
             selectedTime = "1:00 PM";
-            // showToastAndStoreTime(); // add selectedTime
+            //  showToastAndStoreTime();
+            updateButtonColors((Button) v);
         });
 
         btntime4.setOnClickListener(v -> {
             selectedTime = "2:00 PM";
-            //showToastAndStoreTime();
+            //   showToastAndStoreTime();
+            updateButtonColors((Button) v);
+            showToastAndStoreTime();
         });
 
         // Set up the date listener before the button click listener
         calendarView.setOnDateChangeListener((view, year, month, dayOfMonth) -> {
             // Get the current date
             Calendar currentDate = Calendar.getInstance();
-            // Create a Calendar instance for the selected date
             Calendar selectedDate = Calendar.getInstance();
+
             selectedDate.set(year, month, dayOfMonth);
+
             // Check if the selected date is in the past
             if (selectedDate.before(currentDate)) {
                 showToast("Cannot select a past date");
@@ -243,10 +252,26 @@ public class BookNow extends AppCompatActivity {
                 calendarView.setDate(currentDateInMillis, true, true);
             } else {
                 // Handle date selection here
-                reservedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
+                SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
+                reservedDate = dateFormat.format(selectedDate.getTime());
                 //showToast("Your reserve date is: " + reservedDate);
             }
         });
+
+    }
+
+    @SuppressLint("DefaultLocale")
+    private void updateButtonColors(Button clickedButton) {
+        // Change the color of the last clicked button to its original color
+        if (lastClickedButton != null) {
+            lastClickedButton.setBackgroundColor(Color.parseColor("#757575"));
+        }
+
+        // Change the color of the clicked button to green
+        clickedButton.setBackgroundColor(Color.parseColor("#00A197")); //btn color once the tourist click the button
+        clickedButton.setTextColor(Color.WHITE); // textcolor
+        lastClickedButton = clickedButton;      // Update the last clicked button
+
 
         btnsave.setOnClickListener(view -> {
             // Use the reservedDate directly in your button click listener
@@ -256,6 +281,7 @@ public class BookNow extends AppCompatActivity {
 
             if (!selectedTour.equals("Select Tour") && !selectedTouristNumStr.equals("Number of Tourists")) {
                 int selectedTouristNum = Integer.parseInt(selectedTouristNumStr);
+
                 // Calculate payment details
                 double rfTourGuide = calculateTourGuide(selectedTouristNum);
                 double serviceCharge = calculateServiceCharge(selectedTour);
@@ -263,11 +289,29 @@ public class BookNow extends AppCompatActivity {
                 double subtotal = calculateSubtotal(selectedTour);
                 double total = subtotal + rfTourGuide + serviceCharge;
 
+                // Create an Intent to start the ViewActivity
+                Intent intent = new Intent(BookNow.this, PaymentDetails.class);
+
+                // Put the data into the Intent
+                intent.putExtra("selectedTour", selectedTour);
+                intent.putExtra("selectedTouristNum", selectedTouristNumStr);
+                intent.putExtra("reservedDate", reservedDate);
+                intent.putExtra("total", total);
+                intent.putExtra("selectedTime", selectedTime);
+                intent.putExtra("Subtotal", subtotal);
+                intent.putExtra("TourGuide", rfTourGuide);
+                intent.putExtra("serviceCharge", serviceCharge);
+
+                // Start the new activity
+                startActivity(intent);
+
+                // Update UI with calculated values
                 Subtotal.setText(String.format(" ₱%.2f", subtotal));
                 selectedHouse.setText(String.format(" %s", selectedTour));
                 RFTourGuide.setText(String.format(" ₱%.2f", rfTourGuide));
                 SCharge.setText(String.format(" ₱%.2f", serviceCharge));
                 Total.setText(String.format("₱%.2f", total));
+
 
                 // Add data to Firestore
                 userId = mAuth.getCurrentUser().getUid();
@@ -276,10 +320,11 @@ public class BookNow extends AppCompatActivity {
                 // Make the ScrollView visible
                 BookScrollView();
             } else {
-                Toast.makeText(getApplicationContext(), "Please select a valid tour and number of tourists.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Please select a valid tour and number of tourists.", Toast.LENGTH_LONG).show();
             }
         });
     }
+
 
     //CRISP
     private void startCrispChat() {
@@ -294,7 +339,7 @@ public class BookNow extends AppCompatActivity {
     private void showToastAndStoreTime() {
         Set<String> selectedTime = new HashSet<>();
         // Check if the time is already selected
-        showToast("Time selected: " + selectedTime);
+        // showToast("Time selected: " + selectedTime);
         selectedTime.add(selectedTime.toString());
     }
 
@@ -368,40 +413,44 @@ public class BookNow extends AppCompatActivity {
                 if (task.getResult() != null && task.getResult().getData() != null) {
                     bookingData.putAll(task.getResult().getData());
                 }
-                bookingData.put("selectedTour", selectedTour);
-                bookingData.put("selectedTouristNum", selectedTouristNum);
-                bookingData.put("reservedDate", reservedDate);
-                bookingData.put("totalAmount", totalAmount);
-                bookingData.put("selectedTime", selectedTime);
+                if (hasBooking(bookingData)) {
+                    // The user already has a booking
+                    showToast("You already have a booking. Redirecting to your Booking Details");
+                    navigateToBookingDetailMainActivity();
+                } else {
+                    // The user doesn't have a booking, create one
+                    bookingData.put("selectedTour", selectedTour);
+                    bookingData.put("selectedTouristNum", selectedTouristNum);
+                    bookingData.put("reservedDate", reservedDate);
+                    bookingData.put("totalAmount", totalAmount);
+                    bookingData.put("selectedTime", selectedTime);
 
-                userDocRef.update(bookingData).addOnSuccessListener(documentReference -> {
-                    // Toast.makeText(getApplicationContext(), "Booking updated", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(getApplicationContext(), PaymentDetails.class));
-                    finish();
-                }).addOnFailureListener(exception -> {
-                    Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
-                    finish();
-                });
+                    userDocRef.update(bookingData).addOnSuccessListener(documentReference -> {
+                        showToast("Booking created");
+                    }).addOnFailureListener(exception -> {
+                        showToast("Failed to create booking: " + exception.getMessage());
+                    });
+                }
             } else {
-                Map<String, Object> user = new HashMap<>();
-                user.put("selectedTour", selectedTour);
-                user.put("selectedTouristNum", selectedTouristNum);
-                user.put("reservedDate", reservedDate);
-                user.put("totalAmount", totalAmount);
-                user.put("SelectedTime", selectedTime);
-
-                userDocRef.set(user).addOnSuccessListener(documentReference -> {
-                    Toast.makeText(getApplicationContext(), "Booking created", Toast.LENGTH_SHORT).show();
-                    // Start the PaymentDetails activity immediately after creating the booking
-                    startActivity(new Intent(getApplicationContext(), PaymentDetails.class));
-                    finish();
-                }).addOnFailureListener(exception -> {
-                    Toast.makeText(getApplicationContext(), exception.getMessage(), Toast.LENGTH_SHORT).show();
-                    finish();
-                });
+                showToast("Error checking booking status: " + task.getException().getMessage());
             }
         });
     }
+
+    private void navigateToBookingDetailMainActivity() {
+        // Replace this with the intent for the activity you want to navigate to
+        Intent intent = new Intent(BookNow.this, BookingDetailMain.class);
+        startActivity(intent);
+        finish(); // Finish the current activity to prevent the user from coming back to the booking screen
+    }
+
+    private boolean hasBooking(Map<String, Object> bookingData) {
+        // Check if the user already has a booking
+        return bookingData.containsKey("selectedTour") && bookingData.containsKey("selectedTouristNum")
+                && bookingData.containsKey("reservedDate") && bookingData.containsKey("totalAmount")
+                && bookingData.containsKey("selectedTime");
+    }
+
     private void goBack() {
         // For instance, you can navigate to another activity or finish the current one
         Intent intent = new Intent(this, Main2.class);
