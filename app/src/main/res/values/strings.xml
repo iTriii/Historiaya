@@ -471,6 +471,7 @@ Welcome! Thank you for your interest in our application.\n\n
     <string name="about">About</string>
     <string name="AboutOurApp">Discover Sariaya\'s history in a unique way! Our app uses cool technology to explore heritage sites, play fun quizzes, and plan your visit easily. Created with the Sariaya Tourism Office, it\'s your ticket to an exciting heritage adventure!</string>
     <string name="about1">The Historiaya Application is about exploring Sariaya\'s cultural treasures through an Android-based platform integrating Augmented Reality (AR), interactive activities like scavenger hunts, and engaging AR-assisted tours, providing an immersive heritage experience.</string>
+    <string name="make_payment">Make Payment</string>
 
     <!-- RESCHED  USER DETAILS ACTIVITY -->
 
