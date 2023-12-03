@@ -2,9 +2,9 @@
     <string name="game_view_content_description">Game view</string>
     <!--Splashscreen-->
     <string name="AppName">Historiaya</string>
-    <string name="TagLine">A Journey to the Past at Your Fingertips</string>
+    <string name="TagLine">A Journey to the Past\n at Your Fingertips</string>
     <string name="Augmented_Reality">Augmented Reality</string>
-    <string name="Tag_tag_line">Explore historical landmarks and cultural heritage sites through virtual tours with Augmented Reality technology.</string>
+    <string name="Tag_tag_line">Explore historical landmarks and\n cultural heritage sites through virtual tours\n with Augmented Reality technology.</string>
     <string name="GetStarted">Get Started</string>
     <string name="twopips">image</string>
     <string name="rizal">image</string>
@@ -72,7 +72,7 @@
     <string name="BookNow">Book Now</string>
     <string name="Store">Store</string>
     <string name="Map">Map</string>
-    <string name="Sharelink">https://chat.openai.com</string>
+    <string name="Sharelink">https://rb.gy/at6j1x</string>
 
     <!--Profile-->
     <string name="Profile">Profile</string>
@@ -249,7 +249,6 @@
     <string name="history">History</string>
 
 
-
     <!-- BOOKING -->
     <string name="mybooking">mybooking</string>
     <string name="gcash_qr_code">GCASH QR CODE</string>
@@ -424,7 +423,7 @@ Welcome! Thank you for your interest in our application.\n\n
 
     3. You will not collect any information or data from our system or attempt to decipher any transmission to or from the database.\n
 
-    4. we reserve the right to terminate or suspend your access to our services at any time.\n\n
+    4. We reserve the right to terminate or suspend your access to our services at any time.\n\n
 
         <b>USER REGISTRATION:</b>\n\n
 
@@ -458,7 +457,6 @@ Welcome! Thank you for your interest in our application.\n\n
 
     3. Discounts offered through vouchers are subject to the terms set by the store managers.\n\n
 
-
         <b>CONTACT US:</b>\n\n
     If you have any questions or concerns about these Terms or the App, kindly contact us at <u>itri.acc@gmail.com</u>\n\n
 
@@ -473,6 +471,7 @@ Welcome! Thank you for your interest in our application.\n\n
     <string name="about">About</string>
     <string name="AboutOurApp">Discover Sariaya\'s history in a unique way! Our app uses cool technology to explore heritage sites, play fun quizzes, and plan your visit easily. Created with the Sariaya Tourism Office, it\'s your ticket to an exciting heritage adventure!</string>
     <string name="about1">The Historiaya Application is about exploring Sariaya\'s cultural treasures through an Android-based platform integrating Augmented Reality (AR), interactive activities like scavenger hunts, and engaging AR-assisted tours, providing an immersive heritage experience.</string>
+    <string name="make_payment">Make Payment</string>
 
     <!-- RESCHED  USER DETAILS ACTIVITY -->
 

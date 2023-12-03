@@ -11,22 +11,17 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.activity.OnBackPressedDispatcher;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class PrivacyandTerms extends AppCompatActivity {
-
+public class PrivacyandTerms_login extends AppCompatActivity {
     private static final String CHECKBOX_STATE = "checkbox_state";
     CheckBox checkBoxTNC;
     Button ConfirmTnC;
     ImageButton back;
     SharedPreferences sharedPreferences;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_privacyand_terms);
-
-
+        setContentView(R.layout.activity_privacy_and_terms_sign_up);
         OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
             @Override
@@ -35,34 +30,24 @@ public class PrivacyandTerms extends AppCompatActivity {
             }
         };
         onBackPressedDispatcher.addCallback(this, callback);
-
-        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-
-        checkBoxTNC = findViewById(R.id.checkboxTnC);
-        checkBoxTNC.setChecked(sharedPreferences.getBoolean(CHECKBOX_STATE, false)); // Restore checkbox state
-
-        checkBoxTNC.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            ConfirmTnC.setEnabled(isChecked);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean(CHECKBOX_STATE, isChecked); // Save checkbox state
-            editor.apply();
-        });
-
-        ConfirmTnC = findViewById(R.id.ConfirmTnC);
-        ConfirmTnC.setOnClickListener(view -> main2());
-        ConfirmTnC.setEnabled(checkBoxTNC.isChecked()); // Enable ConfirmTnC button based on checkbox state
-
         back = findViewById(R.id.back);
-        back.setOnClickListener(view -> main2());
-    }
+        back.setOnClickListener(view -> {
+            Intent intent = new Intent(this, LogIn.class);
+            startActivity(intent);
 
-    private void main2() {
-        Intent intent = new Intent(this, Main2.class);
-        startActivity(intent);
+            sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+
+            checkBoxTNC.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                ConfirmTnC.setEnabled(isChecked);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putBoolean(CHECKBOX_STATE, isChecked); // Save checkbox state
+                editor.apply();
+            });
+        });
     }
     private void goBack() {
         // For instance, you can navigate to another activity or finish the current one
-        Intent intent = new Intent(this, Main2.class);
+        Intent intent = new Intent(this, LogIn.class);
         startActivity(intent);
         finish();
     }

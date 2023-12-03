@@ -12,6 +12,8 @@ import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
@@ -47,10 +49,19 @@ public class Profile extends AppCompatActivity {
 
     Button upcomingbtn,adminView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                goBack();
+            }
+        };
+        onBackPressedDispatcher.addCallback(this, callback);
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -149,11 +160,11 @@ public class Profile extends AppCompatActivity {
                             String selectedTour = documentSnapshot.getString("selectedTour");// display data in texview
                             String reservedDate = documentSnapshot.getString("reservedDate");
                             String status = documentSnapshot.getString("status");
-                                //TextViews with the retrieved data
+                            //TextViews with the retrieved data
+                            MonthText.setText(reservedDate);
+                            if (MonthText != null) {
                                 MonthText.setText(reservedDate);
-                                if (MonthText != null) {
-                                    MonthText.setText(reservedDate);
-                                }
+                            }
                             MonthTextt.setText(reservedDate);
                             if (MonthTextt != null) {
                                 MonthTextt.setText(reservedDate);
@@ -166,11 +177,11 @@ public class Profile extends AppCompatActivity {
                             if (selectedTourText != null){
                                 selectedTourText.setText(selectedTour);
                             }
-                                // Update reservation status in the UI
-                                if (UpdatingtheTouristText != null) {
-                                    UpdatingtheTouristText.setText(status);
-                                }
-                                //ADD AS LONG AS MAY IAADD
+                            // Update reservation status in the UI
+                            if (UpdatingtheTouristText != null) {
+                                UpdatingtheTouristText.setText(status);
+                            }
+                            //ADD AS LONG AS MAY IAADD
 
                             if (firstName != null && lastName != null) {
                                 ProfileName.setText(firstName + " " + lastName);
@@ -191,7 +202,7 @@ public class Profile extends AppCompatActivity {
                         }
                     }
                 });
-            }
+    }
 
     @Override
     protected void onDestroy() {
@@ -299,6 +310,12 @@ public class Profile extends AppCompatActivity {
         uno.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
         dos.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
         tres.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
+    }
+    private void goBack() {
+        // For instance, you can navigate to another activity or finish the current one
+        Intent intent = new Intent(Profile.this, Main2.class);
+        startActivity(intent);
+        finish();
     }
 
 }

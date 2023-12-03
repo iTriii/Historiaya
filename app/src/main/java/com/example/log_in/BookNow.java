@@ -2,8 +2,11 @@ package com.example.log_in;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,6 +19,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
@@ -27,6 +32,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -52,15 +58,27 @@ public class BookNow extends AppCompatActivity {
     String reservedDate = "";
     private String userId;
     String selectedTime = "";
+    private String selectedTour = "";
+    private String selectedTouristNumStr = "";
     private Button lastClickedButton;
+    private SharedPreferences sharedPreferences;
 
-
+    private Drawable btntime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_now);
         FirebaseApp.initializeApp(this);
+        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                goBack();
+            }
+        };
+        onBackPressedDispatcher.addCallback(this, callback);
 
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
@@ -107,10 +125,27 @@ public class BookNow extends AppCompatActivity {
         btntime3 = findViewById(R.id.btntime3);
         btntime4 = findViewById(R.id.btntime4);
 
+        btntime = btntime1.getBackground();
+        btntime = btntime2.getBackground();
+        btntime = btntime3.getBackground();
+        btntime = btntime4.getBackground();
+
         setupSpinners();
         setListeners();
         setupButtonClickListener(btntime1, btntime2, btntime3, btntime4);
+
+        // Retrieve the last clicked button ID from SharedPreferences
+        int lastClickedButtonId = sharedPreferences.getInt("selectedButtonId", -1);
+        if (lastClickedButtonId != -1) {
+            // Set the color of the last clicked button
+            Button lastClickedButton = findViewById(lastClickedButtonId);
+            if (lastClickedButton != null) {
+                updateButtonColors(lastClickedButton);
+            }
+        }
     }
+
+
 
     private void setupSpinners() {
         ArrayAdapter<CharSequence> heritageHouseAdapter = ArrayAdapter.createFromResource(
@@ -143,7 +178,8 @@ public class BookNow extends AppCompatActivity {
         spinTour.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                // showToast("Heritage House Selected: " + spinTour.getSelectedItem().toString());
+                String selectedTour = spinTour.getSelectedItem().toString();
+                saveToSharedPreferences("selectedTour", selectedTour);
             }
 
             @Override
@@ -155,7 +191,8 @@ public class BookNow extends AppCompatActivity {
         spinNum.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                // showToast("Tourist Number Selected: " + spinNum.getSelectedItem().toString());
+                String selectedTouristNum = spinNum.getSelectedItem().toString();
+                saveToSharedPreferences("selectedTouristNum", selectedTouristNum);
             }
 
             @Override
@@ -203,25 +240,25 @@ public class BookNow extends AppCompatActivity {
 // IMPLEMENT A BUTTON TIME
         btntime1.setOnClickListener(v -> {
             selectedTime = "10:00 AM";
-            //   showToastAndStoreTime();
+            saveToSharedPreferences("selectedTime", selectedTime);
             updateButtonColors((Button) v);
         });
 
         btntime2.setOnClickListener(v -> {
             selectedTime = "11:00 AM";
-            //  showToastAndStoreTime();
+            saveToSharedPreferences("selectedTime", selectedTime);
             updateButtonColors((Button) v);
         });
 
         btntime3.setOnClickListener(v -> {
             selectedTime = "1:00 PM";
-            //  showToastAndStoreTime();
+            saveToSharedPreferences("selectedTime", selectedTime);
             updateButtonColors((Button) v);
         });
 
         btntime4.setOnClickListener(v -> {
             selectedTime = "2:00 PM";
-            //   showToastAndStoreTime();
+            saveToSharedPreferences("selectedTime", selectedTime);
             updateButtonColors((Button) v);
             showToastAndStoreTime();
         });
@@ -244,6 +281,9 @@ public class BookNow extends AppCompatActivity {
                 SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
                 reservedDate = dateFormat.format(selectedDate.getTime());
                 //showToast("Your reserve date is: " + reservedDate);
+
+
+                saveToSharedPreferences("reservedDate", reservedDate);
             }
         });
 
@@ -251,9 +291,9 @@ public class BookNow extends AppCompatActivity {
 
     @SuppressLint("DefaultLocale")
     private void updateButtonColors(Button clickedButton) {
-        // Change the color of the last clicked button to its original color
         if (lastClickedButton != null) {
-            lastClickedButton.setBackgroundColor(Color.parseColor("#757575"));
+            lastClickedButton.setBackground(getBtntime(lastClickedButton));
+            lastClickedButton.setTextColor(Color.parseColor("#00684E"));
         }
 
         // Change the color of the clicked button to green
@@ -263,6 +303,7 @@ public class BookNow extends AppCompatActivity {
 
 
         btnsave.setOnClickListener(view -> {
+            // Use the reservedDate directly in your button click listener
             //spinner starts here
             String selectedTour = spinTour.getSelectedItem().toString();
             String selectedTouristNumStr = spinNum.getSelectedItem().toString();
@@ -312,7 +353,18 @@ public class BookNow extends AppCompatActivity {
             }
         });
     }
-
+    private Drawable getBtntime(Button button) {
+        if (button == btntime1) {
+            return btntime;
+        } else if (button == btntime2) {
+            return btntime;
+        } else if (button == btntime3) {
+            return btntime;
+        } else if (button == btntime4) {
+            return btntime;
+        }
+        return null;
+    }
 
     //CRISP
     private void startCrispChat() {
@@ -426,7 +478,7 @@ public class BookNow extends AppCompatActivity {
     }
 
     private void navigateToBookingDetailMainActivity() {
-        // Replace this with the intent for the activity you want to navigate to
+        // Navigate to Booking Detail MAin Activity
         Intent intent = new Intent(BookNow.this, BookingDetailMain.class);
         startActivity(intent);
         finish(); // Finish the current activity to prevent the user from coming back to the booking screen
@@ -437,6 +489,128 @@ public class BookNow extends AppCompatActivity {
         return bookingData.containsKey("selectedTour") && bookingData.containsKey("selectedTouristNum")
                 && bookingData.containsKey("reservedDate") && bookingData.containsKey("totalAmount")
                 && bookingData.containsKey("selectedTime");
+    }
+
+    //SharedPreferences
+    private void saveToSharedPreferences(String key, String value) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(key, value);
+        editor.apply();
+
+        if (lastClickedButton != null) {
+            editor.putInt("selectedButtonId", lastClickedButton.getId());
+            editor.apply();
+        }
+    }
+
+    // Method to retrieve values from SharedPreferences
+    private String getFromSharedPreferences(String key) {
+        return sharedPreferences.getString(key, ""); // Default value "" can be changed to suit your needs
+    }
+
+    // Call this method to save values whenever needed
+    private void saveValues() {
+        saveToSharedPreferences("selectedHouse", selectedHouse.getText().toString());
+        saveToSharedPreferences("Subtotal", Subtotal.getText().toString());
+        saveToSharedPreferences("RFTourGuide", RFTourGuide.getText().toString());
+        saveToSharedPreferences("SCharge", SCharge.getText().toString());
+        saveToSharedPreferences("Total", Total.getText().toString());
+        saveToSharedPreferences("selectedTour", spinTour.getSelectedItem().toString());
+        saveToSharedPreferences("touristnum", spinNum.getSelectedItem().toString());
+        saveToSharedPreferences("selectedTourIndex", String.valueOf(spinTour.getSelectedItemPosition()));
+    }
+
+    // Call this method to retrieve values whenever needed
+    private void retrieveValues() {
+        selectedHouse.setText(getFromSharedPreferences("selectedHouse"));
+        Subtotal.setText(getFromSharedPreferences("Subtotal"));
+        RFTourGuide.setText(getFromSharedPreferences("RFTourGuide"));
+        SCharge.setText(getFromSharedPreferences("SCharge"));
+        Total.setText(getFromSharedPreferences("Total"));
+
+        String selectedTourIndex = getFromSharedPreferences("selectedTourIndex");
+        if (!selectedTourIndex.isEmpty()) {
+            int index = Integer.parseInt(selectedTourIndex);
+            spinTour.setSelection(index);
+        }
+    }
+
+    // Override onPause to save values when the activity is paused
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveValues();
+    }
+
+    // Override onResume to retrieve values when the activity is resumed
+    @Override
+    protected void onResume() {
+        super.onResume();
+        retrieveValues();
+
+        String savedSelectedTouristNum = getFromSharedPreferences("selectedTouristNum");
+        if (!savedSelectedTouristNum.isEmpty()) {
+            // Find the position of the saved item in the spinner's adapter and set it as selected
+            ArrayAdapter<CharSequence> adapter = (ArrayAdapter<CharSequence>) spinNum.getAdapter();
+            if (adapter != null) {
+                int position = adapter.getPosition(savedSelectedTouristNum);
+                spinNum.setSelection(position);
+            }
+        }
+        // Retrieve and restore the selected date and time from SharedPreferences
+        // Restore the original backgrounds based on the last clicked button ID
+        int lastClickedButtonId = sharedPreferences.getInt("selectedButtonId", -1);
+        if (lastClickedButtonId != -1) {
+            lastClickedButton = findViewById(lastClickedButtonId);
+            if (lastClickedButton != null) {
+                // Apply the color to the last clicked button
+                updateButtonColors(lastClickedButton);
+            }
+        }
+
+
+        // Retrieve and restore the selected date from SharedPreferences
+        String savedReservedDate = getFromSharedPreferences("reservedDate");
+        if (!savedReservedDate.isEmpty()) {
+            // Parse the saved date and set it to the CalendarView
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM d, yyyy", Locale.ENGLISH);
+            try {
+                Calendar savedDateCalendar = Calendar.getInstance();
+                savedDateCalendar.setTime(dateFormat.parse(savedReservedDate));
+                long savedDateInMillis = savedDateCalendar.getTimeInMillis();
+                calendarView.setDate(savedDateInMillis, true, true);
+            } catch (ParseException e) {
+                e.printStackTrace();
+
+                String savedSelectedTime = getFromSharedPreferences("selectedTime");
+
+                if (!savedSelectedTime.isEmpty()) {
+                    switch (savedSelectedTime) {
+                        case "10:00 AM":
+                            updateButtonColors(btntime1);
+                            break;
+                        case "11:00 AM":
+                            updateButtonColors(btntime2);
+                            break;
+                        case "1:00 PM":
+                            updateButtonColors(btntime3);
+                            break;
+                        case "2:00 PM":
+                            updateButtonColors(btntime4);
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+        }
+    }
+
+    private void goBack () {
+        // For instance, you can navigate to another activity or finish the current one
+        Intent intent = new Intent(this, Main2.class);
+        startActivity(intent);
+        finish();
     }
 
 }
