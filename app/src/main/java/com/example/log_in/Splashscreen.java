@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Splashscreen extends AppCompatActivity {
 
     public static int SPLASH_SCREEN = 5000;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

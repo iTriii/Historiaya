@@ -10,6 +10,8 @@ import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,6 +29,15 @@ public class Reset_Password extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reset_password);
+
+        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                goBack();
+            }
+        };
+        onBackPressedDispatcher.addCallback(this, callback);
 
         mAuth =FirebaseAuth.getInstance();
         Reset = findViewById(R.id.Reset);
@@ -76,4 +87,11 @@ public class Reset_Password extends AppCompatActivity {
         startActivity(intent);
         overridePendingTransition(com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_in_left, com.blogspot.atifsoftwares.animatoolib.R.anim.animate_slide_out_right);
     }
+    private void goBack() {
+        // For instance, you can navigate to another activity or finish the current one
+        Intent intent = new Intent(this, LogIn.class);
+        startActivity(intent);
+        finish();
+    }
+
 }

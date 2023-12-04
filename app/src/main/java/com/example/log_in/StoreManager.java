@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
+import androidx.activity.OnBackPressedDispatcher;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
@@ -71,10 +72,19 @@ public class StoreManager extends AppCompatActivity {
                 }
             });
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_manager);
+        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
+        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
+            @Override
+            public void handleOnBackPressed() {
+                goBack();
+            }
+        };
+        onBackPressedDispatcher.addCallback(this, callback);
 
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
@@ -93,20 +103,6 @@ public class StoreManager extends AppCompatActivity {
             }
             return false;
         });
-        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
-            @Override
-            public void handleOnBackPressed() {
-                // Handle the back button press
-                Intent intent = new Intent(StoreManager.this, LogIn.class);
-                startActivity(intent);
-                finish();
-            }
-        };
-
-        // Add the callback to the OnBackPressedDispatcher
-        getOnBackPressedDispatcher().addCallback(this, callback);
-
-
 
         for (int i = 0; i < 7; i++) {
             int editButtonId = getResources().getIdentifier("edit" + (i + 1), "id", getPackageName());
@@ -301,5 +297,12 @@ public class StoreManager extends AppCompatActivity {
     private void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
+    private void goBack() {
+        // For instance, you can navigate to another activity or finish the current one
+        Intent intent = new Intent(this, LogIn.class);
+        startActivity(intent);
+        finish();
+    }
+
 
 }
