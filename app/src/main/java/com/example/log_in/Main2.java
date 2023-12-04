@@ -18,8 +18,6 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.activity.OnBackPressedCallback;
-import androidx.activity.OnBackPressedDispatcher;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -36,34 +34,41 @@ public class Main2 extends AppCompatActivity {
     private CardView settings_popup, Notifications;
     private Dialog dialog;
     private FirebaseAuth mAuth;
-
+    private static final long BACK_PRESS_TIME_INTERVAL = 2000; // Time interval for double press in milliseconds
+    private long backPressTime; // Variable to track the back button press time
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
-        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
-            @Override
-            public void handleOnBackPressed() {
-                goBack();
-            }
-        };
-        onBackPressedDispatcher.addCallback(this, callback);
 
+        // Initialize FirebaseAuth and dialog
         mAuth = FirebaseAuth.getInstance();
         dialog = new Dialog(this);
 
         initializeDialog();
         initializeUI();
     }
-
-    private void initializeDialog() {
-        dialog = new Dialog(this);
-        dialog.setContentView(R.layout.dialog_logout);
-        dialog.setCancelable(false);
+    public void onBackPressed() {
+        if (backPressTime + BACK_PRESS_TIME_INTERVAL > System.currentTimeMillis()) {
+            super.onBackPressed(); // Exit the app on double back press within the time interval
+        } else {
+            showToast("Press back again to exit"); // Show the toast message on the first back press
+        }
+        backPressTime = System.currentTimeMillis(); // Update the back press time
     }
+
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+        private void initializeDialog() {
+            dialog = new Dialog(this);
+            dialog.setContentView(R.layout.dialog_logout);
+            dialog.setCancelable(false);
+        }
+
 
     @SuppressLint("ClickableViewAccessibility")
     private void initializeUI() {
@@ -292,11 +297,4 @@ public class Main2 extends AppCompatActivity {
         Intent intent= new Intent(this, Profile.class);
         startActivity(intent);
     }
-    private void goBack() {
-        // For instance, you can navigate to another activity or finish the current one
-        Intent intent = new Intent(this, LogIn.class);
-        startActivity(intent);
-        finish();
-    }
-
 }

@@ -31,7 +31,7 @@
         android:text="@string/AppName"
         android:textAlignment="center"
         android:textColor="@color/appname"
-        android:textSize="50sp"
+        android:textSize="40sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +47,7 @@
         android:fontFamily="@font/montserrat"
         android:text="@string/email"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/AppName" />
 
@@ -62,7 +62,7 @@
         android:contentDescription="@string/password"
         android:text="@string/password"
         android:textAlignment="center"
-        android:textSize="20sp"
+        android:textSize="18sp"
         tools:ignore="MissingConstraints"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,23 +71,23 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/inpass"
-        android:layout_width="222dp"
+        android:layout_width="225dp"
         android:layout_height="wrap_content"
+        app:endIconMode="password_toggle"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.152"
         app:layout_constraintStart_toEndOf="@+id/password"
         app:layout_constraintTop_toBottomOf="@+id/inputemail"
-        app:passwordToggleEnabled="true"
-        app:endIconMode="password_toggle"
-        >
+        app:passwordToggleEnabled="true">
 
         <EditText
             android:id="@+id/inputpass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/password"
             android:fontFamily="@font/montserrat"
+            android:hint="@string/password"
             android:inputType="textPassword"
-            android:textSize="16sp" />
+            android:textSize="15sp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -101,10 +101,12 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <Button
         android:id="@+id/li"
         android:layout_width="215dp"
         android:layout_height="55dp"
+        android:layout_marginTop="10dp"
         android:background="@drawable/startbuttonbg_ok"
         android:clickable="true"
         android:contextClickable="true"
@@ -117,15 +119,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.544" />
-
+        app:layout_constraintTop_toBottomOf="@+id/forgotpass"
+        app:layout_constraintVertical_bias="0.038" />
 
     <TextView
         android:id="@+id/forgotpass"
         android:layout_width="198dp"
         android:layout_height="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="12dp"
         android:clickable="true"
         android:contentDescription="@string/forgotpass"
         android:fontFamily="@font/abeezee"
@@ -134,7 +135,7 @@
         android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.816"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inpass"
         tools:ignore="MissingConstraints" />
@@ -162,7 +163,7 @@
         android:contentDescription="@string/donot"
         android:fontFamily="@font/montserrat_medium"
         android:text="@string/donot"
-        android:textSize="18sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/regnow"
         app:layout_constraintStart_toStartOf="parent"
@@ -183,7 +184,7 @@
         android:text="@string/reg"
         android:textAlignment="center"
         android:textColor="#00A197"
-        android:textSize="18sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/donot" />
@@ -204,7 +205,7 @@
 
     <View
         android:id="@+id/line2"
-        android:layout_width="150dp"
+        android:layout_width="130dp"
         android:layout_height="1dp"
         android:layout_marginStart="28dp"
         android:layout_marginBottom="276dp"
@@ -216,7 +217,7 @@
 
     <View
         android:id="@+id/line"
-        android:layout_width="150dp"
+        android:layout_width="130dp"
         android:layout_height="1dp"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="276dp"
@@ -228,17 +229,17 @@
 
     <EditText
         android:id="@+id/inputemail"
-        android:layout_width="222dp"
+        android:layout_width="225dp"
         android:layout_height="58dp"
         android:layout_marginTop="68dp"
         android:ems="10"
         android:fontFamily="@font/montserrat"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
-        android:textSize="16sp"
+        android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="@+id/cloud"
-        app:layout_constraintHorizontal_bias="0.662"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.095"
+        app:layout_constraintStart_toEndOf="@+id/email"
         app:layout_constraintTop_toBottomOf="@+id/AppName" />
 
     <TextView
