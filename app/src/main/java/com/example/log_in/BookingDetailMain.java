@@ -75,7 +75,7 @@ public class BookingDetailMain extends AppCompatActivity {
 
         // Click listeners for navigation buttons
         reschedbtn.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingDetailMain.this, BookingDetails.class);
+            Intent intent = new Intent(BookingDetailMain.this, RescheduleTourists.class);
             startActivity(intent);
         });
 
