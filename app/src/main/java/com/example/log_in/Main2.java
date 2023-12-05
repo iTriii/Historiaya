@@ -31,9 +31,11 @@ public class Main2 extends AppCompatActivity {
     private Switch audio;
     private Button copylink, Credits, PrivacyandTerms, Feedback;
     private LinearLayout ShareApp;
-    private CardView settings_popup;
+    private CardView settings_popup, Notifications;
     private Dialog dialog;
     private FirebaseAuth mAuth;
+    private static final long BACK_PRESS_TIME_INTERVAL = 2000; // Time interval for double press in milliseconds
+    private long backPressTime; // Variable to track the back button press time
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -41,11 +43,24 @@ public class Main2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
+        // Initialize FirebaseAuth and dialog
         mAuth = FirebaseAuth.getInstance();
         dialog = new Dialog(this);
 
         initializeDialog();
         initializeUI();
+    }
+    public void onBackPressed() {
+        if (backPressTime + BACK_PRESS_TIME_INTERVAL > System.currentTimeMillis()) {
+            super.onBackPressed(); // Exit the app on double back press within the time interval
+        } else {
+            showToast("Press back again to exit"); // Show the toast message on the first back press
+        }
+        backPressTime = System.currentTimeMillis(); // Update the back press time
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     private void initializeDialog() {
@@ -53,6 +68,7 @@ public class Main2 extends AppCompatActivity {
         dialog.setContentView(R.layout.dialog_logout);
         dialog.setCancelable(false);
     }
+
 
     @SuppressLint("ClickableViewAccessibility")
     private void initializeUI() {
@@ -109,11 +125,12 @@ public class Main2 extends AppCompatActivity {
             Toast.makeText(Main2.this, "Link copied to clipboard", Toast.LENGTH_SHORT).show();
         });
 
+        Notifications = findViewById(R.id.Notifications);
+        notif = findViewById(R.id.notif);
         notif = findViewById(R.id.notif);
         notif.setOnClickListener(v -> {
-            dialog.setContentView(R.layout.activity_notifications);
-            dialog.getWindow().setBackgroundDrawableResource(R.drawable.popup_background);
-            dialog.show();
+            // Make the Notifications CardView visible when the notif ImageView is clicked
+            Notifications.setVisibility(View.VISIBLE);
         });
 
         settings_popup = findViewById(R.id.settings_popup);
@@ -134,9 +151,23 @@ public class Main2 extends AppCompatActivity {
             } else if (ShareVisible() && isTouchOutsideShare(motionEvent)) {
                 hideShare();
                 return true; // Consume the touch event
+            } else if (notifVisible() && isTouchOutsidenotif(motionEvent)) {
+                hidenotif();
             }
             return false; // Allow the touch event to propagate
         });
+    }
+    private void hidenotif(){
+        Notifications.setVisibility(View.GONE);
+    }
+    private boolean notifVisible(){
+        return Notifications.getVisibility() == View.VISIBLE;
+    }
+    private boolean isTouchOutsidenotif(MotionEvent motionEvent) {
+        float x = motionEvent.getX();
+        float y = motionEvent.getY();
+        return x < Notifications.getLeft() || x > Notifications.getRight() ||
+                y < Notifications.getTop() || y > Notifications.getBottom();
     }
 
     private void hideShare() {
@@ -266,5 +297,4 @@ public class Main2 extends AppCompatActivity {
         Intent intent= new Intent(this, Profile.class);
         startActivity(intent);
     }
-
 }

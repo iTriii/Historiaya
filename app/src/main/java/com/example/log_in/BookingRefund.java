@@ -74,7 +74,7 @@ public class BookingRefund extends AppCompatActivity {
             Intent confirmIntent = new Intent(BookingRefund.this, RefundUserCopy.class); // NAVIGATE TO REFUND USER COPY ACTIVITY
             startActivity(confirmIntent);
             Toast.makeText(BookingRefund.this, "Confirm Refund, please wait for approval", Toast.LENGTH_SHORT).show();
-            dialog.dismiss();
+            dialog.show();
         });
 
         // SUBMIT BUTTON

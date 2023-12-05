@@ -153,13 +153,16 @@ public class BookNow extends AppCompatActivity {
         heritageHouseAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinTour.setAdapter(heritageHouseAdapter);
 
+        // Create an adapter for the Tourist Numbers spinner
         ArrayAdapter<CharSequence> touristNumAdapter = ArrayAdapter.createFromResource(
                 this, R.array.TouristNumbers, android.R.layout.simple_spinner_item);
         touristNumAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinNum.setAdapter(touristNumAdapter);
 
+        // Get the current user
         FirebaseUser user = mAuth.getCurrentUser();
 
+        // Set user attributes in Crisp
         if (user != null) {
             String userEmail = user.getEmail();
             String username = user.getDisplayName();
@@ -172,6 +175,7 @@ public class BookNow extends AppCompatActivity {
         // Set listeners
         setListener();
     }
+
 
     private void setListener() {
         // listeners for both Spinners
