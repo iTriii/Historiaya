@@ -12,9 +12,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
+import android.widget.Toast;
 
-import androidx.activity.OnBackPressedCallback;
-import androidx.activity.OnBackPressedDispatcher;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -69,19 +68,28 @@ public class HouseManager extends AppCompatActivity {
     private Object Email;
     private ListenerRegistration userDataListener;
     ImageView Event_Sched, calendarV;
+    private static final long DOUBLE_CLICK_INTERVAL = 1000; // 1 second interval
+    private long lastBackPressTime = 0;
+    @Override
+    public void onBackPressed() {
+        long currentTime = System.currentTimeMillis();
 
+        if (currentTime - lastBackPressTime < DOUBLE_CLICK_INTERVAL) {
+            // If the interval between two back button presses is less than 1 second, exit the app
+            super.onBackPressed();
+            finishAffinity(); // Finish all activities in the current task
+        } else {
+            showToast("Press back again to exit");
+            lastBackPressTime = currentTime;
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_house_manager);
-        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
-        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
-            @Override
-            public void handleOnBackPressed() {
-                goBack();
-            }
-        };
-        onBackPressedDispatcher.addCallback(this, callback);
+
+        setUpTabsAndViews(); // Set up tabs and views
+
 
         // Configure Crisp
         Crisp.configure(getApplicationContext(), "2a53b3b9-d275-4fb1-81b6-efad59022426");
@@ -112,7 +120,7 @@ public class HouseManager extends AppCompatActivity {
         calendarV = findViewById(R.id.calendarV);
 
         StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("Calendar/calendar_image.jpg");
-        storageRef.getDownloadUrl().addOnSuccessListener(Calendar-> {
+        storageRef.getDownloadUrl().addOnSuccessListener(Calendar -> {
             Glide.with(this)
                     .load(Calendar) // Provide the actual download URL obtained from Firebase Storage
                     .into(Event_Sched);
@@ -121,7 +129,6 @@ public class HouseManager extends AppCompatActivity {
         }).addOnFailureListener(exception -> {
             showToast("Failed to fetch image: " + exception.getMessage());
         });
-
 
 
         // Initialize RecyclerViews and Adapters
@@ -176,9 +183,6 @@ public class HouseManager extends AppCompatActivity {
         EventChangeListener();// Add data listener to load data from Firestore
         setUpRecyclerView(); // Set up RecyclerView and Adapter
         setUpTabsAndViews(); // Set up tabs and views
-    }
-
-    private void showToast(String s) {
     }
 
 
@@ -245,7 +249,7 @@ public class HouseManager extends AppCompatActivity {
         wanHouse.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
         toHouse.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
 
-}
+    }
 
     // Add data listener to load data from Firestore
     public void EventChangeListener() {
@@ -326,11 +330,10 @@ public class HouseManager extends AppCompatActivity {
                     }
                 });
     }
-    private void goBack() {
-        // For instance, you can navigate to another activity or finish the current one
-        Intent intent = new Intent(this, LogIn.class);
-        startActivity(intent);
-        finish();
+
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
+
 }
 

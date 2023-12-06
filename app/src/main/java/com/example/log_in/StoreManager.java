@@ -11,8 +11,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.activity.OnBackPressedCallback;
-import androidx.activity.OnBackPressedDispatcher;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,8 +51,21 @@ public class StoreManager extends AppCompatActivity {
 
     private int clickedIndex;
     private BottomNavigationView Navbar;
+    private static final long DOUBLE_CLICK_INTERVAL = 1000; // 1 second interval
+    private long lastBackPressTime = 0;
+    @Override
+    public void onBackPressed() {
+        long currentTime = System.currentTimeMillis();
 
-
+        if (currentTime - lastBackPressTime < DOUBLE_CLICK_INTERVAL) {
+            // If the interval between two back button presses is less than 1 second, exit the app
+            super.onBackPressed();
+            finishAffinity(); // Finish all activities in the current task
+        } else {
+            showToast("Press back again to exit");
+            lastBackPressTime = currentTime;
+        }
+    }
     private ActivityResultLauncher<Intent> galleryLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(), result -> {
                 if (result.getResultCode() == RESULT_OK && result.getData() != null) {
@@ -77,14 +88,7 @@ public class StoreManager extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_store_manager);
-        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
-        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
-            @Override
-            public void handleOnBackPressed() {
-                goBack();
-            }
-        };
-        onBackPressedDispatcher.addCallback(this, callback);
+
 
         storage = FirebaseStorage.getInstance();
         storageRef = storage.getReference();
@@ -297,12 +301,5 @@ public class StoreManager extends AppCompatActivity {
     private void showToast(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
-    private void goBack() {
-        // For instance, you can navigate to another activity or finish the current one
-        Intent intent = new Intent(this, LogIn.class);
-        startActivity(intent);
-        finish();
-    }
-
 
 }

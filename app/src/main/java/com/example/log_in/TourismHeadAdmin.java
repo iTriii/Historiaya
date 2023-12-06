@@ -14,8 +14,6 @@ import android.widget.RadioButton;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
-import androidx.activity.OnBackPressedCallback;
-import androidx.activity.OnBackPressedDispatcher;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -67,21 +65,25 @@ public class TourismHeadAdmin extends AppCompatActivity {
     private Object Email;
     ImageView eventSched, addTM;
     private ListenerRegistration userDataListener;
+    private static final long DOUBLE_CLICK_INTERVAL = 1000; // 1 second interval
+    private long lastBackPressTime = 0;
+    @Override
+    public void onBackPressed() {
+        long currentTime = System.currentTimeMillis();
 
-
+        if (currentTime - lastBackPressTime < DOUBLE_CLICK_INTERVAL) {
+            // If the interval between two back button presses is less than 1 second, exit the app
+            super.onBackPressed();
+            finishAffinity(); // Finish all activities in the current task
+        } else {
+            showToast("Press back again to exit");
+            lastBackPressTime = currentTime;
+        }
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tourism_head_admin);
-        OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
-        OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
-            @Override
-            public void handleOnBackPressed() {
-                goBack();
-            }
-        };
-        onBackPressedDispatcher.addCallback(this, callback);
-
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
@@ -419,11 +421,5 @@ public class TourismHeadAdmin extends AppCompatActivity {
             // Handle edit button click (implement your edit/update/delete logic here)
             Toast.makeText(TourismHeadAdmin.this, "Edit button clicked", Toast.LENGTH_SHORT).show();
         });
-    }
-    private void goBack() {
-        // For instance, you can navigate to another activity or finish the current one
-        Intent intent = new Intent(this, LogIn.class);
-        startActivity(intent);
-        finish();
     }
 }

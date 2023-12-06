@@ -34,9 +34,23 @@ public class Main2 extends AppCompatActivity {
     private CardView settings_popup, Notifications;
     private Dialog dialog;
     private FirebaseAuth mAuth;
-    private static final long BACK_PRESS_TIME_INTERVAL = 2000; // Time interval for double press in milliseconds
-    private long backPressTime; // Variable to track the back button press time
+    private static final long DOUBLE_CLICK_INTERVAL = 1000; // 1 second interval
+    private long lastBackPressTime = 0;
+    @Override
+    public void onBackPressed() {
+        long currentTime = System.currentTimeMillis();
 
+        if (currentTime - lastBackPressTime < DOUBLE_CLICK_INTERVAL) {
+            // If the interval between two back button presses is less than 1 second, exit the app
+            super.onBackPressed();
+            finishAffinity(); // Finish all activities in the current task
+        } else {
+            showToast("Press back again to exit");
+            lastBackPressTime = currentTime;
+        }
+    }
+
+    // Declare a constant for the time interval
     @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,21 +63,13 @@ public class Main2 extends AppCompatActivity {
 
         initializeDialog();
         initializeUI();
-    }
-    public void onBackPressed() {
-        if (backPressTime + BACK_PRESS_TIME_INTERVAL > System.currentTimeMillis()) {
-            super.onBackPressed(); // Exit the app on double back press within the time interval
-        } else {
-            showToast("Press back again to exit"); // Show the toast message on the first back press
-        }
-        backPressTime = System.currentTimeMillis(); // Update the back press time
+
+
+
+
     }
 
-    private void showToast(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
-        private void initializeDialog() {
+    private void initializeDialog() {
             dialog = new Dialog(this);
             dialog.setContentView(R.layout.dialog_logout);
             dialog.setCancelable(false);
@@ -297,4 +303,8 @@ public class Main2 extends AppCompatActivity {
         Intent intent= new Intent(this, Profile.class);
         startActivity(intent);
     }
+    private void showToast(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
 }
