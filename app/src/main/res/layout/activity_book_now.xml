@@ -553,7 +553,7 @@
                     android:fontFamily="@font/montserrat_bold"
                     android:longClickable="true"
                     android:padding="16dp"
-                    android:text="make_payment"
+                    android:text="@string/make_payment"
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
                     android:textSize="13sp"

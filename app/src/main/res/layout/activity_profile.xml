@@ -33,6 +33,17 @@
         app:srcCompat="@drawable/grass_1" />
 
     <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="900dp"
+        android:src="@drawable/back"
+        app:layout_constraintDimensionRatio="18:15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.365"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
         android:id="@+id/twoppl"
         android:layout_width="431dp"
         android:layout_height="554dp"
@@ -529,7 +540,7 @@
                 android:layout_marginLeft="10dp"
                 android:textSize="15sp"
                 android:fontFamily="@font/montserrat_bold"
-                android:text="November 2023"
+                android:text="December 2023"
                 android:textColor="@color/black" />
 
             <LinearLayout
@@ -568,9 +579,9 @@
 
                     <TextView
                         android:id="@+id/MonthTextt"
-                        android:layout_width="93dp"
+                        android:layout_width="180dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="110dp"
+                        android:layout_marginStart="110dp"
                         android:layout_marginTop="55dp"
                         android:fontFamily="@font/montserrat"
                         android:textColor="@color/GREEN"

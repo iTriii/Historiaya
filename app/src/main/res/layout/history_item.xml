@@ -7,11 +7,10 @@
     app:cardElevation="8dp"
     app:cardCornerRadius="8dp"
     android:layout_margin="10dp">
-        <!--    For Update only-->
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="200dp">
+        android:layout_height="190dp">
 
             <TextView
                 android:id="@+id/MontHistoText"
@@ -22,13 +21,13 @@
                 android:text=""
                 android:fontFamily="@font/montserrat"
                 android:textColor="#000000"
-                android:textSize="20sp" />
+                android:textSize="15sp" />
 
 
             <ImageView
                 android:id="@+id/imageView5"
-                android:layout_width="100dp"
-                android:layout_height="107dp"
+                android:layout_width="88dp"
+                android:layout_height="108dp"
                 android:layout_marginStart="-150dp"
                 android:layout_marginTop="70dp"
                 android:background="@drawable/shadow"
@@ -37,20 +36,20 @@
 
             <TextView
                 android:id="@+id/BahayHistoText"
-                android:layout_width="152dp"
+                android:layout_width="200dp"
                 android:layout_height="30dp"
-                android:layout_marginStart="40dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="50dp"
                 android:fontFamily="@font/montserrat_bold"
                 android:textColor="#000000"
-                android:textSize="13sp" />
+                android:textSize="15sp" />
 
             <Button
                 android:id="@+id/done"
                 android:layout_width="105dp"
                 android:layout_height="33dp"
                 android:layout_marginTop="10dp"
-                android:layout_marginStart="-40dp"
+                android:layout_marginStart="-60dp"
                 android:background="@drawable/ongoing"
                 android:clickable="true"
                 android:fontFamily="@font/montserrat_bold"
@@ -63,7 +62,7 @@
 
             <TextView
                 android:id="@+id/bookeby"
-                android:layout_width="100dp"
+                android:layout_width="123dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
                 android:layout_marginStart="-260dp"
@@ -76,22 +75,22 @@
 
             <TextView
                 android:id="@+id/bookebyNameHistory"
-                android:layout_width="140dp"
+                android:layout_width="151dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="20dp"
-                android:text="Leah Sulongsawa"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/montserrat"
+                android:text="Leah Sulongsawa"
                 android:textColor="#000000"
-                android:textSize="14sp" />
+                android:textSize="15sp" />
 
             <TextView
                 android:id="@+id/number"
-                android:layout_width="100dp"
+                android:layout_width="123dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="-260dp"
+                android:layout_marginStart="-280dp"
                 android:layout_marginTop="25dp"
                 android:fontFamily="@font/montserrat"
                 android:text="No of Tourists:"
@@ -101,10 +100,10 @@
 
             <TextView
                 android:id="@+id/TotalNumberHistory"
-                android:layout_width="140dp"
+                android:layout_width="151dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="25dp"
                 android:fontFamily="@font/montserrat"
                 android:textColor="#000000"
@@ -112,10 +111,10 @@
 
             <TextView
                 android:id="@+id/housePending"
-                android:layout_width="100dp"
+                android:layout_width="123dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="-260dp"
+                android:layout_marginStart="-280dp"
                 android:layout_marginTop="45dp"
                 android:fontFamily="@font/montserrat"
                 android:text="House:"
@@ -125,20 +124,21 @@
 
             <TextView
                 android:id="@+id/SelectedHouseHistory"
-                android:layout_width="140dp"
+                android:layout_width="151dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="5dp"
                 android:layout_marginTop="45dp"
                 android:fontFamily="@font/montserrat"
                 android:textColor="#000000"
                 android:textSize="15sp" />
+
             <TextView
                 android:id="@+id/Amount"
-                android:layout_width="100dp"
-                android:layout_height="20dp"
+                android:layout_width="123dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginStart="-260dp"
+                android:layout_marginStart="-280dp"
                 android:layout_marginTop="65dp"
                 android:fontFamily="@font/montserrat"
                 android:text="Amount:"
@@ -150,7 +150,7 @@
                 android:layout_width="140dp"
                 android:layout_height="20dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="65dp"
                 android:fontFamily="@font/montserrat"
                 android:textColor="#000000"

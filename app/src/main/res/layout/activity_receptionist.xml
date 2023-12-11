@@ -199,14 +199,13 @@
             <ScrollView
                 android:id="@+id/Upcoming_ScrollView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="2900dp"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.491"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup2"
-                app:layout_constraintVertical_bias="1.0">
+                app:layout_constraintTop_toBottomOf="@+id/radioGroup2">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/ReceptionistUpcoming_RecyclerView"
@@ -218,14 +217,13 @@
             <ScrollView
                 android:id="@+id/History_ScrollView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="4800dp"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.076"
+                app:layout_constraintHorizontal_bias="0.491"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup2"
-                app:layout_constraintVertical_bias="1.0">
+                app:layout_constraintTop_toBottomOf="@+id/radioGroup2">
 
 
                 <androidx.recyclerview.widget.RecyclerView

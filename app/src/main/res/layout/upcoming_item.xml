@@ -22,35 +22,35 @@
             android:layout_gravity="center_vertical"
             android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/MonthTourHeadText"
-        android:layout_width="136dp"
-        android:layout_height="30dp"
-        android:layout_gravity="center"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="-55dp"
-        android:text="December"
-        android:fontFamily="@font/montserrat_bold"
-        android:textColor="#000000"
-        android:textSize="14sp" />
+            <TextView
+                android:id="@+id/MonthTourHeadText"
+                android:layout_width="136dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="-55dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="December"
+                android:textColor="#000000"
+                android:textSize="15sp" />
 
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="-130dp"
-            android:layout_marginTop="40dp"
-            android:background="@drawable/shadow"
-            android:padding="5dp"
-            android:src="@drawable/don_catalino1" />
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="100dp"
+                android:layout_height="105dp"
+                android:layout_marginStart="-130dp"
+                android:layout_marginTop="40dp"
+                android:background="@drawable/shadow"
+                android:padding="5dp"
+                android:src="@drawable/don_catalino1" />
 
             <TextView
                 android:id="@+id/BahayTourHeadText"
                 android:layout_width="210dp"
                 android:layout_height="30dp"
                 android:textAlignment="textStart"
-                android:layout_marginStart="50dp"
+                android:layout_marginStart="30dp"
                 android:layout_marginTop="50dp"
                 android:text="Don Catalino"
                 android:fontFamily="@font/montserrat_bold"

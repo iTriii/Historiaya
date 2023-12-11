@@ -214,16 +214,13 @@
 
     <ScrollView
         android:id="@+id/UpcomingHouse_ScrollView"
-        android:layout_width="382dp"
-        android:layout_height="match_parent"
-        android:layout_marginStart="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="3500dp"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        android:foregroundGravity="fill"
-        android:background="@android:color/transparent"
         app:layout_constraintTop_toBottomOf="@+id/radioGroup2">
 
 
@@ -231,15 +228,14 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/UpcomingHouseMager_RecyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="wrap_content" />
 
     </ScrollView>
 
     <ScrollView
         android:id="@+id/HistoryHouse_ScrollView"
-        android:layout_width="382dp"
-        android:layout_height="match_parent"
-        android:layout_marginStart="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="4500dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
