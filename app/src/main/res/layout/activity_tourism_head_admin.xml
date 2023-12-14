@@ -340,7 +340,7 @@
             <ScrollView
                 android:id="@+id/Upcoming_ScrollView"
                 android:layout_width="match_parent"
-                android:layout_height="3000dp"
+                android:layout_height="3500dp"
                 android:visibility="visible"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -360,7 +360,7 @@
             <ScrollView
                 android:id="@+id/History_ScrollView"
                 android:layout_width="match_parent"
-                android:layout_height="3300dp"
+                android:layout_height="3700dp"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -380,7 +380,7 @@
             <ScrollView
                 android:id="@+id/Pending_ScrollView"
                 android:layout_width="match_parent"
-                android:layout_height="3000dp"
+                android:layout_height="4000dp"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
