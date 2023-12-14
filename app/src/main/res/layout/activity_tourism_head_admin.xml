@@ -157,7 +157,7 @@
 
             </LinearLayout>
 
-             <RadioGroup
+            <RadioGroup
                 android:id="@+id/radioGroup2"
                 android:layout_width="412dp"
                 android:layout_height="45dp"
@@ -167,7 +167,6 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
-
 
                 <androidx.appcompat.widget.AppCompatRadioButton
                     android:id="@+id/Upcoming_Tab"
@@ -186,8 +185,6 @@
                     android:textSize="15sp"
                     app:layout_constraintTop_toBottomOf="@+id/ProfileName"
                     tools:layout_editor_absoluteX="4dp" />
-
-
                 <androidx.appcompat.widget.AppCompatRadioButton
                     android:id="@+id/History_tab"
                     android:layout_width="125dp"
@@ -222,11 +219,62 @@
                     android:textSize="15sp"
                     app:layout_constraintTop_toBottomOf="@+id/ProfileName"
                     tools:layout_editor_absoluteX="4dp" />
-            </RadioGroup>
+
+<!--                <androidx.appcompat.widget.AppCompatRadioButton-->
+<!--                    android:id="@+id/Cancel_Tab"-->
+<!--                    android:layout_width="70dp"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:layout_marginEnd="10dp"-->
+<!--                    android:background="@color/transparent"-->
+<!--                    android:button="@color/transparent"-->
+<!--                    android:checked="true"-->
+<!--                    android:clickable="true"-->
+<!--                    android:fontFamily="@font/montserrat_bold"-->
+<!--                    android:text="Cancellation"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="@color/green"-->
+<!--                    android:textSize="12sp"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/ProfileName"-->
+<!--                    tools:layout_editor_absoluteX="4dp" />-->
+
+<!--                <androidx.appcompat.widget.AppCompatRadioButton-->
+<!--                    android:id="@+id/reschedule_Tab"-->
+<!--                    android:layout_width="65dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_marginEnd="10dp"-->
+<!--                    android:background="@color/transparent"-->
+<!--                    android:button="@color/transparent"-->
+<!--                    android:checked="true"-->
+<!--                    android:clickable="true"-->
+<!--                    android:fontFamily="@font/montserrat_bold"-->
+<!--                    android:text="Reschedule"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="@color/green"-->
+<!--                    android:textSize="12sp"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/ProfileName"-->
+<!--                    tools:layout_editor_absoluteX="4dp" />-->
+
+<!--                <androidx.appcompat.widget.AppCompatRadioButton-->
+<!--                    android:id="@+id/Refund_Tab"-->
+<!--                    android:layout_width="60dp"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:layout_marginEnd="10dp"-->
+<!--                    android:background="@color/transparent"-->
+<!--                    android:button="@color/transparent"-->
+<!--                    android:checked="true"-->
+<!--                    android:clickable="true"-->
+<!--                    android:fontFamily="@font/montserrat_bold"-->
+<!--                    android:text="Refund"-->
+<!--                    android:textAlignment="center"-->
+<!--                    android:textColor="@color/green"-->
+<!--                    android:textSize="12sp"-->
+<!--                    app:layout_constraintTop_toBottomOf="@+id/ProfileName"-->
+<!--                    tools:layout_editor_absoluteX="4dp" />-->
+
 
             </RadioGroup>
 
-           <View
+            <View
                 android:id="@+id/wan"
                 android:layout_width="120dp"
                 android:layout_height="3dp"
@@ -256,6 +304,34 @@
                 android:background="@color/green"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <!--            <View-->
+<!--                android:id="@+id/por"-->
+<!--                android:layout_width="60dp"-->
+<!--                android:layout_height="3dp"-->
+<!--                android:layout_marginStart="35dp"-->
+<!--                android:layout_marginTop="-3dp"-->
+<!--                android:background="@color/green"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+<!--            <View-->
+<!--                android:id="@+id/payb"-->
+<!--                android:layout_width="60dp"-->
+<!--                android:layout_height="3dp"-->
+<!--                android:layout_marginStart="100dp"-->
+<!--                android:layout_marginTop="-3dp"-->
+<!--                android:background="@color/green"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
+<!--            <View-->
+<!--                android:id="@+id/six"-->
+<!--                android:layout_width="60dp"-->
+<!--                android:layout_height="3dp"-->
+<!--                android:layout_marginStart="170dp"-->
+<!--                android:layout_marginTop="-3dp"-->
+<!--                android:background="@color/green"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent" />-->
 
 
 
@@ -320,7 +396,64 @@
 
             </ScrollView>
 
-        
+            <!--            Cancellation for Recyclerview-->
+
+<!--            <ScrollView-->
+<!--                android:id="@+id/Cancellation_ScrollView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="3000dp"-->
+<!--                android:visibility="gone"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.491"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/radioGroup2">-->
+
+
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/Cancellation_RecyclerView"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content" />-->
+
+<!--            </ScrollView>-->
+
+<!--            <ScrollView-->
+<!--                android:id="@+id/Reschedule_ScrollView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="3000dp"-->
+<!--                android:visibility="gone"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.491"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/radioGroup2">-->
+
+
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/Reschedule_RecyclerView"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content" />-->
+
+<!--            </ScrollView>-->
+
+<!--            <ScrollView-->
+<!--                android:id="@+id/Refund_ScrollView"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="3000dp"-->
+<!--                android:visibility="gone"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintHorizontal_bias="0.491"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toBottomOf="@+id/radioGroup2">-->
+
+
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                    android:id="@+id/Refund_RecyclerView"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content" />-->
+
+<!--            </ScrollView>-->
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
