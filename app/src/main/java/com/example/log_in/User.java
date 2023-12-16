@@ -5,6 +5,7 @@ public class User {
     public static final String FIELD_USER_ID = "userId";
     public static final String FIELD_EMAIL = "Email";
     public static final String FIELD_STATUS = "status";
+    private boolean cancelled;
 
     private String Email;
     private String reservedDate;
@@ -13,6 +14,7 @@ public class User {
     private String status;
     private String userId;
     private int totalAmount;
+    private boolean cancellation;
 
     public User() {
     }
@@ -91,6 +93,14 @@ public class User {
 
     public void setTotalAmount(int totalAmount) {
         this.totalAmount = totalAmount;
+    }
+
+    public boolean isCancellation() {
+        return cancellation;
+    }
+
+    public boolean isCancelled() {
+        return cancelled;
     }
 
 }
