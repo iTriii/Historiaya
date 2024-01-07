@@ -54,11 +54,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     }
 
     private void onAcceptButtonClick(User user) {
-        updateStatusInDatabase(user, "Confirmed");
+        updateStatusInDatabase(user, "Confirmed Booking ");
     }
 
     private void onRejectButtonClick(User user) {
-        updateStatusInDatabase(user, "Cancelled");
+        updateStatusInDatabase(user, "Cancelled Booking");
     }
 
     // Method to handle updating the status in the database and removing from the list

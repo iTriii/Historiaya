@@ -1,26 +1,48 @@
 package com.example.log_in;
 //FOR UPDATE ONLY
 
-public class User {
+public class User{
     public static final String FIELD_USER_ID = "userId";
     public static final String FIELD_EMAIL = "Email";
     public static final String FIELD_STATUS = "status";
+    public static final String FIELD_CANCELLATION_STATUS = "";
     private boolean cancelled;
 
-    private String Email;
-    private String reservedDate;
-    private String selectedTour;
-    private String selectedTouristNum;
-    private String status;
-    private String userId;
+    private String Email, reservedDate,  selectedTour,selectedTouristNum, status, userId,  cancellationStatus;
     private int totalAmount;
     private boolean cancellation;
 
-    public User() {
+
+    public User(){
+
     }
 
+    public void setCancelled(boolean cancelled) {
+        this.cancelled = cancelled;
+    }
 
-    public User(String Email, String reservedDate, String selectedTour, String selectedTouristNum, String status, String userId, int totalAmount) {
+    public User(boolean cancelled, String email, String reservedDate, String selectedTour, String selectedTouristNum, String status, String userId, String cancellationStatus, int totalAmount, boolean cancellation) {
+        this.cancelled = cancelled;
+        Email = email;
+        this.reservedDate = reservedDate;
+        this.selectedTour = selectedTour;
+        this.selectedTouristNum = selectedTouristNum;
+        this.status = status;
+        this.userId = userId;
+        this.cancellationStatus = cancellationStatus;
+        this.totalAmount = totalAmount;
+        this.cancellation = cancellation;
+    }
+
+    public void setCancellationStatus(String cancellationStatus) {
+        this.cancellationStatus = cancellationStatus;
+    }
+
+    public void setCancellation(boolean cancellation) {
+        this.cancellation = cancellation;
+    }
+
+    public User(String Email, String reservedDate, String cancellationStatus, String selectedTour, String selectedTouristNum, String status, String userId, int totalAmount) {
         this.Email = Email;
         this.reservedDate = reservedDate;
         this.selectedTour = selectedTour;
@@ -95,12 +117,8 @@ public class User {
         this.totalAmount = totalAmount;
     }
 
-    public boolean isCancellation() {
-        return cancellation;
-    }
 
-    public boolean isCancelled() {
-        return cancelled;
+    public boolean isCancellationStatus() {
+        return Boolean.parseBoolean(cancellationStatus);
     }
-
 }

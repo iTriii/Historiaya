@@ -55,7 +55,9 @@ public class HouseManager extends AppCompatActivity {
     FirebaseFirestore db;
     RecyclerView UpcomingHouseMager_RecyclerView, HistoryHouseManager_RecyclerView;
 
-    private ArrayList<User> userArrayList;
+    private ArrayList<User> historyList;
+    private ArrayList<User> upcomingList;
+
 
     private ProgressDialog progressDialog;
     historyAdapterHM historyAdapterHM;
@@ -117,11 +119,11 @@ public class HouseManager extends AppCompatActivity {
         // Initialize RecyclerViews and Adapters
         UpcomingHouseMager_RecyclerView = findViewById(R.id.UpcomingHouseMager_RecyclerView);
         HistoryHouseManager_RecyclerView = findViewById(R.id.HistoryHouseManager_RecyclerView);
-        userArrayList = new ArrayList<>();
+        historyList = new ArrayList<>();
+        upcomingList = new ArrayList<>();
 
-
-        upcoming_reservation_adapter = new upcoming_reservation_adapter(this, userArrayList, db);
-        historyAdapterHM = new historyAdapterHM(this, userArrayList, db);
+        upcoming_reservation_adapter = new upcoming_reservation_adapter(this, upcomingList, db);
+        historyAdapterHM = new historyAdapterHM(this, historyList, db);
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
 
@@ -286,8 +288,8 @@ public class HouseManager extends AppCompatActivity {
                             }
                         }
 
-                        userArrayList.clear();
-                        userArrayList.addAll(userHashMap.values());
+                        upcomingList.clear();
+                        upcomingList.addAll(userHashMap.values());
 
                         upcoming_reservation_adapter.notifyDataSetChanged();
                         historyAdapterHM.notifyDataSetChanged();
@@ -305,7 +307,6 @@ public class HouseManager extends AppCompatActivity {
                         Log.e("HouseManager", "Error fetching user data: " + error.getMessage());
                         return;
                     }
-
                     // Handle the document snapshot here
                     if (documentSnapshot != null && documentSnapshot.exists()) {
                         // Extract data from the document snapshot
