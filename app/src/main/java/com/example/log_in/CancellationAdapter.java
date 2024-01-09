@@ -1,6 +1,5 @@
 package com.example.log_in;
 
-// Import necessary packages
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.Log;
@@ -10,31 +9,30 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.checkerframework.checker.nullness.qual.NonNull;
+
 import java.util.ArrayList;
+//FOR UPDATE ONLY
 
 // Adapter class for the RecyclerView to display cancellation requests
 public class CancellationAdapter extends RecyclerView.Adapter<CancellationAdapter.MyViewHolder> {
 
-    // Variables to store context, cancellation data, and Firebase Firestore instance
     Context context;
-    ArrayList<User>  cancellationList;
-    ArrayList<User> historyList;
+    ArrayList<User> cancellationList;
     private final FirebaseFirestore db;
 
     // Constructor to initialize the adapter with context, cancellation data, and Firestore instance
     public CancellationAdapter(Context context, ArrayList<User> cancellationList, FirebaseFirestore db) {
         this.context = context;
-        this. cancellationList =  cancellationList;
+        this.cancellationList = cancellationList;
         this.db = db;
     }
 
     // Method to create a new ViewHolder instance when needed
-    @NonNull
     @Override
     public CancellationAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Inflate the layout for each list item using the provided context
@@ -42,9 +40,8 @@ public class CancellationAdapter extends RecyclerView.Adapter<CancellationAdapte
         return new MyViewHolder(v);
     }
 
-    // Method to bind data to the ViewHolder at the given position
     @Override
-    public void onBindViewHolder(@NonNull CancellationAdapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(CancellationAdapter.@NonNull MyViewHolder holder, int position) {
         // Get the cancellation data at the current position
         User cancellation = cancellationList.get(position);
 
@@ -72,81 +69,39 @@ public class CancellationAdapter extends RecyclerView.Adapter<CancellationAdapte
         updateStatusInDatabase(cancellation, "Cancellation (Rejected)");
     }
 
-    // Method to update the cancellation status in the database and handle list updates
+    // Method to handle updating the status in the database and removing from the list
     @SuppressLint("NotifyDataSetChanged")
-    private void updateStatusInDatabase(User cancellation, String status) {
-        int position = cancellationList.indexOf(cancellation);
-        if (position != -1) {
+    private void updateStatusInDatabase(User user, String cancellationStatus) {
+        if (user != null && user.getUid() != null) {
             db.collection("users")
-                    .document(cancellation.getUid())
-                    .update("cancellationStatus", status)
+                    .document(user.getUid())
+                    .update("cancellationStatus", cancellationStatus)
                     .addOnSuccessListener(aVoid -> {
-                        cancellation.setStatus(status);
-
-                        // Remove the user from the current list
-                        cancellationList.remove(position);
-
-                        // Add the user to the appropriate list (e.g., Upcoming or History)
-                        if ("Cancellation (Approved)".equals(status)) {
-                            // Move to Upcoming list
-                            historyList.remove(cancellation);
-                        } else if ("Cancellation (Rejected)".equals(status)) {
-                            // Move to History list
-                            historyList.add(cancellation);
-                        }
-
+                        user.setStatus(cancellationStatus);
+                        cancellationList.remove(user);
                         notifyDataSetChanged();
                         Log.d("CancellationAdapter", "Item updated successfully");
-
-                        // Call updateData method here if needed
-                        updateData(cancellationList);
                     })
                     .addOnFailureListener(e -> {
                         Log.e("CancellationAdapter", "Error updating status: " + e.getMessage());
                     });
         } else {
-            Log.e("CancellationAdapter", "Item not found in the list");
+            Log.e("CancellationAdapter", "User or UID is null");
         }
     }
 
-    // Method to get the total number of items in the adapter
+
+
+    //ALL USERS
     @Override
     public int getItemCount() {
         return cancellationList.size();
     }
 
-    // Method to update the adapter data with a new cancellation list
-    @SuppressLint("NotifyDataSetChanged")
-    public void updateData(ArrayList<User> cancellationList) {
-        cancellationList.clear();
-
-        // Add the new data to the list
-        cancellationList.addAll(cancellationList);
-
-        // Notify the adapter that the data has changed
-        notifyDataSetChanged();
-    }
-
-    // Method to set the cancellation list data for the adapter
-    @SuppressLint("NotifyDataSetChanged")
-    public void setUsers(ArrayList<User> userCancellationList) {
-        this.cancellationList = userCancellationList;
-        notifyDataSetChanged(); // Notify the adapter that the data has changed
-    }
-
-    // Method to set the cancellation list data for the adapter
-    @SuppressLint("NotifyDataSetChanged")
-    public void setData(ArrayList<User> userCancellationList) {
-        this.cancellationList = userCancellationList;
-        notifyDataSetChanged();
-    }
-
-    // ViewHolder class to hold the views for each list item
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         Button approvedbtn, rejectdbtn;
         TextView MonthCancelText, BahayPendingCancelText, ArawPendingCancelText, TotalNumberCancel, bookebyNameCancel, SelectedHouseCancel, AmountTextCancel;
 
-        // Constructor to initialize the ViewHolder with the item layout views
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 

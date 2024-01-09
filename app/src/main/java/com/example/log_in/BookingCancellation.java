@@ -17,7 +17,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
 
 public class BookingCancellation extends AppCompatActivity {
-//FOR UPDATE ONLY
+    //FOR UPDATE ONLY
     Button withdrawbtn,continuebtn;
     Dialog dialog;
 
@@ -60,11 +60,11 @@ public class BookingCancellation extends AppCompatActivity {
         });
 
         // Initialization and actions for withdrawal dialog
-        dialog = new Dialog(BookingCancellation.this);
-        dialog.setContentView(R.layout.dialog_cancellation);
-        dialog.setCancelable(false);
+       dialog = new Dialog(BookingCancellation.this);
+       dialog.setContentView(R.layout.dialog_cancellation);
+       dialog.setCancelable(false);
 
-        //buttons for dialog
+// Buttons for withdrawal dialog
         Button notnowbtn = dialog.findViewById(R.id.notnowbtn);
         Button confirmbtn = dialog.findViewById(R.id.confirmbtn);
 
@@ -75,22 +75,21 @@ public class BookingCancellation extends AppCompatActivity {
             dialog.dismiss();
         });
 
-        //CONFIRMATION BUTTON, NAVIGATE TO THE BOOKING DETAIL MAIN
+// CONFIRMATION BUTTON, NAVIGATE TO THE BOOKING DETAIL MAIN
         confirmbtn.setOnClickListener(v -> {
             Intent confirmIntent = new Intent(BookingCancellation.this, BookingDetailMain.class);
             startActivity(confirmIntent);
             Toast.makeText(BookingCancellation.this, "Confirm Cancellation, please wait for approval", Toast.LENGTH_SHORT).show();
+
             dialog.dismiss();
         });
 
-        //SHOW THE DIALOG OF WITHDRAWAL
+// SHOW THE DIALOG OF WITHDRAWAL
         withdrawbtn.setOnClickListener(v -> {
-            dialog.show();
+           dialog.show();
         });
 
-
-
-        // Initialization and actions for continue dialog
+// Initialization and actions for continue dialog
         dialog = new Dialog(BookingCancellation.this);
         dialog.setContentView(R.layout.dialog_cancellation_continue);
         dialog.setCancelable(false);
@@ -102,7 +101,6 @@ public class BookingCancellation extends AppCompatActivity {
             dialog.show();
         });
 
-
         btnNotnow.setOnClickListener(v -> {
             Intent notnowIntent = new Intent(BookingCancellation.this, BookingDetailMain.class);
             startActivity(notnowIntent);
@@ -111,15 +109,36 @@ public class BookingCancellation extends AppCompatActivity {
         });
 
         btnConfirm.setOnClickListener(v -> {
+            // Update cancellation status to "pendingCancellation"
+            updateCancellationStatus("pendingCancellation");
+
             Intent confirmIntent = new Intent(BookingCancellation.this, BookingDetailMain.class);
             startActivity(confirmIntent);
             Toast.makeText(BookingCancellation.this, "Confirm Cancellation, please wait for approval", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
         });
 
+
+
         // Fetching user data from Firestore
         retrieveDataFromFirestore();
     }
+
+    private void updateCancellationStatus(String status) {
+        // Update cancellation status in Firestore
+        String userId = auth.getCurrentUser().getUid();
+        db.collection("users")
+                .document(userId)
+                .update("cancellationStatus", status)
+                .addOnSuccessListener(aVoid -> {
+                 //   showToast("Cancellation status updated successfully");
+                })
+                .addOnFailureListener(e -> {
+                 //   showToast("Failed to update cancellation status: " + e.getMessage());
+                });
+    }
+
+
 
     @Override
     protected void onDestroy() {

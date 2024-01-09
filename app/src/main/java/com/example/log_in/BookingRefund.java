@@ -102,7 +102,25 @@ public class BookingRefund extends AppCompatActivity {
             }
         });// Retrieve and display data from Firestore
         retrieveDataFromFirestore();
+        // Update cancellation status to "pendingCancellation"
+        updateRefundStatus("pendingRefund");
     }
+
+    private void updateRefundStatus(String status) {
+            // Update cancellation status in Firestore
+            String userId = mAuth.getCurrentUser().getUid();
+            db.collection("users")
+                    .document(userId)
+                    .update("RefundStatus", status)
+                    .addOnSuccessListener(aVoid -> {
+                        //   showToast("Refund status updated successfully");
+                    })
+                    .addOnFailureListener(e -> {
+                        //   showToast("Failed to update Refund status: " + e.getMessage());
+                    });
+        }
+
+
 
     private void retrieveDataFromFirestore() {
         // Save the selected option to Firestore

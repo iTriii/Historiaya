@@ -17,13 +17,13 @@ import java.util.ArrayList;
 public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<User> userArrayList;
+    ArrayList<User> historyList;
     private final FirebaseFirestore db;
 
 
-    public HistoryAdapter(Context context, ArrayList<User> userArrayList, FirebaseFirestore db) {
+    public HistoryAdapter(Context context, ArrayList<User> historyList, FirebaseFirestore db) {
         this.context = context;
-        this.userArrayList = userArrayList;
+        this.historyList =historyList;
         this.db = db;
     }
 
@@ -38,7 +38,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(@NonNull HistoryAdapter.MyViewHolder holder, int position) {
-        User HistoryUsers = userArrayList.get(position);
+        User HistoryUsers = historyList.get(position);
 
         holder.MontHistoText.setText(HistoryUsers.getReservedDate());
         holder.BahayHistoText.setText(HistoryUsers.getSelectedTour());
@@ -50,7 +50,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
 
     @Override
     public int getItemCount() {
-        return userArrayList.size();
+        return historyList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {

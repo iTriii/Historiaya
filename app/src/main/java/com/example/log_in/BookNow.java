@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -64,6 +65,8 @@ public class BookNow extends AppCompatActivity {
     private SharedPreferences sharedPreferences;
 
     private Drawable btntime;
+    private Object status;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -241,6 +244,7 @@ public class BookNow extends AppCompatActivity {
             Intent intent = new Intent(BookNow.this, Main2.class);
             startActivity(intent);
         });
+
 // IMPLEMENT A BUTTON TIME
         btntime1.setOnClickListener(v -> {
             selectedTime = "10:00 AM";
@@ -349,7 +353,6 @@ public class BookNow extends AppCompatActivity {
                 // Add data to Firestore
                 userId = mAuth.getCurrentUser().getUid();
                 addDataToFirestore(userId, selectedTour, selectedTouristNumStr, reservedDate, total, selectedTime);
-
                 // Make the ScrollView visible
                 BookScrollView();
             } else {
@@ -471,6 +474,8 @@ public class BookNow extends AppCompatActivity {
 
                     userDocRef.update(bookingData).addOnSuccessListener(documentReference -> {
                         showToast("Booking created");
+                        // Set status to "Pending" when a booking is created
+                        updateStatusInFirestore("Pending");
                     }).addOnFailureListener(exception -> {
                         showToast("Failed to create booking: " + exception.getMessage());
                     });
@@ -480,6 +485,37 @@ public class BookNow extends AppCompatActivity {
             }
         });
     }
+
+
+
+    private void updateStatusInFirestore(String Status) {
+        try {
+            // Get user ID
+            String userId = mAuth.getCurrentUser().getUid();
+
+            // Get Firestore instance and reference
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            DocumentReference userDocRef = db.collection("users").document(userId);
+
+            // Create a map for the data
+            Map<String, Object> statusData = new HashMap<>();
+            statusData.put("status", Status);
+
+            // Update only the status field in the "users" collection
+            userDocRef.update(statusData)
+                    .addOnSuccessListener(aVoid -> {
+                     //   showToast("Status updated successfully");
+                    })
+                    .addOnFailureListener(exception -> {
+                  //      showToast("Error updating status: " + exception.getMessage());
+                        Log.e("Firestore Error", "Error updating status", exception);
+                    });
+        } catch (Exception e) {
+         //   showToast("Error updating status: " + e.getMessage());
+            Log.e("Firestore Error", "Error updating status", e);
+        }
+    }
+
 
     private void navigateToBookingDetailMainActivity() {
         // Navigate to Booking Detail MAin Activity
@@ -561,7 +597,7 @@ public class BookNow extends AppCompatActivity {
                 spinNum.setSelection(position);
             }
         }
-        // Retrieve and restore the selected date and time from SharedPreferences
+
         // Restore the original backgrounds based on the last clicked button ID
         int lastClickedButtonId = sharedPreferences.getInt("selectedButtonId", -1);
         if (lastClickedButtonId != -1) {

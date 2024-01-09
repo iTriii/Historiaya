@@ -48,17 +48,17 @@ import java.util.Objects;
 
 public class TourismHeadAdmin extends AppCompatActivity {
     private static final int GALLERY_REQUEST_CODE = 123;
-    private static final String USERS_COLLECTION = "";
-    private static final String CANCELLATION_COLLECTION = "";
-
-    private RadioButton Upcoming_Tab, History_tab, Pending_Tab, Cancel_Tab, Refund_Tab, reschedule_Tab;
-    private ScrollView Upcoming_ScrollView, History_ScrollView, Pending_ScrollView, Cancellation_ScrollView, Reschedule_ScrollView, Refund_ScrollView;
-    private View wan, to, tre, por, payb, six;
+    private RadioButton Upcoming_Tab, History_tab, Pending_Tab, Cancel_Tab;
+    private ScrollView Upcoming_ScrollView, History_ScrollView, Pending_ScrollView, Cancellation_ScrollView;
+    private View wan, to, tre, por;
     private FirebaseFirestore db;
 
 
-    private RecyclerView Pending_RecyclerView, Upcoming_RecyclerView, History_RecyclerView, Refund_RecyclerView, Reschedule_RecyclerView, Cancellation_RecyclerView;
+    private RecyclerView Pending_RecyclerView, Upcoming_RecyclerView, History_RecyclerView, Cancellation_RecyclerView;
     private ArrayList<User> userArrayList;
+    private ArrayList<User> upcomingList;
+    private ArrayList<User> cancellationList;
+    private ArrayList<User> historyList ;
     private MyAdapter myAdapter;
     private com.example.log_in.UpcomingAdapter UpcomingAdapter;
     private com.example.log_in.HistoryAdapter HistoryAdapter;
@@ -102,9 +102,7 @@ public class TourismHeadAdmin extends AppCompatActivity {
         to = findViewById(R.id.to);
         tre = findViewById(R.id.tre);
         por = findViewById(R.id.por);
-//        payb = findViewById(R.id.payb);
-//        payb = findViewById(R.id.payb);
-//        six = findViewById(R.id.six);
+
 
 
         // Initialize RecyclerViews and Adapters
@@ -112,15 +110,14 @@ public class TourismHeadAdmin extends AppCompatActivity {
         Upcoming_RecyclerView = findViewById(R.id.Upcoming_RecyclerView);
         History_RecyclerView = findViewById(R.id.History_RecyclerView);
         Cancellation_RecyclerView = findViewById(R.id.Cancellation_RecyclerView);
-//        Reschedule_RecyclerView = findViewById(R.id.Reschedule_RecyclerView);
-//        Refund_RecyclerView = findViewById(R.id.Refund_RecyclerView);
 
 
         userArrayList = new ArrayList<>();
 
+
+
         myAdapter = new MyAdapter(this, userArrayList, db);
-        //    PendingAdapter = new PendingAdapter(this, userArrayList, db);
-        UpcomingAdapter = new UpcomingAdapter(this, userArrayList, db);
+        UpcomingAdapter = new UpcomingAdapter(this,  userArrayList, db);
         HistoryAdapter = new HistoryAdapter(this, userArrayList, db);
         CancellationAdapter = new CancellationAdapter(this, userArrayList, db);
 
@@ -392,12 +389,142 @@ public class TourismHeadAdmin extends AppCompatActivity {
 
     }
 
+    private void EventChangeListener() {
+        // Access the "users" collection in Firestore, order by "reservedDate" in ascending order
+        db.collection("users").orderBy("reservedDate", Query.Direction.ASCENDING)
+                // Add a snapshot listener to listen for changes in the collection
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    // Initialize HashMaps for users
+                    final HashMap<String, User> userHashMap = new HashMap<>();
+                    final HashMap<String, User> upcomingUserHashMap = new HashMap<>();
+                    final HashMap<String, User> historyUserHashMap = new HashMap<>();
+                    final HashMap<String, User> cancellationHashMap = new HashMap<>();
 
-//    // EventListener for data changes in Firestore
+                    @SuppressLint("NotifyDataSetChanged")
+                    @Override
+                    // This method is called when there is a change in the Firestore collection
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        // Check if there's an error
+                        if (error != null) {
+                            // If there is an error, try fetching and displaying user data
+                            try {
+                                fetchAndDisplayUserData();
+                            } catch (Exception e) {
+                                // Log the error if fetching and displaying user data fails
+                                Log.e("TourismHeadAdmin", "Error in fetchAndDisplayUserData: " + e.getMessage());
+                            }
+
+                            // Show a progress dialog if it's not already showing
+                            if (!progressDialog.isShowing()) progressDialog.show();
+                            // Log the error message
+                            Log.e("Error", Objects.requireNonNull(error.getMessage()));
+                            return; // Exit the method if there's an error
+                        }
+
+                        // Handle data changes in the Firestore collection
+                        for (DocumentChange dc : value.getDocumentChanges()) {
+                            switch (dc.getType()) {
+                                case ADDED:
+                                case MODIFIED:
+                                    // Convert Firestore document to a User object
+                                    User user = dc.getDocument().toObject(User.class);
+
+                                    // Set the user ID
+                                    user.setUserId(dc.getDocument().getId());
+
+                                    // Add the user to the userHashMap using their email as the key
+                                    userHashMap.put(user.getEmail(), user);
+
+                                    // Check if the user is upcoming or not and add to the respective HashMap
+                                    if (user.isUpcoming()) {
+                                        upcomingUserHashMap.put(user.getEmail(), user);
+                                    } else {
+                                        historyUserHashMap.put(user.getEmail(), user);
+                                    }
+
+                                    // Check if the user is canceled based on the cancellationStatus field
+                                    if (user.iscancellationStatus()) {
+                                        cancellationHashMap.put(user.getEmail(), user);
+                                    }
+                                    break;
+                                case REMOVED:
+                                    // If a user is removed, remove them only from UserHashMap
+                                    User userRemoved = dc.getDocument().toObject(User.class);
+                                    String userEmail = userRemoved.getEmail();
+
+                                    // Check if the reservedDate is in the past for upcoming users
+                                    if (upcomingUserHashMap.containsKey(userEmail) && !userRemoved.isUpcoming()) {
+                                        upcomingUserHashMap.remove(userEmail);
+                                    }
+                                    // Always remove from the userHashMap
+                                    userHashMap.remove(userEmail);
+
+                                    // Check if the user is canceled based on the cancellationStatus field
+                                    if (userRemoved.iscancellationStatus()) {
+                                        cancellationHashMap.remove(userEmail);
+                                    }
+                                    break;
+                            }
+                        }
+
+                        // Filter data based on the selected adapter
+                        switch (currentAdapterType) {
+                            case MY_ADAPTER:
+                                userArrayList.clear();
+                                userArrayList.addAll(userHashMap.values());
+                                myAdapter.notifyDataSetChanged();
+                                break;
+                            case UPCOMING_ADAPTER:
+                                upcomingList.clear();
+                                upcomingList.addAll(upcomingUserHashMap.values());
+                                UpcomingAdapter.notifyDataSetChanged();
+                                break;
+                            case HISTORY_ADAPTER:
+                                // Sort historyUserHashMap based on "reservedDate"
+                                List<User> historyList = new ArrayList<>(historyUserHashMap.values());
+                                Collections.sort(historyList, new Comparator<User>() {
+                                    @Override
+                                    public int compare(User user1, User user2) {
+                                        // Compare based on reservedDate
+                                        return user1.getReservedDate().compareTo(user2.getReservedDate());
+                                    }
+                                });
+
+                                // Clear and re-populate the userArrayList
+                                historyList.clear();
+                                historyList.addAll(historyList);
+
+                                // Notify the HistoryAdapter of the data change
+                                HistoryAdapter.notifyDataSetChanged();
+                                break;
+
+                            case CANCELLATION_ADAPTER:
+                                // Clear and re-populate the cancellationList
+                                cancellationList.clear();
+
+                                // Filter by cancellationStatus
+                                for (User user : cancellationHashMap.values()) {
+                                    if (user.iscancellationStatus()) {
+                                        cancellationList.add(user);
+                                    }
+                                }
+
+                                // Notify the CancellationAdapter of the data change
+                                CancellationAdapter.notifyDataSetChanged();
+                                break;
+                        }
+
+                        // Dismiss the progress dialog if it's showing
+                        if (progressDialog.isShowing()) progressDialog.dismiss();
+                    }
+                });
+    }
+
+
 //    private void EventChangeListener() {
-//        // 1. Access the "users" collection in Firestore, order by "reservedDate" in ascending order
-//        db.collection("users").orderBy("reservedDate", Query.Direction.ASCENDING)
-//                // 2. Add a snapshot listener to listen for changes in the collection
+//        // Access the "users" collection in Firestore, order by "reservedDate" in ascending order
+//        db.collection("users").orderBy("reservedDate" , Query.Direction.ASCENDING)
+//                // Add a snapshot listener to listen for changes in the collection
 //                .addSnapshotListener(new EventListener<QuerySnapshot>() {
 //                    // Initialize HashMaps for users
 //                    final HashMap<String, User> userHashMap = new HashMap<>();
@@ -407,11 +534,11 @@ public class TourismHeadAdmin extends AppCompatActivity {
 //
 //                    @SuppressLint("NotifyDataSetChanged")
 //                    @Override
-//                    // 3. This method is called when there is a change in the Firestore collection
+//                    // This method is called when there is a change in the Firestore collection
 //                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-//                        // 4. Check if there's an error
+//                        // Check if there's an error
 //                        if (error != null) {
-//                            // 5. If there is an error, try fetching and displaying user data
+//                            // If there is an error, try fetching and displaying user data
 //                            try {
 //                                fetchAndDisplayUserData();
 //                            } catch (Exception e) {
@@ -419,167 +546,139 @@ public class TourismHeadAdmin extends AppCompatActivity {
 //                                Log.e("TourismHeadAdmin", "Error in fetchAndDisplayUserData: " + e.getMessage());
 //                            }
 //
-//                            // 6. Show a progress dialog if it's not already showing
+//                            // Show a progress dialog if it's not already showing
 //                            if (!progressDialog.isShowing()) progressDialog.show();
-//                            // 7. Log the error message
+//                            // Log the error message
 //                            Log.e("Error", Objects.requireNonNull(error.getMessage()));
 //                            return; // Exit the method if there's an error
 //                        }
 //
-//                        // 8. Handle data changes in the Firestore collection
+//                        // Handle data changes in the Firestore collection
 //                        for (DocumentChange dc : value.getDocumentChanges()) {
 //                            switch (dc.getType()) {
 //                                case ADDED:
 //                                case MODIFIED:
-//                                    // 9. Convert Firestore document to a User object
+//                                    // Convert Firestore document to a User object
 //                                    User user = dc.getDocument().toObject(User.class);
 //
-//                                    // 10. Set the user ID
+//                                    // Set the user ID
 //                                    user.setUserId(dc.getDocument().getId());
 //
-//                                    // 11. Add the user to the userHashMap using their email as the key
+//                                    // Add the user to the userHashMap using their email as the key
 //                                    userHashMap.put(user.getEmail(), user);
 //
-//                                    // 12. Check if the user is upcoming or not and add to the respective HashMap
+//                                    // Check if the user is upcoming or not and add to the respective HashMap
 //                                    if (user.isUpcoming()) {
 //                                        upcomingUserHashMap.put(user.getEmail(), user);
 //                                    } else {
 //                                        historyUserHashMap.put(user.getEmail(), user);
 //                                    }
 //
-//                                    // 13. Check if the user is cancelled and add to the cancellationHashMap
-//                                    if (user.isCancellationStatus()) {
+//                                    // Check if the user is cancelled and add to the cancellationHashMap
+//                                    if (userRemoved.iscancellationStatus()) {
 //                                        cancellationHashMap.put(user.getEmail(), user);
 //                                    }
 //                                    break;
 //                                case REMOVED:
-//                                    // If a user is removed, remove them only from upcomingUserHashMap
+//                                    // If a user is removed, remove them only from UserHashMap
 //                                    User userRemoved = dc.getDocument().toObject(User.class);
-//                                    userHashMap.remove(userRemoved.getEmail());
+//                                    String userEmail = userRemoved.getEmail();
+//
+//                                    // Check if the reservedDate is in the past for upcoming users
+//                                    if (upcomingUserHashMap.containsKey(userEmail) && !userRemoved.isUpcoming()) {
+//                                        upcomingUserHashMap.remove(userEmail);
+//                                    }
+//                                    // Always remove from the userHashMap
+//                                    userHashMap.remove(userEmail);
 //                                    break;
+//
 //                            }
 //                        }
 //
-//                        userArrayList.clear();
-//                        userArrayList.addAll(userHashMap.values());
+//                        // Filter data based on the selected adapter
+//                        switch (currentAdapterType) {
+//                            case MY_ADAPTER:
+//                                userArrayList.clear();
+//                                userArrayList.addAll(userHashMap.values());
+//                                myAdapter.notifyDataSetChanged();
+//                                break;
+//                            case UPCOMING_ADAPTER:
+//                                upcomingList.clear();
+//                                upcomingList.addAll(upcomingUserHashMap.values());
+//                                UpcomingAdapter.notifyDataSetChanged();
+//                                break;
+//                            case HISTORY_ADAPTER:
+//                                // Sort historyUserHashMap based on "reservedDate"
+//                                List<User> historyList = new ArrayList<>(historyUserHashMap.values());
+//                                Collections.sort(historyList, new Comparator<User>() {
+//                                    @Override
+//                                    public int compare(User user1, User user2) {
+//                                        // Compare based on reservedDate
+//                                        return user1.getReservedDate().compareTo(user2.getReservedDate());
+//                                    }
+//                                });
 //
-//                        // 16. Notify RecyclerView adapters that the data has changed
-//                        myAdapter.notifyDataSetChanged();
-//                        UpcomingAdapter.notifyDataSetChanged();
-//                        HistoryAdapter.notifyDataSetChanged();
-//                        CancellationAdapter.notifyDataSetChanged();
+//                                // Clear and re-populate the userArrayList
+//                                historyList.clear();
+//                                historyList.addAll(historyList);
 //
-//                        // 17. Dismiss the progress dialog if it's showing
+//                                // Notify the HistoryAdapter of the data change
+//                                HistoryAdapter.notifyDataSetChanged();
+//                                break;
+//
+//                            case CANCELLATION_ADAPTER:
+////                                List<User> cancellationList = new ArrayList<>(cancellationHashMap.values());
+////                                 cancellationList.clear();
+////                                 cancellationList.addAll(cancellationHashMap.values());
+////                                // Notify the CancellationAdapter of the data change
+////                                CancellationAdapter.notifyDataSetChanged();
+//                                retrieveCancellationDataFromFirestore();
+//                                break;
+//
+//
+//                        }
+//                        // Dismiss the progress dialog if it's showing
 //                        if (progressDialog.isShowing()) progressDialog.dismiss();
 //                    }
 //                });
 //    }
-//
-private void EventChangeListener() {
-    // Access the "users" collection in Firestore, order by "reservedDate" in ascending order
-    db.collection("users").orderBy("reservedDate", Query.Direction.ASCENDING)
-            // Add a snapshot listener to listen for changes in the collection
-            .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                // Initialize HashMaps for users
-                final HashMap<String, User> userHashMap = new HashMap<>();
-                final HashMap<String, User> upcomingUserHashMap = new HashMap<>();
-                final HashMap<String, User> historyUserHashMap = new HashMap<>();
-                final HashMap<String, User> cancellationHashMap = new HashMap<>();
 
-                @SuppressLint("NotifyDataSetChanged")
-                @Override
-                // This method is called when there is a change in the Firestore collection
-                public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                    // Check if there's an error
-                    if (error != null) {
-                        // If there is an error, try fetching and displaying user data
-                        try {
-                            fetchAndDisplayUserData();
-                        } catch (Exception e) {
-                            // Log the error if fetching and displaying user data fails
-                            Log.e("TourismHeadAdmin", "Error in fetchAndDisplayUserData: " + e.getMessage());
-                        }
+    private void retrieveCancellationDataFromFirestore() {
+        // Initialize Firestore references
+        CollectionReference cancellationCollectionRef = db.collection("users");
+        Query cancellationQuery = cancellationCollectionRef.orderBy("cancellationStatus", Query.Direction.ASCENDING);
 
-                        // Show a progress dialog if it's not already showing
-                        if (!progressDialog.isShowing()) progressDialog.show();
-                        // Log the error message
-                        Log.e("Error", Objects.requireNonNull(error.getMessage()));
-                        return; // Exit the method if there's an error
-                    }
-
-                    // Handle data changes in the Firestore collection
-                    for (DocumentChange dc : value.getDocumentChanges()) {
-                        switch (dc.getType()) {
-                            case ADDED:
-                            case MODIFIED:
-                                // Convert Firestore document to a User object
-                                User user = dc.getDocument().toObject(User.class);
-
-                                // Set the user ID
-                                user.setUserId(dc.getDocument().getId());
-
-                                // Add the user to the userHashMap using their email as the key
-                                userHashMap.put(user.getEmail(), user);
-
-                                // Check if the user is upcoming or not and add to the respective HashMap
-                                if (user.isUpcoming()) {
-                                    upcomingUserHashMap.put(user.getEmail(), user);
-                                } else {
-                                    historyUserHashMap.put(user.getEmail(), user);
-                                }
-
-                                // Check if the user is cancelled and add to the cancellationHashMap
-                                if (user.isCancellationStatus()) {
-                                    cancellationHashMap.put(user.getEmail(), user);
-                                }
-                                break;
-                            case REMOVED:
-                                // If a user is removed, remove them only from upcomingUserHashMap
-                                User userRemoved = dc.getDocument().toObject(User.class);
-                                userHashMap.remove(userRemoved.getEmail());
-                                break;
-                        }
-                    }
-
-                    // Filter data based on the selected adapter
-                    switch (currentAdapterType) {
-                        case MY_ADAPTER:
-                            userArrayList.clear();
-                            userArrayList.addAll(userHashMap.values());
-                            myAdapter.notifyDataSetChanged();
-                            break;
-                        case UPCOMING_ADAPTER:
-                            userArrayList.clear();
-                            userArrayList.addAll(upcomingUserHashMap.values());
-                            UpcomingAdapter.notifyDataSetChanged();
-                            break;
-                        case HISTORY_ADAPTER:
-                            // Sort historyUserHashMap based on "reservedDate"
-                            List<User> sortedHistoryList = new ArrayList<>(historyUserHashMap.values());
-                            Collections.sort(sortedHistoryList, new Comparator<User>() {
-                                @Override
-                                public int compare(User user1, User user2) {
-                                    // Compare based on reservedDate
-                                    return user1.getReservedDate().compareTo(user2.getReservedDate());
-                                }
-                            });
-
-                            userArrayList.clear();
-                            userArrayList.addAll(sortedHistoryList);
-                            HistoryAdapter.notifyDataSetChanged();
-                            break;
-                        case CANCELLATION_ADAPTER:
-                            userArrayList.clear();
-                            userArrayList.addAll(cancellationHashMap.values());
-                            CancellationAdapter.notifyDataSetChanged();
-                            break;
-                    }
-
-                    // Dismiss the progress dialog if it's showing
-                    if (progressDialog.isShowing()) progressDialog.dismiss();
+        cancellationQuery.addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                if (error != null) {
+                    Log.e("TourismHeadAdminCancellation", "Error fetching cancellation data: " + error.getMessage());
+                    return;
                 }
-            });
-}
+
+                // Create a new list to avoid modifying the existing list during iteration
+                List<User> updatedCancellationList = new ArrayList<>();
+
+                // Handle cancellation data changes
+                for (DocumentSnapshot document : value.getDocuments()) {
+                    // Deserialize the cancellation data into your CancellationUser class
+                    User cancellationList = document.toObject(User.class);
+                    if (cancellationList != null) {
+                        // Add the cancellation to the updated list
+                        updatedCancellationList.add(cancellationList);
+                    }
+                }
+
+                // Update your cancellationList with the new data
+                cancellationList.clear();
+                cancellationList.addAll(updatedCancellationList);
+                CancellationAdapter.notifyDataSetChanged();
+
+            }
+        });
+    }
+
 
     private void fetchAndDisplayUserData() {
         userDataListener = db.collection("users")
@@ -597,6 +696,7 @@ private void EventChangeListener() {
                 });
     }
 
+
     @Override
     protected void onDestroy() {
         // Remove the snapshot listener when the activity is destroyed
@@ -611,38 +711,10 @@ private void EventChangeListener() {
             // Handle edit button click (implement your edit/update/delete logic here)
             Toast.makeText(TourismHeadAdmin.this, "Edit button clicked", Toast.LENGTH_SHORT).show();
         });
-       // retrieveCancellationDataFromFirestore();
-    }
 
 
-    private List<User> cancellationList = new ArrayList<>();
 
-    private void retrieveCancellationDataFromFirestore() {
-        // Initialize Firestore references
-        CollectionReference cancellationCollectionRef = db.collection("users"); // Use the top-level collection
-        Query cancellationQuery = cancellationCollectionRef.orderBy("cancellationStatus", Query.Direction.ASCENDING);
 
-        // Add a snapshot listener to receive real-time updates
-        cancellationQuery.addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                if (error != null) {
-                    Log.e("TourismHeadAdminCancellation", "Error fetching cancellation data: " + error.getMessage());
-                    return;
-                }
 
-                // Clear the existing list
-                cancellationList.clear();
-                // Handle cancellation data changes
-                for (DocumentSnapshot document : value.getDocuments()) {
-                    // Deserialize the cancellation data into your User class
-                    User cancellation = document.toObject(User.class);
-                    if (cancellation != null) {
-                        // Add the cancellation to the list
-                        cancellationList.add(cancellation);
-                    }
-                }
-            }
-        });
     }
 }

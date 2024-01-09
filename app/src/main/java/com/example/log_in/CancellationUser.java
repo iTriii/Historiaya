@@ -1,7 +1,6 @@
 package com.example.log_in;
-//FOR UPDATE ONLY
 
-public class User {
+public class CancellationUser extends User {
     public static final String FIELD_USER_ID = "userId";
     public static final String FIELD_EMAIL = "Email";
     public static final String FIELD_STATUS = "status";
@@ -12,14 +11,10 @@ public class User {
     private String Email, reservedDate, selectedTour, selectedTouristNum, status, userId, cancellationStatus, Date;
     private int totalAmount;
 
-    public User(String date) {
-        Date = date;
-    }
-
     private boolean cancellation;
 
 
-    public User() {
+    public CancellationUser() {
 
     }
 
@@ -27,7 +22,7 @@ public class User {
         this.cancelled = cancelled;
     }
 
-    public User(boolean cancelled, String email, String reservedDate, String selectedTour, String selectedTouristNum, String status, String userId, String cancellationStatus, int totalAmount, boolean cancellation) {
+    public CancellationUser(boolean cancelled, String email, String reservedDate, String selectedTour, String selectedTouristNum, String status, String userId, String cancellationStatus, int totalAmount, boolean cancellation) {
         this.cancelled = cancelled;
         Email = email;
         this.reservedDate = reservedDate;
@@ -48,7 +43,7 @@ public class User {
         this.cancellation = cancellation;
     }
 
-    public User(String Email, String reservedDate, String cancellationStatus, String selectedTour, String selectedTouristNum, String status, String userId, int totalAmount) {
+    public CancellationUser(String Email, String reservedDate, String cancellationStatus, String selectedTour, String selectedTouristNum, String status, String userId, int totalAmount) {
         this.Email = Email;
         this.reservedDate = reservedDate;
         this.selectedTour = selectedTour;

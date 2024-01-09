@@ -2,6 +2,8 @@ package com.example.log_in;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,9 +71,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
                     .document(user.getUid())
                     .update("status", status)
                     .addOnSuccessListener(aVoid -> {
+                        // Update the user status in the local object
                         user.setStatus(status);
+
+                        // Remove the user from the list
                         userArrayList.remove(user);
-                        notifyDataSetChanged();
+
+                        // Notify the adapter on the main thread
+                        Handler mainHandler = new Handler(Looper.getMainLooper());
+                        mainHandler.post(() -> notifyDataSetChanged());
+
                         Log.d("MyAdapter", "Item updated successfully");
                     })
                     .addOnFailureListener(e -> {
@@ -81,7 +90,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             Log.e("MyAdapter", "User or UID is null");
         }
     }
-
 
 
     //ALL USERS

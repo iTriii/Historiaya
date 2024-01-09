@@ -29,7 +29,6 @@ import com.bumptech.glide.Glide;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -375,7 +374,7 @@ public class RescheduleTourists extends AppCompatActivity {
             // Save data to Firestore asynchronously to prevent UI lag
             new Thread(() -> {
                 try {
-                    saveDateTimeToFirestore(selectedDate, selectedTime);
+                    saveDateTimeToFirestore(String.valueOf(selectedDate), selectedTime);
                 } catch (Exception e) {
                     e.printStackTrace();
                     runOnUiThread(() -> showToast("Error saving date and time: " + e.getMessage()));
@@ -514,12 +513,12 @@ public class RescheduleTourists extends AppCompatActivity {
     }
 
 
-    private void saveDateTimeToFirestore(Calendar selectedDate, String selectedTime) {
+    private void saveDateTimeToFirestore(String selectedDate, String selectedTime) {
         // Initialize Firestore references
         String userId = mAuth.getCurrentUser().getUid();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference userDocRef = db.collection("users").document(userId);
-        CollectionReference rescheduleBookingCollectionRef = userDocRef.collection("rescheduleBooking");
+//        CollectionReference rescheduleBookingCollectionRef = userDocRef.collection("rescheduleBooking");
 
         // Check if the selected date and time are null
         if (selectedDate == null || selectedTime == null || TextUtils.isEmpty(selectedTime) || spinTour == null || spinNum == null) {
@@ -530,6 +529,7 @@ public class RescheduleTourists extends AppCompatActivity {
         String selectedTour = spinTour.getSelectedItem().toString();
         String selectedTouristNum = spinNum.getSelectedItem().toString();
 
+
         // Check if spinner values are null or empty
         if (TextUtils.isEmpty(selectedTour) || TextUtils.isEmpty(selectedTouristNum)) {
             return;
@@ -537,16 +537,16 @@ public class RescheduleTourists extends AppCompatActivity {
 
         // Add data to Firestore
         Map<String, Object> bookingData = new HashMap<>();
-        bookingData.put("selectedTour for Reschedule", selectedTour);
-        bookingData.put("selectedTouristNum for Reschedule", selectedTouristNum);
-        bookingData.put("selectedDate for Reschedule", selectedDate.getTime());
-        bookingData.put("selectedTime for Reschedule", selectedTime);
+        bookingData.put("selectedTour_for_Reschedule", selectedTour);
+        bookingData.put("selectedTouristNum_for_Reschedule", selectedTouristNum);
+        bookingData.put("selectedDate_for_Reschedule", selectedDate);
+        bookingData.put("selectedTime_for_Reschedule", selectedTime);
 
         // Create a new document in the "rescheduleBooking" collection
-        DocumentReference newBookingDocRef = rescheduleBookingCollectionRef.document();
+  //      DocumentReference newBookingDocRef = rescheduleBookingCollectionRef.document();
 
         // Set data and handle success/failure
-        newBookingDocRef.set(bookingData)
+        userDocRef.set(bookingData)
                 .addOnSuccessListener(documentReference -> {
                     Toast.makeText(getApplicationContext(), "Reschedule uploaded. Please wait for the admin", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(), BookingDetailMain.class));
