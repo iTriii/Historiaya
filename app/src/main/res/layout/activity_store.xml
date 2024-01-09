@@ -579,12 +579,13 @@
 
     </ScrollView>
 
+
     <TextView
         android:id="@+id/points"
         android:layout_width="65dp"
         android:layout_height="32dp"
         android:layout_marginTop="40dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/points"
         android:fontFamily="@font/montserrat_bold"
         android:paddingTop="5dp"
@@ -597,7 +598,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="RtlSymmetry" />
-
 
     <Button
         android:id="@+id/plus"
@@ -628,85 +628,134 @@
         <LinearLayout
             android:id="@+id/V1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:visibility="gone"
-            android:padding="10dp">
+            android:padding="5dp">
 
-            <TextView
+
+            <ImageView
                 android:id="@+id/voucher1"
                 android:layout_width="210dp"
                 android:layout_height="120dp"
-                android:text="@string/discount1"
+                android:background="@drawable/voucher1"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:layout_marginEnd="5dp"
+                android:textAlignment="center"
+                android:textColor="#E94B08" />
+            <TextView
+                android:id="@+id/productdescription1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-200dp"
+                android:layout_marginTop="-10dp"
+                android:text="@string/productdescription"
                 android:fontFamily="@font/montserrat_bold"
                 android:textAlignment="center"
                 android:gravity="center"
                 android:textColor="#E94B08"
-                android:textSize="22sp"
-                android:background="@drawable/voucher1"/>
-            <RelativeLayout
+                android:textSize="15sp"
+                />
+            <TextView
+                android:id="@+id/prod1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-130dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/product"
+                android:fontFamily="@font/montserrat_bold"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textColor="#E94B08"
+                android:textSize="18sp"
+                />
+            <LinearLayout
                 android:layout_width="150dp"
+                android:layout_marginStart="65dp"
                 android:layout_height="match_parent">
-            <ImageView
-                android:id="@+id/qr1"
-                android:layout_width="150dp"
-                android:layout_height="match_parent"
-                android:background="@drawable/qr1"/>
+
+                <TextView
+                    android:id="@+id/q1"
+                    android:layout_width="150dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/qr1" />
 
                 <ImageView
                     android:id="@+id/qrcode1"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="35dp"
+                    android:layout_marginStart="-110dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="35dp"
                     android:background="@drawable/qrcode"
                     android:scaleType="fitCenter" />
-
                 <Button
                     android:id="@+id/scanmebut1"
+                    android:background="@drawable/scan_me"
                     android:layout_width="80dp"
                     android:layout_height="30dp"
                     android:text="@string/scan_me"
                     android:fontFamily="@font/montserrat_bold"
                     android:textSize="11sp"
                     android:textColor="@color/white"
-                    android:background="@drawable/scan_me"
                     android:gravity="center"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="85dp"
+                    android:layout_marginStart="-115dp"
                     android:layout_marginEnd="35dp"
-                    android:layout_marginBottom="5dp" />
-            </RelativeLayout>
+                    android:layout_marginBottom="5dp"  />
+            </LinearLayout>
 
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/V2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:visibility="gone"
-            android:padding="10dp">
+            android:padding="5dp">
 
 
-            <TextView
+            <ImageView
                 android:id="@+id/voucher2"
                 android:layout_width="210dp"
                 android:layout_height="120dp"
-                android:text="@string/discount2"
+                android:background="@drawable/voucher2"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:layout_marginEnd="5dp"
+                android:textAlignment="center"
+                android:textColor="#E94B08" />
+            <TextView
+                android:id="@+id/productdescription2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-200dp"
+                android:layout_marginTop="-10dp"
+                android:text="@string/productdescription"
                 android:fontFamily="@font/montserrat_bold"
                 android:textAlignment="center"
                 android:gravity="center"
                 android:textColor="#0021CD"
-                android:textSize="22sp"
-                android:background="@drawable/voucher2"/>
-            <RelativeLayout
+                android:textSize="15sp"
+                />
+            <TextView
+                android:id="@+id/prod2"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-130dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/product"
+                android:fontFamily="@font/montserrat_bold"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textColor="#0021CD"
+                android:textSize="18sp"
+                />
+            <LinearLayout
                 android:layout_width="150dp"
+                android:layout_marginStart="65dp"
                 android:layout_height="match_parent">
 
                 <TextView
@@ -719,30 +768,26 @@
                     android:id="@+id/qrcode2"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="35dp"
+                    android:layout_marginStart="-110dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="35dp"
                     android:background="@drawable/qrcode"
                     android:scaleType="fitCenter" />
                 <Button
                     android:id="@+id/scanmebut2"
+                    android:background="@drawable/scan_me2"
                     android:layout_width="80dp"
                     android:layout_height="30dp"
                     android:text="@string/scan_me"
                     android:fontFamily="@font/montserrat_bold"
                     android:textSize="11sp"
                     android:textColor="@color/white"
-                    android:background="@drawable/scan_me2"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="35dp"
+                    android:gravity="center"
+                    android:layout_marginTop="85dp"
+                    android:layout_marginStart="-115dp"
                     android:layout_marginEnd="35dp"
-                    android:layout_marginBottom="5dp" />
-            </RelativeLayout>
+                    android:layout_marginBottom="5dp"  />
+            </LinearLayout>
 
         </LinearLayout>
         <LinearLayout
@@ -751,24 +796,50 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:visibility="gone"
-            android:padding="10dp">
+            android:padding="5dp">
 
-
-            <TextView
+            <ImageView
                 android:id="@+id/voucher3"
                 android:layout_width="210dp"
                 android:layout_height="120dp"
-                android:text="@string/discount3"
+                android:background="@drawable/voucher3"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:layout_marginEnd="5dp"
+                android:textAlignment="center"
+                android:textColor="#E94B08" />
+
+            <TextView
+                android:id="@+id/productdescription3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-200dp"
+                android:layout_marginTop="-10dp"
+                android:text="@string/productdescription"
                 android:fontFamily="@font/montserrat_bold"
                 android:textAlignment="center"
                 android:gravity="center"
-                android:textColor="#6C3D9B"
-                android:textSize="22sp"
-                android:background="@drawable/voucher3"/>
-            <RelativeLayout
-                android:layout_width="150dp"
-                android:layout_height="match_parent">
+                android:textColor="@color/green"
+                android:textSize="15sp"
+                />
             <TextView
+                android:id="@+id/prod3"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-130dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/product"
+                android:fontFamily="@font/montserrat_bold"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textColor="@color/green"
+                android:textSize="18sp"
+                />
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_marginStart="65dp"
+                android:layout_height="match_parent">
+            <ImageView
                 android:id="@+id/q3"
                 android:layout_width="150dp"
                 android:layout_height="match_parent"
@@ -777,30 +848,26 @@
                     android:id="@+id/qrcode3"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="35dp"
+                    android:layout_marginStart="-110dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="35dp"
                     android:background="@drawable/qrcode"
-                    android:scaleType="fitCenter" />
+                    android:scaleType="fitCenter"  />
                 <Button
                     android:id="@+id/scanmebut3"
+                    android:background="@drawable/scan_me1"
                     android:layout_width="80dp"
                     android:layout_height="30dp"
                     android:text="@string/scan_me"
                     android:fontFamily="@font/montserrat_bold"
                     android:textSize="11sp"
                     android:textColor="@color/white"
-                    android:background="@drawable/scan_me2"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="35dp"
+                    android:gravity="center"
+                    android:layout_marginTop="85dp"
+                    android:layout_marginStart="-115dp"
                     android:layout_marginEnd="35dp"
-                    android:layout_marginBottom="5dp" />
-            </RelativeLayout>
+                    android:layout_marginBottom="5dp"/>
+            </LinearLayout>
 
         </LinearLayout>
         <LinearLayout
@@ -809,21 +876,50 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:visibility="gone"
-            android:padding="10dp">
+            android:padding="5dp">
 
-            <TextView
+            <ImageView
                 android:id="@+id/voucher4"
                 android:layout_width="210dp"
                 android:layout_height="120dp"
-                android:text="@string/discount4"
+                android:layout_marginEnd="5dp"
+                android:background="@drawable/voucher1"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center"
+                android:textAlignment="center"
+                android:textColor="#E94B08"
+
+                />
+
+            <TextView
+                android:id="@+id/productdescription4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-200dp"
+                android:layout_marginTop="-10dp"
+                android:text="@string/productdescription"
                 android:fontFamily="@font/montserrat_bold"
                 android:textAlignment="center"
                 android:gravity="center"
                 android:textColor="#E94B08"
-                android:textSize="22sp"
-                android:background="@drawable/voucher1"/>
-            <RelativeLayout
+                android:textSize="15sp"
+                />
+            <TextView
+                android:id="@+id/prod4"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-130dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/product"
+                android:fontFamily="@font/montserrat_bold"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textColor="#E94B08"
+                android:textSize="18sp"
+                />
+            <LinearLayout
                 android:layout_width="150dp"
+                android:layout_marginStart="65dp"
                 android:layout_height="match_parent">
                 <ImageView
                     android:id="@+id/qr4"
@@ -835,14 +931,11 @@
                     android:id="@+id/qrcode4"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="35dp"
+                    android:layout_marginStart="-110dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="35dp"
                     android:background="@drawable/qrcode"
-                    android:scaleType="fitCenter" />
+                    android:scaleType="fitCenter"  />
 
                 <Button
                     android:id="@+id/scanmebut4"
@@ -854,13 +947,11 @@
                     android:textColor="@color/white"
                     android:background="@drawable/scan_me"
                     android:gravity="center"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="85dp"
+                    android:layout_marginStart="-115dp"
                     android:layout_marginEnd="35dp"
                     android:layout_marginBottom="5dp" />
-            </RelativeLayout>
+            </LinearLayout>
 
         </LinearLayout>
         <LinearLayout
@@ -869,21 +960,49 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:visibility="gone"
-            android:padding="10dp">
+            android:padding="5dp">
 
-            <TextView
+            <ImageView
                 android:id="@+id/voucher5"
                 android:layout_width="210dp"
                 android:layout_height="120dp"
-                android:text="@string/discount5"
+                android:layout_marginEnd="5dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textSize="22sp"
+                android:textColor="#0021CD"
+                android:background="@drawable/voucher2"/>
+
+            <TextView
+                android:id="@+id/productdescription5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-200dp"
+                android:layout_marginTop="-10dp"
+                android:text="@string/productdescription"
                 android:fontFamily="@font/montserrat_bold"
                 android:textAlignment="center"
                 android:gravity="center"
                 android:textColor="#0021CD"
-                android:textSize="22sp"
-                android:background="@drawable/voucher2"/>
-            <RelativeLayout
+                android:textSize="15sp"
+                />
+            <TextView
+                android:id="@+id/prod5"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="-130dp"
+                android:layout_marginTop="20dp"
+                android:text="@string/product"
+                android:fontFamily="@font/montserrat_bold"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textColor="#0021CD"
+                android:textSize="18sp"
+                />
+            <LinearLayout
                 android:layout_width="150dp"
+                android:layout_marginStart="65dp"
                 android:layout_height="match_parent">
                 <ImageView
                     android:id="@+id/qr5"
@@ -895,10 +1014,7 @@
                     android:id="@+id/qrcode5"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_marginStart="35dp"
+                    android:layout_marginStart="-110dp"
                     android:layout_marginTop="5dp"
                     android:layout_marginEnd="35dp"
                     android:background="@drawable/qrcode"
@@ -914,16 +1030,471 @@
                     android:textColor="@color/white"
                     android:background="@drawable/scan_me2"
                     android:gravity="center"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginStart="35dp"
+                    android:layout_marginTop="85dp"
+                    android:layout_marginStart="-115dp"
                     android:layout_marginEnd="35dp"
                     android:layout_marginBottom="5dp" />
-            </RelativeLayout>
+            </LinearLayout>
 
         </LinearLayout>
         </LinearLayout>
     </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/v1"
+        android:layout_width="247dp"
+        android:layout_height="645dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/voucher_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:background="#E99908" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/v1_body"
+                android:layout_width="match_parent"
+                android:layout_height="422.65dp"
+                android:background="@drawable/popup_voucher1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/productdes1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="-130dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="#E94B08"
+                android:textSize="27sp"
+                android:rotation="90"
+                android:gravity="center"
+                android:text="@string/product_description"/>
+
+            <TextView
+                android:id="@+id/pro1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="-250dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Product"
+                android:rotation="90"
+                android:gravity="center"
+                android:textColor="#E94B08"
+                android:textSize="30sp"/>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/popup_qrcode1_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="214dp"
+            android:background="@drawable/popup_voucher2"
+            android:backgroundTint="#E99908"/>
+
+        <TextView
+            android:id="@+id/qrplaceholder_1"
+            android:layout_width="151dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="-130dp"
+            android:layout_marginBottom="50dp"
+            android:layout_marginStart="-25dp"
+            android:background="@drawable/scan_me"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
+            android:rotation="90"
+            android:text="@string/scan_me"
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageView
+            android:id="@+id/popup_qrcode1"
+            android:layout_width="151dp"
+            android:layout_height="151dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="-150dp"
+            app:srcCompat="@drawable/qrcode" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/v2"
+        android:layout_width="247dp"
+        android:layout_height="645dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/voucher_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone">
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:background="#00684E" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/v2_body"
+                android:layout_width="match_parent"
+                android:layout_height="422.65dp"
+                android:background="@drawable/popup_voucher1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/productdes2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="-130dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="#0021CD"
+                android:textSize="27sp"
+                android:rotation="90"
+                android:gravity="center"
+                android:text="@string/product_description"/>
+
+            <TextView
+                android:id="@+id/pro2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="-250dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Product"
+                android:rotation="90"
+                android:gravity="center"
+                android:textColor="#0021CD"
+                android:textSize="30sp"/>
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/popup_qrcode2_placeholder_2"
+            android:layout_width="match_parent"
+            android:layout_height="214dp"
+            android:background="@drawable/popup_voucher2"
+            android:backgroundTint="#00684E"/>
+
+        <TextView
+            android:id="@+id/qrplaceholder_2"
+            android:layout_width="151dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="-130dp"
+            android:layout_marginBottom="50dp"
+            android:layout_marginStart="-25dp"
+            android:background="@drawable/scan_me2"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
+            android:rotation="90"
+            android:text="@string/scan_me"
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageView
+            android:id="@+id/popup_qrcode2"
+            android:layout_width="151dp"
+            android:layout_height="151dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="-150dp"
+            app:srcCompat="@drawable/qrcode" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/v3"
+        android:layout_width="247dp"
+        android:layout_height="645dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/voucher_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone">
+
+        <View
+            android:id="@+id/view3"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:background="#0876C6" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/v3_body"
+                android:layout_width="match_parent"
+                android:layout_height="422.65dp"
+                android:background="@drawable/popup_voucher1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/productdes3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="-130dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="#6C3D9B"
+                android:textSize="27sp"
+                android:rotation="90"
+                android:gravity="center"
+                android:text="@string/product_description"/>
+
+            <TextView
+                android:id="@+id/pro3"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="-250dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Product"
+                android:rotation="90"
+                android:gravity="center"
+                android:textColor="#6C3D9B"
+                android:textSize="30sp"/>
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/popup_qrcode3_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="214dp"
+            android:background="@drawable/popup_voucher2"
+            android:backgroundTint="#0876C6"/>
+
+        <TextView
+            android:id="@+id/qrplaceholder_3"
+            android:layout_width="151dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="-130dp"
+            android:layout_marginBottom="50dp"
+            android:layout_marginStart="-25dp"
+            android:background="@drawable/scan_me2"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
+            android:rotation="90"
+            android:text="@string/scan_me"
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageView
+            android:id="@+id/popup_qrcode3"
+            android:layout_width="151dp"
+            android:layout_height="151dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="-150dp"
+            app:srcCompat="@drawable/qrcode" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/v4"
+        android:layout_width="247dp"
+        android:layout_height="645dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/voucher_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone">
+
+        <View
+            android:id="@+id/view4"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:background="#E99908" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/v4_body"
+                android:layout_width="match_parent"
+                android:layout_height="422.65dp"
+                android:background="@drawable/popup_voucher1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/productdes4"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="-130dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="#E94B08"
+                android:textSize="27sp"
+                android:rotation="90"
+                android:gravity="center"
+                android:text="@string/product_description"/>
+
+            <TextView
+                android:id="@+id/pro4"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="-250dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Product"
+                android:rotation="90"
+                android:gravity="center"
+                android:textColor="#E94B08"
+                android:textSize="30sp"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/popup_qrcode4_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="214dp"
+            android:background="@drawable/popup_voucher2"
+            android:backgroundTint="#E99908"/>
+
+        <TextView
+            android:id="@+id/qrplaceholder4"
+            android:layout_width="151dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="-130dp"
+            android:layout_marginBottom="50dp"
+            android:layout_marginStart="-25dp"
+            android:background="@drawable/scan_me"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
+            android:rotation="90"
+            android:text="@string/scan_me"
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageView
+            android:id="@+id/popup_qrcode4"
+            android:layout_width="151dp"
+            android:layout_height="151dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="-150dp"
+            app:srcCompat="@drawable/qrcode" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/v5"
+        android:layout_width="247dp"
+        android:layout_height="645dp"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:background="@drawable/voucher_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone">
+
+        <View
+            android:id="@+id/view5"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:background="#00684E" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <ImageView
+                android:id="@+id/v5_body"
+                android:layout_width="match_parent"
+                android:layout_height="422.65dp"
+                android:background="@drawable/popup_voucher1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/productdes5"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="-130dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="#0021CD"
+                android:textSize="27sp"
+                android:rotation="90"
+                android:gravity="center"
+                android:text="@string/product_description"/>
+
+            <TextView
+                android:id="@+id/pro5"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="-250dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="Product"
+                android:rotation="90"
+                android:gravity="center"
+                android:textColor="#0021CD"
+                android:textSize="30sp"/>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/popup_qrcode5_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="214dp"
+            android:background="@drawable/popup_voucher2"
+            android:backgroundTint="#00684E"/>
+
+        <TextView
+            android:id="@+id/qrplaceholder5"
+            android:layout_width="151dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="-130dp"
+            android:layout_marginBottom="50dp"
+            android:layout_marginStart="-25dp"
+            android:background="@drawable/scan_me2"
+            android:fontFamily="@font/montserrat_bold"
+            android:gravity="center"
+            android:rotation="90"
+            android:text="@string/scan_me"
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageView
+            android:id="@+id/popup_qrcode5"
+            android:layout_width="151dp"
+            android:layout_height="151dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginTop="-150dp"
+            app:srcCompat="@drawable/qrcode" />
+
+
+    </LinearLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

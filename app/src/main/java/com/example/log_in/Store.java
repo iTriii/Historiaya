@@ -4,10 +4,9 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -21,7 +20,6 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.activity.OnBackPressedDispatcher;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatRadioButton;
-import androidx.cardview.widget.CardView;
 
 import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
@@ -31,6 +29,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 //FOR UPDATE ONLY
@@ -51,9 +51,15 @@ public class Store extends AppCompatActivity {
 
     private final ImageView[] phArray = new ImageView[7];
     private final TextView[] Product = new TextView[7];
+    private final TextView[] prod = new TextView[5];
     private final TextView[] ProductDescription = new TextView[7];
-    CardView store_ph1, store_ph2,store_ph3, store_ph4,store_ph5, store_ph6, store_ph7;
+    private final TextView[] productdescription = new TextView[5];
+    private final TextView[] productdes = new TextView[5];
+    private final TextView[] pro= new TextView[5];
+    private final ImageView[] qrcode = new ImageView[5];
+    private final ImageView[] popup_qrcode = new ImageView[5];
     LinearLayout V1, V2, V3, V4, V5;
+    LinearLayout v1, v2, v3, v4, v5;
     View storeTabIndicator, purchasesTabIndicator;
     ScrollView StoreScrollView, PurchasesScrollView;
     private int currentPoints = 0;
@@ -66,8 +72,8 @@ public class Store extends AppCompatActivity {
     private FirebaseFirestore db;
 
     private SharedPreferences sharedPreferences;
-    private StorageReference[] storageRefs = new StorageReference[7];
-    private String[] productIds = {"product1", "product2", "product3", "product4", "product5", "product6", "product7"};
+    private final StorageReference[] storageRefs = new StorageReference[7];
+    private final String[] productIds = {"product1", "product2", "product3", "product4", "product5", "product6", "product7"};
     private static final String VISIBILITY_PREFS_NAME = "VisibilityPrefs";
     private static final String VISIBILITY_KEY_V1 = "visibility_v1";
     private static final String VISIBILITY_KEY_V2 = "visibility_v2";
@@ -92,6 +98,9 @@ public class Store extends AppCompatActivity {
             }
         };
         onBackPressedDispatcher.addCallback(this, callback);
+        // Inside your `onCreate` or wherever you initialize Firebase services
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference();
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
@@ -119,13 +128,32 @@ public class Store extends AppCompatActivity {
         Store = findViewById(R.id.Store);
         points = findViewById(R.id.points);
 
-        Product [0] = findViewById(R.id.Product1);
-        Product [1] = findViewById(R.id.Product2);
-        Product [2] = findViewById(R.id.Product3);
-        Product [3] = findViewById(R.id.Product4);
-        Product [4] = findViewById(R.id.Product5);
-        Product [5] = findViewById(R.id.Product6);
-        Product [6] = findViewById(R.id.Product7);
+        qrcode[0] = findViewById(R.id.qrcode1);
+        qrcode[1] = findViewById(R.id.qrcode2);
+        qrcode[2] = findViewById(R.id.qrcode3);
+        qrcode[3] = findViewById(R.id.qrcode4);
+        qrcode[4] = findViewById(R.id.qrcode5);
+
+        popup_qrcode[0] = findViewById(R.id.popup_qrcode1);
+        popup_qrcode[1] = findViewById(R.id.popup_qrcode2);
+        popup_qrcode[2] = findViewById(R.id.popup_qrcode3);
+        popup_qrcode[3] = findViewById(R.id.popup_qrcode4);
+        popup_qrcode[4] = findViewById(R.id.popup_qrcode5);
+
+
+        Product[0] = findViewById(R.id.Product1);
+        Product[1] = findViewById(R.id.Product2);
+        Product[2] = findViewById(R.id.Product3);
+        Product[3] = findViewById(R.id.Product4);
+        Product[4] = findViewById(R.id.Product5);
+        Product[5] = findViewById(R.id.Product6);
+        Product[6] = findViewById(R.id.Product7);
+
+        prod[0] = findViewById(R.id.prod1);
+        prod[1] = findViewById(R.id.prod2);
+        prod[2] = findViewById(R.id.prod3);
+        prod[3] = findViewById(R.id.prod4);
+        prod[4] = findViewById(R.id.prod5);
 
         ProductDescription[0] = findViewById(R.id.ProductDescription1);
         ProductDescription[1] = findViewById(R.id.ProductDescription2);
@@ -134,6 +162,26 @@ public class Store extends AppCompatActivity {
         ProductDescription[4] = findViewById(R.id.ProductDescription5);
         ProductDescription[5] = findViewById(R.id.ProductDescription6);
         ProductDescription[6] = findViewById(R.id.ProductDescription7);
+
+        productdescription[0] = findViewById(R.id.productdescription1);
+        productdescription[1] = findViewById(R.id.productdescription2);
+        productdescription[2] = findViewById(R.id.productdescription3);
+        productdescription[3] = findViewById(R.id.productdescription4);
+        productdescription[4] = findViewById(R.id.productdescription5);
+
+        productdes[0] = findViewById(R.id.productdes1);
+        productdes[1] = findViewById(R.id.productdes2);
+        productdes[2] = findViewById(R.id.productdes3);
+        productdes[3] = findViewById(R.id.productdes4);
+        productdes[4] = findViewById(R.id.productdes5);
+
+        pro[0] = findViewById(R.id.pro1);
+        pro[1] = findViewById(R.id.pro2);
+        pro[2] = findViewById(R.id.pro3);
+        pro[3] = findViewById(R.id.pro4);
+        pro[4] = findViewById(R.id.pro5);
+
+        fetchQRCode("productName", "qrcodeImageName", qrcode, popup_qrcode);
 
         for (int i = 0; i < productIds.length; i++) {
             storageRefs[i] = FirebaseStorage.getInstance().getReference("Products/" + productIds[i] + "/image.jpg");
@@ -153,6 +201,13 @@ public class Store extends AppCompatActivity {
         V3 = findViewById(R.id.V3);
         V4 = findViewById(R.id.V4);
         V5 = findViewById(R.id.V5);
+
+        v1 = findViewById(R.id.v1);
+        v2 = findViewById(R.id.v2);
+        v3 = findViewById(R.id.v3);
+        v4 = findViewById(R.id.v4);
+        v5 = findViewById(R.id.v5);
+
         mdialog = new Dialog(this);
 
         sharedPreferences = getSharedPreferences(VISIBILITY_PREFS_NAME, MODE_PRIVATE);
@@ -177,49 +232,47 @@ public class Store extends AppCompatActivity {
         boolean isV5Visible = getVisibilityState(VISIBILITY_KEY_V5);
         V5.setVisibility(isV5Visible ? View.VISIBLE : View.GONE);
 
-        V1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mdialog.setContentView(R.layout.activity_v1);
-                mdialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                mdialog.show();
-            }
+        V1.setOnClickListener(v -> {
+            v1.setVisibility(View.VISIBLE);
+            saveVisibilityState(VISIBILITY_KEY_V1, true);
+            v2.setVisibility(View.GONE);
+            v3.setVisibility(View.GONE);
+            v4.setVisibility(View.GONE);
+            v5.setVisibility(View.GONE);
         });
-        V2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mdialog.setContentView(R.layout.activity_v2);
-                mdialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                mdialog.show();
-            }
+        V2.setOnClickListener(v -> {
+            v1.setVisibility(View.GONE);
+            v2.setVisibility(View.VISIBLE);
+            saveVisibilityState(VISIBILITY_KEY_V2, true);
+            v3.setVisibility(View.GONE);
+            v4.setVisibility(View.GONE);
+            v5.setVisibility(View.GONE);
+        });
+        V3.setOnClickListener(v -> {
+            v1.setVisibility(View.GONE);
+            v2.setVisibility(View.GONE);
+            v3.setVisibility(View.VISIBLE);
+            saveVisibilityState(VISIBILITY_KEY_V3, true);
+            v4.setVisibility(View.GONE);
+            v5.setVisibility(View.GONE);
+        });
+        V4.setOnClickListener(v -> {
+            v1.setVisibility(View.GONE);
+            v2.setVisibility(View.GONE);
+            v3.setVisibility(View.GONE);
+            v4.setVisibility(View.VISIBLE);
+            saveVisibilityState(VISIBILITY_KEY_V4, true);
+            v5.setVisibility(View.GONE);
+        });
+        V5.setOnClickListener(v -> {
+            v1.setVisibility(View.GONE);
+            v2.setVisibility(View.GONE);
+            v3.setVisibility(View.GONE);
+            v4.setVisibility(View.GONE);
+            v5.setVisibility(View.VISIBLE);
+            saveVisibilityState(VISIBILITY_KEY_V5, true);
         });
 
-        V3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mdialog.setContentView(R.layout.activity_v3);
-                mdialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                mdialog.show();
-            }
-        });
-
-        V4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mdialog.setContentView(R.layout.activity_v4);
-                mdialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                mdialog.show();
-            }
-        });
-
-        V5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mdialog.setContentView(R.layout.activity_v5);
-                mdialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                mdialog.show();
-            }
-        });
 
         plus = findViewById(R.id.plus);
         plus.setOnClickListener(new View.OnClickListener() {
@@ -239,11 +292,52 @@ public class Store extends AppCompatActivity {
             retrieveUserPoints();
             for (int i = 0; i < NUM_PRODUCTS; i++) {
                 String productId = "product" + (i + 1);
-                fetchProductDataFromFirestore(i, productId, Product[i], ProductDescription[i]);
+                fetchProductDataFromFirestore(i, productId, Product[i], ProductDescription[i], prod, productdescription, productdes,pro);
                 retrieveProductImage(productId, phArray[i]);
             }
         }
+        // Inside your onCreate method or wherever you initialize the qrcode ImageViews
+        for (int i = 1; i <= 5; i++) {
+            String productName = "Product" + i;
+            fetchQRCode(productName, "qrcode" + i, qrcode, popup_qrcode);
+        }
     }
+
+    // Define a method to hide a view if touched outside
+    private boolean isTouchOutsideView(View view, MotionEvent motionEvent) {
+        int[] location = new int[2];
+        view.getLocationOnScreen(location);
+        int viewX = location[0];
+        int viewY = location[1];
+
+        float x = motionEvent.getRawX();
+        float y = motionEvent.getRawY();
+
+        return (x < viewX || x > viewX + view.getWidth() || y < viewY || y > viewY + view.getHeight());
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent event) {
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            if (isTouchOutsideView(v1, event)) {
+                v1.setVisibility(View.GONE);
+            }
+            if (isTouchOutsideView(v2, event)) {
+                v2.setVisibility(View.GONE);
+            }
+            if (isTouchOutsideView(v3, event)) {
+                v3.setVisibility(View.GONE);
+            }
+            if (isTouchOutsideView(v4, event)) {
+                v4.setVisibility(View.GONE);
+            }
+            if (isTouchOutsideView(v5, event)) {
+                v5.setVisibility(View.GONE);
+            }
+        }
+        return super.dispatchTouchEvent(event);
+    }
+
 
     private boolean getVisibilityState(String viewId) {
         return sharedPreferences.getBoolean(viewId, false);
@@ -255,7 +349,7 @@ public class Store extends AppCompatActivity {
         editor.apply();
     }
 
-    private void fetchProductDataFromFirestore(int index, String productId, TextView productNameTextView, TextView productDescriptionTextView) {
+    private void fetchProductDataFromFirestore(int index, String productId, TextView productNameTextView, TextView productDescriptionTextView, TextView[] prod, TextView[] productdescription,TextView[] pro, TextView[] productdes) {
         String documentName = "Product" + (index + 1); // Adjust the document name as needed
 
         // Fetch data from Firestore
@@ -269,21 +363,49 @@ public class Store extends AppCompatActivity {
                         // Update UI with fetched data
                         if (productName != null) {
                             productNameTextView.setText(productName);
+                            if (prod != null && index < prod.length) {
+                                prod[index].setText(productName); // Set in the prod array
+                                if (pro != null && index < pro.length) {
+                                    pro[index].setText(productName); // Set in the pro array
+                                } else {
+                                    Log.e("FetchData", "pro array is null or index is out of bounds");
+                                }
+                            } else {
+                                Log.e("FetchData", "prod array is null or index is out of bounds");
+                            }
                             // Save product name locally
                             saveProductLocally(productId, productName);
+                        } else {
+                            Log.e("FetchData", "productName is null");
                         }
-
                         if (productDescription != null) {
+                            // Set the product description in both arrays
                             productDescriptionTextView.setText(productDescription);
+                            if (productdescription != null && index < productdescription.length) {
+                                productdescription[index].setText(productDescription); // Set in the productdescription array
+                            } else {
+                                Log.e("FetchData", "productdescription array is null or index is out of bounds");
+                            }
+                            if (productdes != null && index < productdes.length) {
+                                productdes[index].setText(productDescription); // Set in the productdes array
+                            } else {
+                                Log.e("FetchData", "productdes array is null or index is out of bounds");
+                            }
                             // Save product description locally
                             saveProductDescriptionLocally(productId, productDescription);
+                        } else {
+                            Log.e("FetchData", "productDescription is null");
                         }
+                    } else {
+                        Log.e("FetchData", "Document does not exist for index: " + index);
                     }
                 })
                 .addOnFailureListener(e -> {
                     showToast("Error fetching product data from Firestore: " + e.getMessage());
+                    Log.e("FetchData", "Error fetching product data: " + e.getMessage());
                 });
     }
+
     private void saveProductLocally(String productId, String productName) {
         SharedPreferences productPrefs = getSharedPreferences(PRODUCT_PREFS_NAME, MODE_PRIVATE);
         SharedPreferences.Editor editor = productPrefs.edit();
@@ -320,6 +442,54 @@ public class Store extends AppCompatActivity {
                     // Add a log or Toast message here
                 });
     }
+    private void fetchQRCode(String productName, String qrcodeImageName, ImageView[] qrcode, ImageView[] popup_qrcode) {
+        for (int i = 0; i < qrcode.length; i++) {
+            final int index = i;
+            StorageReference storageRef = FirebaseStorage.getInstance()
+                    .getReference()
+                    .child("QR CODES/Product" + (index + 1) + "/qr_code.png");
+
+            try {
+                // Create temporary files for both qrcode and popup_qrcode arrays
+                File localFileQr = File.createTempFile("images", "png");
+                File localFilePopup = File.createTempFile("images", "png");
+
+                // Retrieve the file from Firebase Storage for qrcode array
+                storageRef.getFile(localFileQr)
+                        .addOnSuccessListener(taskSnapshot -> {
+                            // Load the image into the qrcode ImageView using Glide
+                            Glide.with(Store.this)
+                                    .load(localFileQr)
+                                    .into(qrcode[index]);
+
+                            Log.d("QRCode", "QR code image successfully set to qrcode ImageView " + index);
+                        })
+                        .addOnFailureListener(e -> {
+                            // Handle any errors and log the error message
+                            Log.e("QRCode", "Error downloading QR code image for qrcode " + index + ": " + e.getMessage());
+                        });
+
+                // Retrieve the file from Firebase Storage for popup_qrcode array
+                storageRef.getFile(localFilePopup)
+                        .addOnSuccessListener(taskSnapshot -> {
+                            // Load the image into the popup_qrcode ImageView using Glide
+                            Glide.with(Store.this)
+                                    .load(localFilePopup)
+                                    .into(popup_qrcode[index]);
+
+                            Log.d("QRCode", "QR code image successfully set to popup_qrcode ImageView " + index);
+                        })
+                        .addOnFailureListener(e -> {
+                            // Handle any errors and log the error message
+                            Log.e("QRCode", "Error downloading QR code image for popup_qrcode " + index + ": " + e.getMessage());
+                        });
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
     private void retrieveUserPoints() {
         String userId = currentUser.getUid();
