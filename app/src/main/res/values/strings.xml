@@ -276,78 +276,6 @@
 
         "Bold, graphic, intentional.\n\n"
 
-        "The foundational elements of print based design typography, grids, space, scale, color, "
-        "and use of imagery guide visual treatments. These elements do far more than please the "
-        "eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge "
-        "imagery, large scale typography, and intentional white space create a bold and graphic "
-        "interface that immerse the user in the experience.\n"
-        "An emphasis on user actions makes core functionality immediately apparent and provides "
-        "waypoints for the user.\n\n"
-
-        "Motion provides meaning.\n\n"
-
-        "Motion respects and reinforces the user as the prime mover. Primary user actions are "
-        "inflection points that initiate motion, transforming the whole design.\n"
-        "All action takes place in a single environment. Objects are presented to the user without "
-        "breaking the continuity of experience even as they transform and reorganize.\n"
-        "Motion is meaningful and appropriate, serving to focus attention and maintain continuity. "
-        "Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\n\n"
-
-        "3D world.\n\n"
-
-        "The material environment is a 3D space, which means all objects have x, y, and z "
-        "dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the "
-        "positive z-axis extending towards the viewer. Every sheet of material occupies a single "
-        "position along the z-axis and has a standard 1dp thickness.\n"
-        "On the web, the z-axis is used for layering and not for perspective. The 3D world is "
-        "emulated by manipulating the y-axis.\n\n"
-
-        "Light and shadow.\n\n"
-
-        "Within the material environment, virtual lights illuminate the scene. Key lights create "
-        "directional shadows, while ambient light creates soft shadows from all angles.\n"
-        "Shadows in the material environment are cast by these two light sources. In Android "
-        "development, shadows occur when light sources are blocked by sheets of material at "
-        "various positions along the z-axis. On the web, shadows are depicted by manipulating the "
-        "y-axis only. The following example shows the card with a height of 6dp.\n\n"
-
-        "Resting elevation.\n\n"
-
-        "All material objects, regardless of size, have a resting elevation, or default elevation "
-        "that does not change. If an object changes elevation, it should return to its resting "
-        "elevation as soon as possible.\n\n"
-
-        "Component elevations.\n\n"
-
-        "The resting elevation for a component type is consistent across apps (e.g., FAB elevation "
-        "does not vary from 6dp in one app to 16dp in another app).\n"
-        "Components may have different resting elevations across platforms, depending on the depth "
-        "of the environment (e.g., TV has a greater depth than mobile or desktop).\n\n"
-
-        "Responsive elevation and dynamic elevation offsets.\n\n"
-
-        "Some component types have responsive elevation, meaning they change elevation in response "
-        "to user input (e.g., normal, focused, and pressed) or system events. These elevation "
-        "changes are consistently implemented using dynamic elevation offsets.\n"
-        "Dynamic elevation offsets are the goal elevation that a component moves towards, relative "
-        "to the component’s resting state. They ensure that elevation changes are consistent "
-        "across actions and component types. For example, all components that lift on press have "
-        "the same elevation change relative to their resting elevation.\n"
-        "Once the input event is completed or cancelled, the component will return to its resting "
-        "elevation.\n\n"
-
-        "Avoiding elevation interference.\n\n"
-
-        "Components with responsive elevations may encounter other components as they move between "
-        "their resting elevations and dynamic elevation offsets. Because material cannot pass "
-        "through other material, components avoid interfering with one another any number of ways, "
-        "whether on a per component basis or using the entire app layout.\n"
-        "On a component level, components can move or be removed before they cause interference. "
-        "For example, a floating action button (FAB) can disappear or move off screen before a "
-        "user picks up a card, or it can move if a snackbar appears.\n"
-        "On the layout level, design your app layout to minimize opportunities for interference. "
-        "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
-        "when a user tries to pick up one of cards.\n\n"
     </string>
 
     <!-- CANCELATION -->
@@ -417,43 +345,49 @@ Welcome! Thank you for your interest in our application.\n\n
 
     We strive to make our application proteted and available without inetrruption. To help us meet these goals, you agree that:\n\n
 
-    1. You will not modify or disable any features of our application.\n
+    1. You will not modify or disable any features of our application.\n\n
 
-    2. You will not use our application in any fraudulent or malicious way.\n
+    2. You will not use our application in any fraudulent or malicious way.\n\n
 
-    3. You will not collect any information or data from our system or attempt to decipher any transmission to or from the database.\n
+    3. You will not collect any information or data from our system or attempt to decipher any transmission to or from the database.\n\n
 
     4. We reserve the right to terminate or suspend your access to our services at any time.\n\n
 
         <b>USER REGISTRATION:</b>\n\n
 
-    1. You agree to provide complete and accurate information in creating an account.\n
+    1. You agree to provide complete and accurate information in creating an account.\n\n
     2. You are responsible for maintaining the confidentiality of your account credentials including your username and password.\n\n
 
         <b>RESERVATION AND PAYMENT:</b>\n\n
 
-    1. The App serves as a reservation system for tours offered by the Sariaya Tourism Office. You may book tours, make payments using GCASH, and communicate to the Receptionist through the App.\n
+    1. The App serves as a reservation system for tours offered by the Sariaya Tourism Office. You may book tours, make payments using GCASH, and communicate to the Receptionist through the App.\n\n
 
-    2. Reservation fees and payment details are specified within the App, and you agree to comply with the stated terms.\n
+    2. Reservation fees and payment details are specified within the App, and you agree to comply with the stated terms.\n\n
 
-    3. In cases of transaction errors, the app cannot be held responsible for any financial losses incurred.\n\n
+    3.Booking fees include a reservation fee (₱500.00) and tour guide fee (₱500.00). Additionally, a ₱1000.00 downpayment is required if the itinerary includes entry to the Gala-Rodriguez Ancestral House. \n\n
+
+    4.Entrance fees: Don Catalino Rodriguez House - ₱500.00 for up to 5 persons, Gala-Rodriguez House - ₱4,500.00 for up to 20 persons. Any additional persons beyond the maximum will incur an extra fee, split equally among the maximum allowed for each ancestral house. \n\n
+
+    5. Cancellation policy: Reservations must be canceled within one week for a full refund, with the reservation cost being non-refundable after this period. Rescheduling incurs a ₱1,000.00 charge. \n\n
+
+    6. In cases of transaction errors, the app cannot be held responsible for any financial losses incurred.\n\n
 
         <b>HERITAGE HOUSE</b>\n
         <b>GALA RODRIGUEZ ANCESTRAL HOUSE</b>\n\n
 
-    1. Management will not be liable for damage/loss of any valuables or other personal property left in the Heritage house.\n
+    1. Management will not be liable for damage/loss of any valuables or other personal property left in the Heritage house.\n\n
 
     2. For documentation and advertisement purposes, Staffs of Gala Rodriguez Heritage House will take pictures and videos
         during the actual event subject to the approval of the guests. Rest assured the videos and pictures taken remain
-        exclusive property of PlAZA DE SHALOM (where the heritage house is located) subject to copyright and applicable laws and regulations.\n
+        exclusive property of PlAZA DE SHALOM (where the heritage house is located) subject to copyright and applicable laws and regulations.\n\n
 
     3. Guests can utilize the venue up to Four (4) hours maximum time. Excess rate per hour will charge regarding the contract.\n\n
 
         <b>POINTS AND DISCOUNTS:</b>\n\n
 
-    1. Historiaya points can be only redeemed for discounts at collaborated stores.\n
+    1. Historiaya points can be only redeemed for discounts at collaborated stores.\n\n
 
-    2. Points are subject to the rules and conditions specified within the App.\n
+    2. Points are subject to the rules and conditions specified within the App.\n\n
 
     3. Discounts offered through vouchers are subject to the terms set by the store managers.\n\n
 
@@ -472,6 +406,7 @@ Welcome! Thank you for your interest in our application.\n\n
     <string name="AboutOurApp">Discover Sariaya\'s history in a unique way! Our app uses cool technology to explore heritage sites, play fun quizzes, and plan your visit easily. Created with the Sariaya Tourism Office, it\'s your ticket to an exciting heritage adventure!</string>
     <string name="about1">The Historiaya Application is about exploring Sariaya\'s cultural treasures through an Android-based platform integrating Augmented Reality (AR), interactive activities like scavenger hunts, and engaging AR-assisted tours, providing an immersive heritage experience.</string>
     <string name="make_payment">Make Payment</string>
+    <string name="product_description">Product Description</string>
 
     <!-- RESCHED  USER DETAILS ACTIVITY -->
 
