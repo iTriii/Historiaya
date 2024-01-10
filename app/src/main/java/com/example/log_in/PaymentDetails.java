@@ -224,7 +224,7 @@ public class PaymentDetails extends AppCompatActivity {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 saveImage();
             } else {
-                Toast.makeText(PaymentDetails.this, "Please provide the required permission", Toast.LENGTH_SHORT).show();
+            //    Toast.makeText(PaymentDetails.this, "Please provide the required permission", Toast.LENGTH_SHORT).show();
             }
         }
     }

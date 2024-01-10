@@ -105,7 +105,7 @@ public class Payment extends AppCompatActivity {
                 // Build and show an AlertDialog
                 AlertDialog.Builder builder = new AlertDialog.Builder(Payment.this);
                 builder.setTitle("Booking Successful");
-                builder.setMessage("Your payment has been received. Please wait for confirmation of the Admin. Thank you!");
+                builder.setMessage("Your payment has been received.  Please wait for confirmation of the Admin. Thank you!");
 
                 // Add a positive button with a click listener
                 builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
