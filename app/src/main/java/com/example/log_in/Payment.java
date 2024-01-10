@@ -1,5 +1,7 @@
 package com.example.log_in;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -83,19 +85,45 @@ public class Payment extends AppCompatActivity {
 
         });
 
+//        okbtn.setOnClickListener(v -> {
+//            if (selectedImageUri == null) {
+//                Toast.makeText(Payment.this, "Please upload your proof of payment. Thank You!", Toast.LENGTH_LONG).show();
+//            } else {
+//                uploadImageToFirebaseStorage(selectedImageUri);
+//                // Toast.makeText(Payment.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
+////                progress.setVisibility(View.VISIBLE);
+//                startActivity(new Intent(getApplicationContext(), Main2.class));
+//            }
+//        });
+//    }
         okbtn.setOnClickListener(v -> {
             if (selectedImageUri == null) {
                 Toast.makeText(Payment.this, "Please upload your proof of payment. Thank You!", Toast.LENGTH_LONG).show();
             } else {
                 uploadImageToFirebaseStorage(selectedImageUri);
-                // Toast.makeText(Payment.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
-//                progress.setVisibility(View.VISIBLE);
-                startActivity(new Intent(getApplicationContext(), Main2.class));
+
+                // Build and show an AlertDialog
+                AlertDialog.Builder builder = new AlertDialog.Builder(Payment.this);
+                builder.setTitle("Booking Successful");
+                builder.setMessage("Your payment has been received. Please wait for confirmation of the Admin. Thank you!");
+
+                // Add a positive button with a click listener
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.dismiss();
+                        // Navigate to the next activity or perform any other actions
+                        startActivity(new Intent(getApplicationContext(), Main2.class));
+                    }
+                });
+
+                // Create and show the AlertDialog
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
             }
         });
-    }
 
-    @Override
+    }
+        @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
@@ -131,7 +159,9 @@ public class Payment extends AppCompatActivity {
 
     private void saveUserDataToFirestore(String imageUrl) {
         String userId = mAuth.getCurrentUser().getUid();
-        DocumentReference userDocRef = db.collection("users").document(userId).collection("proofOfPayment").document(); //CREATE A SUB COLLECTION FOR USER
+        String documentId = String.valueOf(System.currentTimeMillis()); // Use timestamp as the document ID
+        DocumentReference userDocRef = db.collection("users").document(userId).collection("proofOfPayment").document(documentId);
+
         userDocRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 Map<String, Object> user = new HashMap<>();
@@ -143,7 +173,6 @@ public class Payment extends AppCompatActivity {
                 user.put("ImageUrl", imageUrl);
 
                 userDocRef.set(user).addOnSuccessListener(documentReference -> {
-                    //  Toast.makeText(getApplicationContext(), "Successfully Uploaded!", Toast.LENGTH_SHORT).show();
                     startActivity(new Intent(getApplicationContext(), Main2.class));
                     finish();
                 }).addOnFailureListener(exception -> {
@@ -155,6 +184,7 @@ public class Payment extends AppCompatActivity {
         // Add a Log statement to check the imageUrl
         Log.d(TAG, "Image URL: " + imageUrl);
     }
+
     private void goBack() {
         // For instance, you can navigate to another activity or finish the current one
         Intent intent = new Intent(this, PaymentDetails.class);

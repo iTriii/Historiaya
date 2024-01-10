@@ -22,13 +22,14 @@ import java.util.ArrayList;
 public class CancellationAdapter extends RecyclerView.Adapter<CancellationAdapter.MyViewHolder> {
 
     Context context;
-    ArrayList<User> cancellationList;
+    ArrayList<User> userArrayList;
     private final FirebaseFirestore db;
+    private Object UpdatingtheTouristText;
 
     // Constructor to initialize the adapter with context, cancellation data, and Firestore instance
-    public CancellationAdapter(Context context, ArrayList<User> cancellationList, FirebaseFirestore db) {
+    public CancellationAdapter(Context context, ArrayList<User> userArrayList, FirebaseFirestore db) {
         this.context = context;
-        this.cancellationList = cancellationList;
+        this.userArrayList = userArrayList;
         this.db = db;
     }
 
@@ -43,42 +44,86 @@ public class CancellationAdapter extends RecyclerView.Adapter<CancellationAdapte
     @Override
     public void onBindViewHolder(CancellationAdapter.@NonNull MyViewHolder holder, int position) {
         // Get the cancellation data at the current position
-        User cancellation = cancellationList.get(position);
+        User cancellation = userArrayList.get(position);
 
-        // Handle button clicks
-        holder.approvedbtn.setOnClickListener(v -> onAcceptButtonClick(cancellation));
-        holder.rejectdbtn.setOnClickListener(v -> onRejectButtonClick(cancellation));
+        // Check if the user is already processed
+        if (!isAlreadyProcessed(cancellation)) {
+            // Handle button clicks
+            holder.approvedbtn.setOnClickListener(v -> onAcceptButtonClick(cancellation));
+            holder.rejectdbtn.setOnClickListener(v -> onRejectButtonClick(cancellation));
 
-        // Set the values to the TextView widgets
-        holder.MonthCancelText.setText(cancellation.getReservedDate());
-        holder.BahayPendingCancelText.setText(cancellation.getSelectedTour());
-        holder.ArawPendingCancelText.setText(cancellation.getReservedDate());
-        holder.bookebyNameCancel.setText(cancellation.getEmail());
-        holder.TotalNumberCancel.setText(cancellation.getSelectedTouristNum());
-        holder.SelectedHouseCancel.setText(cancellation.getSelectedTour());
-        holder.AmountTextCancel.setText(String.valueOf(cancellation.getTotalAmount()));
+            // Set the values to the TextView widgets
+            holder.MonthCancelText.setText(cancellation.getReservedDate());
+            holder.BahayPendingCancelText.setText(cancellation.getSelectedTour());
+            holder.ArawPendingCancelText.setText(cancellation.getReservedDate()); // Set the correct value here
+            holder.bookebyNameCancel.setText(cancellation.getEmail());
+            holder.TotalNumberCancel.setText(cancellation.getSelectedTouristNum());
+            holder.SelectedHouseCancel.setText(cancellation.getSelectedTour());
+            holder.AmountTextCancel.setText(String.valueOf(cancellation.getTotalAmount()));
+        } else {
+            // If the user is already processed, remove from the ArrayList
+            userArrayList.remove(position);
+            notifyItemRemoved(position);
+        }
     }
 
-    // Method to handle the acceptance of a cancellation request
+    // Method to handle the acptance of a cancellation request
     private void onAcceptButtonClick(User cancellation) {
-        updateStatusInDatabase(cancellation, "Cancellation (Approved)");
+        if (!isAlreadyProcessed(cancellation)) {
+            updateStatusInDatabase(cancellation, "Cancellation (Approved)");
+            updateStatusColor("red"); // Change status color to red
+        } else {
+            Log.d("CancellationAdapter", "User already processed");
+        }
     }
 
-    // Method to handle the rejection of a cancellation request
     private void onRejectButtonClick(User cancellation) {
-        updateStatusInDatabase(cancellation, "Cancellation (Rejected)");
+        if (!isAlreadyProcessed(cancellation)) {
+            updateStatusInDatabase(cancellation, "Cancellation (Rejected)");
+            updateStatusColor("red"); // Change status color to red
+        } else {
+            Log.d("CancellationAdapter", "User already processed");
+        }
     }
+
+    // Method to update status color
+    private void updateStatusColor(String color) {
+
+        if (UpdatingtheTouristText != null) {
+            int colorRes = getColorRes(color); // Get the color resource based on the color name
+            UpdatingtheTouristText.notify();
+        }
+    }
+
+    // Method to get color resource based on color name
+    private int getColorRes(String colorName) {
+        switch (colorName.toLowerCase()) {
+            case "red":
+                return R.color.salmon; // Replace with your actual red color resource
+            // Add more cases for other colors if needed
+            default:
+                return R.color.black; // Replace with your default color resource
+        }
+    }
+
+
+    private boolean isAlreadyProcessed(User user) {
+        // Check if the user has already been approved or rejected
+        return user != null && user.getStatus() != null &&
+                (user.getStatus().equals("Cancellation (Approved)") || user.getStatus().equals("Cancellation (Rejected)"));
+    }
+
 
     // Method to handle updating the status in the database and removing from the list
     @SuppressLint("NotifyDataSetChanged")
-    private void updateStatusInDatabase(User user, String cancellationStatus) {
+    private void updateStatusInDatabase(User user, String status) {
         if (user != null && user.getUid() != null) {
             db.collection("users")
                     .document(user.getUid())
-                    .update("cancellationStatus", cancellationStatus)
+                    .update("status", status)
                     .addOnSuccessListener(aVoid -> {
-                        user.setStatus(cancellationStatus);
-                        cancellationList.remove(user);
+                        user.setStatus(status);
+                        userArrayList.remove(user);
                         notifyDataSetChanged();
                         Log.d("CancellationAdapter", "Item updated successfully");
                     })
@@ -95,7 +140,7 @@ public class CancellationAdapter extends RecyclerView.Adapter<CancellationAdapte
     //ALL USERS
     @Override
     public int getItemCount() {
-        return cancellationList.size();
+        return userArrayList.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {

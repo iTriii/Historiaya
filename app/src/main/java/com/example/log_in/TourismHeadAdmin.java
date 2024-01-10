@@ -504,8 +504,9 @@ public class TourismHeadAdmin extends AppCompatActivity {
 
                                 // Filter by cancellationStatus
                                 for (User user : cancellationHashMap.values()) {
-                                    if (user.iscancellationStatus()) {
-                                        cancellationList.add(user);
+                                    // Add only users with cancellationStatus not "Cancellation (Approved)" or "Cancellation (Rejected)"
+                                    if (!user.iscancellationStatus()) {
+                                        userArrayList.add(user);
                                     }
                                 }
 
@@ -646,7 +647,7 @@ public class TourismHeadAdmin extends AppCompatActivity {
     private void retrieveCancellationDataFromFirestore() {
         // Initialize Firestore references
         CollectionReference cancellationCollectionRef = db.collection("users");
-        Query cancellationQuery = cancellationCollectionRef.orderBy("cancellationStatus", Query.Direction.ASCENDING);
+        Query cancellationQuery = cancellationCollectionRef.orderBy("status", Query.Direction.ASCENDING);
 
         cancellationQuery.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @SuppressLint("NotifyDataSetChanged")

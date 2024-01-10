@@ -24,7 +24,7 @@
             android:layout_marginStart="-60dp"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/montserrat_bold"
-            android:text="@string/november"
+            android:text="January"
             android:textColor="#000000"
             android:textSize="15sp" />
 
@@ -63,7 +63,6 @@
                     android:layout_marginStart="50dp"
                     android:layout_marginTop="2dp"
                     android:fontFamily="@font/montserrat"
-                    android:text=" November 15, 2023"
                     android:textColor="#000000"
                     android:textSize="15sp" />
 

@@ -38,22 +38,36 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
         return new MyViewHolder(v);
     }
 
+
     @Override
     public void onBindViewHolder(MyAdapter.@NonNull MyViewHolder holder, int position) {
         User user = userArrayList.get(position);
 
-        // Handle button clicks
-        holder.approvedbtn.setOnClickListener(v -> onAcceptButtonClick(user));
-        holder.rejectdbtn.setOnClickListener(v -> onRejectButtonClick(user));
+        // Check if the user is confirmed or cancelled, and skip displaying the item
+        if (!isConfirmedOrCancelled(user)) {
+            // Handle button clicks
+            holder.approvedbtn.setOnClickListener(v -> onAcceptButtonClick(user));
+            holder.rejectdbtn.setOnClickListener(v -> onRejectButtonClick(user));
 
-        holder.pendingMonthText.setText(user.getReservedDate());
-        holder.bahayPendingText.setText(user.getSelectedTour());
-        holder.arawPendingText.setText(user.getReservedDate());
-        holder.bookedByPending.setText(user.getEmail());
-        holder.totalNumberPending.setText(user.getSelectedTouristNum());
-        holder.selectedHousePending.setText(user.getSelectedTour());
-        holder.AmountTextTH.setText(String.valueOf(user.getTotalAmount()));
+            holder.pendingMonthText.setText(user.getReservedDate());
+            holder.bahayPendingText.setText(user.getSelectedTour());
+            holder.arawPendingText.setText(user.getReservedDate());
+            holder.bookedByPending.setText(user.getEmail());
+            holder.totalNumberPending.setText(user.getSelectedTouristNum());
+            holder.selectedHousePending.setText(user.getSelectedTour());
+            holder.AmountTextTH.setText(String.valueOf(user.getTotalAmount()));
+        } else {
+            // If the user is confirmed or cancelled, hide the itemView
+            holder.itemView.setVisibility(View.GONE);
+        }
     }
+
+    // Method to check if the user is confirmed or cancelled
+    private boolean isConfirmedOrCancelled(User user) {
+        return user != null && user.getStatus() != null &&
+                (user.getStatus().equals("Confirmed Booking") || user.getStatus().equals("Cancelled Booking"));
+    }
+
 
     private void onAcceptButtonClick(User user) {
         updateStatusInDatabase(user, "Confirmed Booking ");
@@ -65,6 +79,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     // Method to handle updating the status in the database and removing from the list
     @SuppressLint("NotifyDataSetChanged")
+
     private void updateStatusInDatabase(User user, String status) {
         if (user != null && user.getUid() != null) {
             db.collection("users")

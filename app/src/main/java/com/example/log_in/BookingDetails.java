@@ -12,7 +12,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,25 +31,23 @@ import java.util.Locale;
 import java.util.Map;
 
 public class BookingDetails extends AppCompatActivity {
-    //FOR UPDATE ONLY
+
     private Spinner spinTour, spinNum;
     private Dialog dialog;
     private Button btnnext, btncancel, confirmbtn;
     private FirebaseAuth mAuth;
     private FirebaseFirestore db;
-    private TextView Date, Time,calendartextview,Timetextview;
+    private TextView Date, Time;
     private Calendar calendar;
     private ImageButton reschedcalendarbtn, reschedtimebtn, backkk;
     public Object selectedDate;
     private String selectedTime;
-    ImageView timeview, calendarviewww;
-
+    public Object selectedOption;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_details);
-
 
         spinTour = findViewById(R.id.spinTour);
         spinNum = findViewById(R.id.spinNum);
@@ -61,10 +58,6 @@ public class BookingDetails extends AppCompatActivity {
         Date = findViewById(R.id.Date);
         Time = findViewById(R.id.Time);
         backkk = findViewById(R.id.backkk);
-        timeview = findViewById(R.id.timeview);
-        calendarviewww = findViewById(R.id.calendar);
-        Timetextview = findViewById(R.id.Timetextview);
-        calendartextview = findViewById(R.id.calendartextview);
 
         // Initialize the dialog
         dialog = new Dialog(BookingDetails.this);
@@ -76,7 +69,6 @@ public class BookingDetails extends AppCompatActivity {
 
         // Find buttons in the dialog layout
         confirmbtn = dialog.findViewById(R.id.confirmbtn);
-        //NAVIGATE TO REFUND USER COPY ONCE THE USER CONFIRM IT
         confirmbtn.setOnClickListener(v -> {
             Intent backIntent = new Intent(BookingDetails.this, RefundUserCopy.class);
             startActivity(backIntent);
@@ -103,16 +95,12 @@ public class BookingDetails extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
         calendar = Calendar.getInstance();
-
-        //listeners
         setupSpinners();
         setupButtonClickListener();
         setupDatePicker();
     }
 
-
     // DATE PICKER
-// DATE PICKER
     private void setupDatePicker() {
         // Initialize DatePickerDialog
         reschedcalendarbtn.setOnClickListener(v -> {
@@ -137,7 +125,7 @@ public class BookingDetails extends AppCompatActivity {
                         SimpleDateFormat sdfDate = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH);
                         selectedDate = sdfDate.format(selectedCalendar.getTime());
 
-                        calendartextview.setText(selectedDate.toString());
+                        Date.setText("Selected Date: " + selectedDate);
 
                         // Check if the selected date is in the past
                         if (isDateInPast(year1, month1, dayOfMonth1)) {
@@ -145,8 +133,7 @@ public class BookingDetails extends AppCompatActivity {
                             showToast("Selected date is not valid! Choose another Day");
                             selectedDate = null;
                         } else {
-                            // Hide the ImageView
-                            calendarviewww.setVisibility(View.GONE);
+                            //   showToast("Selected date is valid!");
                         }
                     },
                     year,
@@ -170,10 +157,8 @@ public class BookingDetails extends AppCompatActivity {
 
                         SimpleDateFormat sdfTime = new SimpleDateFormat("hh:mm a", Locale.ENGLISH);
                         selectedTime = sdfTime.format(selectedTimeCalendar.getTime());
-                        Timetextview.setText(selectedTime);
 
-                        // Hide the ImageView
-                        timeview.setVisibility(View.GONE);
+                        Time.setText("Resched Time: " + selectedTime);
                     },
                     calendar.get(Calendar.HOUR_OF_DAY),
                     calendar.get(Calendar.MINUTE),
@@ -199,9 +184,10 @@ public class BookingDetails extends AppCompatActivity {
 
         // Create a new document in the "rescheduleBooking" collection
         DocumentReference newBookingDocRef = rescheduleBookingCollectionRef.document();
+
         // Check if the selected date and time are null
         if (selectedDate == null || selectedTime == null || TextUtils.isEmpty(selectedTime)) {
-       // return;
+//            return;
         }
 
         // Validate the selected date and time
@@ -275,7 +261,7 @@ public class BookingDetails extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), s, Toast.LENGTH_SHORT).show();
     }
 
-    // INITIALIZE THE BUTTON NEXT
+    // btn next.
     private void setupButtonClickListener() {
         btnnext.setOnClickListener(view -> {
             dialog.dismiss(); // show the dialogreschedule
@@ -289,7 +275,7 @@ public class BookingDetails extends AppCompatActivity {
             }
 
             // Get the selected date
-            Object selectedDate = calendartextview.getText().toString();
+            Object selectedDate = Date.getText().toString();
 
             // Check if the selected date is null or empty
             if (TextUtils.isEmpty(selectedDate.toString())) {

@@ -371,10 +371,10 @@
 
     <!--refund reason-->
     <string-array name="refund_options">
+        <item> Select Options</item>
         <item>Change of plans</item>
         <item>Wrong booking details</item>
         <item>Double booking</item>
-        <item>Other</item>
     </string-array>
 
     <!--StoreManager-->

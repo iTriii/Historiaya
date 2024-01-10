@@ -44,7 +44,6 @@ public class BookingDetailMain extends AppCompatActivity {
         totalText = findViewById(R.id.totalText);
         selectedtouristsText = findViewById(R.id.selectedtouristsText);
         datetext = findViewById(R.id.datetext);
-        refundbtn = findViewById(R.id.refundbtn);
         reschedbtn = findViewById(R.id.reschedbtn);
         cancelbtn = findViewById(R.id.cancelbtn);
         Donebut = findViewById(R.id.Donebut);
@@ -75,7 +74,7 @@ public class BookingDetailMain extends AppCompatActivity {
 
         // Click listeners for navigation buttons
         reschedbtn.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingDetailMain.this, RescheduleTourists.class);
+            Intent intent = new Intent(BookingDetailMain.this, BookNow.class);
             startActivity(intent);
         });
 
@@ -84,10 +83,6 @@ public class BookingDetailMain extends AppCompatActivity {
             startActivity(intent);
         });
 
-        refundbtn.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingDetailMain.this, BookingRefund.class);
-            startActivity(intent);
-        });
 
         cancelbtn.setOnClickListener(v -> {
             Intent intent = new Intent(BookingDetailMain.this, BookingCancellation.class);
