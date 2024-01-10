@@ -448,7 +448,7 @@
                         android:id="@+id/UpdatingtheTouristText"
                         android:layout_width="187dp"
                         android:layout_height="match_parent"
-                        android:layout_marginStart="160dp"
+                        android:layout_marginStart="170dp"
                         android:layout_marginTop="77dp"
                         android:fontFamily="@font/montserrat_bold"
                         android:textColor="@color/black"
