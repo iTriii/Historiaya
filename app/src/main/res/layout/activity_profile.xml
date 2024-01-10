@@ -446,13 +446,13 @@
 
                     <TextView
                         android:id="@+id/UpdatingtheTouristText"
-                        android:layout_width="145dp"
-                        android:layout_height="22sp"
-                        android:layout_marginStart="190dp"
+                        android:layout_width="187dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="160dp"
                         android:layout_marginTop="77dp"
                         android:fontFamily="@font/montserrat_bold"
                         android:textColor="@color/black"
-                        android:textSize="10sp" />
+                        android:textSize="13sp" />
 
                     <ImageView
                         android:id="@+id/imageView3"
