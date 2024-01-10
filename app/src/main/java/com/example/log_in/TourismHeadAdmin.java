@@ -475,8 +475,8 @@ public class TourismHeadAdmin extends AppCompatActivity {
                                 myAdapter.notifyDataSetChanged();
                                 break;
                             case UPCOMING_ADAPTER:
-                                upcomingList.clear();
-                                upcomingList.addAll(upcomingUserHashMap.values());
+                                userArrayList.clear();
+                                userArrayList.addAll(upcomingUserHashMap.values());
                                 UpcomingAdapter.notifyDataSetChanged();
                                 break;
                             case HISTORY_ADAPTER:
@@ -506,7 +506,7 @@ public class TourismHeadAdmin extends AppCompatActivity {
                                 for (User user : cancellationHashMap.values()) {
                                     // Add only users with cancellationStatus not "Cancellation (Approved)" or "Cancellation (Rejected)"
                                     if (!user.iscancellationStatus()) {
-                                        userArrayList.add(user);
+                                        cancellationList.add(user);
                                     }
                                 }
 
