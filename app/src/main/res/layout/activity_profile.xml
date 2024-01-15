@@ -246,7 +246,7 @@
         android:layout_width="350dp"
         android:layout_height="430dp"
         android:layout_marginTop="-20dp"
-        android:visibility="visible"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
@@ -288,6 +288,17 @@
                     android:fontFamily="@font/montserrat"
                     android:text="30 Points"
                     android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/MonthText1"
+                    android:layout_width="180dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="110dp"
+                    android:layout_marginTop="55dp"
+
+                    android:fontFamily="@font/montserrat"
+                    android:textColor="@color/GREEN"
+                    android:textSize="15sp" />
 
                 <TextView
                     android:layout_width="150dp"
@@ -518,10 +529,10 @@
 
     <ScrollView
         android:id="@+id/HistoryTab"
-        android:layout_width="350dp"
-        android:layout_height="430dp"
+        android:layout_width="400dp"
+        android:layout_height="450dp"
         android:layout_marginTop="-15dp"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
@@ -532,31 +543,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <TextView
-                android:id="@+id/DateHisto"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:textSize="15sp"
-                android:fontFamily="@font/montserrat_bold"
-                android:textColor="@color/black" />
-
             <LinearLayout
+                android:id="@+id/Booked1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center"
-                android:orientation="vertical">
+                android:visibility="gone"
+                android:padding="10dp">
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/booked1.1"
-                    android:layout_width="350dp"
-                    android:layout_height="107dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/shadow"
-                    app:cardCornerRadius="7dp">
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/booked"
+                        android:layout_width="350dp"
+                        android:layout_height="107dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/shadow"
+                        app:cardCornerRadius="7dp">
 
                     <ImageView
-                        android:id="@+id/housepickk"
                         android:layout_width="97dp"
                         android:layout_height="95dp"
                         android:layout_marginLeft="6dp"
@@ -564,29 +567,18 @@
                         android:background="@drawable/shadow"
                         android:src="@drawable/don_catalino1" />
 
-                    <TextView
-                        android:id="@+id/selectedTourTextt"
-                        android:layout_width="140dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="110dp"
-                        android:layout_marginTop="15dp"
-                        android:fontFamily="@font/montserrat_alternates_extrabold"
-                        android:textColor="@color/GREEN"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
+                        <TextView
+                            android:id="@+id/selectedTourText1"
+                            android:layout_width="140dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="110dp"
+                            android:layout_marginTop="15dp"
+                            android:fontFamily="@font/montserrat_alternates_extrabold"
+                            android:textColor="@color/GREEN"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
 
-                    <TextView
-                        android:id="@+id/MonthTextt"
-                        android:layout_width="180dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="110dp"
-                        android:layout_marginTop="55dp"
-                        android:fontFamily="@font/montserrat"
-                        android:textColor="@color/GREEN"
-                        android:textSize="15sp" />
-
-                    <Button
-                        android:id="@+id/doneitu"
+                        <Button
                         android:layout_width="95dp"
                         android:layout_height="30dp"
                         android:layout_marginStart="250dp"
@@ -597,12 +589,214 @@
                         android:text="Upcoming"
                         android:textAlignment="center"
                         android:textColor="@color/GREEN"
+                        android:textSize="10sp"/>
+                        <TextView
+                            android:id="@+id/Month1"
+                            android:layout_width="180dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="110dp"
+                            android:layout_marginTop="55dp"
+                            android:fontFamily="@font/montserrat"
+                            android:textColor="@color/GREEN"
+                            android:textSize="15sp" />
+                    </androidx.cardview.widget.CardView>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/Reschedule"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:padding="10dp">
+
+                        <androidx.cardview.widget.CardView
+                            android:id="@+id/booked1.1"
+                            android:layout_width="350dp"
+                            android:layout_height="107dp"
+                            android:layout_marginTop="10dp"
+                            android:background="@drawable/shadow"
+                            app:cardCornerRadius="7dp">
+
+                            <ImageView
+                                android:layout_width="97dp"
+                                android:layout_height="95dp"
+                                android:layout_marginLeft="6dp"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/shadow"
+                                android:src="@drawable/don_catalino1" />
+
+                            <TextView
+                                android:id="@+id/selectedTourTextt"
+                                android:layout_width="140dp"
+                                android:layout_height="30dp"
+                                android:layout_marginLeft="110dp"
+                                android:layout_marginTop="15dp"
+                                android:fontFamily="@font/montserrat_alternates_extrabold"
+                                android:textColor="@color/GREEN"
+                                android:textSize="13sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:id="@+id/MonthTextt"
+                                android:layout_width="180dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="110dp"
+                                android:layout_marginTop="55dp"
+                                android:fontFamily="@font/montserrat"
+                                android:textColor="@color/GREEN"
+                                android:textSize="15sp" />
+
+                            <Button
+                                android:id="@+id/doneitu"
+                                android:layout_width="95dp"
+                                android:layout_height="30dp"
+                                android:layout_marginStart="250dp"
+                                android:layout_marginTop="11dp"
+                                android:clickable="true"
+                                android:background="@drawable/ongoing"
+                                android:fontFamily="@font/montserrat_bold"
+                                android:text="Upcoming"
+                                android:textAlignment="center"
+                                android:textColor="@color/GREEN"
+                                android:textSize="10sp"
+                                tools:ignore="SmallSp" />
+
+
+                        </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/cancelled"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:visibility="gone"
+                android:padding="10dp">
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/bookedd2"
+                    android:layout_width="350dp"
+                    android:layout_height="107dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/shadow"
+                    app:cardCornerRadius="7dp">
+
+                    <ImageView
+                        android:layout_width="97dp"
+                        android:layout_height="95dp"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/shadow"
+                        android:src="@drawable/don_catalino1" />
+
+                    <TextView
+                        android:id="@+id/selectedTourText2"
+                        android:layout_width="140dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="110dp"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/montserrat_alternates_extrabold"
+                        android:textColor="@color/GREEN"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+
+                    <Button
+                        android:layout_width="95dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="250dp"
+                        android:layout_marginTop="11dp"
+                        android:clickable="true"
+                        android:background="@drawable/cancelbtn"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="Cancelled"
+                        android:textAlignment="center"
+                        android:textColor="@color/green"
                         android:textSize="10sp"
                         tools:ignore="SmallSp" />
 
-
+                    <TextView
+                        android:id="@+id/Month2"
+                        android:layout_width="226dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="110dp"
+                        android:layout_marginTop="55dp"
+                        android:fontFamily="@font/montserrat"
+                        android:text="CANCELLATION (APPROVED)"
+                        android:textColor="@color/GREEN"
+                        android:textSize="15sp" />
                 </androidx.cardview.widget.CardView>
             </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/cancelled1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:visibility="gone"
+                android:padding="10dp">
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/bookedd3"
+                    android:layout_width="350dp"
+                    android:layout_height="107dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/shadow"
+                    app:cardCornerRadius="7dp">
+
+                    <ImageView
+                        android:layout_width="97dp"
+                        android:layout_height="95dp"
+                        android:layout_marginLeft="6dp"
+                        android:layout_marginTop="5dp"
+                        android:background="@drawable/shadow"
+                        android:src="@drawable/don_catalino1" />
+
+                    <TextView
+                        android:id="@+id/selectedTourText3"
+                        android:layout_width="140dp"
+                        android:layout_height="30dp"
+                        android:layout_marginLeft="110dp"
+                        android:layout_marginTop="15dp"
+                        android:fontFamily="@font/montserrat_alternates_extrabold"
+                        android:textColor="@color/GREEN"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+
+                    <Button
+                        android:layout_width="95dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="250dp"
+                        android:layout_marginTop="11dp"
+                        android:clickable="true"
+                        android:background="@drawable/cancelbtn"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="Cancelled"
+                        android:textAlignment="center"
+                        android:textColor="@color/green"
+                        android:textSize="10sp"
+                        tools:ignore="SmallSp" />
+
+                    <TextView
+                        android:id="@+id/Month3"
+                        android:layout_width="226dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="110dp"
+                        android:layout_marginTop="55dp"
+                        android:fontFamily="@font/montserrat"
+                        android:text="CANCELLATION (APPROVED)"
+                        android:textColor="@color/GREEN"
+                        android:textSize="15sp" />
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -107,7 +107,7 @@ public class BookingCancellation extends AppCompatActivity {
         confirmbtn.setOnClickListener(v -> {
             Intent confirmIntent = new Intent(BookingCancellation.this, BookingDetailMain.class);
             startActivity(confirmIntent);
-           //Toast.makeText(BookingCancellation.this, "Confirm Cancellation, please wait for approval", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(BookingCancellation.this, "Confirm Cancellation, please wait for approval", Toast.LENGTH_SHORT).show();
 
             dialog.dismiss();
         });
@@ -186,10 +186,10 @@ public class BookingCancellation extends AppCompatActivity {
                 .document(userId)
                 .update("status", status)
                 .addOnSuccessListener(aVoid -> {
-                 //   showToast("Cancellation status updated successfully");
+                    //   showToast("Cancellation status updated successfully");
                 })
                 .addOnFailureListener(e -> {
-                 //   showToast("Failed to update cancellation status: " + e.getMessage());
+                    //   showToast("Failed to update cancellation status: " + e.getMessage());
                 });
     }
 
@@ -239,7 +239,7 @@ public class BookingCancellation extends AppCompatActivity {
                         }
 
                     } else {
-                       // showToast("No booking data found in Firestore.");
+                        // showToast("No booking data found in Firestore.");
                     }
                 });
     }
@@ -260,7 +260,7 @@ public class BookingCancellation extends AppCompatActivity {
                     })
                     .addOnFailureListener(e -> {
                         // Show a toast message indicating an error in saving the option
-                     //   Toast.makeText(BookingCancellation.this, "Error saving refund option: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        //   Toast.makeText(BookingCancellation.this, "Error saving refund option: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     });
         }
     }

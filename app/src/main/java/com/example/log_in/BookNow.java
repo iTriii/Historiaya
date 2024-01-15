@@ -449,6 +449,99 @@ public class BookNow extends AppCompatActivity {
         return tourPrice;
     }
 
+//
+//    private void addDataToFirestore(String userId, String selectedTour, String selectedTouristNum, String reservedDate, double totalAmount, String selectedTime) {
+//        DocumentReference userDocRef = db.collection("users").document(userId);
+//        userDocRef.get().addOnCompleteListener(task -> {
+//            if (task.isSuccessful()) {
+//                Map<String, Object> bookingData = new HashMap<>();
+//                if (task.getResult() != null && task.getResult().getData() != null) {
+//                    bookingData.putAll(task.getResult().getData());
+//                }
+//
+//                // Check if the user has an existing booking
+//                boolean hasBooking = bookingData.containsKey("selectedTour") &&
+//                        bookingData.containsKey("selectedTouristNum") &&
+//                        bookingData.containsKey("reservedDate") &&
+//                        bookingData.containsKey("totalAmount") &&
+//                        bookingData.containsKey("selectedTime");
+//
+//                if (hasBooking) {
+//                    // Update the existing booking details
+//                    bookingData.put("selectedTour", selectedTour);
+//                    bookingData.put("selectedTouristNum", selectedTouristNum);
+//                    bookingData.put("reservedDate", reservedDate);
+//                    bookingData.put("totalAmount", totalAmount);
+//                    bookingData.put("selectedTime", selectedTime);
+//
+//                    userDocRef.update(bookingData).addOnSuccessListener(documentReference -> {
+//                        //  showToast("Booking details updated");
+//                        // You may want to add additional logic here if needed
+//                        updateStatusInFirestore("Pending");
+//                    }).addOnFailureListener(exception -> {
+//                        //  showToast("Failed to update booking details: " + exception.getMessage());
+//                    });
+//                } else {
+//                    // The user doesn't have an existing booking, create one
+//                    bookingData.put("selectedTour", selectedTour);
+//                    bookingData.put("selectedTouristNum", selectedTouristNum);
+//                    bookingData.put("reservedDate", reservedDate);
+//                    bookingData.put("totalAmount", totalAmount);
+//                    bookingData.put("selectedTime", selectedTime);
+//
+//                    userDocRef.set(bookingData).addOnSuccessListener(documentReference -> {
+//                        showToast("Booking created");
+//                        // Set status to "Pending" when a booking is created
+//                        updateStatusInFirestore("Pending");
+//                    }).addOnFailureListener(exception -> {
+//                        showToast("Failed to create booking: " + exception.getMessage());
+//                    });
+//                }
+//            } else {
+//                showToast("Error checking booking status: " + task.getException().getMessage());
+//            }
+//        });
+//    }
+//    private void updateBookingInFirestore(String userId, String selectedTour, String selectedTouristNum, String reservedDate, double totalAmount, String selectedTime) {
+//        DocumentReference userDocRef = db.collection("users").document(userId);
+//        userDocRef.get().addOnCompleteListener(task -> {
+//            if (task.isSuccessful()) {
+//                Map<String, Object> bookingData = new HashMap<>();
+//                if (task.getResult() != null && task.getResult().getData() != null) {
+//                    bookingData.putAll(task.getResult().getData());
+//                }
+//
+//                // Check if the user has an existing booking
+//                boolean hasBooking = bookingData.containsKey("selectedTour") &&
+//                        bookingData.containsKey("selectedTouristNum") &&
+//                        bookingData.containsKey("reservedDate") &&
+//                        bookingData.containsKey("totalAmount") &&
+//                        bookingData.containsKey("selectedTime");
+//
+//                if (hasBooking) {
+//                    // Update the existing booking details
+//                    bookingData.put("selectedTour", selectedTour);
+//                    bookingData.put("selectedTouristNum", selectedTouristNum);
+//                    bookingData.put("reservedDate", reservedDate);
+//                    bookingData.put("totalAmount", totalAmount);
+//                    bookingData.put("selectedTime", selectedTime);
+//
+//                    userDocRef.update(bookingData).addOnSuccessListener(documentReference -> {
+//                        showToast("Booking details updated");
+//                        // You may want to add additional logic here if needed
+//                    }).addOnFailureListener(exception -> {
+//                        showToast("Failed to update booking details: " + exception.getMessage());
+//                    });
+//                } else {
+//                    showToast("No existing booking found to update.");
+//                    // Handle the case where the user doesn't have an existing booking
+//                }
+//            } else {
+//                showToast("Error checking booking status: " + task.getException().getMessage());
+//            }
+//        });
+//    }
+
 
     private void addDataToFirestore(String userId, String selectedTour, String selectedTouristNum, String reservedDate, double totalAmount, String selectedTime) {
         DocumentReference userDocRef = db.collection("users").document(userId);
@@ -474,12 +567,17 @@ public class BookNow extends AppCompatActivity {
                     bookingData.put("totalAmount", totalAmount);
                     bookingData.put("selectedTime", selectedTime);
 
+                    // Increment the transaction count
+                    long currentTransactionCount = bookingData.containsKey("transactionCount") ?
+                            (Long) bookingData.get("transactionCount") : 0L;
+                    bookingData.put("transactionCount", currentTransactionCount + 1);
+
                     userDocRef.update(bookingData).addOnSuccessListener(documentReference -> {
-                      //  showToast("Booking details updated");
+                        // showToast("Booking details updated");
                         // You may want to add additional logic here if needed
                         updateStatusInFirestore("Pending");
                     }).addOnFailureListener(exception -> {
-                      //  showToast("Failed to update booking details: " + exception.getMessage());
+                        // showToast("Failed to update booking details: " + exception.getMessage());
                     });
                 } else {
                     // The user doesn't have an existing booking, create one
@@ -488,59 +586,23 @@ public class BookNow extends AppCompatActivity {
                     bookingData.put("reservedDate", reservedDate);
                     bookingData.put("totalAmount", totalAmount);
                     bookingData.put("selectedTime", selectedTime);
+                    // Initialize transaction count to 1 for a new booking
+                    bookingData.put("transactionCount", 1L);
 
                     userDocRef.set(bookingData).addOnSuccessListener(documentReference -> {
-                        showToast("Booking created");
+                        // showToast("Booking created");
                         // Set status to "Pending" when a booking is created
                         updateStatusInFirestore("Pending");
                     }).addOnFailureListener(exception -> {
-                        showToast("Failed to create booking: " + exception.getMessage());
+                        // showToast("Failed to create booking: " + exception.getMessage());
                     });
                 }
             } else {
-                showToast("Error checking booking status: " + task.getException().getMessage());
+                // showToast("Error checking booking status: " + task.getException().getMessage());
             }
         });
     }
-//    private void addOrUpdateBookingToFirestore(String userId, String selectedTour, String selectedTouristNum, String reservedDate, double totalAmount, String selectedTime) {
-//        DocumentReference userDocRef = db.collection("users").document(userId);
-//        userDocRef.get().addOnCompleteListener(task -> {
-//            if (task.isSuccessful()) {
-//                Map<String, Object> bookingData = new HashMap<>();
-//                if (task.getResult() != null && task.getResult().getData() != null) {
-//                    bookingData.putAll(task.getResult().getData());
-//                }
-//
-//                // Check the number of bookings
-//                int currentBookings = bookingData.containsKey("bookings") ? (int) bookingData.get("bookings") : 0;
-//
-//                if (currentBookings < 5) {
-//                    // The user doesn't have 5 bookings yet, proceed with creating a new booking
-//                    bookingData.put("selectedTour", selectedTour);
-//                    bookingData.put("selectedTouristNum", selectedTouristNum);
-//                    bookingData.put("reservedDate", reservedDate);
-//                    bookingData.put("totalAmount", totalAmount);
-//                    bookingData.put("selectedTime", selectedTime);
-//
-//                    // Increment the number of bookings
-//                    bookingData.put("bookings", currentBookings + 1);
-//
-//                    userDocRef.update(bookingData).addOnSuccessListener(documentReference -> {
-//                        showToast("Booking created");
-//                        // Set status to "Pending" when a booking is created
-//                        updateStatusInFirestore("Pending");
-//                    }).addOnFailureListener(exception -> {
-//                        showToast("Failed to create booking: " + exception.getMessage());
-//                    });
-//                } else {
-//                    // The user has reached the maximum allowed bookings, check if an existing booking needs to be updated
-//                    updateBookingInFirestore(userId, selectedTour, selectedTouristNum, reservedDate, totalAmount, selectedTime);
-//                }
-//            } else {
-//                showToast("Error checking booking status: " + task.getException().getMessage());
-//            }
-//        });
-//    }
+
 
     private void updateBookingInFirestore(String userId, String selectedTour, String selectedTouristNum, String reservedDate, double totalAmount, String selectedTime) {
         DocumentReference userDocRef = db.collection("users").document(userId);
@@ -566,18 +628,23 @@ public class BookNow extends AppCompatActivity {
                     bookingData.put("totalAmount", totalAmount);
                     bookingData.put("selectedTime", selectedTime);
 
+                    // Increment the transaction count
+                    long currentTransactionCount = bookingData.containsKey("transactionCount") ?
+                            (Long) bookingData.get("transactionCount") : 0L;
+                    bookingData.put("transactionCount", currentTransactionCount + 1);
+
                     userDocRef.update(bookingData).addOnSuccessListener(documentReference -> {
-                        showToast("Booking details updated");
+                     //   showToast("Booking details updated");
                         // You may want to add additional logic here if needed
                     }).addOnFailureListener(exception -> {
-                        showToast("Failed to update booking details: " + exception.getMessage());
+                 //       showToast("Failed to update booking details: " + exception.getMessage());
                     });
                 } else {
-                    showToast("No existing booking found to update.");
+                   // showToast("No existing booking found to update.");
                     // Handle the case where the user doesn't have an existing booking
                 }
             } else {
-                showToast("Error checking booking status: " + task.getException().getMessage());
+             //   showToast("Error checking booking status: " + task.getException().getMessage());
             }
         });
     }
@@ -599,14 +666,14 @@ public class BookNow extends AppCompatActivity {
             // Update only the status field in the "users" collection
             userDocRef.update(statusData)
                     .addOnSuccessListener(aVoid -> {
-                     //   showToast("Status updated successfully");
+                        //   showToast("Status updated successfully");
                     })
                     .addOnFailureListener(exception -> {
-                  //      showToast("Error updating status: " + exception.getMessage());
+                        //      showToast("Error updating status: " + exception.getMessage());
                         Log.e("Firestore Error", "Error updating status", exception);
                     });
         } catch (Exception e) {
-         //   showToast("Error updating status: " + e.getMessage());
+            //   showToast("Error updating status: " + e.getMessage());
             Log.e("Firestore Error", "Error updating status", e);
         }
     }

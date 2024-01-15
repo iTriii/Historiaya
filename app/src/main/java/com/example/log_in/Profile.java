@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.ScrollView;
@@ -35,7 +36,8 @@ import java.util.TimerTask;
 public class Profile extends AppCompatActivity {
     ImageButton back, EditProfile;
     ShapeableImageView icon;
-    TextView ProfileName, selectedTourText, MonthText, DateText, MonthTextt, selectedTourTextt,DateHisto, UpdatingtheTouristText; // Adjusted the order
+    LinearLayout cancelled,Reschedule,Booked1, cancelled1;
+    TextView selectedTourText3,Month2,selectedTourTextt,selectedTourText2,Month1,selectedTourText1,ProfileName, selectedTourText, MonthText, DateText, MonthTextt,DateHisto, UpdatingtheTouristText; // Adjusted the order
     FirebaseUser user;
     FirebaseAuth auth;
     RadioButton Achievements_Tab, MyBooking_Tab, History_Tab;
@@ -75,9 +77,17 @@ public class Profile extends AppCompatActivity {
         DateText = findViewById(R.id.DateText);
         MonthTextt = findViewById(R.id.MonthTextt);
         selectedTourTextt = findViewById(R.id.selectedTourTextt);
-        DateHisto = findViewById(R.id.DateHisto);
-        UpdatingtheTouristText = findViewById(R.id.UpdatingtheTouristText);
 
+
+     //   DateHisto = findViewById(R.id.DateHisto);
+        UpdatingtheTouristText = findViewById(R.id.UpdatingtheTouristText);
+        Month1 = findViewById(R.id.Month1);
+        selectedTourText2 = findViewById(R.id.selectedTourText2);
+        Month2 = findViewById(R.id.Month2);
+        cancelled = findViewById(R.id.cancelled);
+        Reschedule = findViewById(R.id.Reschedule);
+        Booked1 = findViewById(R.id.Booked1);
+        cancelled1 = findViewById(R.id.cancelled1);
 
         prog();
 
@@ -93,6 +103,7 @@ public class Profile extends AppCompatActivity {
         uno = findViewById(R.id.uno);
         dos = findViewById(R.id.dos);
         tres = findViewById(R.id.tres);
+        selectedTourText1 = findViewById(R.id.selectedTourText1);
 
         EditProfile = findViewById(R.id.EditProfile);
         EditProfile.setOnClickListener(v -> Profile_Edit());
@@ -160,6 +171,9 @@ public class Profile extends AppCompatActivity {
                             String selectedTour = documentSnapshot.getString("selectedTour");// display data in texview
                             String reservedDate = documentSnapshot.getString("reservedDate");
                             String status = documentSnapshot.getString("status");
+                            String selectedRefundOption = documentSnapshot.getString("selectedRefundOption");
+
+
                             //TextViews with the retrieved data
                             MonthText.setText(reservedDate);
                             if (MonthText != null) {
@@ -177,12 +191,44 @@ public class Profile extends AppCompatActivity {
                             if (selectedTourText != null){
                                 selectedTourText.setText(selectedTour);
                             }
+                            Month1.setText(reservedDate);
+                            if(Month1 != null){
+                                Month1.setText(reservedDate);
+                            }
+                            selectedTourText1.setText(selectedTour);
+                            if (selectedTourText1 != null){
+                                selectedTourText1.setText(selectedTour);
+                            }
+                            selectedTourText2.setText(selectedTour);
+                            if (selectedTourText2 != null){
+                                selectedTourText2.setText(selectedTour);
+                            }
+//                            Month2.setText(selectedRefundOption);
+//                            if (Month2 != null){
+//                                Month2.setText(selectedRefundOption);
+//                            }
                             // Update reservation status in the UI
                             if (UpdatingtheTouristText != null) {
                                 UpdatingtheTouristText.setText(status);
                             }
-                            //ADD AS LONG AS MAY IAADD
+                            // Set the visibility of the 'cancelled' LinearLayout based on selectedRefundOption
+                            if (selectedRefundOption != null && !selectedRefundOption.isEmpty()) {
+                                Log.d("ProfileActivity", "Setting cancelled LinearLayout to VISIBLE");
+                                cancelled.setVisibility(View.VISIBLE);
+                            } else {
+                                Log.d("ProfileActivity", "Setting cancelled LinearLayout to GONE");
+                                cancelled.setVisibility(View.GONE);
+                            }
 
+                            // Set the visibility of the 'cancelled' LinearLayout based on the status
+                            if ("Pending".equals(status)) {
+                                Log.d("ProfileActivity", "Setting Reschedule LinearLayout to VISIBLE");
+                                Reschedule.setVisibility(View.VISIBLE);
+                            } else {
+                                Log.d("ProfileActivity", "Setting reschedule LinearLayout to GONE");
+                                Reschedule.setVisibility(View.GONE);
+                            }
+                            //ADD AS LONG AS MAY IAADD
                             if (firstName != null && lastName != null) {
                                 ProfileName.setText(firstName + " " + lastName);
                             } else {
