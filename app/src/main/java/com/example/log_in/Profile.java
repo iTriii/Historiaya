@@ -49,7 +49,7 @@ public class Profile extends AppCompatActivity {
     public ListenerRegistration userDataListener;
     private static final int EDIT_PROFILE_REQUEST_CODE = 1;
 
-    Button upcomingbtn,adminView;
+    Button upcomingbtn, adminView;
 
 
     @Override
@@ -79,7 +79,7 @@ public class Profile extends AppCompatActivity {
         selectedTourTextt = findViewById(R.id.selectedTourTextt);
 
 
-     //   DateHisto = findViewById(R.id.DateHisto);
+        //   DateHisto = findViewById(R.id.DateHisto);
         UpdatingtheTouristText = findViewById(R.id.UpdatingtheTouristText);
         Month1 = findViewById(R.id.Month1);
         selectedTourText2 = findViewById(R.id.selectedTourText2);
@@ -165,6 +165,7 @@ public class Profile extends AppCompatActivity {
 
                     if (documentSnapshot.exists()) {
                         try {
+
                             String firstName = documentSnapshot.getString("FirstName");
                             String lastName = documentSnapshot.getString("LastName");
                             String imageUrl = documentSnapshot.getString("ImageUrl");
@@ -174,7 +175,7 @@ public class Profile extends AppCompatActivity {
                             String selectedRefundOption = documentSnapshot.getString("selectedRefundOption");
 
 
-                            //TextViews with the retrieved data
+                                //TextViews with the retrieved data
                             MonthText.setText(reservedDate);
                             if (MonthText != null) {
                                 MonthText.setText(reservedDate);
@@ -364,4 +365,106 @@ public class Profile extends AppCompatActivity {
         finish();
     }
 
+//    private void fetchAndDisplayUserData() {
+//        userDataListener = db.collection("users")
+//                .document(user.getUid())
+//                .addSnapshotListener((documentSnapshot, error) -> {
+//                    if (error != null) {
+//                        Log.e("ProfileActivity", "Error fetching user data: " + error.getMessage());
+//                        return;
+//                    }
+//
+//                    if (documentSnapshot.exists()) {
+//                        try {
+//                            String firstName = documentSnapshot.getString("FirstName");
+//                            String lastName = documentSnapshot.getString("LastName");
+//                            String imageUrl = documentSnapshot.getString("ImageUrl");
+//                            String selectedTour = documentSnapshot.getString("selectedTour");
+//                            String reservedDate = documentSnapshot.getString("reservedDate");
+//                            String status = documentSnapshot.getString("status");
+//                            String selectedRefundOption = documentSnapshot.getString("selectedRefundOption");
+//
+//                            // Fetch and display data from the "bookings" field
+//                            List<Map<String, Object>> bookingsList = (List<Map<String, Object>>) documentSnapshot.get("bookings");
+//                            if (bookingsList != null && !bookingsList.isEmpty()) {
+//                                // Assume we want to display data from the first booking in the list
+//                                Map<String, Object> firstBooking = bookingsList.get(0);
+//                                String selectedTour1 = (String) firstBooking.get("selectedTour");
+//                                String reservedDate1 = (String) firstBooking.get("reservedDate");
+//
+//                                // TextViews with the retrieved data
+//                                MonthText.setText(reservedDate);
+//                                if (MonthText != null) {
+//                                    MonthText.setText(reservedDate);
+//                                }
+//                                MonthTextt.setText(reservedDate);
+//                                if (MonthTextt != null) {
+//                                    MonthTextt.setText(reservedDate);
+//                                }
+//                                selectedTourTextt.setText(selectedTour);
+//                                if (selectedTourTextt != null) {
+//                                    selectedTourTextt.setText(selectedTour);
+//                                }
+//                                selectedTourText.setText(selectedTour);
+//                                if (selectedTourText != null) {
+//                                    selectedTourText.setText(selectedTour);
+//                                }
+//                                Month1.setText(reservedDate);
+//                                if (Month1 != null) {
+//                                    Month1.setText(reservedDate);
+//                                }
+//                                selectedTourText1.setText(selectedTour);
+//                                if (selectedTourText1 != null) {
+//                                    selectedTourText1.setText(selectedTour);
+//                                }
+//                                selectedTourText2.setText(selectedTour1);
+//                                if (selectedTourText2 != null) {
+//                                    selectedTourText2.setText(selectedTour1);
+//                                }
+//
+//                                // Update reservation status in the UI
+//                                if (UpdatingtheTouristText != null) {
+//                                    UpdatingtheTouristText.setText(status);
+//                                }
+//
+//                                // Set the visibility of the 'cancelled' LinearLayout based on selectedRefundOption
+//                                if (selectedRefundOption != null && !selectedRefundOption.isEmpty()) {
+//                                    Log.d("ProfileActivity", "Setting cancelled LinearLayout to VISIBLE");
+//                                    cancelled.setVisibility(View.VISIBLE);
+//                                } else {
+//                                    Log.d("ProfileActivity", "Setting cancelled LinearLayout to GONE");
+//                                    cancelled.setVisibility(View.GONE);
+//                                }
+//
+//                                // Set the visibility of the 'cancelled' LinearLayout based on the status
+//                                if ("Pending".equals(status)) {
+//                                    Log.d("ProfileActivity", "Setting Reschedule LinearLayout to VISIBLE");
+//                                    Reschedule.setVisibility(View.VISIBLE);
+//                                } else {
+//                                    Log.d("ProfileActivity", "Setting reschedule LinearLayout to GONE");
+//                                    Reschedule.setVisibility(View.GONE);
+//                                }
+//
+//                                // ADD AS LONG AS MAY IAADD
+//                                if (firstName != null && lastName != null) {
+//                                    ProfileName.setText(firstName + " " + lastName);
+//                                } else {
+//                                    ProfileName.setText("No Name Available");
+//                                }
+//
+//                                if (imageUrl != null && !imageUrl.isEmpty()) {
+//                                    RequestOptions requestOptions = new RequestOptions()
+//                                            .transforms(new CenterCrop(), new CircleCrop());
+//                                    Glide.with(Profile.this)
+//                                            .load(imageUrl)
+//                                            .apply(requestOptions)
+//                                            .into(icon);
+//                                }
+//                            }
+//                        } catch (Exception e) {
+//                            Log.e("ProfileActivity", "Error in fetchAndDisplayUserData: " + e.getMessage());
+//                        }
+//                    }
+//                });
+//    }
 }

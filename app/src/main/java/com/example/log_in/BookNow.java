@@ -35,9 +35,11 @@ import com.google.firebase.storage.StorageReference;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
@@ -547,56 +549,41 @@ public class BookNow extends AppCompatActivity {
         DocumentReference userDocRef = db.collection("users").document(userId);
         userDocRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                Map<String, Object> bookingData = new HashMap<>();
+                Map<String, Object> userData = new HashMap<>();
                 if (task.getResult() != null && task.getResult().getData() != null) {
-                    bookingData.putAll(task.getResult().getData());
+                    userData.putAll(task.getResult().getData());
                 }
 
-                // Check if the user has an existing booking
-                boolean hasBooking = bookingData.containsKey("selectedTour") &&
-                        bookingData.containsKey("selectedTouristNum") &&
-                        bookingData.containsKey("reservedDate") &&
-                        bookingData.containsKey("totalAmount") &&
-                        bookingData.containsKey("selectedTime");
+                // Check if the user has an existing list of bookings
+                List<Map<String, Object>> bookingsList = userData.containsKey("bookings") ?
+                        (List<Map<String, Object>>) userData.get("bookings") : new ArrayList<>();
 
-                if (hasBooking) {
-                    // Update the existing booking details
-                    bookingData.put("selectedTour", selectedTour);
-                    bookingData.put("selectedTouristNum", selectedTouristNum);
-                    bookingData.put("reservedDate", reservedDate);
-                    bookingData.put("totalAmount", totalAmount);
-                    bookingData.put("selectedTime", selectedTime);
+                // Create a new booking entry
+                Map<String, Object> bookingData = new HashMap<>();
+                bookingData.put("selectedTour", selectedTour);
+                bookingData.put("selectedTouristNum", selectedTouristNum);
+                bookingData.put("reservedDate", reservedDate);
+                bookingData.put("totalAmount", totalAmount);
+                bookingData.put("selectedTime", selectedTime);
+                // Initialize transaction count to 1 for a new booking
+                bookingData.put("transactionCount", 1L);
 
-                    // Increment the transaction count
-                    long currentTransactionCount = bookingData.containsKey("transactionCount") ?
-                            (Long) bookingData.get("transactionCount") : 0L;
-                    bookingData.put("transactionCount", currentTransactionCount + 1);
+                // Set the "hasBooking" field to true
+                bookingData.put("hasBooking", true);
 
-                    userDocRef.update(bookingData).addOnSuccessListener(documentReference -> {
-                        // showToast("Booking details updated");
-                        // You may want to add additional logic here if needed
-                        updateStatusInFirestore("Pending");
-                    }).addOnFailureListener(exception -> {
-                        // showToast("Failed to update booking details: " + exception.getMessage());
-                    });
-                } else {
-                    // The user doesn't have an existing booking, create one
-                    bookingData.put("selectedTour", selectedTour);
-                    bookingData.put("selectedTouristNum", selectedTouristNum);
-                    bookingData.put("reservedDate", reservedDate);
-                    bookingData.put("totalAmount", totalAmount);
-                    bookingData.put("selectedTime", selectedTime);
-                    // Initialize transaction count to 1 for a new booking
-                    bookingData.put("transactionCount", 1L);
+                // Add the new booking to the list
+                bookingsList.add(bookingData);
 
-                    userDocRef.set(bookingData).addOnSuccessListener(documentReference -> {
-                        // showToast("Booking created");
-                        // Set status to "Pending" when a booking is created
-                        updateStatusInFirestore("Pending");
-                    }).addOnFailureListener(exception -> {
-                        // showToast("Failed to create booking: " + exception.getMessage());
-                    });
-                }
+                // Update the user document with the new list of bookings
+                userData.put("bookings", bookingsList);
+
+                userDocRef.set(userData).addOnSuccessListener(documentReference -> {
+                    // showToast("New booking created");
+                    // Set status to "Pending" when a booking is created
+                    updateStatusInFirestore("Pending");
+                }).addOnFailureListener(exception -> {
+                    // showToast("Failed to create booking: " + exception.getMessage());
+                });
             } else {
                 // showToast("Error checking booking status: " + task.getException().getMessage());
             }
