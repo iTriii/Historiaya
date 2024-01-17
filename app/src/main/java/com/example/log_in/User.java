@@ -7,6 +7,7 @@ public class User {
     public static final String FIELD_STATUS = "status";
     public static final String FIELD_CANCELLATION_STATUS = "";
 
+
     private boolean cancelled;
 
     private String Email, reservedDate, selectedTour, selectedTouristNum, status, userId, cancellationStatus, Date;

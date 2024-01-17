@@ -75,9 +75,13 @@ public class CancellationAdapter extends RecyclerView.Adapter<CancellationAdapte
         if (user != null && user.getUid() != null) {
             db.collection("users")
                     .document(user.getUid())
-                    .update("status", status)
+                    .update(
+                            "status", status,
+                            "Cancelled", true  // Add the 'Cancelled' field and set it to true
+                    )
                     .addOnSuccessListener(aVoid -> {
                         user.setStatus(status);
+                        user.setCancelled(true);
                         cancellationList.remove(user);
                         notifyDataSetChanged();
                         Log.d("CancellationAdapter", "Item updated successfully");

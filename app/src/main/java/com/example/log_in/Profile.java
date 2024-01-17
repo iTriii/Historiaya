@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -19,6 +20,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.bitmap.CenterCrop;
@@ -30,11 +32,13 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
 
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 //FOR UPDATE ONLY
 public class Profile extends AppCompatActivity {
     ImageButton back, EditProfile;
+    Adapter BookingAdapter;
     ShapeableImageView icon;
     LinearLayout cancelled,Reschedule,Booked1, cancelled1;
     TextView selectedTourText3,Month2,selectedTourTextt,selectedTourText2,Month1,selectedTourText1,ProfileName, selectedTourText, MonthText, DateText, MonthTextt,DateHisto, UpdatingtheTouristText; // Adjusted the order
@@ -43,6 +47,7 @@ public class Profile extends AppCompatActivity {
     RadioButton Achievements_Tab, MyBooking_Tab, History_Tab;
     ScrollView AchievementsTab, MyBookingTab, HistoryTab;
     View uno, dos, tres;
+    RecyclerView Booking_RV;
     ProgressBar quest_progressbar, scavenger_progressbar, quiz_progressbar;
     int counter = 0;
     private FirebaseFirestore db;
@@ -50,12 +55,29 @@ public class Profile extends AppCompatActivity {
     private static final int EDIT_PROFILE_REQUEST_CODE = 1;
 
     Button upcomingbtn, adminView;
+    private boolean Cancelled;
 
+    private List<Booking> bookingList;
+    private String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+
+
+//        // Initialize the RecyclerView and the booking list
+//        Booking_RV= findViewById(R.id.Booking_RV);
+//        bookingList = new ArrayList<>();
+//        BookingAdapter = (Adapter) new BookingAdapter(bookingList);
+//
+//        // Set the layout manager for the RecyclerView
+//        Booking_RV.setLayoutManager(new LinearLayoutManager(this));
+//
+//        // Set the adapter for the RecyclerView
+//        Booking_RV.setAdapter((RecyclerView.Adapter) BookingAdapter);
+
+
         OnBackPressedDispatcher onBackPressedDispatcher = getOnBackPressedDispatcher();
         OnBackPressedCallback callback = new OnBackPressedCallback(true /* enabled by default */) {
             @Override
@@ -79,7 +101,7 @@ public class Profile extends AppCompatActivity {
         selectedTourTextt = findViewById(R.id.selectedTourTextt);
 
 
-        //   DateHisto = findViewById(R.id.DateHisto);
+          // DateHisto = findViewById(R.id.DateHisto);
         UpdatingtheTouristText = findViewById(R.id.UpdatingtheTouristText);
         Month1 = findViewById(R.id.Month1);
         selectedTourText2 = findViewById(R.id.selectedTourText2);
@@ -134,6 +156,7 @@ public class Profile extends AppCompatActivity {
         }
     }
 
+
     private void prog() {
         quest_progressbar = (ProgressBar) findViewById(R.id.quest_progressbar);
         scavenger_progressbar = (ProgressBar) findViewById(R.id.scavenger_progressbar);
@@ -173,9 +196,11 @@ public class Profile extends AppCompatActivity {
                             String reservedDate = documentSnapshot.getString("reservedDate");
                             String status = documentSnapshot.getString("status");
                             String selectedRefundOption = documentSnapshot.getString("selectedRefundOption");
+                            boolean isCancelled = documentSnapshot.getBoolean("Cancelled");
 
 
-                                //TextViews with the retrieved data
+
+                            //TextViews with the retrieved data
                             MonthText.setText(reservedDate);
                             if (MonthText != null) {
                                 MonthText.setText(reservedDate);
@@ -213,7 +238,15 @@ public class Profile extends AppCompatActivity {
                                 UpdatingtheTouristText.setText(status);
                             }
                             // Set the visibility of the 'cancelled' LinearLayout based on selectedRefundOption
-                            if (selectedRefundOption != null && !selectedRefundOption.isEmpty()) {
+//                            if (selectedRefundOption != null && !selectedRefundOption.isEmpty()) {
+//                                Log.d("ProfileActivity", "Setting cancelled LinearLayout to VISIBLE");
+//                                cancelled.setVisibility(View.VISIBLE);
+//                            } else {
+//                                Log.d("ProfileActivity", "Setting cancelled LinearLayout to GONE");
+//                                cancelled.setVisibility(View.GONE);
+//                            }
+                            // Set the visibility of the 'cancelled' LinearLayout based on the Cancelled field
+                            if (isCancelled) {
                                 Log.d("ProfileActivity", "Setting cancelled LinearLayout to VISIBLE");
                                 cancelled.setVisibility(View.VISIBLE);
                             } else {
@@ -235,6 +268,8 @@ public class Profile extends AppCompatActivity {
                             } else {
                                 ProfileName.setText("No Name Available");
                             }
+//                            // Call fetchBookingsFromFirestore to retrieve bookings for the user
+//                            fetchBookingsFromFirestore(userId);
 
                             if (imageUrl != null && !imageUrl.isEmpty()) {
                                 RequestOptions requestOptions = new RequestOptions()
@@ -250,6 +285,51 @@ public class Profile extends AppCompatActivity {
                     }
                 });
     }
+//
+//    private void fetchBookingsFromFirestore(String userId) {
+//
+//            FirebaseFirestore db = FirebaseFirestore.getInstance();
+//            DocumentReference userDocRef = db.collection("users").document(userId);
+//
+//            userDocRef.get().addOnCompleteListener(task -> {
+//                if (task.isSuccessful()) {
+//                    DocumentSnapshot document = task.getResult();
+//
+//                    if (document.exists() && document.contains("bookings")) {
+//                        List<Map<String, Object>> bookingsList = (List<Map<String, Object>>) document.get("bookings");
+//
+//                        List<Booking> userBookings = new ArrayList<>();
+//
+//                        for (Map<String, Object> bookingData : bookingsList) {
+//                            Booking booking = new Booking(
+//                                    (String) bookingData.get("selectedTour"),
+//                                    (String) bookingData.get("selectedTouristNum"),
+//                                    (String) bookingData.get("reservedDate"),
+//                                    (double) bookingData.get("totalAmount"),
+//                                    (String) bookingData.get("selectedTime")
+//                            );
+//
+//                            userBookings.add(booking);
+//                        }
+//
+//                        // Now you have the bookings for the specified user
+//                        // You can update your UI or perform any other logic with the userBookings list
+//                        updateUIWithBookings(userBookings);
+//                    }
+//                } else {
+//                    // Handle the case where the task is not successful
+//                    Log.e("Profile", "Error fetching bookings: " + task.getException().getMessage());
+//                }
+//            });
+//        }
+//
+//        private void updateUIWithBookings (List < Booking > userBookings) {
+//            // Implement your logic to update the UI with the fetched bookings
+//            // For example, update the RecyclerView adapter with the new data
+//            bookingList.clear();
+//            bookingList.addAll(userBookings);
+//            BookingAdapter.notify();
+//        }
 
     @Override
     protected void onDestroy() {

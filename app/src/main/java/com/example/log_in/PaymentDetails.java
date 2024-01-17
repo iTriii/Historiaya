@@ -94,14 +94,14 @@ public class PaymentDetails extends AppCompatActivity {
 
         //Initialize the Tabs and scrollview also he radio if Don Catalino at GAla Rodriguez
         ScrollViewDonCata = findViewById(R.id.ScrollViewDonCata); //scrollview
-        DonCat_Radio = findViewById(R.id.DonCat_Radio);
-        DonCat_Radio.setOnClickListener(v -> DonCat_Radio());
+//        DonCat_Radio = findViewById(R.id.DonCat_Radio);
+//        DonCat_Radio.setOnClickListener(v -> DonCat_Radio());
 
         ScrollViewGalaRod = findViewById(R.id.ScrollViewGalaRod); //scrollview
-        Gala_Radio = findViewById(R.id.Gala_Radio);
-        Gala_Radio.setOnClickListener(v -> Gala_Radio());
-        lineone = findViewById(R.id.lineone);
-        linetwo = findViewById(R.id.linetwo);
+//        Gala_Radio = findViewById(R.id.Gala_Radio);
+//        Gala_Radio.setOnClickListener(v -> Gala_Radio());
+//        lineone = findViewById(R.id.lineone);
+//        linetwo = findViewById(R.id.linetwo);
 
         chatbtn = findViewById(R.id.chatbtn);
 
@@ -281,28 +281,28 @@ public class PaymentDetails extends AppCompatActivity {
         }
     }
 
-    private void DonCat_Radio() {
-        DonCat_Radio.setChecked(true);
-        DonCat_Radio.setTextColor(ContextCompat.getColor(this, R.color.green));
-        ScrollViewDonCata.setVisibility(View.VISIBLE);
-        Gala_Radio.setChecked(false);
-        Gala_Radio.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
-        ScrollViewGalaRod.setVisibility(View.GONE);
-        lineone.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
-        linetwo.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
-
-    }
-
-    private void Gala_Radio() {
-        DonCat_Radio.setChecked(false);
-        DonCat_Radio.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
-        ScrollViewDonCata.setVisibility(View.GONE);
-        Gala_Radio.setChecked(true);
-        Gala_Radio.setTextColor(ContextCompat.getColor(this, R.color.green));
-        ScrollViewGalaRod.setVisibility(View.VISIBLE);
-        lineone.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
-        linetwo.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
-
-
-    }
+//    private void DonCat_Radio() {
+//        DonCat_Radio.setChecked(true);
+//        DonCat_Radio.setTextColor(ContextCompat.getColor(this, R.color.green));
+//        ScrollViewDonCata.setVisibility(View.VISIBLE);
+//        Gala_Radio.setChecked(false);
+//        Gala_Radio.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
+//        ScrollViewGalaRod.setVisibility(View.GONE);
+//        lineone.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
+//        linetwo.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
+//
+//    }
+//
+//    private void Gala_Radio() {
+//        DonCat_Radio.setChecked(false);
+//        DonCat_Radio.setTextColor(ContextCompat.getColor(this, R.color.fadedgreen));
+//        ScrollViewDonCata.setVisibility(View.GONE);
+//        Gala_Radio.setChecked(true);
+//        Gala_Radio.setTextColor(ContextCompat.getColor(this, R.color.green));
+//        ScrollViewGalaRod.setVisibility(View.VISIBLE);
+//        lineone.setBackgroundColor(ContextCompat.getColor(this, R.color.fadedgreen));
+//        linetwo.setBackgroundColor(ContextCompat.getColor(this, R.color.green));
+//
+//
+//    }
 }
