@@ -29,7 +29,6 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -452,45 +451,59 @@ public class BookNow extends AppCompatActivity {
         return tourPrice;
     }
 
-
     private void addDataToFirestore(String userId, String selectedTour, String selectedTouristNum, String reservedDate, double totalAmount, String selectedTime) {
         DocumentReference userDocRef = db.collection("users").document(userId);
 
-        Map<String, Object> bookingData = new HashMap<>();
-        bookingData.put("selectedTour", selectedTour);
-        bookingData.put("selectedTouristNum", selectedTouristNum);
-        bookingData.put("reservedDate", reservedDate);
-        bookingData.put("totalAmount", totalAmount);
-        bookingData.put("selectedTime", selectedTime);
+        userDocRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Map<String, Object> userData = new HashMap<>();
+                if (task.getResult() != null && task.getResult().getData() != null) {
+                    userData.putAll(task.getResult().getData());
+                }
 
-        userDocRef.update("bookings", FieldValue.arrayUnion(bookingData))
-                .addOnSuccessListener(documentReference -> {
+                // Check if the user has an existing booking
+                int bookingCount = getBookingCount(userData);
+
+                // Increment the booking count and append the numerical suffix to the field names for each new booking
+                String bookingSuffix = String.valueOf(bookingCount + 1);
+
+                // Create a new Map for the fields to be added
+                Map<String, Object> newBookingData = new HashMap<>();
+                newBookingData.put("selectedTour" + bookingSuffix, selectedTour);
+                newBookingData.put("selectedTouristNum" + bookingSuffix, selectedTouristNum);
+                newBookingData.put("reservedDate" + bookingSuffix, reservedDate);
+                newBookingData.put("totalAmount" + bookingSuffix, totalAmount);
+                newBookingData.put("selectedTime" + bookingSuffix, selectedTime);
+
+                // Add a new status field for each booking
+                newBookingData.put("status" + bookingSuffix, "Pending"); // You can set the initial status as needed
+
+                // Use update with the new fields
+                userDocRef.update(newBookingData).addOnSuccessListener(documentReference -> {
                     showToast("Booking created");
+
                     // Set status to "Pending" when a booking is created
-                    updateStatusInFirestore("Pending");
-                })
-                .addOnFailureListener(exception -> {
+                    updateStatusInFirestore(userDocRef, "Pending");
+                }).addOnFailureListener(exception -> {
                     showToast("Failed to create booking: " + exception.getMessage());
-                    Log.e("ProfileActivity", "Error creating booking", exception); // Add this line for enhanced error logging
+                    Log.e("Firestore", "Failed to create booking", exception);
                 });
+
+            } else {
+                showToast("Error checking booking status: " + task.getException().getMessage());
+                Log.e("Firestore", "Error checking booking status", task.getException());
+            }
+        });
     }
 
-    private void updateBookingInFirestore(String userId, String selectedTour, String selectedTouristNum, String reservedDate, double totalAmount, String selectedTime, int bookingNumber) {
-        DocumentReference userDocRef = db.collection("users").document(userId).collection("bookings").document("booked" + bookingNumber);
-
-        Map<String, Object> bookingData = new HashMap<>();
-        bookingData.put("selectedTour", selectedTour);
-        bookingData.put("selectedTouristNum", selectedTouristNum);
-        bookingData.put("reservedDate", reservedDate);
-        bookingData.put("totalAmount", totalAmount);
-        bookingData.put("selectedTime", selectedTime);
-
-        userDocRef.update(bookingData).addOnSuccessListener(documentReference -> {
-            showToast("Booking details updated");
-            // You may want to add additional logic here if needed
-        }).addOnFailureListener(exception -> {
-            showToast("Failed to update booking details: " + exception.getMessage());
-        });
+    private int getBookingCount(Map<String, Object> userData) {
+        int count = 0;
+        for (String key : userData.keySet()) {
+            if (key.matches("selectedTour\\d+")) {
+                count++;
+            }
+        }
+        return count;
     }
 
 
@@ -690,34 +703,60 @@ public class BookNow extends AppCompatActivity {
 //    }
 
 
-    private void updateStatusInFirestore(String Status) {
+    private void updateStatusInFirestore(DocumentReference userDocRef, String status) {
         try {
             // Get user ID
             String userId = mAuth.getCurrentUser().getUid();
 
             // Get Firestore instance and reference
             FirebaseFirestore db = FirebaseFirestore.getInstance();
-            DocumentReference userDocRef = db.collection("users").document(userId);
+            userDocRef = db.collection("users").document(userId);
 
-            // Create a map for the data
-            Map<String, Object> statusData = new HashMap<>();
-            statusData.put("status", Status);
+            // Get the existing data
+            DocumentReference finalUserDocRef = userDocRef;
+            userDocRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Map<String, Object> userData = new HashMap<>();
+                    if (task.getResult() != null && task.getResult().getData() != null) {
+                        userData.putAll(task.getResult().getData());
 
-            // Update only the status field in the "users" collection
-            userDocRef.update(statusData)
-                    .addOnSuccessListener(aVoid -> {
-                        //   showToast("Status updated successfully");
-                    })
-                    .addOnFailureListener(exception -> {
-                        //      showToast("Error updating status: " + exception.getMessage());
-                        Log.e("Firestore Error", "Error updating status", exception);
-                    });
+                        // Update the status for each booking
+                        for (String key : userData.keySet()) {
+                            if (key.matches("selectedTour\\d+")) {
+                                String bookingStatusField = "status" + key.substring(11); // Extract the numerical suffix
+                                finalUserDocRef.update(bookingStatusField, status)
+                                        .addOnSuccessListener(aVoid -> {
+                                            // Update successful for this booking
+                                        })
+                                        .addOnFailureListener(exception -> {
+                                            // Handle failure for this booking
+                                            Log.e("Firestore Error", "Error updating booking status", exception);
+                                        });
+                            }
+                        }
+
+                        // Update the overall status in the "users" collection
+                        Map<String, Object> statusData = new HashMap<>();
+                        statusData.put("status", status);
+                        finalUserDocRef.update(statusData)
+                                .addOnSuccessListener(aVoid -> {
+                                    // showToast("Status updated successfully");
+                                })
+                                .addOnFailureListener(exception -> {
+                                    // showToast("Error updating status: " + exception.getMessage());
+                                    Log.e("Firestore Error", "Error updating status", exception);
+                                });
+                    }
+                } else {
+                    // Handle error while fetching existing data
+                    Log.e("Firestore Error", "Error fetching existing data: " + task.getException().getMessage());
+                }
+            });
         } catch (Exception e) {
-            //   showToast("Error updating status: " + e.getMessage());
+            // showToast("Error updating status: " + e.getMessage());
             Log.e("Firestore Error", "Error updating status", e);
         }
     }
-
 
     private void navigateToBookingDetailMainActivity() {
         // Navigate to Booking Detail MAin Activity
