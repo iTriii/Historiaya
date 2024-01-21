@@ -485,7 +485,7 @@ public class Profile extends AppCompatActivity {
                                 selectedTourText55.setText(selectedTour4);
                             }
 
-
+//
 
 // Define arrays for status and LinearLayouts
                             String[] statuses = new String[5];
