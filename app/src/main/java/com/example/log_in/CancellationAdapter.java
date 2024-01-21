@@ -68,7 +68,7 @@ public class CancellationAdapter extends RecyclerView.Adapter<CancellationAdapte
     private void onRejectButtonClick(User cancellation) {
         updateStatusInDatabase(cancellation, "Cancellation (Rejected)");
     }
-
+//
     // Method to handle updating the status in the database and removing from the list
     @SuppressLint("NotifyDataSetChanged")
     private void updateStatusInDatabase(User user, String status) {
