@@ -511,13 +511,21 @@ public class TourismHeadAdmin extends AppCompatActivity {
                                 // Clear and re-populate the cancellationList
                                 cancellationList.clear();
 
-                                // Filter by cancellationStatus
+                                // Filter by selectedRefundOption1 to selectedRefundOption5
                                 for (User user : cancellationHashMap.values()) {
-                                    // Add only users with cancellationStatus not "Cancellation (Approved)" or "Cancellation (Rejected)"
-                                    if (!user.iscancellationStatus()) {
+                                    // Assuming getSelectRefundOption() is the method to get the refund option for the user
+                                    String refundOption = user.getSelectRefundOption();
+
+                                    // Add only users with selectRefundOption not equal to any of the specified options
+                                    if (!("selectedRefundOption1".equals(refundOption) ||
+                                            "selectedRefundOption2".equals(refundOption) ||
+                                            "selectedRefundOption3".equals(refundOption) ||
+                                            "selectedRefundOption4".equals(refundOption) ||
+                                            "selectedRefundOption5".equals(refundOption))) {
                                         cancellationList.add(user);
                                     }
                                 }
+
 
                                 // Notify the CancellationAdapter of the data change
                                 CancellationAdapter.notifyDataSetChanged();
@@ -533,7 +541,14 @@ public class TourismHeadAdmin extends AppCompatActivity {
     private void retrieveCancellationDataFromFirestore() {
         // Initialize Firestore references
         CollectionReference cancellationCollectionRef = db.collection("users");
-        Query cancellationQuery = cancellationCollectionRef.orderBy("status1", Query.Direction.ASCENDING);
+        Query cancellationQuery = cancellationCollectionRef
+                .whereEqualTo("status1", "Cancellation (Approved)")
+//                 You can add more conditions for other status fields (status2 to status5) as needed
+                 .whereEqualTo("status2", "Your Status 2 Value")
+                 .whereEqualTo("status3", "Your Status 3 Value")
+                 .whereEqualTo("status4", "Your Status 4 Value")
+                 .whereEqualTo("status5", "Your Status 5 Value")
+                .orderBy("status1", Query.Direction.ASCENDING);
 
         cancellationQuery.addSnapshotListener(new EventListener<QuerySnapshot>() {
             @SuppressLint("NotifyDataSetChanged")
@@ -549,11 +564,11 @@ public class TourismHeadAdmin extends AppCompatActivity {
 
                 // Handle cancellation data changes
                 for (DocumentSnapshot document : value.getDocuments()) {
-                    // Deserialize the cancellation data into your CancellationUser class
-                    User cancellationList = document.toObject(User.class);
-                    if (cancellationList != null) {
+                    // Deserialize the cancellation data into your User class
+                    User cancellation = document.toObject(User.class);
+                    if (cancellation != null) {
                         // Add the cancellation to the updated list
-                        updatedCancellationList.add(cancellationList);
+                        updatedCancellationList.add(cancellation);
                     }
                 }
 
@@ -561,11 +576,9 @@ public class TourismHeadAdmin extends AppCompatActivity {
                 cancellationList.clear();
                 cancellationList.addAll(updatedCancellationList);
                 CancellationAdapter.notifyDataSetChanged();
-
             }
         });
     }
-
 
     private void fetchAndDisplayUserData() {
         userDataListener = db.collection("users")

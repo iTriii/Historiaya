@@ -30,6 +30,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
 
+import java.sql.ResultSet;
 import java.util.Timer;
 import java.util.TimerTask;
 //FOR UPDATE ONLY
@@ -56,11 +57,14 @@ public class Profile extends AppCompatActivity {
     TextView DateText3, selectedTourText3, MonthText3, UpdatingtheStatus3; // Booked 3
     TextView DateText4, selectedTourText4, MonthText4, UpdatingtheStatus4; //Booked 4
     TextView DateText5, selectedTourText5, MonthText5, UpdatingtheStatus5; //Booked 5
-    TextView selectedTourText22,selectedTourText33, selectedTourText44;
+    TextView DateText6, selectedTourText6, MonthText6, UpdatingtheStatus6; //Booked 6
+
+    TextView selectedTourText22,selectedTourText33, selectedTourText44,selectedTourText55,selectedTourText66;
     private boolean cancelled;
     private int bookingIndex;
     private LinearLayout clickedLayout;
     private Object[] statuses;
+    private ResultSet documentSnapshot;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -89,15 +93,16 @@ public class Profile extends AppCompatActivity {
         Button upcomingbtn3 = findViewById(R.id.upcomingbtn3);
         Button upcomingbtn4 = findViewById(R.id.upcomingbtn4);
         Button upcomingbtn5 = findViewById(R.id.upcomingbtn5);
+        Button upcomingbtn6 = findViewById(R.id.upcomingbtn6);
 
-
+        Button upcomingbtnf = findViewById(R.id.upcomingbtnf);
 
 //
          LLcancelled1 = findViewById(R.id.LLcancelled1);
         LLcancelled2 = findViewById(R.id.LLcancelled2);
        LLcancelled3 = findViewById(R.id.LLcancelled3);
-//        LLcancelled4 = findViewById(R.id.LLcancelled4);
-//        LLcancelled5 = findViewById(R.id.LLcancelled5);
+        LLcancelled4 = findViewById(R.id.LLcancelled4);
+        LLcancelled5 = findViewById(R.id.LLcancelled5);
 
         //        Textview for Booked 2
         DateText2 = findViewById(R.id.DateText2);
@@ -124,6 +129,15 @@ public class Profile extends AppCompatActivity {
         MonthText5 = findViewById(R.id.MonthText5);
         UpdatingtheStatus5 = findViewById(R.id.UpdatingtheStatus5);
 
+
+        //        Textview for Booked 5
+        DateText6 = findViewById(R.id.DateText6);
+        selectedTourText6 = findViewById(R.id.selectedTourText6);
+        MonthText6 = findViewById(R.id.MonthText6);
+        UpdatingtheStatus5 = findViewById(R.id.UpdatingtheStatus6);
+
+
+
         MonthText = findViewById(R.id.MonthText);
         selectedTourText = findViewById(R.id.selectedTourText);
         DateText = findViewById(R.id.DateText);
@@ -136,7 +150,7 @@ public class Profile extends AppCompatActivity {
         selectedTourText33 = findViewById(R.id. selectedTourText33);
         selectedTourText44 = findViewById(R.id.selectedTourText44);
 
-
+        selectedTourText55 = findViewById(R.id.selectedTourText55);
         prog();
 
         AchievementsTab = findViewById(R.id.AchievementsTab);
@@ -162,14 +176,14 @@ public class Profile extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         user = auth.getCurrentUser();
 
-        // Set OnClickListener for upcomingbtn actions
+
+
         upcomingbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 handleBookingNavigation(1);
             }
         });
-
         // Set OnClickListener for upcomingbtn actions
         upcomingbtn2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,6 +212,12 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 handleBookingNavigation(5);
+            }
+        });
+        upcomingbtn6.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleBookingNavigation(6);
             }
         });
 
@@ -236,6 +256,9 @@ public class Profile extends AppCompatActivity {
                 break;
             case 5:
                 intent = new Intent(Profile.this, BookingDetailMain5.class);
+                break;
+            case 6:
+                intent = new Intent(Profile.this, BookingDetailMain6.class);
                 break;
 
             default:
@@ -303,6 +326,10 @@ public class Profile extends AppCompatActivity {
                             String selectedTour5 = documentSnapshot.getString("selectedTour5");// display data in texview
                             String reservedDate5 = documentSnapshot.getString("reservedDate5");
                             String status5 = documentSnapshot.getString("status5");
+
+                            String selectedTour6 = documentSnapshot.getString("selectedTour6");// display data in texview
+                            String reservedDate6 = documentSnapshot.getString("reservedDate6");
+                            String status6 = documentSnapshot.getString("status6");
 
                             if (firstName != null && lastName != null) {
                                 ProfileName.setText(firstName + " " + lastName);
@@ -416,6 +443,27 @@ public class Profile extends AppCompatActivity {
                             if (UpdatingtheStatus5 != null) {
                                 UpdatingtheStatus5.setText(status5);
                             }
+
+                            // Booked 6
+                            DateText6.setText(reservedDate6);
+                            if (DateText6 != null) {
+                                DateText6.setText(reservedDate6);
+                            }
+                            MonthText6.setText(reservedDate6);
+                            if (MonthText6 != null) {
+                                MonthText6.setText(reservedDate6);
+                            }
+                            selectedTourText6.setText(selectedTour6);
+                            if (selectedTourText6 != null) {
+                                selectedTourText6.setText(selectedTour6);
+                            }
+                            // Update reservation status in the UI
+                            if (UpdatingtheStatus6 != null) {
+                                UpdatingtheStatus6.setText(status6);
+                            }
+
+
+
 //                            caNCELLED1
                             selectedTourText33.setText(selectedTour1);
                             if (selectedTourText33 != null) {
@@ -431,6 +479,14 @@ public class Profile extends AppCompatActivity {
                             if (selectedTourText22 != null) {
                                 selectedTourText22.setText(selectedTour3);
                             }
+                      //      Cancelled4
+                            selectedTourText55.setText(selectedTour4);
+                            if (selectedTourText55 != null) {
+                                selectedTourText55.setText(selectedTour4);
+                            }
+
+
+
 // Define arrays for status and LinearLayouts
                             String[] statuses = new String[5];
                             LinearLayout[] bookedLayouts = new LinearLayout[5];
@@ -502,6 +558,16 @@ public class Profile extends AppCompatActivity {
                             } else {
                                 Log.d("ProfileActivity", "Setting cancelled LinearLayouts to GONE");
                                 LLcancelled3.setVisibility(View.GONE);
+                            }
+
+                            boolean isCancelled4 = Boolean.TRUE.equals(documentSnapshot.getBoolean("Cancelled4"));
+                            if (isCancelled4) {
+                                Log.d("ProfileActivity", "Setting cancelled LinearLayouts to VISIBLE");
+                                LLcancelled4.setVisibility(View.VISIBLE);
+
+                            } else {
+                                Log.d("ProfileActivity", "Setting cancelled LinearLayouts to GONE");
+                                LLcancelled4.setVisibility(View.GONE);
                             }
 
                         } catch (Exception e) {

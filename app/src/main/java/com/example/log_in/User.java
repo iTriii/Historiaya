@@ -15,8 +15,66 @@ public class User {
     private boolean cancelled1;
 
     private String Email, reservedDate1, selectedTour1, selectedTouristNum1, status1, userId, cancellationStatus1, Date;
+    private String reservedDate2, selectedTour2, selectedTouristNum2, status2,  cancellationStatus2;
+    private String reservedDate3, selectedTour3, selectedTouristNum3, status3,  cancellationStatus3;
+    private String reservedDate4, selectedTour4, selectedTouristNum4, status4,  cancellationStatus4;
+    private String reservedDate5, selectedTour5, selectedTouristNum5, status5,  cancellationStatus5;
+
 //    private String reservedDate, selectedTour, selectedTouristNum, status,  cancellationStatus;
     private int totalAmount;
+    private int totalAmount3;
+    private int totalAmount4;
+
+    public int getTotalAmount5() {
+        return totalAmount5;
+    }
+
+    public void setTotalAmount5(int totalAmount5) {
+        this.totalAmount5 = totalAmount5;
+    }
+
+    private int totalAmount5;
+    private Object selectRefundOption2;
+
+    public User(boolean cancelled1, String email, String reservedDate1, String selectedTour1, String selectedTouristNum1, String status1, String userId, String cancellationStatus1, String date, String reservedDate2, String selectedTour2, String selectedTouristNum2, String status2, String cancellationStatus2, String reservedDate3, String selectedTour3, String selectedTouristNum3, String status3, String cancellationStatus3, String reservedDate4, String selectedTour4, String selectedTouristNum4, String status4, String cancellationStatus4, String reservedDate5, String selectedTour5, String selectedTouristNum5, String status5, String cancellationStatus5, int totalAmount, int totalAmount3, int totalAmount4, int totalAmount5, Object selectRefundOption2, int totalAmount1, int totalAmount2, boolean cancellation) {
+        this.cancelled1 = cancelled1;
+        Email = email;
+        this.reservedDate1 = reservedDate1;
+        this.selectedTour1 = selectedTour1;
+        this.selectedTouristNum1 = selectedTouristNum1;
+        this.status1 = status1;
+        this.userId = userId;
+        this.cancellationStatus1 = cancellationStatus1;
+        Date = date;
+        this.reservedDate2 = reservedDate2;
+        this.selectedTour2 = selectedTour2;
+        this.selectedTouristNum2 = selectedTouristNum2;
+        this.status2 = status2;
+        this.cancellationStatus2 = cancellationStatus2;
+        this.reservedDate3 = reservedDate3;
+        this.selectedTour3 = selectedTour3;
+        this.selectedTouristNum3 = selectedTouristNum3;
+        this.status3 = status3;
+        this.cancellationStatus3 = cancellationStatus3;
+        this.reservedDate4 = reservedDate4;
+        this.selectedTour4 = selectedTour4;
+        this.selectedTouristNum4 = selectedTouristNum4;
+        this.status4 = status4;
+        this.cancellationStatus4 = cancellationStatus4;
+        this.reservedDate5 = reservedDate5;
+        this.selectedTour5 = selectedTour5;
+        this.selectedTouristNum5 = selectedTouristNum5;
+        this.status5 = status5;
+        this.cancellationStatus5 = cancellationStatus5;
+        this.totalAmount = totalAmount;
+        this.totalAmount3 = totalAmount3;
+        this.totalAmount4 = totalAmount4;
+        this.totalAmount5 = totalAmount5;
+        this.selectRefundOption2 = selectRefundOption2;
+        this.totalAmount1 = totalAmount1;
+        this.totalAmount2 = totalAmount2;
+        this.cancellation = cancellation;
+    }
 
 //    public String getReservedDate() {
 //        return reservedDate;
@@ -70,150 +128,146 @@ public class User {
         this.selectedTouristNum2 = selectedTouristNum2;
         this.status2 = status2;
         this.cancellationStatus2 = cancellationStatus2;
-//        this.reservedDate3 = reservedDate3;
-//        this.selectedTour3 = selectedTour3;
-//        this.selectedTouristNum3 = selectedTouristNum3;
-//        this.status3 = status3;
-//        this.cancellationStatus3 = cancellationStatus3;
-//        this.reservedDate4 = reservedDate4;
-//        this.selectedTour4 = selectedTour4;
-//        this.selectedTouristNum4 = selectedTouristNum4;
-//        this.status4 = status4;
-//        this.cancellationStatus4 = cancellationStatus4;
-//        this.reservedDate5 = reservedDate5;
-//        this.selectedTour5 = selectedTour5;
-//        this.selectedTouristNum5 = selectedTouristNum5;
-//        this.status5 = status5;
-//        this.cancellationStatus5 = cancellationStatus5;
+        this.reservedDate3 = reservedDate3;
+        this.selectedTour3 = selectedTour3;
+        this.selectedTouristNum3 = selectedTouristNum3;
+        this.status3 = status3;
+        this.cancellationStatus3 = cancellationStatus3;
+        this.reservedDate4 = reservedDate4;
+        this.selectedTour4 = selectedTour4;
+        this.selectedTouristNum4 = selectedTouristNum4;
+        this.status4 = status4;
+        this.cancellationStatus4 = cancellationStatus4;
+        this.reservedDate5 = reservedDate5;
+        this.selectedTour5 = selectedTour5;
+        this.selectedTouristNum5 = selectedTouristNum5;
+        this.status5 = status5;
+        this.cancellationStatus5 = cancellationStatus5;
         this.totalAmount1 = totalAmount1;
         this.totalAmount2 = totalAmount2;
         this.cancellation = cancellation;
     }
 
-    private String reservedDate2, selectedTour2, selectedTouristNum2, status2,  cancellationStatus2;
-//    private String reservedDate3, selectedTour3, selectedTouristNum3, status3,  cancellationStatus3;
-//    private String reservedDate4, selectedTour4, selectedTouristNum4, status4,  cancellationStatus4;
-//    private String reservedDate5, selectedTour5, selectedTouristNum5, status5,  cancellationStatus5;
 
-//    public String getReservedDate3() {
-//        return reservedDate3;
-//    }
-//
-//    public void setReservedDate3(String reservedDate3) {
-//        this.reservedDate3 = reservedDate3;
-//    }
-//
-//    public String getSelectedTour3() {
-//        return selectedTour3;
-//    }
-//
-//    public void setSelectedTour3(String selectedTour3) {
-//        this.selectedTour3 = selectedTour3;
-//    }
-//
-//    public String getSelectedTouristNum3() {
-//        return selectedTouristNum3;
-//    }
-//
-//    public void setSelectedTouristNum3(String selectedTouristNum3) {
-//        this.selectedTouristNum3 = selectedTouristNum3;
-//    }
-//
-//    public String getStatus3() {
-//        return status3;
-//    }
-//
-//    public void setStatus3(String status3) {
-//        this.status3 = status3;
-//    }
-//
-//    public String getCancellationStatus3() {
-//        return cancellationStatus3;
-//    }
-//
-//    public void setCancellationStatus3(String cancellationStatus3) {
-//        this.cancellationStatus3 = cancellationStatus3;
-//    }
-//
-//    public String getReservedDate4() {
-//        return reservedDate4;
-//    }
-//
-//    public void setReservedDate4(String reservedDate4) {
-//        this.reservedDate4 = reservedDate4;
-//    }
-//
-//    public String getSelectedTour4() {
-//        return selectedTour4;
-//    }
-//
-//    public void setSelectedTour4(String selectedTour4) {
-//        this.selectedTour4 = selectedTour4;
-//    }
-//
-//    public String getSelectedTouristNum4() {
-//        return selectedTouristNum4;
-//    }
-//
-//    public void setSelectedTouristNum4(String selectedTouristNum4) {
-//        this.selectedTouristNum4 = selectedTouristNum4;
-//    }
-//
-//    public String getStatus4() {
-//        return status4;
-//    }
-//
-//    public void setStatus4(String status4) {
-//        this.status4 = status4;
-//    }
-//
-//    public String getCancellationStatus4() {
-//        return cancellationStatus4;
-//    }
-//
-//    public void setCancellationStatus4(String cancellationStatus4) {
-//        this.cancellationStatus4 = cancellationStatus4;
-//    }
-//
-//    public String getReservedDate5() {
-//        return reservedDate5;
-//    }
-//
-//    public void setReservedDate5(String reservedDate5) {
-//        this.reservedDate5 = reservedDate5;
-//    }
-//
-//    public String getSelectedTour5() {
-//        return selectedTour5;
-//    }
-//
-//    public void setSelectedTour5(String selectedTour5) {
-//        this.selectedTour5 = selectedTour5;
-//    }
-//
-//    public String getSelectedTouristNum5() {
-//        return selectedTouristNum5;
-//    }
-//
-//    public void setSelectedTouristNum5(String selectedTouristNum5) {
-//        this.selectedTouristNum5 = selectedTouristNum5;
-//    }
-//
-//    public String getStatus5() {
-//        return status5;
-//    }
-//
-//    public void setStatus5(String status5) {
-//        this.status5 = status5;
-//    }
-//
-//    public String getCancellationStatus5() {
-//        return cancellationStatus5;
-//    }
-//
-//    public void setCancellationStatus5(String cancellationStatus5) {
-//        this.cancellationStatus5 = cancellationStatus5;
-//    }
+    public String getReservedDate3() {
+        return reservedDate3;
+    }
+
+    public void setReservedDate3(String reservedDate3) {
+        this.reservedDate3 = reservedDate3;
+    }
+
+    public String getSelectedTour3() {
+        return selectedTour3;
+    }
+
+    public void setSelectedTour3(String selectedTour3) {
+        this.selectedTour3 = selectedTour3;
+    }
+
+    public String getSelectedTouristNum3() {
+        return selectedTouristNum3;
+    }
+
+    public void setSelectedTouristNum3(String selectedTouristNum3) {
+        this.selectedTouristNum3 = selectedTouristNum3;
+    }
+
+    public String getStatus3() {
+        return status3;
+    }
+
+    public void setStatus3(String status3) {
+        this.status3 = status3;
+    }
+
+    public String getCancellationStatus3() {
+        return cancellationStatus3;
+    }
+
+    public void setCancellationStatus3(String cancellationStatus3) {
+        this.cancellationStatus3 = cancellationStatus3;
+    }
+
+    public String getReservedDate4() {
+        return reservedDate4;
+    }
+
+    public void setReservedDate4(String reservedDate4) {
+        this.reservedDate4 = reservedDate4;
+    }
+
+    public String getSelectedTour4() {
+        return selectedTour4;
+    }
+
+    public void setSelectedTour4(String selectedTour4) {
+        this.selectedTour4 = selectedTour4;
+    }
+
+    public String getSelectedTouristNum4() {
+        return selectedTouristNum4;
+    }
+
+    public void setSelectedTouristNum4(String selectedTouristNum4) {
+        this.selectedTouristNum4 = selectedTouristNum4;
+    }
+
+    public String getStatus4() {
+        return status4;
+    }
+
+    public void setStatus4(String status4) {
+        this.status4 = status4;
+    }
+
+    public String getCancellationStatus4() {
+        return cancellationStatus4;
+    }
+
+    public void setCancellationStatus4(String cancellationStatus4) {
+        this.cancellationStatus4 = cancellationStatus4;
+    }
+
+    public String getReservedDate5() {
+        return reservedDate5;
+    }
+
+    public void setReservedDate5(String reservedDate5) {
+        this.reservedDate5 = reservedDate5;
+    }
+
+    public String getSelectedTour5() {
+        return selectedTour5;
+    }
+
+    public void setSelectedTour5(String selectedTour5) {
+        this.selectedTour5 = selectedTour5;
+    }
+
+    public String getSelectedTouristNum5() {
+        return selectedTouristNum5;
+    }
+
+    public void setSelectedTouristNum5(String selectedTouristNum5) {
+        this.selectedTouristNum5 = selectedTouristNum5;
+    }
+
+    public String getStatus5() {
+        return status5;
+    }
+
+    public void setStatus5(String status5) {
+        this.status5 = status5;
+    }
+
+    public String getCancellationStatus5() {
+        return cancellationStatus5;
+    }
+
+    public void setCancellationStatus5(String cancellationStatus5) {
+        this.cancellationStatus5 = cancellationStatus5;
+    }
 
     public User(boolean cancelled1, String email, String reservedDate1, String selectedTour1, String selectedTouristNum1, String status1, String userId, String cancellationStatus1, String date, String reservedDate2, String selectedTour2, String selectedTouristNum2, String status2, String cancellationStatus2, String reservedDate3, String selectedTour3, String selectedTouristNum3, String status3, String cancellationStatus3, String reservedDate4, String selectedTour4, String selectedTouristNum4, String status4, String cancellationStatus4, String reservedDate5, String selectedTour5, String selectedTouristNum5, String status5, String cancellationStatus5, int totalAmount1, int totalAmount2, boolean cancellation) {
         this.cancelled1 = cancelled1;
@@ -230,21 +284,21 @@ public class User {
         this.selectedTouristNum2 = selectedTouristNum2;
         this.status2 = status2;
         this.cancellationStatus2 = cancellationStatus2;
-//        this.reservedDate3 = reservedDate3;
-//        this.selectedTour3 = selectedTour3;
-//        this.selectedTouristNum3 = selectedTouristNum3;
-//        this.status3 = status3;
-//        this.cancellationStatus3 = cancellationStatus3;
-//        this.reservedDate4 = reservedDate4;
-//        this.selectedTour4 = selectedTour4;
-//        this.selectedTouristNum4 = selectedTouristNum4;
-//        this.status4 = status4;
-//        this.cancellationStatus4 = cancellationStatus4;
-//        this.reservedDate5 = reservedDate5;
-//        this.selectedTour5 = selectedTour5;
-//        this.selectedTouristNum5 = selectedTouristNum5;
-//        this.status5 = status5;
-//        this.cancellationStatus5 = cancellationStatus5;
+        this.reservedDate3 = reservedDate3;
+        this.selectedTour3 = selectedTour3;
+        this.selectedTouristNum3 = selectedTouristNum3;
+        this.status3 = status3;
+        this.cancellationStatus3 = cancellationStatus3;
+        this.reservedDate4 = reservedDate4;
+        this.selectedTour4 = selectedTour4;
+        this.selectedTouristNum4 = selectedTouristNum4;
+        this.status4 = status4;
+        this.cancellationStatus4 = cancellationStatus4;
+        this.reservedDate5 = reservedDate5;
+        this.selectedTour5 = selectedTour5;
+        this.selectedTouristNum5 = selectedTouristNum5;
+        this.status5 = status5;
+        this.cancellationStatus5 = cancellationStatus5;
         this.totalAmount1 = totalAmount1;
         this.totalAmount2 = totalAmount2;
         this.cancellation = cancellation;
@@ -517,4 +571,37 @@ public class User {
     public void setTotalAmount(int totalAmount) {
         this.totalAmount = totalAmount;
     }
+
+    public int getTotalAmount3() {
+        return totalAmount3;
+    }
+
+    public void setTotalAmount3(int totalAmount3) {
+        this.totalAmount3 = totalAmount3;
+    }
+
+    public int getTotalAmount4() {
+        return totalAmount4;
+    }
+
+    public void setTotalAmount4(int totalAmount4) {
+        this.totalAmount4 = totalAmount4;
+    }
+
+    public String getSelectRefundOption() {
+        return getSelectRefundOption();
+    }
+
+    public Object getSelectRefundOption1() {
+        return getSelectRefundOption1();
+    }
+
+    public Object getSelectRefundOption2() {
+        return selectRefundOption2;
+    }
+
+    public void setSelectRefundOption2(Object selectRefundOption2) {
+        this.selectRefundOption2 = selectRefundOption2;
+    }
+
 }

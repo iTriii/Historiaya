@@ -78,9 +78,9 @@ public class BookingdetailMain2 extends AppCompatActivity {
         // Now you can use the bookingIndex as needed
         if (bookingIndex != -2) {
 
-            Log.d("BookingDetailMain", "Received bookingIndex: " + bookingIndex);
+            Log.d("BookingDetailMain2", "Received bookingIndex: " + bookingIndex);
         } else {
-            Log.e("BookingDetailMain", "Invalid or missing bookingIndex");
+            Log.e("BookingDetailMain2", "Invalid or missing bookingIndex");
 
         }
 
@@ -88,7 +88,7 @@ public class BookingdetailMain2 extends AppCompatActivity {
         confirmbtn.setOnClickListener(v -> {
             Intent backIntent = new Intent(BookingdetailMain2.this, Main2.class);
             startActivity(backIntent);
-            Toast.makeText(BookingdetailMain2.this, "Confirm Cancellation, please wait for approval", Toast.LENGTH_SHORT).show();
+            Toast.makeText(BookingdetailMain2.this, " please wait for approval", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
         });
 
@@ -142,7 +142,7 @@ public class BookingdetailMain2 extends AppCompatActivity {
                         totalText.setText(String.format("₱%.2f", total2));
                         selectedTourText.setText(selectedTour2);
                     } else {
-                        showToast("No booking data found in Firestore.");
+                    //    showToast("No booking data found in Firestore.");
                     }
                 });
     }

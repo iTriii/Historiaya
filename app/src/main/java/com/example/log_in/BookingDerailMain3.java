@@ -79,6 +79,7 @@ public class BookingDerailMain3 extends AppCompatActivity {
         confirmbtn.setOnClickListener(v -> {
             Intent backIntent = new Intent(BookingDerailMain3.this, Main2.class);
             startActivity(backIntent);
+
             Toast.makeText(BookingDerailMain3.this, "Confirm Cancellation, please wait for approval", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
         });
