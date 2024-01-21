@@ -39,9 +39,9 @@ public class upcoming_reservation_adapter extends RecyclerView.Adapter<upcoming_
 
         User upcoming_reservation_of_user = userArrayList.get(position);
 
-        holder. MonthHouseManagerText.setText(upcoming_reservation_of_user.getReservedDate());
-        holder.BahayHouseManagerText.setText(upcoming_reservation_of_user.getSelectedTour());
-        holder.ArawHouseManagerText.setText(upcoming_reservation_of_user.getReservedDate());
+        holder. MonthHouseManagerText.setText(upcoming_reservation_of_user.getReservedDate1());
+        holder.BahayHouseManagerText.setText(upcoming_reservation_of_user.getSelectedTour1());
+        holder.ArawHouseManagerText.setText(upcoming_reservation_of_user.getReservedDate1());
 //        holder.AmountHouseManagerText.setText(String.valueOf(upcoming_reservation_of_user.getTotalAmount()));
     }
 

@@ -7,7 +7,9 @@
     android:orientation="vertical"
     android:textAlignment="center"
     android:background="#E1FAFF"
-    tools:context=".BookingDetailMain">
+    tools:context=".BookingDerailMain3">
+
+
     <!-- For update lang-->
     <ImageView
         android:id="@+id/clouds"

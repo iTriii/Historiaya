@@ -36,14 +36,14 @@ public class historyAdapterHM extends RecyclerView.Adapter<historyAdapterHM.MyVi
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         User HistoryUsers = userArrayList.get(position);
 
-        holder.MonthHouseManagerText.setText(HistoryUsers.getReservedDate());
-        holder.BahayHouseManagerText.setText(HistoryUsers.getSelectedTour());
-        holder.ArawHouseManagerText.setText(HistoryUsers.getReservedDate());
+        holder.MonthHouseManagerText.setText(HistoryUsers.getReservedDate1());
+        holder.BahayHouseManagerText.setText(HistoryUsers.getSelectedTour1());
+        holder.ArawHouseManagerText.setText(HistoryUsers.getReservedDate1());
         holder.bookebyNameHMHistory.setText(HistoryUsers.getEmail());
-        holder.TotalNumberHMHistory.setText(HistoryUsers.getSelectedTouristNum());
-        holder.SelectedHouseHMHistory.setText(HistoryUsers.getSelectedTour());
+        holder.TotalNumberHMHistory.setText(HistoryUsers.getSelectedTouristNum1());
+        holder.SelectedHouseHMHistory.setText(HistoryUsers.getSelectedTour1());
         // totalAmount is an integer.
-        holder.AmountHouseManagerText.setText(String.valueOf(HistoryUsers.getTotalAmount()));
+        holder.AmountHouseManagerText.setText(String.valueOf(HistoryUsers.getTotalAmount1()));
 
 
     }

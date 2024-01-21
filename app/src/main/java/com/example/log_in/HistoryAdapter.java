@@ -40,11 +40,11 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.MyViewHo
     public void onBindViewHolder(@NonNull HistoryAdapter.MyViewHolder holder, int position) {
         User HistoryUsers = historyList.get(position);
 
-        holder.MontHistoText.setText(HistoryUsers.getReservedDate());
-        holder.BahayHistoText.setText(HistoryUsers.getSelectedTour());
+        holder.MontHistoText.setText(HistoryUsers.getReservedDate1());
+        holder.BahayHistoText.setText(HistoryUsers.getSelectedTour1());
         holder.bookebyNameHistory.setText(HistoryUsers.getEmail());
-        holder.TotalNumberHistory.setText(HistoryUsers.getSelectedTouristNum());
-        holder.SelectedHouseHistory.setText(HistoryUsers.getSelectedTour());
+        holder.TotalNumberHistory.setText(HistoryUsers.getSelectedTouristNum1());
+        holder.SelectedHouseHistory.setText(HistoryUsers.getSelectedTour1());
         holder.AmountHistory.setText(String.valueOf(HistoryUsers.getTotalAmount()));
     }
 

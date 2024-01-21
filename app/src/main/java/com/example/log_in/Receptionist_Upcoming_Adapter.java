@@ -38,9 +38,9 @@ public class Receptionist_Upcoming_Adapter extends RecyclerView.Adapter< Recepti
     public void onBindViewHolder(@NonNull Receptionist_Upcoming_Adapter.MyViewHolder holder, int position) {
         User UpcomingUsers_Recep = userArrayList.get(position);
 
-        holder.MonthTextRecep_Upcoming.setText(UpcomingUsers_Recep.getReservedDate());
-        holder.BahayRecepUpcoming_Text.setText(UpcomingUsers_Recep.getSelectedTour());
-        holder.ArawRecepUpcoming_Text.setText(UpcomingUsers_Recep.getReservedDate());
+        holder.MonthTextRecep_Upcoming.setText(UpcomingUsers_Recep.getReservedDate1());
+        holder.BahayRecepUpcoming_Text.setText(UpcomingUsers_Recep.getSelectedTour1());
+        holder.ArawRecepUpcoming_Text.setText(UpcomingUsers_Recep.getReservedDate1());
 
     }
 

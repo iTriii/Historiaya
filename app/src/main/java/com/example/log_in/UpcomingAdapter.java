@@ -40,9 +40,9 @@ public class UpcomingAdapter  extends RecyclerView.Adapter<UpcomingAdapter.MyVie
     public void onBindViewHolder(@NonNull UpcomingAdapter.MyViewHolder holder, int position) {
         User UpcomingUsers =  upcomingList.get(position);
 
-        holder.MonthTourHeadText.setText(UpcomingUsers.getReservedDate());
-        holder.BahayTourHeadText.setText(UpcomingUsers.getSelectedTour());
-        holder.ArawTourHeadText.setText(UpcomingUsers.getReservedDate());
+        holder.MonthTourHeadText.setText(UpcomingUsers.getReservedDate1());
+        holder.BahayTourHeadText.setText(UpcomingUsers.getSelectedTour1());
+        holder.ArawTourHeadText.setText(UpcomingUsers.getReservedDate1());
 
     }
 

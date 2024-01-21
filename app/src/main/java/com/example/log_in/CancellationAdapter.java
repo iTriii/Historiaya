@@ -50,13 +50,13 @@ public class CancellationAdapter extends RecyclerView.Adapter<CancellationAdapte
         holder.rejectdbtn.setOnClickListener(v -> onRejectButtonClick(cancellation));
 
         // Set the values to the TextView widgets
-        holder.MonthCancelText.setText(cancellation.getReservedDate());
-        holder.BahayPendingCancelText.setText(cancellation.getSelectedTour());
-        holder.ArawPendingCancelText.setText(cancellation.getReservedDate());
+        holder.MonthCancelText.setText(cancellation.getReservedDate1());
+        holder.BahayPendingCancelText.setText(cancellation.getSelectedTour1());
+        holder.ArawPendingCancelText.setText(cancellation.getReservedDate1());
         holder.bookebyNameCancel.setText(cancellation.getEmail());
-        holder.TotalNumberCancel.setText(cancellation.getSelectedTouristNum());
-        holder.SelectedHouseCancel.setText(cancellation.getSelectedTour());
-        holder.AmountTextCancel.setText(String.valueOf(cancellation.getTotalAmount()));
+        holder.TotalNumberCancel.setText(cancellation.getSelectedTouristNum1());
+        holder.SelectedHouseCancel.setText(cancellation.getSelectedTour1());
+        holder.AmountTextCancel.setText(String.valueOf(cancellation.getTotalAmount1()));
     }
 
     // Method to handle the acceptance of a cancellation request
@@ -71,16 +71,16 @@ public class CancellationAdapter extends RecyclerView.Adapter<CancellationAdapte
 
     // Method to handle updating the status in the database and removing from the list
     @SuppressLint("NotifyDataSetChanged")
-    private void updateStatusInDatabase(User user, String status) {
+    private void updateStatusInDatabase(User user, String status1) {
         if (user != null && user.getUid() != null) {
             db.collection("users")
                     .document(user.getUid())
                     .update(
-                            "status", status,
-                            "Cancelled", true  // Add the 'Cancelled' field and set it to true
+                            "status1", status1,
+                            "Cancelled1", true  // Add the 'Cancelled' field and set it to true
                     )
                     .addOnSuccessListener(aVoid -> {
-                        user.setStatus(status);
+                        user.setStatus1(status1);
                         user.setCancelled(true);
                         cancellationList.remove(user);
                         notifyDataSetChanged();

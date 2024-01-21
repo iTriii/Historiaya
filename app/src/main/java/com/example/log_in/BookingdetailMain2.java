@@ -1,5 +1,6 @@
 package com.example.log_in;
 
+
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
@@ -16,7 +17,10 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
 
-public class BookingDetailMain extends AppCompatActivity {
+
+public class BookingdetailMain2 extends AppCompatActivity {
+
+
 
     //FOR UPDATE ONLY
     // Declaring variables
@@ -28,15 +32,17 @@ public class BookingDetailMain extends AppCompatActivity {
     FirebaseAuth auth;
     private FirebaseFirestore db;
     public ListenerRegistration userDataListener;
+    private int selectedTour2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_booking_detail_main);
+        setContentView(R.layout.activity_bookingdetail_main2);
+
 
 // Retrieve the button index from the Intent
         // Retrieve the bookingIndex extra from the Intent
-        int bookingIndex = getIntent().getIntExtra("bookingIndex", -1);
+        int bookingIndex = getIntent().getIntExtra("bookingIndex", -2);
 
 
         // Initializing FirebaseFirestore and FirebaseAuth
@@ -54,7 +60,7 @@ public class BookingDetailMain extends AppCompatActivity {
         Donebut = findViewById(R.id.Donebut);
 
         // Initializing the dialog
-        dialog = new Dialog(BookingDetailMain.this);
+        dialog = new Dialog(BookingdetailMain2.this);
         dialog.setContentView(R.layout.dialog_cancellation);
         dialog.setCancelable(false);
 
@@ -63,14 +69,14 @@ public class BookingDetailMain extends AppCompatActivity {
 
         // Click listeners for dialog buttons
         notnowbtn.setOnClickListener(v -> {
-            Intent backIntent = new Intent(BookingDetailMain.this, Main2.class);
+            Intent backIntent = new Intent(BookingdetailMain2.this, Main2.class);
             startActivity(backIntent);
-            Toast.makeText(BookingDetailMain.this, "Not Now", Toast.LENGTH_SHORT).show();
+            Toast.makeText(BookingdetailMain2.this, "Not Now", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
         });
 
         // Now you can use the bookingIndex as needed
-        if (bookingIndex != -1) {
+        if (bookingIndex != -2) {
 
             Log.d("BookingDetailMain", "Received bookingIndex: " + bookingIndex);
         } else {
@@ -80,31 +86,31 @@ public class BookingDetailMain extends AppCompatActivity {
 
 
         confirmbtn.setOnClickListener(v -> {
-            Intent backIntent = new Intent(BookingDetailMain.this, Main2.class);
+            Intent backIntent = new Intent(BookingdetailMain2.this, Main2.class);
             startActivity(backIntent);
-            Toast.makeText(BookingDetailMain.this, "Confirm Cancellation, please wait for approval", Toast.LENGTH_SHORT).show();
+            Toast.makeText(BookingdetailMain2.this, "Confirm Cancellation, please wait for approval", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
         });
 
         // Click listeners for navigation buttons
         reschedbtn.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingDetailMain.this, BookNow.class);
+            Intent intent = new Intent(BookingdetailMain2.this, BookNow.class);
             startActivity(intent);
         });
 
         backbutton.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingDetailMain.this, Profile.class);
+            Intent intent = new Intent(BookingdetailMain2.this, Profile.class);
             startActivity(intent);
         });
 
 
         cancelbtn.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingDetailMain.this, BookingCancellation.class);
+            Intent intent = new Intent(BookingdetailMain2.this, BookingCancellation2.class);
             startActivity(intent);
         });
 
         Donebut.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingDetailMain.this, Profile.class);
+            Intent intent = new Intent(BookingdetailMain2.this, Profile.class);
             startActivity(intent);
         });
 
@@ -123,22 +129,18 @@ public class BookingDetailMain extends AppCompatActivity {
                         return;
                     }
                     if (documentSnapshot != null && documentSnapshot.exists()) {
-                        // Retrieve data from documentSnapshot
-                        String selectedTour1 = documentSnapshot.getString("selectedTour1");
-                        Double totalAmount1 = documentSnapshot.getDouble("totalAmount1");
-                        String selectedTouristNum1 = documentSnapshot.getString("selectedTouristNum1");
-                        String reservedDate1 = documentSnapshot.getString("reservedDate1");
+                        String selectedTour2 = documentSnapshot.getString("selectedTour2");
 
-                        // Check for null values before using them
-                        if (selectedTour1 != null && totalAmount1 != null && selectedTouristNum1 != null && reservedDate1 != null) {
-                            // Set TextViews with the retrieved data
-                            datetext.setText(reservedDate1);
-                            selectedtouristsText.setText(selectedTouristNum1);
-                            totalText.setText(String.format("₱%.2f", totalAmount1));
-                            selectedTourText.setText(selectedTour1);
-                        } else {
-                            showToast("Some data is null in Firestore document.");
-                        }
+                        // Use getDouble for numeric values
+                        double total2 = documentSnapshot.getDouble("totalAmount2");
+                        String selectedTouristNum2 = documentSnapshot.getString("selectedTouristNum2");
+                        String reservedDate2 = documentSnapshot.getString("reservedDate2");
+
+                        // Set TextViews with the retrieved data
+                        datetext.setText(reservedDate2);
+                        selectedtouristsText.setText(selectedTouristNum2);
+                        totalText.setText(String.format("₱%.2f", total2));
+                        selectedTourText.setText(selectedTour2);
                     } else {
                         showToast("No booking data found in Firestore.");
                     }

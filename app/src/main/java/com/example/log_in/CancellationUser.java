@@ -3,13 +3,13 @@ package com.example.log_in;
 public class CancellationUser extends User {
     public static final String FIELD_USER_ID = "userId";
     public static final String FIELD_EMAIL = "Email";
-    public static final String FIELD_STATUS = "status";
+    public static final String FIELD_STATUS1 = "status1";
     public static final String FIELD_CANCELLATION_STATUS = "";
 
-    private boolean cancelled;
+    private boolean cancelled1;
 
-    private String Email, reservedDate, selectedTour, selectedTouristNum, status, userId, cancellationStatus, Date;
-    private int totalAmount;
+    private String Email, reservedDate1, selectedTour1, selectedTouristNum1, status1, userId, cancellationStatus, Date;
+    private int totalAmount1;
 
     private boolean cancellation;
 
@@ -18,20 +18,20 @@ public class CancellationUser extends User {
 
     }
 
-    public void setCancelled(boolean cancelled) {
-        this.cancelled = cancelled;
+    public void setCancelled(boolean cancelled1) {
+        this.cancelled1 = cancelled1;
     }
 
-    public CancellationUser(boolean cancelled, String email, String reservedDate, String selectedTour, String selectedTouristNum, String status, String userId, String cancellationStatus, int totalAmount, boolean cancellation) {
-        this.cancelled = cancelled;
+    public CancellationUser(boolean cancelled1, String email, String reservedDate1, String selectedTour1, String selectedTouristNum1, String status1, String userId, String cancellationStatus, int totalAmount1, boolean cancellation) {
+        this.cancelled1 = cancelled1;
         Email = email;
-        this.reservedDate = reservedDate;
-        this.selectedTour = selectedTour;
-        this.selectedTouristNum = selectedTouristNum;
-        this.status = status;
+        this.reservedDate1 = reservedDate1;
+        this.selectedTour1 = selectedTour1;
+        this.selectedTouristNum1 = selectedTouristNum1;
+        this.status1 = status1;
         this.userId = userId;
         this.cancellationStatus = cancellationStatus;
-        this.totalAmount = totalAmount;
+        this.totalAmount1 = totalAmount1;
         this.cancellation = cancellation;
     }
 
@@ -45,12 +45,12 @@ public class CancellationUser extends User {
 
     public CancellationUser(String Email, String reservedDate, String cancellationStatus, String selectedTour, String selectedTouristNum, String status, String userId, int totalAmount) {
         this.Email = Email;
-        this.reservedDate = reservedDate;
-        this.selectedTour = selectedTour;
-        this.selectedTouristNum = selectedTouristNum;
-        this.status = status;
+        this.reservedDate1 = reservedDate1;
+        this.selectedTour1 = selectedTour1;
+        this.selectedTouristNum1 = selectedTouristNum1;
+        this.status1 = status1;
         this.userId = userId;
-        this.totalAmount = totalAmount;
+        this.totalAmount1 = totalAmount1;
         this.cancellationStatus = cancellationStatus;
 
     }
@@ -63,36 +63,36 @@ public class CancellationUser extends User {
         this.Email = email;
     }
 
-    public String getReservedDate() {
-        return reservedDate;
+    public String getReservedDate1() {
+        return reservedDate1;
     }
 
-    public void setReservedDate(String reservedDate) {
-        this.reservedDate = reservedDate;
+    public void setReservedDate1(String reservedDate) {
+        this.reservedDate1 = reservedDate;
     }
 
-    public String getSelectedTour() {
-        return selectedTour;
+    public String getSelectedTour1() {
+        return selectedTour1;
     }
 
-    public void setSelectedTour(String selectedTour) {
-        this.selectedTour = selectedTour;
+    public void setSelectedTour1(String selectedTour) {
+        this.selectedTour1 = selectedTour;
     }
 
-    public String getSelectedTouristNum() {
-        return selectedTouristNum;
+    public String getSelectedTouristNum1() {
+        return selectedTouristNum1;
     }
 
-    public void setSelectedTouristNum(String selectedTouristNum) {
-        this.selectedTouristNum = selectedTouristNum;
+    public void setSelectedTouristNum1(String selectedTouristNum) {
+        this.selectedTouristNum1 = selectedTouristNum;
     }
 
-    public String getStatus() {
-        return status;
+    public String getStatus1() {
+        return status1;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setStatus1(String status) {
+        this.status1 = status;
     }
 
     public String getUserId() {
@@ -104,19 +104,19 @@ public class CancellationUser extends User {
     }
 
     public boolean isUpcoming() {
-        return "Upcoming".equals(reservedDate);
+        return "Upcoming".equals(reservedDate1);
     }
 
     public String getUid() {
         return this.userId;
     }
 
-    public int getTotalAmount() {
-        return totalAmount;
+    public int getTotalAmount1() {
+        return totalAmount1;
     }
 
-    public void setTotalAmount(int totalAmount) {
-        this.totalAmount = totalAmount;
+    public void setTotalAmount1(int totalAmount) {
+        this.totalAmount1 = totalAmount1;
     }
 
 

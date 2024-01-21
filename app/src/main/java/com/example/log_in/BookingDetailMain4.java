@@ -1,5 +1,6 @@
 package com.example.log_in;
 
+
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
@@ -15,9 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
-
-public class BookingDetailMain extends AppCompatActivity {
-
+public class BookingDetailMain4 extends AppCompatActivity {
     //FOR UPDATE ONLY
     // Declaring variables
     Button notnowbtn, confirmbtn, Nextbtn, Donebut;
@@ -32,11 +31,11 @@ public class BookingDetailMain extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_booking_detail_main);
+        setContentView(R.layout.activity_booking_detail_main4);
 
 // Retrieve the button index from the Intent
         // Retrieve the bookingIndex extra from the Intent
-        int bookingIndex = getIntent().getIntExtra("bookingIndex", -1);
+        int bookingIndex = getIntent().getIntExtra("bookingIndex", -4);
 
 
         // Initializing FirebaseFirestore and FirebaseAuth
@@ -54,7 +53,7 @@ public class BookingDetailMain extends AppCompatActivity {
         Donebut = findViewById(R.id.Donebut);
 
         // Initializing the dialog
-        dialog = new Dialog(BookingDetailMain.this);
+        dialog = new Dialog(BookingDetailMain4.this);
         dialog.setContentView(R.layout.dialog_cancellation);
         dialog.setCancelable(false);
 
@@ -63,14 +62,14 @@ public class BookingDetailMain extends AppCompatActivity {
 
         // Click listeners for dialog buttons
         notnowbtn.setOnClickListener(v -> {
-            Intent backIntent = new Intent(BookingDetailMain.this, Main2.class);
+            Intent backIntent = new Intent(BookingDetailMain4.this, Main2.class);
             startActivity(backIntent);
-            Toast.makeText(BookingDetailMain.this, "Not Now", Toast.LENGTH_SHORT).show();
+            Toast.makeText(BookingDetailMain4.this, "Not Now", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
         });
 
         // Now you can use the bookingIndex as needed
-        if (bookingIndex != -1) {
+        if (bookingIndex != -4) {
 
             Log.d("BookingDetailMain", "Received bookingIndex: " + bookingIndex);
         } else {
@@ -80,31 +79,31 @@ public class BookingDetailMain extends AppCompatActivity {
 
 
         confirmbtn.setOnClickListener(v -> {
-            Intent backIntent = new Intent(BookingDetailMain.this, Main2.class);
+            Intent backIntent = new Intent(BookingDetailMain4.this, Main2.class);
             startActivity(backIntent);
-            Toast.makeText(BookingDetailMain.this, "Confirm Cancellation, please wait for approval", Toast.LENGTH_SHORT).show();
+            Toast.makeText(BookingDetailMain4.this, "Confirm Cancellation, please wait for approval", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
         });
 
         // Click listeners for navigation buttons
         reschedbtn.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingDetailMain.this, BookNow.class);
+            Intent intent = new Intent(BookingDetailMain4.this, BookNow.class);
             startActivity(intent);
         });
 
         backbutton.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingDetailMain.this, Profile.class);
+            Intent intent = new Intent(BookingDetailMain4.this, Profile.class);
             startActivity(intent);
         });
 
 
         cancelbtn.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingDetailMain.this, BookingCancellation.class);
+            Intent intent = new Intent(BookingDetailMain4.this, BookingCancellation.class);
             startActivity(intent);
         });
 
         Donebut.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingDetailMain.this, Profile.class);
+            Intent intent = new Intent(BookingDetailMain4.this, Profile.class);
             startActivity(intent);
         });
 
@@ -124,18 +123,18 @@ public class BookingDetailMain extends AppCompatActivity {
                     }
                     if (documentSnapshot != null && documentSnapshot.exists()) {
                         // Retrieve data from documentSnapshot
-                        String selectedTour1 = documentSnapshot.getString("selectedTour1");
-                        Double totalAmount1 = documentSnapshot.getDouble("totalAmount1");
-                        String selectedTouristNum1 = documentSnapshot.getString("selectedTouristNum1");
-                        String reservedDate1 = documentSnapshot.getString("reservedDate1");
+                        String selectedTour4 = documentSnapshot.getString("selectedTour4");
+                        Double totalAmount4 = documentSnapshot.getDouble("totalAmount4");
+                        String selectedTouristNum4 = documentSnapshot.getString("selectedTouristNum4");
+                        String reservedDate4 = documentSnapshot.getString("reservedDate4");
 
                         // Check for null values before using them
-                        if (selectedTour1 != null && totalAmount1 != null && selectedTouristNum1 != null && reservedDate1 != null) {
+                        if (selectedTour4 != null && totalAmount4 != null && selectedTouristNum4 != null && reservedDate4 != null) {
                             // Set TextViews with the retrieved data
-                            datetext.setText(reservedDate1);
-                            selectedtouristsText.setText(selectedTouristNum1);
-                            totalText.setText(String.format("₱%.2f", totalAmount1));
-                            selectedTourText.setText(selectedTour1);
+                            datetext.setText(reservedDate4);
+                            selectedtouristsText.setText(selectedTouristNum4);
+                            totalText.setText(String.format("₱%.2f", totalAmount4));
+                            selectedTourText.setText(selectedTour4);
                         } else {
                             showToast("Some data is null in Firestore document.");
                         }

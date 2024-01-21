@@ -49,13 +49,13 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
             holder.approvedbtn.setOnClickListener(v -> onAcceptButtonClick(user));
             holder.rejectdbtn.setOnClickListener(v -> onRejectButtonClick(user));
 
-            holder.pendingMonthText.setText(user.getReservedDate());
-            holder.bahayPendingText.setText(user.getSelectedTour());
-            holder.arawPendingText.setText(user.getReservedDate());
+            holder.pendingMonthText.setText(user.getReservedDate1());
+            holder.bahayPendingText.setText(user.getSelectedTour1());
+            holder.arawPendingText.setText(user.getReservedDate1());
             holder.bookedByPending.setText(user.getEmail());
-            holder.totalNumberPending.setText(user.getSelectedTouristNum());
-            holder.selectedHousePending.setText(user.getSelectedTour());
-            holder.AmountTextTH.setText(String.valueOf(user.getTotalAmount()));
+            holder.totalNumberPending.setText(user.getSelectedTouristNum1());
+            holder.selectedHousePending.setText(user.getSelectedTour1());
+            holder.AmountTextTH.setText(String.valueOf(user.getTotalAmount1()));
         } else {
             // If the user is confirmed or cancelled, hide the itemView
             holder.itemView.setVisibility(View.GONE);
@@ -64,8 +64,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     // Method to check if the user is confirmed or cancelled
     private boolean isConfirmedOrCancelled(User user) {
-        return user != null && user.getStatus() != null &&
-                (user.getStatus().equals("Confirmed Booking") || user.getStatus().equals("Cancelled Booking"));
+        return user != null && user.getStatus1() != null &&
+                (user.getStatus1().equals("Confirmed Booking") || user.getStatus1().equals("Cancelled Booking"));
     }
 
 
@@ -80,14 +80,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
     // Method to handle updating the status in the database and removing from the list
     @SuppressLint("NotifyDataSetChanged")
 
-    private void updateStatusInDatabase(User user, String status) {
+    private void updateStatusInDatabase(User user, String status1) {
         if (user != null && user.getUid() != null) {
             db.collection("users")
                     .document(user.getUid())
-                    .update("status", status)
+                    .update("status1", status1)
                     .addOnSuccessListener(aVoid -> {
                         // Update the user status in the local object
-                        user.setStatus(status);
+                        user.setStatus1(status1);
 
                         // Remove the user from the list
                         userArrayList.remove(user);

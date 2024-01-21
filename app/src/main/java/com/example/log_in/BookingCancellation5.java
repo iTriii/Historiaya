@@ -22,8 +22,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
 
-public class BookingCancellation extends AppCompatActivity {
-    //FOR UPDATE ONLY
+public class BookingCancellation5 extends AppCompatActivity {
     Button withdrawbtn, continuebtn;
     Dialog dialog;
 
@@ -33,12 +32,13 @@ public class BookingCancellation extends AppCompatActivity {
     FirebaseAuth auth;
     private FirebaseFirestore db;
     public ListenerRegistration userDataListener;
-    private String selectedOption1; // Declare this variable at the class level
+    private String selectedOption5; // Declare this variable at the class level
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_booking_cancellation);
+        setContentView(R.layout.activity_booking_cancellation5);
 
         // Initializing views
         backbutton = findViewById(R.id.backbtncancellation);
@@ -65,7 +65,7 @@ public class BookingCancellation extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // Handle the selected refund option
-                selectedOption1 = parentView.getItemAtPosition(position).toString();
+                selectedOption5 = parentView.getItemAtPosition(position).toString();
                 // Toast.makeText(BookingRefund.this, "Selected Refund Option: " + selectedOption, Toast.LENGTH_SHORT).show();
             }
 
@@ -77,18 +77,18 @@ public class BookingCancellation extends AppCompatActivity {
 
         // Click listener for viewing profile
         detailsclick.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingCancellation.this, BookingDetailMain.class);
+            Intent intent = new Intent(BookingCancellation5.this, BookingDetailMain.class);
             startActivity(intent);
         });
 
         // view button
         backbutton.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingCancellation.this, BookingDetailMain.class);
+            Intent intent = new Intent(BookingCancellation5.this, BookingDetailMain.class);
             startActivity(intent);
         });
 
         // Initialization and actions for withdrawal dialog
-        dialog = new Dialog(BookingCancellation.this);
+        dialog = new Dialog(BookingCancellation5.this);
         dialog.setContentView(R.layout.dialog_cancellation);
         dialog.setCancelable(false);
 
@@ -97,18 +97,17 @@ public class BookingCancellation extends AppCompatActivity {
         Button confirmbtn = dialog.findViewById(R.id.confirmbtn);
 
         notnowbtn.setOnClickListener(v -> {
-            Intent backIntent = new Intent(BookingCancellation.this, BookingDetailMain.class);
+            Intent backIntent = new Intent(BookingCancellation5.this, BookingDetailMain5.class);
             startActivity(backIntent);
-            Toast.makeText(BookingCancellation.this, "Not now", Toast.LENGTH_SHORT).show();
+            Toast.makeText(BookingCancellation5.this, "Not now", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
         });
 
 // CONFIRMATION BUTTON, NAVIGATE TO THE BOOKING DETAIL MAIN
         confirmbtn.setOnClickListener(v -> {
-            Intent confirmIntent = new Intent(BookingCancellation.this, BookingDetailMain.class);
+            Intent confirmIntent = new Intent(BookingCancellation5.this, BookingDetailMain5.class);
             startActivity(confirmIntent);
             //Toast.makeText(BookingCancellation.this, "Confirm Cancellation, please wait for approval", Toast.LENGTH_SHORT).show();
-
             dialog.dismiss();
         });
 
@@ -118,7 +117,7 @@ public class BookingCancellation extends AppCompatActivity {
         });
 
 // Initialization and actions for continue dialog
-        dialog = new Dialog(BookingCancellation.this);
+        dialog = new Dialog(BookingCancellation5.this);
         dialog.setContentView(R.layout.dialog_cancellation_continue);
         dialog.setCancelable(false);
 
@@ -130,20 +129,19 @@ public class BookingCancellation extends AppCompatActivity {
         });
 
         btnNotnow.setOnClickListener(v -> {
-            Intent notnowIntent = new Intent(BookingCancellation.this, BookingDetailMain.class);
+            Intent notnowIntent = new Intent(BookingCancellation5.this, BookingDetailMain5.class);
             startActivity(notnowIntent);
-            Toast.makeText(BookingCancellation.this, "Not Now", Toast.LENGTH_SHORT).show();
+            Toast.makeText(BookingCancellation5.this, "Not Now", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
         });
 
         btnConfirm.setOnClickListener(v -> {
             // Update cancellation status to "pendingCancellation"
             updateCancellationStatus("pendingCancellation");
-
-            Intent confirmIntent = new Intent(BookingCancellation.this, BookingDetailMain.class);
+            Intent confirmIntent = new Intent(BookingCancellation5.this, BookingDetailMain5.class);
             startActivity(confirmIntent);
             saveSelectedOptionToFirestore(); //SAVE TO THE FIRESTORE
-            Toast.makeText(BookingCancellation.this, "Confirm Cancellation, please wait for approval", Toast.LENGTH_SHORT).show();
+            Toast.makeText(BookingCancellation5.this, "Confirm Cancellation, please wait for approval", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
         });
 
@@ -163,14 +161,14 @@ public class BookingCancellation extends AppCompatActivity {
 
         if (currentUser != null) {
             userDocRef
-                    .update("selectedRefundOption1", selectedOption1)
+                    .update("selectedRefundOption5", selectedOption5)
                     .addOnSuccessListener(aVoid -> {
                         // Show a toast message indicating that the option has been saved successfully
-                        // Toast.makeText(BookingCancellation.this, "Selected refund option saved successfully", Toast.LENGTH_SHORT).show();
+                       Toast.makeText(BookingCancellation5.this, "Selected refund option saved successfully", Toast.LENGTH_SHORT).show();
                     })
                     .addOnFailureListener(e -> {
                         // Show a toast message indicating an error in saving the option
-                        // Toast.makeText(BookingCancellation.this, "Error saving refund option: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                      Toast.makeText(BookingCancellation5.this, "Error saving refund option: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     });
         }
     }
@@ -184,7 +182,7 @@ public class BookingCancellation extends AppCompatActivity {
         String userId = auth.getCurrentUser().getUid();
         db.collection("users")
                 .document(userId)
-                .update("status1", status)
+                .update("status5", status)
                 .addOnSuccessListener(aVoid -> {
                     //   showToast("Cancellation status updated successfully");
                 })
@@ -212,27 +210,27 @@ public class BookingCancellation extends AppCompatActivity {
                 .addSnapshotListener((documentSnapshot, error) -> {
                     // Handling data retrieval and updating UI
                     if (error != null) {
-                        Log.e("BookingCancellationActivity", "Error fetching user data: " + error.getMessage());
+                        Log.e("BookingCancellation5Activity", "Error fetching user data: " + error.getMessage());
                         return;
                     }
                     if (documentSnapshot != null && documentSnapshot.exists()) {
-                        String selectedTour1 = documentSnapshot.getString("selectedTour1");
+                        String selectedTour5 = documentSnapshot.getString("selectedTour5");
                         String E_mail = documentSnapshot.getString("Email");
-                        String selectedOption1 = documentSnapshot.getString("selectedRefundOption1");
-                        double total1 = documentSnapshot.getDouble("totalAmount1");
+                        String selectedOption5 = documentSnapshot.getString("selectedRefundOption5");
+                        double total5 = documentSnapshot.getDouble("totalAmount5");
                         // Use getDouble for numeric values
-                        String selectedTouristNum1 = documentSnapshot.getString("selectedTouristNum1");
+                        String selectedTouristNum5 = documentSnapshot.getString("selectedTouristNum5");
 
                         // Check if the views are not null before setting values
                         if (TotalTouristsText != null) {
-                            TotalTouristsText.setText(selectedTouristNum1);
+                            TotalTouristsText.setText(selectedTouristNum5);
                         }
                         if (amountText != null) {
-                            amountText.setText(String.format("₱%.2f", total1));
+                            amountText.setText(String.format("₱%.2f", total5));
                         }
 
                         if (pickhouseText != null) {
-                            pickhouseText.setText(selectedTour1);
+                            pickhouseText.setText(selectedTour5);
                         }
                         if (nameText != null) {
                             nameText.setText(E_mail);
@@ -253,7 +251,7 @@ public class BookingCancellation extends AppCompatActivity {
 
         if (currentUser != null) {
             userDocRef
-                    .update("selectedRefundOption1", selectedOption1)  // Update the selected refund option in Firestore
+                    .update("selectedRefundOption5", selectedOption5)  // Update the selected refund option in Firestore
                     .addOnSuccessListener(aVoid -> {
                         // Show a toast message indicating that the option has been saved successfully
                         //Toast.makeText(BookingCancellation.this, "Selected refund option saved successfully", Toast.LENGTH_SHORT).show();

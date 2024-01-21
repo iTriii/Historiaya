@@ -1,5 +1,6 @@
 package com.example.log_in;
 
+
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
@@ -16,10 +17,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.ListenerRegistration;
 
-public class BookingDetailMain extends AppCompatActivity {
-
-    //FOR UPDATE ONLY
-    // Declaring variables
+public class BookingDerailMain3 extends AppCompatActivity {
     Button notnowbtn, confirmbtn, Nextbtn, Donebut;
     ImageButton backbutton, reschedbtn, cancelbtn, refundbtn;
     TextView selectedTourText, totalText, selectedtouristsText, datetext;
@@ -28,15 +26,14 @@ public class BookingDetailMain extends AppCompatActivity {
     FirebaseAuth auth;
     private FirebaseFirestore db;
     public ListenerRegistration userDataListener;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_booking_detail_main);
+        setContentView(R.layout.activity_booking_derail_main3);
 
 // Retrieve the button index from the Intent
         // Retrieve the bookingIndex extra from the Intent
-        int bookingIndex = getIntent().getIntExtra("bookingIndex", -1);
+        int bookingIndex = getIntent().getIntExtra("bookingIndex", -3);
 
 
         // Initializing FirebaseFirestore and FirebaseAuth
@@ -54,7 +51,7 @@ public class BookingDetailMain extends AppCompatActivity {
         Donebut = findViewById(R.id.Donebut);
 
         // Initializing the dialog
-        dialog = new Dialog(BookingDetailMain.this);
+        dialog = new Dialog(BookingDerailMain3.this);
         dialog.setContentView(R.layout.dialog_cancellation);
         dialog.setCancelable(false);
 
@@ -63,48 +60,48 @@ public class BookingDetailMain extends AppCompatActivity {
 
         // Click listeners for dialog buttons
         notnowbtn.setOnClickListener(v -> {
-            Intent backIntent = new Intent(BookingDetailMain.this, Main2.class);
+            Intent backIntent = new Intent(BookingDerailMain3.this, Main2.class);
             startActivity(backIntent);
-            Toast.makeText(BookingDetailMain.this, "Not Now", Toast.LENGTH_SHORT).show();
+            Toast.makeText(BookingDerailMain3.this, "Not Now", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
         });
 
         // Now you can use the bookingIndex as needed
-        if (bookingIndex != -1) {
+        if (bookingIndex != -3) {
 
-            Log.d("BookingDetailMain", "Received bookingIndex: " + bookingIndex);
+            Log.d("BookingDerailMain3", "Received bookingIndex: " + bookingIndex);
         } else {
-            Log.e("BookingDetailMain", "Invalid or missing bookingIndex");
+            Log.e("BookingDerailMain3", "Invalid or missing bookingIndex");
 
         }
 
 
         confirmbtn.setOnClickListener(v -> {
-            Intent backIntent = new Intent(BookingDetailMain.this, Main2.class);
+            Intent backIntent = new Intent(BookingDerailMain3.this, Main2.class);
             startActivity(backIntent);
-            Toast.makeText(BookingDetailMain.this, "Confirm Cancellation, please wait for approval", Toast.LENGTH_SHORT).show();
+            Toast.makeText(BookingDerailMain3.this, "Confirm Cancellation, please wait for approval", Toast.LENGTH_SHORT).show();
             dialog.dismiss();
         });
 
         // Click listeners for navigation buttons
         reschedbtn.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingDetailMain.this, BookNow.class);
+            Intent intent = new Intent(BookingDerailMain3.this, BookNow.class);
             startActivity(intent);
         });
 
         backbutton.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingDetailMain.this, Profile.class);
+            Intent intent = new Intent(BookingDerailMain3.this, Profile.class);
             startActivity(intent);
         });
 
 
         cancelbtn.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingDetailMain.this, BookingCancellation.class);
+            Intent intent = new Intent(BookingDerailMain3.this, BookingCancellation.class);
             startActivity(intent);
         });
 
         Donebut.setOnClickListener(v -> {
-            Intent intent = new Intent(BookingDetailMain.this, Profile.class);
+            Intent intent = new Intent(BookingDerailMain3.this, Profile.class);
             startActivity(intent);
         });
 
@@ -124,18 +121,18 @@ public class BookingDetailMain extends AppCompatActivity {
                     }
                     if (documentSnapshot != null && documentSnapshot.exists()) {
                         // Retrieve data from documentSnapshot
-                        String selectedTour1 = documentSnapshot.getString("selectedTour1");
-                        Double totalAmount1 = documentSnapshot.getDouble("totalAmount1");
-                        String selectedTouristNum1 = documentSnapshot.getString("selectedTouristNum1");
-                        String reservedDate1 = documentSnapshot.getString("reservedDate1");
+                        String selectedTour3 = documentSnapshot.getString("selectedTour3");
+                        Double totalAmount3 = documentSnapshot.getDouble("totalAmount3");
+                        String selectedTouristNum3 = documentSnapshot.getString("selectedTouristNum3");
+                        String reservedDate3 = documentSnapshot.getString("reservedDate3");
 
                         // Check for null values before using them
-                        if (selectedTour1 != null && totalAmount1 != null && selectedTouristNum1 != null && reservedDate1 != null) {
+                        if (selectedTour3 != null && totalAmount3 != null && selectedTouristNum3 != null && reservedDate3 != null) {
                             // Set TextViews with the retrieved data
-                            datetext.setText(reservedDate1);
-                            selectedtouristsText.setText(selectedTouristNum1);
-                            totalText.setText(String.format("₱%.2f", totalAmount1));
-                            selectedTourText.setText(selectedTour1);
+                            datetext.setText(reservedDate3);
+                            selectedtouristsText.setText(selectedTouristNum3);
+                            totalText.setText(String.format("₱%.2f", totalAmount3));
+                            selectedTourText.setText(selectedTour3);
                         } else {
                             showToast("Some data is null in Firestore document.");
                         }

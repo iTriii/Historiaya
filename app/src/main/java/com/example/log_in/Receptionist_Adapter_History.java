@@ -39,13 +39,13 @@ public class Receptionist_Adapter_History extends RecyclerView.Adapter<Reception
     public void onBindViewHolder(@NonNull Receptionist_Adapter_History.MyViewHolder holder, int position) {
         User HistoryUsers = userArrayList.get(position);
 
-        holder.MontHistoRecepText.setText(HistoryUsers.getReservedDate());
-        holder.BahayHistoRecepText.setText(HistoryUsers.getSelectedTour());
-        holder.ArawHistoRecepText.setText(HistoryUsers.getReservedDate());
+        holder.MontHistoRecepText.setText(HistoryUsers.getReservedDate1());
+        holder.BahayHistoRecepText.setText(HistoryUsers.getSelectedTour1());
+        holder.ArawHistoRecepText.setText(HistoryUsers.getReservedDate1());
         holder.bookebyNameReceptionist_History.setText(HistoryUsers.getEmail());
-        holder.TotalNumberReceptionist_History.setText(HistoryUsers.getSelectedTouristNum());
-        holder.SelectedHouseReceptionist_History.setText(HistoryUsers.getSelectedTour());
-        holder.AmountText.setText(String.valueOf(HistoryUsers.getTotalAmount()));
+        holder.TotalNumberReceptionist_History.setText(HistoryUsers.getSelectedTouristNum1());
+        holder.SelectedHouseReceptionist_History.setText(HistoryUsers.getSelectedTour1());
+        holder.AmountText.setText(String.valueOf(HistoryUsers.getTotalAmount1()));
 
 
     }

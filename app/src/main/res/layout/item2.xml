@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardElevation="8dp"
+    app:cardCornerRadius="8dp"
+    android:layout_margin="10dp">
+
+
+    <!--    For Update only-->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="6dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="210dp"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/PendingMonthText"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="-90dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
+
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="80dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="-180dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/shadow"
+                android:padding="5dp"
+                android:src="@drawable/don_catalino1" />
+
+            <TextView
+                android:id="@+id/BahayPendingText"
+                android:layout_width="163dp"
+                android:layout_height="36dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="-50dp"
+                android:layout_marginEnd="20dp"
+                android:fontFamily="@font/montserrat_bold"
+                android:textColor="#000000"
+                android:textSize="13sp"
+                tools:ignore="SmallSp" />
+
+            <TextView
+                android:id="@+id/ArawPendingText"
+                android:layout_width="156dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="-180dp"
+                android:layout_marginTop="-20dp"
+                android:fontFamily="@font/montserrat"
+                android:textColor="#000000"
+                android:textSize="13sp" />
+
+            <Button
+                android:id="@+id/approvedbtn"
+                android:layout_width="90dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="11dp"
+                android:background="@drawable/btntime2"
+                android:clickable="true"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/approve"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="10sp" />
+
+            <Button
+                android:id="@+id/rejectdbtn"
+                android:layout_width="90dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="-90dp"
+                android:layout_marginTop="59dp"
+                android:background="@drawable/cancelledbtn"
+                android:clickable="true"
+                android:fontFamily="@font/montserrat_bold"
+                android:text="@string/reject"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="10sp"
+                tools:ignore="SmallSp" />
+
+
+            <TextView
+                android:id="@+id/bookeby"
+                android:layout_width="120dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="-350dp"
+                android:layout_marginTop="110dp"
+                android:fontFamily="@font/montserrat"
+                android:text="Booked by:"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/bookebyNamePending"
+                android:layout_width="180dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="110dp"
+                android:fontFamily="@font/montserrat"
+                android:text="Leah Sulongsawa"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/number"
+                android:layout_width="120dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="-310dp"
+                android:layout_marginTop="130dp"
+                android:fontFamily="@font/montserrat"
+                android:text="No of Tourists:"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/TotalNumberPending"
+                android:layout_width="180dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="130dp"
+                android:fontFamily="@font/montserrat"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/housePending"
+                android:layout_width="120dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="-310dp"
+                android:layout_marginTop="150dp"
+                android:fontFamily="@font/montserrat"
+                android:text="House:"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/SelectedHousePending"
+                android:layout_width="180dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="150dp"
+                android:fontFamily="@font/montserrat"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/AmountText"
+                android:layout_width="120dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="-310dp"
+                android:layout_marginTop="170dp"
+                android:fontFamily="@font/montserrat"
+                android:text="Amount"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/AmountTextTH"
+                android:layout_width="180dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="170dp"
+                android:fontFamily="@font/montserrat"
+                android:textAlignment="textStart"
+                android:textColor="#000000"
+                android:textSize="15sp" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>
