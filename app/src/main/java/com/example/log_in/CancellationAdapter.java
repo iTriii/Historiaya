@@ -71,17 +71,23 @@ public class CancellationAdapter extends RecyclerView.Adapter<CancellationAdapte
 
     // Method to handle updating the status in the database and removing from the list
     @SuppressLint("NotifyDataSetChanged")
-    private void updateStatusInDatabase(User user, String status1) {
+    private void updateStatusInDatabase(User user, String status) {
         if (user != null && user.getUid() != null) {
             db.collection("users")
                     .document(user.getUid())
                     .update(
-                            "status1", status1,
-                            "Cancelled1", true  // Add the 'Cancelled' field and set it to true
+                            "status1", status,
+                            "Cancelled1", true,
+                            "Cancelled2", false,
+                            "Cancelled3", false,
+                            "Cancelled4", false,
+                            "Cancelled5", false
+
+                            // Add the 'Cancelled' field and set it to true
                     )
                     .addOnSuccessListener(aVoid -> {
-                        user.setStatus1(status1);
-                        user.setCancelled(true);
+                        user.setStatus1(status);
+                        user.setCancelled1(true);
                         cancellationList.remove(user);
                         notifyDataSetChanged();
                         Log.d("CancellationAdapter", "Item updated successfully");
