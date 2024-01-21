@@ -20,7 +20,7 @@ public class User {
     private String reservedDate4, selectedTour4, selectedTouristNum4, status4,  cancellationStatus4;
     private String reservedDate5, selectedTour5, selectedTouristNum5, status5,  cancellationStatus5;
 
-//    private String reservedDate, selectedTour, selectedTouristNum, status,  cancellationStatus;
+    private String reservedDate, selectedTour, selectedTouristNum, status,  cancellationStatus;
     private int totalAmount;
     private int totalAmount3;
     private int totalAmount4;
@@ -76,37 +76,37 @@ public class User {
         this.cancellation = cancellation;
     }
 
-//    public String getReservedDate() {
-//        return reservedDate;
-//    }
-//
-//    public void setReservedDate(String reservedDate) {
-//        this.reservedDate = reservedDate;
-//    }
-//
-//    public String getSelectedTour() {
-//        return selectedTour;
-//    }
-//
-//    public void setSelectedTour(String selectedTour) {
-//        this.selectedTour = selectedTour;
-//    }
-//
-//    public String getSelectedTouristNum() {
-//        return selectedTouristNum;
-//    }
-//
-//    public String getStatus() {
-//        return status;
-//    }
-//
-//    public void setStatus(String status) {
-//        this.status = status;
-//    }
-//
-//    public String getCancellationStatus() {
-//        return cancellationStatus;
-//    }
+    public String getReservedDate() {
+        return reservedDate;
+    }
+
+    public void setReservedDate(String reservedDate) {
+        this.reservedDate = reservedDate;
+    }
+
+    public String getSelectedTour() {
+        return selectedTour;
+    }
+
+    public void setSelectedTour(String selectedTour) {
+        this.selectedTour = selectedTour;
+    }
+
+    public String getSelectedTouristNum() {
+        return selectedTouristNum;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getCancellationStatus() {
+        return cancellationStatus;
+    }
 
     public User(boolean cancelled1, String email, String reservedDate1, String selectedTour1, String selectedTouristNum1, String status1, String userId, String cancellationStatus1, String date, String reservedDate, String selectedTour, String selectedTouristNum, String status, String cancellationStatus, String reservedDate2, String selectedTour2, String selectedTouristNum2, String status2, String cancellationStatus2, String reservedDate3, String selectedTour3, String selectedTouristNum3, String status3, String cancellationStatus3, String reservedDate4, String selectedTour4, String selectedTouristNum4, String status4, String cancellationStatus4, String reservedDate5, String selectedTour5, String selectedTouristNum5, String status5, String cancellationStatus5, int totalAmount1, int totalAmount2, boolean cancellation) {
         this.cancelled1 = cancelled1;

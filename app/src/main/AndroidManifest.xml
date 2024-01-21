@@ -36,7 +36,36 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar"
         tools:targetApi="31">
-
+        <activity
+            android:name=".BookingCancellation6"
+            android:exported="false" />
+        <activity
+            android:name=".BookingDetailMain6"
+            android:exported="false" />
+        <activity
+            android:name=".BookingCancellation5"
+            android:exported="false" />
+        <activity
+            android:name=".BookingCancellation4"
+            android:exported="false" />
+        <activity
+            android:name=".BookingCancellation3"
+            android:exported="false" />
+        <activity
+            android:name=".BookingCancellation2"
+            android:exported="false" />
+        <activity
+            android:name=".BookingDetailMain5"
+            android:exported="false" />
+        <activity
+            android:name=".BookingDetailMain4"
+            android:exported="false" />
+        <activity
+            android:name=".BookingDerailMain3"
+            android:exported="false" />
+        <activity
+            android:name=".BookingdetailMain2"
+            android:exported="false" />
         <activity
             android:name=".RescheduleTourists"
             android:exported="false" />
@@ -53,14 +82,6 @@
         <activity
             android:name=".HouseManager"
             android:exported="false" /> <!-- <activity -->
-        <!-- android:name=".GalaRodriguezAdmin" -->
-        <!-- android:exported="false" /> -->
-        <!-- <activity -->
-        <!-- android:name=".DonCatalinoAdmin" -->
-        <!-- android:exported="false" /> -->
-        <!-- <activity -->
-        <!-- android:name=".Admin" -->
-        <!-- android:exported="false" /> -->
         <activity
             android:name=".Receptionist"
             android:exported="false" />
@@ -185,6 +206,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="false" />
+        <activity android:name=".BookingDetailMain2" />
 
         <meta-data
             android:name="preloaded_fonts"
